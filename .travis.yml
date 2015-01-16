@@ -1,0 +1,43 @@
+language: php
+php:
+  - "5.5"
+
+env:
+  - SYMFONY_VERSION=2.6.*
+
+before_script:
+    # Copy skeleton parameters file
+    - cp app/config/parameters.yml.dist app/config/parameters.yml
+
+    # Install packages
+    - sudo apt-get update > /dev/null
+    - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql php5-intl
+
+    # Create VirtualHost
+    - sudo sed -i -e "s,/var/www,$(pwd)/web,g" /etc/apache2/sites-available/default
+    - sudo sed -i -e "/DocumentRoot/i\ServerName mychristmas.local" /etc/apache2/sites-available/default
+    - echo "127.0.0.1 mychristmas.local" | sudo tee -a /etc/hosts
+    - sudo /etc/init.d/apache2 restart
+
+    # Update php.ini
+    - echo 'display_errors = On' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+    - echo 'html_errors = On' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+    - echo 'short_open_tag = Off' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+    - echo 'date.timezone = "Europe/Kiev"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+
+    # Update composer
+    - composer self-update
+    - composer install
+
+    # Make symfony2 preparation steps
+    - mkdir -p web/upload/media
+    - app/console do:da:cr -e=test > /dev/null
+    - app/console do:sc:cr -e=test > /dev/null
+    - php app/console assets:install --symlink
+    - php app/console assetic:dump
+    - sudo chmod -R 777 app/cache app/logs
+    - app/console --env=test cache:warmup
+    - sudo chmod -R 777 app/cache app/logs
+
+script:
+  - phpunit -c app/
