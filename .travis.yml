@@ -15,8 +15,8 @@ before_script:
 
     # Create VirtualHost
     - sudo sed -i -e "s,/var/www,$(pwd)/web,g" /etc/apache2/sites-available/default
-    - sudo sed -i -e "/DocumentRoot/i\ServerName mychristmas.local" /etc/apache2/sites-available/default
-    - echo "127.0.0.1 mychristmas.local" | sudo tee -a /etc/hosts
+    - sudo sed -i -e "/DocumentRoot/i\ServerName chedream.local" /etc/apache2/sites-available/default
+    - echo "127.0.0.1 chedream.local" | sudo tee -a /etc/hosts
     - sudo /etc/init.d/apache2 restart
 
     # Update php.ini
