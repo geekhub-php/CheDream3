@@ -12,6 +12,7 @@
 /vendor/
 /bin/*
 !/bin/reload
+!/bin/base_script.php
 /composer.phar
 .idea/
 *~
