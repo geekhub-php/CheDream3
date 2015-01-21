@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/valiknet18/CheDream3.svg)](https://travis-ci.org/valiknet18/CheDream3)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/valiknet18/CheDream3/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/valiknet18/CheDream3/?branch=develop)
+
 CheDream
 ========
 
