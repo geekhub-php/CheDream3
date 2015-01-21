@@ -30,9 +30,6 @@ before_script:
     - composer install
 
     # Make symfony2 preparation steps
-    - mkdir -p web/upload/media
-    - app/console do:da:cr -e=test > /dev/null
-    - app/console do:sc:cr -e=test > /dev/null
     - php app/console assets:install --symlink
     - php app/console assetic:dump
     - sudo chmod -R 777 app/cache app/logs
