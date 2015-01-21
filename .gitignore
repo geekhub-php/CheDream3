@@ -10,7 +10,9 @@
 /app/check.php
 /build/
 /vendor/
-/bin/
+/bin/*
+!/bin/reload
+!/bin/base_script.php
 /composer.phar
 .idea/
 *~
