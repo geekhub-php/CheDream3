@@ -21,12 +21,12 @@
         "friendsofsymfony/rest-bundle": "~1.4",
         "jms/serializer-bundle": "0.13.*",
         "nelmio/api-doc-bundle": "~2.7",
-        "stof/doctrine-extensions-bundle": "~1.1@dev",
-        "doctrine/doctrine-fixtures-bundle": "2.2.*"
+        "stof/doctrine-extensions-bundle": "~1.1@dev"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "2.2.0",
         "sensio/generator-bundle": "~2.3"
+
     },
     "scripts": {
         "post-root-package-install": [

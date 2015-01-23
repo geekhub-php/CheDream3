@@ -46,3 +46,11 @@ assetic:
 
 #swiftmailer:
 #    delivery_address: me@example.com
+
+stof_doctrine_extensions:
+    orm:
+        default:
+            timestampable: true
+            sluggable: true
+            loggable: true
+            tree:    true
