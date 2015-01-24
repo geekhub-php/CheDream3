@@ -73,3 +73,11 @@ swiftmailer:
     spool:     { type: memory }
 
 nelmio_api_doc: ~
+
+stof_doctrine_extensions:
+    orm:
+        default:
+            timestampable: true
+            sluggable: true
+            loggable: true
+            tree:    true
