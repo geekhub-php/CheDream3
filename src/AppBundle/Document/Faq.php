@@ -7,7 +7,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Faq
  *
- * @ORM\Document(collection="faq")
+ * @ODM\Document(collection="faq")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class Faq
