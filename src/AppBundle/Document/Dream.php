@@ -26,7 +26,7 @@ class Dream
      *
      * @Assert\NotBlank(message = "dream.not_blank")
      * @Assert\Length(min = "5", minMessage = "dream.min_length")
-     * @ODM\Field(length="200", type="string")
+     * @ODM\Field(type="string")
      */
     protected $title;
 
@@ -64,7 +64,7 @@ class Dream
      *
      * @Assert\NotBlank(message = "dream.not_blank")
      * @Assert\Regex(pattern="/^[+0-9 ()-]+$/", message="dream.only_numbers")
-     * @ODM\Field(type="string", length=45)
+     * @ODM\Field(type="string")
      */
     protected $phone;
 
@@ -72,7 +72,7 @@ class Dream
      * @var string
      *
      * @Gedmo\Slug(fields={"title"})
-     * @ODM\Field(type="string", length=200)
+     * @ODM\Field(type="string")
      */
     protected $slug;
 
@@ -102,7 +102,7 @@ class Dream
     /**
      * @var \DateTime
      *
-     * @ODM\Field(name="expiredDate", type="date")
+     * @ODM\Field(type="date")
      */
     protected $expiredDate;
 
@@ -152,7 +152,7 @@ class Dream
     protected $statuses = array();
 
     /**
-     * @ODM\Column(name="currentStatus", type="string", length=100, nullable = true)
+     * @ODM\Field(type="string")
      */
     protected $currentStatus;
 
