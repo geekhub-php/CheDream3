@@ -72,8 +72,6 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-nelmio_api_doc: ~
-
 stof_doctrine_extensions:
     orm:
         default:
@@ -81,3 +79,5 @@ stof_doctrine_extensions:
             sluggable: true
             loggable: true
             tree:    true
+
+nelmio_api_doc: ~
