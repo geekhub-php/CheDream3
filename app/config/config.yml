@@ -81,13 +81,3 @@ stof_doctrine_extensions:
             tree:    true
 
 nelmio_api_doc: ~
-
-doctrine_mongodb:
-    connections:
-        default:
-            server: mongodb://localhost:27017
-            options: {}
-    default_database: chedream
-    document_managers:
-        default:
-            auto_mapping: true
