@@ -74,7 +74,7 @@ swiftmailer:
     spool:     { type: memory }
 
 stof_doctrine_extensions:
-    orm:
+    mongodb:
         default:
             timestampable: true
             sluggable: true
