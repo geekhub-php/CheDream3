@@ -4,6 +4,7 @@ imports:
     - { resource: services.yml }
 
 framework:
+    translator: ~
     #esi:             ~
     #translator:      { fallback: "%locale%" }
     secret:          "%secret%"
