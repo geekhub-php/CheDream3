@@ -130,7 +130,7 @@ class Dream
     protected $tags;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="AppBundle\Document\User", inversedBy="favoriteDreams")
+     * @ODM\ReferenceMany(targetDocument="User", inversedBy="favoriteDreams")
      */
     protected $usersWhoFavorites = array();
 
@@ -142,12 +142,12 @@ class Dream
     protected $favoritesCount;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\User", inversedBy="dreams")
+     * @ODM\ReferenceOne(targetDocument="User", inversedBy="dreams")
      */
     protected $author;
 
     /**
-     * @ODM\ReferenceMany(targetEntity="Status", mappedBy="dream", cascade={"persist"})
+     * @ODM\ReferenceMany(targetDocument="Status", mappedBy="dream", cascade={"persist"})
      */
     protected $statuses = array();
 
