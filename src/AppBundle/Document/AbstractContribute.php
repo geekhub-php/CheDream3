@@ -19,4 +19,16 @@ class AbstractContribute extends AbstractContributeResource implements EventInte
      * @ODM\ReferenceOne(targetDocument="AppBundle\Document\User", inversedBy="equipmentContributions")
      */
     protected $user;
+
+    public function getEventImage()
+    {
+        return $this->getUser()->getAvatar();
+    }
+
+    public function getEventTitle()
+    {
+        return sprintf('%s %s contributed %s', $this->getUser()->getFirstName(), $this->getUser()->getLastName(), $this->getDream()->getTitle());
+    }
+
+
 }
