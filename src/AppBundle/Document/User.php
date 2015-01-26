@@ -138,7 +138,7 @@ class User extends BaseUser //implements DreamUserInterface
         $this->otherContributions = new \Doctrine\Common\Collections\ArrayCollection();
         $this->dreams = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
@@ -152,12 +152,13 @@ class User extends BaseUser //implements DreamUserInterface
     /**
      * Set firstName
      *
-     * @param string $firstName
+     * @param  string $firstName
      * @return self
      */
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
+
         return $this;
     }
 
@@ -174,12 +175,13 @@ class User extends BaseUser //implements DreamUserInterface
     /**
      * Set middleName
      *
-     * @param string $middleName
+     * @param  string $middleName
      * @return self
      */
     public function setMiddleName($middleName)
     {
         $this->middleName = $middleName;
+
         return $this;
     }
 
@@ -196,12 +198,13 @@ class User extends BaseUser //implements DreamUserInterface
     /**
      * Set lastName
      *
-     * @param string $lastName
+     * @param  string $lastName
      * @return self
      */
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
+
         return $this;
     }
 
@@ -218,12 +221,13 @@ class User extends BaseUser //implements DreamUserInterface
     /**
      * Set birthday
      *
-     * @param date $birthday
+     * @param  date $birthday
      * @return self
      */
     public function setBirthday($birthday)
     {
         $this->birthday = $birthday;
+
         return $this;
     }
 
@@ -240,12 +244,13 @@ class User extends BaseUser //implements DreamUserInterface
     /**
      * Set about
      *
-     * @param string $about
+     * @param  string $about
      * @return self
      */
     public function setAbout($about)
     {
         $this->about = $about;
+
         return $this;
     }
 
@@ -262,12 +267,13 @@ class User extends BaseUser //implements DreamUserInterface
     /**
      * Set vkontakteId
      *
-     * @param string $vkontakteId
+     * @param  string $vkontakteId
      * @return self
      */
     public function setVkontakteId($vkontakteId)
     {
         $this->vkontakteId = $vkontakteId;
+
         return $this;
     }
 
@@ -284,12 +290,13 @@ class User extends BaseUser //implements DreamUserInterface
     /**
      * Set facebookId
      *
-     * @param string $facebookId
+     * @param  string $facebookId
      * @return self
      */
     public function setFacebookId($facebookId)
     {
         $this->facebookId = $facebookId;
+
         return $this;
     }
 
@@ -306,12 +313,13 @@ class User extends BaseUser //implements DreamUserInterface
     /**
      * Set odnoklassnikiId
      *
-     * @param string $odnoklassnikiId
+     * @param  string $odnoklassnikiId
      * @return self
      */
     public function setOdnoklassnikiId($odnoklassnikiId)
     {
         $this->odnoklassnikiId = $odnoklassnikiId;
+
         return $this;
     }
 
@@ -508,12 +516,13 @@ class User extends BaseUser //implements DreamUserInterface
     /**
      * Set phone
      *
-     * @param string $phone
+     * @param  string $phone
      * @return self
      */
     public function setPhone($phone)
     {
         $this->phone = $phone;
+
         return $this;
     }
 
@@ -530,12 +539,13 @@ class User extends BaseUser //implements DreamUserInterface
     /**
      * Set skype
      *
-     * @param string $skype
+     * @param  string $skype
      * @return self
      */
     public function setSkype($skype)
     {
         $this->skype = $skype;
+
         return $this;
     }
 
