@@ -29,6 +29,8 @@ class AbstractContribute extends AbstractContributeResource implements EventInte
     {
         return sprintf('%s %s contributed %s', $this->getUser()->getFirstName(), $this->getUser()->getLastName(), $this->getDream()->getTitle());
     }
+    public function getCreatedAt()
+    {
 
-
+    }
 }
