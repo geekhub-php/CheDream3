@@ -22,6 +22,7 @@ class OtherContribute extends AbstractContribute
      * @ODM\Field(type="string")
      */
     protected $title;
+
     /**
      * @var boolean $hiddenContributor
      */
@@ -47,7 +48,6 @@ class OtherContribute extends AbstractContribute
      */
     protected $dream;
 
-
     /**
      * Get id
      *
@@ -61,12 +61,13 @@ class OtherContribute extends AbstractContribute
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return self
      */
     public function setTitle($title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -83,12 +84,13 @@ class OtherContribute extends AbstractContribute
     /**
      * Set hiddenContributor
      *
-     * @param boolean $hiddenContributor
+     * @param  boolean $hiddenContributor
      * @return self
      */
     public function setHiddenContributor($hiddenContributor)
     {
         $this->hiddenContributor = $hiddenContributor;
+
         return $this;
     }
 
@@ -105,12 +107,13 @@ class OtherContribute extends AbstractContribute
     /**
      * Set user
      *
-     * @param \AppBundle\Document\User $user
+     * @param  \AppBundle\Document\User $user
      * @return self
      */
     public function setUser(\AppBundle\Document\User $user)
     {
         $this->user = $user;
+
         return $this;
     }
 
@@ -127,12 +130,13 @@ class OtherContribute extends AbstractContribute
     /**
      * Set createdAt
      *
-     * @param date $createdAt
+     * @param  date $createdAt
      * @return self
      */
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -149,12 +153,13 @@ class OtherContribute extends AbstractContribute
     /**
      * Set quantity
      *
-     * @param float $quantity
+     * @param  float $quantity
      * @return self
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+
         return $this;
     }
 
@@ -171,12 +176,13 @@ class OtherContribute extends AbstractContribute
     /**
      * Set dream
      *
-     * @param \AppBundle\Document\Dream $dream
+     * @param  \AppBundle\Document\Dream $dream
      * @return self
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+
         return $this;
     }
 

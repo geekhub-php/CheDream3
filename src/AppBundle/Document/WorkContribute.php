@@ -21,6 +21,7 @@ class WorkContribute extends AbstractContribute
      * @ReferenceOne(targetDocument="WorkResource")
      */
     protected $workResource;
+
     /**
      * @var boolean $hiddenContributor
      */
@@ -46,7 +47,6 @@ class WorkContribute extends AbstractContribute
      */
     protected $dream;
 
-
     /**
      * Get id
      *
@@ -60,12 +60,13 @@ class WorkContribute extends AbstractContribute
     /**
      * Set workResource
      *
-     * @param \AppBundle\Document\WorkResource $workResource
+     * @param  \AppBundle\Document\WorkResource $workResource
      * @return self
      */
     public function setWorkResource(\AppBundle\Document\WorkResource $workResource)
     {
         $this->workResource = $workResource;
+
         return $this;
     }
 
@@ -82,12 +83,13 @@ class WorkContribute extends AbstractContribute
     /**
      * Set hiddenContributor
      *
-     * @param boolean $hiddenContributor
+     * @param  boolean $hiddenContributor
      * @return self
      */
     public function setHiddenContributor($hiddenContributor)
     {
         $this->hiddenContributor = $hiddenContributor;
+
         return $this;
     }
 
@@ -104,12 +106,13 @@ class WorkContribute extends AbstractContribute
     /**
      * Set user
      *
-     * @param \AppBundle\Document\User $user
+     * @param  \AppBundle\Document\User $user
      * @return self
      */
     public function setUser(\AppBundle\Document\User $user)
     {
         $this->user = $user;
+
         return $this;
     }
 
@@ -126,12 +129,13 @@ class WorkContribute extends AbstractContribute
     /**
      * Set createdAt
      *
-     * @param date $createdAt
+     * @param  date $createdAt
      * @return self
      */
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -148,12 +152,13 @@ class WorkContribute extends AbstractContribute
     /**
      * Set quantity
      *
-     * @param float $quantity
+     * @param  float $quantity
      * @return self
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+
         return $this;
     }
 
@@ -170,12 +175,13 @@ class WorkContribute extends AbstractContribute
     /**
      * Set dream
      *
-     * @param \AppBundle\Document\Dream $dream
+     * @param  \AppBundle\Document\Dream $dream
      * @return self
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+
         return $this;
     }
 

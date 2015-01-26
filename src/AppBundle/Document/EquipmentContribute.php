@@ -3,7 +3,6 @@
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class EquipmentContribute
@@ -18,10 +17,12 @@ class EquipmentContribute extends AbstractContribute
      * @ODM\Id
      */
     protected $id;
+
     /**
      * @ODM\ReferenceOne(targetDocument="EquipmentResource")
      */
     protected $equipmentResource;
+
     /**
      * @var boolean $hiddenContributor
      */
@@ -47,7 +48,6 @@ class EquipmentContribute extends AbstractContribute
      */
     protected $dream;
 
-
     /**
      * Get id
      *
@@ -61,12 +61,13 @@ class EquipmentContribute extends AbstractContribute
     /**
      * Set equipmentResource
      *
-     * @param \AppBundle\Document\EquipmentResource $equipmentResource
+     * @param  \AppBundle\Document\EquipmentResource $equipmentResource
      * @return self
      */
     public function setEquipmentResource(\AppBundle\Document\EquipmentResource $equipmentResource)
     {
         $this->equipmentResource = $equipmentResource;
+
         return $this;
     }
 
@@ -83,12 +84,13 @@ class EquipmentContribute extends AbstractContribute
     /**
      * Set hiddenContributor
      *
-     * @param boolean $hiddenContributor
+     * @param  boolean $hiddenContributor
      * @return self
      */
     public function setHiddenContributor($hiddenContributor)
     {
         $this->hiddenContributor = $hiddenContributor;
+
         return $this;
     }
 
@@ -105,12 +107,13 @@ class EquipmentContribute extends AbstractContribute
     /**
      * Set user
      *
-     * @param \AppBundle\Document\User $user
+     * @param  \AppBundle\Document\User $user
      * @return self
      */
     public function setUser(\AppBundle\Document\User $user)
     {
         $this->user = $user;
+
         return $this;
     }
 
@@ -127,12 +130,13 @@ class EquipmentContribute extends AbstractContribute
     /**
      * Set createdAt
      *
-     * @param date $createdAt
+     * @param  date $createdAt
      * @return self
      */
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -149,12 +153,13 @@ class EquipmentContribute extends AbstractContribute
     /**
      * Set quantity
      *
-     * @param float $quantity
+     * @param  float $quantity
      * @return self
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+
         return $this;
     }
 
@@ -171,12 +176,13 @@ class EquipmentContribute extends AbstractContribute
     /**
      * Set dream
      *
-     * @param \AppBundle\Document\Dream $dream
+     * @param  \AppBundle\Document\Dream $dream
      * @return self
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+
         return $this;
     }
 

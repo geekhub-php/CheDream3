@@ -28,12 +28,14 @@ class EquipmentResource extends AbstractResource
      * @ODM\Id
      */
     private $id;
+
     /**
      * @var string
      *
      * @ODM\Field(type="string")
      */
     protected $quantityType;
+
     /**
      * @var string $title
      */
@@ -54,7 +56,6 @@ class EquipmentResource extends AbstractResource
      */
     protected $dream;
 
-
     /**
      * Get id
      *
@@ -68,12 +69,13 @@ class EquipmentResource extends AbstractResource
     /**
      * Set quantityType
      *
-     * @param string $quantityType
+     * @param  string $quantityType
      * @return self
      */
     public function setQuantityType($quantityType)
     {
         $this->quantityType = $quantityType;
+
         return $this;
     }
 
@@ -90,12 +92,13 @@ class EquipmentResource extends AbstractResource
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return self
      */
     public function setTitle($title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -112,12 +115,13 @@ class EquipmentResource extends AbstractResource
     /**
      * Set createdAt
      *
-     * @param date $createdAt
+     * @param  date $createdAt
      * @return self
      */
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -134,12 +138,13 @@ class EquipmentResource extends AbstractResource
     /**
      * Set quantity
      *
-     * @param float $quantity
+     * @param  float $quantity
      * @return self
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+
         return $this;
     }
 
@@ -156,12 +161,13 @@ class EquipmentResource extends AbstractResource
     /**
      * Set dream
      *
-     * @param \AppBundle\Document\Dream $dream
+     * @param  \AppBundle\Document\Dream $dream
      * @return self
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+
         return $this;
     }
 
