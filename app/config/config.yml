@@ -87,3 +87,7 @@ fos_user:
     db_driver: mongodb
     firewall_name: main
     user_class: AppBundle\Document\User
+
+hautelook_alice:
+    locale: en_US   # default
+    seed: 1         # default
