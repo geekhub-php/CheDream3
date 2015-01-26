@@ -1,7 +1,9 @@
 <?php
-namespace Geekhub\UserBundle\Entity;
+
+namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * ExportedUser
@@ -16,4 +18,14 @@ class ExportedUser
      * @ODM\Id
      */
     private $id;
+
+    /**
+     * Get id
+     *
+     * @return id $id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 }

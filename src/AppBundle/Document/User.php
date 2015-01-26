@@ -1,5 +1,5 @@
 <?php
-namespace Geekhub\UserBundle\Entity;
+namespace AppBundle\Entity;
 
 use AppBundle\Document\ContactInfo;
 use FOS\UserBundle\Model\User as BaseUser;

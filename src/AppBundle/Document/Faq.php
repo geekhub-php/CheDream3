@@ -169,4 +169,14 @@ class Faq
     {
         return $this->slug;
     }
+
+    /**
+     * Get id
+     *
+     * @return id $id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 }
