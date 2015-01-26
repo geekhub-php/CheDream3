@@ -6,9 +6,11 @@
  * Time: 20:58
  */
 namespace AppBundle\Document;
+
 use Doctrine\ORM\Mapping as ORM;use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+
 /**
  * Class EquipmentResource
  *

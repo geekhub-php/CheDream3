@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: ivan
- * Date: 25.01.15
- * Time: 20:46
+ * Date: 26.01.15
+ * Time: 11:10
  */
 namespace AppBundle\Document;
 
@@ -12,11 +12,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
- * Class EquipmentContribute
+ * Class FinancialContribute
  *
- * @ODM\Document(collection="equipment_contributes", repositoryClass="AppBundle\Repository\CommonRepository")
+ * @ODM\Document(collection="financial_contributes", repositoryClass="AppBundle\Repository\CommonRepository")
  */
-class EquipmentContribute extends AbstractContribute
+class FinancialContribute extends AbstractContribute
 {
     /**
      * @var integer
@@ -25,7 +25,7 @@ class EquipmentContribute extends AbstractContribute
      */
     protected $id;
     /**
-     * @ODM\ManyToOne(targetEntity="EquipmentResource")
+     * @ODM\ManyToOne(targetEntity="FinancialResource")
      */
-    protected $equipmentResource;
+    protected $financialResource;
 }
