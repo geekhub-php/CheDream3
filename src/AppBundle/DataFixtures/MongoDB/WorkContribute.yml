@@ -1,0 +1,40 @@
+cwork1:
+    user: chewbacca
+    hidden: 0
+    quantity: 1
+    resource: rwork2
+cwork2:
+    user: darthVader
+    hidden: 0
+    quantity: 1
+    resource: rwork1
+cwork3:
+    user: chewbacca
+    hidden: 0
+    quantity: 1
+    resource: rwork3
+cwork4:
+    user: c3pio
+    hidden: 0
+    quantity: 1
+    resource: rwork23
+cwork5:
+    user: chewbacca
+    hidden: 0
+    quantity: 1
+    resource: rwork25
+cwork6:
+    user: darthVader
+    hidden: 0
+    quantity: 1
+    resource: rwork10
+cwork7:
+    user: chewbacca
+    hidden: 0
+    quantity: 1
+    resource: rwork13
+cwork8:
+    user: c3pio
+    hidden: 0
+    quantity: 1
+    resource: rwork30
