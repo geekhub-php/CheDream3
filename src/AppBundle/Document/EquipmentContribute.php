@@ -3,6 +3,7 @@
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class EquipmentContribute
@@ -29,7 +30,10 @@ class EquipmentContribute extends AbstractContribute
     protected $hiddenContributor;
 
     /**
-     * @var date $createdAt
+     * @var \DateTime
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ODM\Field(type="date")
      */
     protected $createdAt;
 
@@ -130,10 +134,10 @@ class EquipmentContribute extends AbstractContribute
     /**
      * Set createdAt
      *
-     * @param  date $createdAt
+     * @param  \DateTime $createdAt
      * @return self
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
 
@@ -143,7 +147,7 @@ class EquipmentContribute extends AbstractContribute
     /**
      * Get createdAt
      *
-     * @return date $createdAt
+     * @return \DateTime $createdAt
      */
     public function getCreatedAt()
     {

@@ -54,7 +54,7 @@ class Status implements EventInterface
      * @param  \DateTime $createdAt
      * @return Status
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
 
