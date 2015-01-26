@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ivan
- * Date: 25.01.15
- * Time: 20:46
- */
+
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;

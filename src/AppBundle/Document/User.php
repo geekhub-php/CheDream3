@@ -1,7 +1,7 @@
 <?php
+
 namespace AppBundle\Document;
 
-use AppBundle\Document\ContactInfo;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -13,7 +13,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User extends BaseUser //implements DreamUserInterface
 {
-    use ContactInfo;
 
     const FAKE_EMAIL_PART = "@example.com";
 
@@ -117,32 +116,16 @@ class User extends BaseUser //implements DreamUserInterface
     protected $dreams;
 
     /**
-     * @return array
-     */
-    public function getNotNullSocialIds()
-    {
-        return array_filter([
-            'facebook' => $this->facebookId,
-            'vkontakte' => $this->vkontakteId,
-            'odnoklassniki' => $this->odnoklassnikiId,
-        ], 'strlen')
-            ;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isFakeEmail()
-    {
-        return false === strpos($this->email, self::FAKE_EMAIL_PART) && $this->email ? false : true;
-    }
-    /**
-     * @var string $phone
+     * @var string
+     *
+     * @ODM\Field(type="string")
      */
     protected $phone;
 
     /**
-     * @var string $skype
+     * @var string
+     *
+     * @ODM\Field(type="string")
      */
     protected $skype;
 
