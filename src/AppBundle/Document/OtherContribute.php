@@ -5,7 +5,7 @@ namespace AppBundle\Document;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
-  *@ODM\Document(collection="other_contributes", repositoryClass="AppBundle\Repository\CommonRepository")
+ *@ODM\Document(collection="other_contributes", repositoryClass="AppBundle\Repository\CommonRepository")
  */
 class OtherContribute extends AbstractContribute
 {
@@ -22,5 +22,4 @@ class OtherContribute extends AbstractContribute
      * @ODM\Field(type="string")
      */
     protected $title;
-
 }

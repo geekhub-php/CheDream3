@@ -15,5 +15,4 @@ class WorkResource extends AbstractResource
      * @ODM\Id
      */
     protected $id;
-
 }

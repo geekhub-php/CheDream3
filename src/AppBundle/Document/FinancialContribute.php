@@ -7,7 +7,6 @@
  */
 namespace AppBundle\Document;
 
-use Doctrine\ORM\Mapping as ORM;use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**

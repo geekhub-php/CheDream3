@@ -7,7 +7,6 @@
  */
 namespace AppBundle\Document;
 
-use Doctrine\ORM\Mapping as ORM;use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
@@ -25,7 +24,7 @@ class EquipmentResource extends AbstractResource
         return array(
             self::PIECE => 'dream.equipment.piece',
             self::KG => 'dream.equipment.kg',
-            self::TON => 'dream.equipment.ton'
+            self::TON => 'dream.equipment.ton',
         );
     }
     /**

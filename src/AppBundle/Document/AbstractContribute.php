@@ -31,6 +31,5 @@ class AbstractContribute extends AbstractContributeResource implements EventInte
     }
     public function getCreatedAt()
     {
-
     }
 }

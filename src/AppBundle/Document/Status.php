@@ -27,7 +27,7 @@ class Status implements EventInterface
     protected $id;
 
     /**
-     * @var string
+     * @var    string
      * @return string
      *
      * @ODM\Field(type="string")

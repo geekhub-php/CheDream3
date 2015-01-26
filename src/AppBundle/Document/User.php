@@ -4,7 +4,6 @@ namespace Geekhub\UserBundle\Entity;
 use AppBundle\Document\ContactsInfo;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**

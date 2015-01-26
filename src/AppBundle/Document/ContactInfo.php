@@ -1,7 +1,7 @@
 <?php
 namespace AppBundle\Document;
 
-trait ContactsInfo
+trait ContactInfo
 {
 
     /**

@@ -21,5 +21,4 @@ class WorkContribute extends AbstractContribute
      * @ReferenceOne(targetDocument="WorkResource")
      */
     protected $workResource;
-
 }
