@@ -23,7 +23,6 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Hautelook\AliceBundle\HautelookAliceBundle(),
         );
 
