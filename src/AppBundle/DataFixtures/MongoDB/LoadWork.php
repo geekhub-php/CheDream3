@@ -14,7 +14,6 @@ class LoadWork extends DataFixtureLoader
     {
         return  array(
             __DIR__ . '/WorkResource.yml',
-
         );
     }
 }
