@@ -1,7 +1,7 @@
 <?php
 namespace Geekhub\UserBundle\Entity;
 
-use AppBundle\Document\ContactsInfo;
+use AppBundle\Document\ContactInfo;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User extends BaseUser //implements DreamUserInterface
 {
-    use ContactsInfo;
+    use ContactInfo;
 
     const FAKE_EMAIL_PART = "@example.com";
 

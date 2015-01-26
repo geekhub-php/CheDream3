@@ -8,6 +8,7 @@
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Doctrine\ODM\MongoDB\Mapping\Annotations\ReferenceOne;
 
 /**
  * Class FinancialContribute
@@ -23,7 +24,7 @@ class FinancialContribute extends AbstractContribute
      */
     protected $id;
     /**
-     * @ODM\ManyToOne(targetEntity="FinancialResource")
+     * @ODM\ReferenceOne(targetDocument="FinancialResource")
      */
     protected $financialResource;
 }

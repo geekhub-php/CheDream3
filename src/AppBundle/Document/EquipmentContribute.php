@@ -8,6 +8,7 @@
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Doctrine\ODM\MongoDB\Mapping\Annotations\ReferenceOne;
 
 /**
  * Class EquipmentContribute
@@ -23,7 +24,7 @@ class EquipmentContribute extends AbstractContribute
      */
     protected $id;
     /**
-     * @ODM\ManyToOne(targetEntity="EquipmentResource")
+     * @ODM\ReferenceOne(targetDocument="EquipmentResource")
      */
     protected $equipmentResource;
 }
