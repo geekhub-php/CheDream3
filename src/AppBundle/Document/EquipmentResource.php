@@ -65,7 +65,6 @@ class EquipmentResource extends AbstractResource
      */
     protected $dream;
 
-
     /**
      * Get id
      *

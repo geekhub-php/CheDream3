@@ -15,6 +15,7 @@ class WorkResource extends AbstractResource
      * @ODM\Id
      */
     protected $id;
+
     /**
      * @var string $title
      */

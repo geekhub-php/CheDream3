@@ -205,21 +205,6 @@ class Dream
     protected $dreamWorkResources;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="FinancialContribute", mappedBy="dream")
-     */
-    protected $dreamFinancialContributions;
-
-    /**
-     * @ODM\ReferenceMany(targetDocument="EquipmentContribute", mappedBy="dream")
-     */
-    protected $dreamEquipmentContributions;
-
-    /**
-     * @ODM\ReferenceMany(targetDocument="WorkContribute", mappedBy="dream")
-     */
-    protected $dreamWorkContributions;
-
-    /**
      * @ODM\ReferenceMany(targetDocument="OtherContribute", mappedBy="dream")
      */
     protected $dreamOtherContributions;
