@@ -1,4 +1,4 @@
-AppBundle/Document:
+AppBundle\Document\Users:
   users{1..20}:
     firstName: <firstName()>
     middleName: <userName()>
@@ -9,6 +9,8 @@ AppBundle/Document:
     facebookId: <numberBetween(1, 100000)>
     odnoklassnikiId: <numberBetween(1, 100000)>
     favoriteDreams: 5x @dreams*
+    phone: <phoneNumber()>
+    skype: skypeName
 
 AppBundle\Document\Dream:
   dreams{1..30}:
@@ -35,6 +37,33 @@ AppBundle\Document\FinancialResource:
 AppBundle\Document\FinancialContribute:
   financialContributes{1..100}:
     financialResources: @financialResources*
+    hiddenContributor: <boolean()>
+    quantity: <numberBetween(50, 500)>
+    user: @users*
+
+AppBundle\Document\EquipmentResource:
+  equipmentresources{1..100}:
+    quantityType: "ton"
+    title: <word()>
+    quantity: <numberBetween(100, 1000)>
+    dream: @dreams*
+
+AppBundle\Document\EquipmentContribute:
+  equipmentcontributes{1..100}:
+    equipmentResource: @equipmentresources*
+    hiddenContributor: <boolean()>
+    quantity: <numberBetween(50, 500)>
+    user: @users*
+
+AppBundle\Document\WorkResource:
+  workresources{1..100}:
+    title: <word()>
+    quantity: <numberBetween(100, 1000)>
+    dream: @dreams*
+
+AppBundle\Document\WorkContribute:
+  workcontribute{1..100}:
+    workResource: @equipmentresources*
     hiddenContributor: <boolean()>
     quantity: <numberBetween(50, 500)>
     user: @users*
