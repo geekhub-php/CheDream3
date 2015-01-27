@@ -88,32 +88,32 @@ class User extends BaseUser //implements DreamUserInterface
     /**
      * @ODM\ReferenceMany(targetDocument="Dream", mappedBy="usersWhoFavorites" )
      */
-    protected $favoriteDreams;
+    protected $favoriteDreams = array();
 
     /**
      * @ODM\ReferenceMany(targetDocument="FinancialContribute", mappedBy="user")
      */
-    protected $financialContributions;
+    protected $financialContributions = array();
 
     /**
      * @ODM\ReferenceMany(targetDocument="EquipmentContribute", mappedBy="user")
      */
-    protected $equipmentContributions;
+    protected $equipmentContributions = array();
 
     /**
      * @ODM\ReferenceMany(targetDocument="WorkContribute", mappedBy="user")
      */
-    protected $workContributions;
+    protected $workContributions = array();
 
     /**
      * @ODM\ReferenceMany(targetDocument="OtherContribute", mappedBy="user")
      */
-    protected $otherContributions;
+    protected $otherContributions = array();
 
     /**
      * @ODM\ReferenceMany(targetDocument="Dream", mappedBy="author")
      */
-    protected $dreams;
+    protected $dreams = array();
 
     /**
      * @var string

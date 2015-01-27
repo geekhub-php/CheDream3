@@ -223,6 +223,7 @@ class Dream
      * @ODM\ReferenceMany(targetDocument="OtherContribute", mappedBy="dream")
      */
     protected $dreamOtherContributions;
+
     public function __construct()
     {
         $this->usersWhoFavorites = new \Doctrine\Common\Collections\ArrayCollection();

@@ -44,11 +44,6 @@ class FinancialContribute extends AbstractContribute
     protected $user;
 
     /**
-     * @var \AppBundle\Document\Dream
-     */
-    protected $dream;
-
-    /**
      * Get id
      *
      * @return id $id
