@@ -1,4 +1,4 @@
-AppBundle\Document\Users:
+AppBundle\Document\User:
   users{1..20}:
     firstName: <firstName()>
     middleName: <userName()>
@@ -67,3 +67,22 @@ AppBundle\Document\WorkContribute:
     hiddenContributor: <boolean()>
     quantity: <numberBetween(50, 500)>
     user: @users*
+
+AppBundle\Document\OtherContribute:
+  othercontribute{1..50}:
+    title: <word()>
+    hiddenContributor: <boolean()>
+    quantity: <numberBetween(50, 500)>
+    user: @users*
+    dream: @dreams*
+
+AppBundle\Document\Faq:
+  faq{1..15}:
+    title: <word()>
+    question: <realText(100)>
+    answer: <realText()>
+
+AppBundle\Document\Status:
+  statuses{1..30}:
+    title: <word()>
+    dream: @dreams*

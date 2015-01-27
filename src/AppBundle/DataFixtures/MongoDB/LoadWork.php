@@ -13,7 +13,7 @@ class LoadWork extends DataFixtureLoader
     protected function getFixtures()
     {
         return  array(
-            __DIR__ . '/WorkResource.yml',
+            __DIR__ . '/fixtures.yml',
         );
     }
 }
