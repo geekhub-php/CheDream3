@@ -36,7 +36,7 @@ AppBundle\Document\FinancialResource:
 
 AppBundle\Document\FinancialContribute:
   financialContributes{1..100}:
-    financialResources: @financialResources*
+    financialResource: @financialResources*
     hiddenContributor: <boolean()>
     quantity: <numberBetween(50, 500)>
     user: @users*
@@ -62,8 +62,8 @@ AppBundle\Document\WorkResource:
     dream: @dreams*
 
 AppBundle\Document\WorkContribute:
-  workcontribute{1..100}:
-    workResource: @equipmentresources*
+  workcontributes{1..100}:
+    workResource: @workresources*
     hiddenContributor: <boolean()>
     quantity: <numberBetween(50, 500)>
     user: @users*
