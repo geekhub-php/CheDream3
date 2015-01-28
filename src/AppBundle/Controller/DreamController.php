@@ -12,9 +12,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use FOS\RestBundle\Controller\Annotations\View as RestView;
+use FOS\RestBundle\View\View;
 
 class DreamController extends FOSRestController
-{
+    {
     /**
      * Get single Dream,
      *
@@ -23,22 +25,23 @@ class DreamController extends FOSRestController
      * description = "Gets a Dream for a given id",
      * output = "AppBundle\Document\Dream",
      * statusCodes = {
-         * 200 = "Returned when successful",
-         * 404 = "Returned when the page is not found"
+     * 200 = "Returned when successful",
+     * 404 = "Returned when the page is not found"
      * }
      * )
      *
-     * @Annotations\View(templateVar="deream")
+     * RestView()
+     * @param $slug
+     * @return mixed
      *
-     * @param Request $request the request object
-     * @param int     $id      the page id
-     *
-     * @return array
-     *
-     * @throws NotFoundHttpException when page not exist
+     *  @throws NotFoundHttpException when page not exist
      */
-    public function getDreamAction($id)
+    public function getDreamAction($slug)
     {
-        return $this->container->get('doctrine_mongodb.odm.document_manager')->getRepository('AppBundle:Dream')->find($id);
+        $manager = $this->get('doctrine_mongodb')->getManager();
+        $dream = $manager->getRepository('AppBundle:Dream')->findBySlug($slug);
+        $restView = View::create();
+        $restView->setData($dream);
+        return $restView;
     }
 }
