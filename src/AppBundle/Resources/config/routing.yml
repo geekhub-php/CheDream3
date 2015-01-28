@@ -13,3 +13,18 @@ app_equipment_contribute:
     prefix: /
     resource: "@AppBundle/Controller/EquipmentContributeController.php"
     name_prefix:  api_1_ # naming collision
+app_faq:
+    type: rest
+    prefix: /
+    resource: "@AppBundle/Controller/FaqController.php"
+    name_prefix:  api_1_ # naming collision
+app_financial_contribute:
+    type: rest
+    prefix: /
+    resource: "@AppBundle/Controller/FinancialContributeController.php"
+    name_prefix:  api_1_ # naming collision
+app_financial_resource:
+    type: rest
+    prefix: /
+    resource: "@AppBundle/Controller/FinancialResourceController.php"
+    name_prefix:  api_1_ # naming collision
