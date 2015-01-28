@@ -17,8 +17,8 @@ class FaqController extends FOSRestController
      * description = "Gets a Faq for a given id",
      * output = "AppBundle\Document\Faq",
      * statusCodes = {
-     * 200 = "Returned when successful",
-     * 404 = "Returned when the Faq is not found"
+     *      200 = "Returned when successful",
+     *      404 = "Returned when the Faq is not found"
      * }
      * )
      *

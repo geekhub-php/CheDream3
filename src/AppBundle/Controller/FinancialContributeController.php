@@ -17,8 +17,8 @@ class FinancialContributeController extends FOSRestController
      * description = "Gets a FinancialContribute for a given id",
      * output = "AppBundle\Document\FinancialContribute",
      * statusCodes = {
-     * 200 = "Returned when successful",
-     * 404 = "Returned when the FinancialContribute is not found"
+     *      200 = "Returned when successful",
+     *      404 = "Returned when the FinancialContribute is not found"
      * }
      * )
      *

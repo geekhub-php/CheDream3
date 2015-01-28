@@ -17,8 +17,8 @@ class EquipmentContributeController extends FOSRestController
      * description = "Gets a EquipmentContribute for a given id",
      * output = "AppBundle\Document\EquipmentContribute",
      * statusCodes = {
-     * 200 = "Returned when successful",
-     * 404 = "Returned when the EquipmentContribute is not found"
+     *      200 = "Returned when successful",
+     *      404 = "Returned when the EquipmentContribute is not found"
      * }
      * )
      *

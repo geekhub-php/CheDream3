@@ -17,8 +17,8 @@ class FinancialResourceController extends FOSRestController
      * description = "Gets a FinancialResource for a given id",
      * output = "AppBundle\Document\FinancialResource",
      * statusCodes = {
-     * 200 = "Returned when successful",
-     * 404 = "Returned when the FinancialResource is not found"
+     *      200 = "Returned when successful",
+     *      404 = "Returned when the FinancialResource is not found"
      * }
      * )
      *

@@ -18,8 +18,8 @@ class OtherController extends FOSRestController
      * description = "Gets other contribute your dream",
      * output = "AppBundle\Document\OtherContribute",
      * statusCodes = {
-     * 200 = "Returned when successful",
-     * 404 = "Returned when the page is not found"
+     *      200 = "Returned when successful",
+     *      404 = "Returned when the page is not found"
      * }
      * )
      *

@@ -17,8 +17,8 @@ class DreamController extends FOSRestController
      * description = "Gets a Dream for a given id",
      * output = "AppBundle\Document\Dream",
      * statusCodes = {
-     * 200 = "Returned when successful",
-     * 404 = "Returned when the Dream is not found"
+     *      200 = "Returned when successful",
+     *      404 = "Returned when the Dream is not found"
      * }
      * )
      *
