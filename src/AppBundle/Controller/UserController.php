@@ -16,7 +16,7 @@ class UserController extends FOSRestController
      * @ApiDoc(
      * resource = true,
      * description = "Gets a User for a given slug",
-     * output = "AppBundle\Document\OtherContribute",
+     * output = "AppBundle\Document\UserContribute",
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the page is not found"

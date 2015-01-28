@@ -8,18 +8,18 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
 
-class FaqController extends FOSRestController
+class WorkContributeController extends FOSRestController
 {
     /**
-     * Get single Faq,
+     * Get WorkContribute,
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets a Faq for a given id",
-     * output = "AppBundle\Document\Faq",
+     * description = "Gets all WorkContributors",
+     * output = "AppBundle\Document\WorkContribute",
      * statusCodes = {
      *      200 = "Returned when successful",
-     *      404 = "Returned when the Faq is not found"
+     *      404 = "Returned when the EquipmentContribute is not found"
      * }
      * )
      *
@@ -30,12 +30,12 @@ class FaqController extends FOSRestController
      *
      * @throws NotFoundHttpException when page not exist
      */
-    public function getFaqAction()
+    public function getEquipmentContributeAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $faq = $manager->getRepository('AppBundle:Faq')->findAll();
+        $work_contribute = $manager->getRepository('AppBundle:WorkContribute')->findAll();
         $restView = View::create();
-        $restView->setData($faq);
+        $restView->setData($work_contribute);
 
         return $restView;
     }

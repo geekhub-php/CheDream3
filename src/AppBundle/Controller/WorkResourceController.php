@@ -8,15 +8,15 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
 
-class OtherController extends FOSRestController
+class WorkResourceController extends FOSRestController
 {
     /**
-     * Get other contribute,
+     * Get work resource,
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets other contribute your dream",
-     * output = "AppBundle\Document\OtherContribute",
+     * description = "Gets Work resource for a given title",
+     * output = "AppBundle\Document\WorkResource",
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the page is not found"
@@ -32,9 +32,9 @@ class OtherController extends FOSRestController
     public function getOtherContributeAction($title)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $contribute = $manager->getRepository('AppBundle:OtherContribute')->findOneByTitle($title);
+        $work_resource = $manager->getRepository('AppBundle:WorkResource')->findOneByTitle($title);
         $restView = View::create();
-        $restView->setData($contribute);
+        $restView->setData($work_resource);
 
         return $restView;
     }

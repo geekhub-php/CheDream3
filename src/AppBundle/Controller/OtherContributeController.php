@@ -8,34 +8,33 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
 
-class FaqController extends FOSRestController
+class OtherContributeController extends FOSRestController
 {
     /**
-     * Get single Faq,
+     * Get other contribute,
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets a Faq for a given id",
-     * output = "AppBundle\Document\Faq",
+     * description = "Gets other contribute your dream",
+     * output = "AppBundle\Document\OtherContribute",
      * statusCodes = {
      *      200 = "Returned when successful",
-     *      404 = "Returned when the Faq is not found"
+     *      404 = "Returned when the page is not found"
      * }
      * )
      *
-     *
      * RestView()
-     * @param
-     * @return mixed
+     * @param $title
+     * @return View
      *
      * @throws NotFoundHttpException when page not exist
      */
-    public function getFaqAction()
+    public function getOtherContributeAction($title)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $faq = $manager->getRepository('AppBundle:Faq')->findAll();
+        $contribute = $manager->getRepository('AppBundle:OtherContribute')->findOneByTitle($title);
         $restView = View::create();
-        $restView->setData($faq);
+        $restView->setData($contribute);
 
         return $restView;
     }
