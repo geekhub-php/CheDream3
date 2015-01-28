@@ -28,3 +28,6 @@ app_financial_resource:
     prefix: /
     resource: "@AppBundle/Controller/FinancialResourceController.php"
     name_prefix:  api_1_ # naming collision
+other_contribute:
+   type: rest
+   resource: AppBundle\Controller\OtherController
