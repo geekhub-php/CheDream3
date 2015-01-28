@@ -31,3 +31,6 @@ app_financial_resource:
 other_contribute:
    type: rest
    resource: AppBundle\Controller\OtherController
+user:
+   type: rest
+   resource: AppBundle\Controller\UserController
