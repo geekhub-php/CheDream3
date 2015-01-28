@@ -4,7 +4,6 @@ namespace AppBundle\Controller;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Controller\Annotations;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\View\View;
 
@@ -23,7 +22,6 @@ class DreamController extends FOSRestController
      * }
      * )
      *
-     * @Annotations\View(templateVar="dream")
      *
      * RestView()
      * @param $slug

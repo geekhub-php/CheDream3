@@ -92,7 +92,7 @@ fos_user:
 hautelook_alice:
     locale: en_US   # default
     seed: 1         # default
-    
+
 fos_rest:
     format_listener: true
     routing_loader:
@@ -103,3 +103,5 @@ fos_rest:
             json: true
             xml: true
             yml: true
+            yml: true
+
