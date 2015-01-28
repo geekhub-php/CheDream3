@@ -25,8 +25,7 @@ class EquipmentContributeController extends FOSRestController
      *
      *
      * RestView()
-     * @param
-     * @return mixed
+     * @return View
      *
      * @throws NotFoundHttpException when page not exist
      */

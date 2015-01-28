@@ -25,7 +25,6 @@ class FinancialContributeController extends FOSRestController
      *
      *
      * RestView()
-     * @param
      * @return mixed
      *
      * @throws NotFoundHttpException when page not exist
