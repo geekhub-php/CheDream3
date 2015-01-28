@@ -78,12 +78,13 @@ class EquipmentResource extends AbstractResource
     /**
      * Set quantityType
      *
-     * @param string $quantityType
+     * @param  string $quantityType
      * @return self
      */
     public function setQuantityType($quantityType)
     {
         $this->quantityType = $quantityType;
+
         return $this;
     }
 
@@ -100,12 +101,13 @@ class EquipmentResource extends AbstractResource
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return self
      */
     public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
