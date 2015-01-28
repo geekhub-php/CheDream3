@@ -21,23 +21,23 @@ class DreamController extends FOSRestController
      * @ApiDoc(
      * resource = true,
      * description = "Gets a Dream for a given id",
-     * output = "Acme\BlogBundle\Document\Dream",
+     * output = "AppBundle\Document\Dream",
      * statusCodes = {
-     * 200 = "Returned when successful",
-     * 404 = "Returned when the page is not found"
+         * 200 = "Returned when successful",
+         * 404 = "Returned when the page is not found"
      * }
      * )
      *
      * @Annotations\View(templateVar="deream")
      *
      * @param Request $request the request object
-     * @param int $id the page id
+     * @param int     $id      the page id
      *
      * @return array
      *
      * @throws NotFoundHttpException when page not exist
      */
-    public function getPageAction($id)
+    public function getDreamAction($id)
     {
         return $this->container->get('doctrine_mongodb.odm.document_manager')->getRepository('AppBundle:Dream')->find($id);
     }
