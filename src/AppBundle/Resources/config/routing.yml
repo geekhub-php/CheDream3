@@ -1,0 +1,15 @@
+app_equipment_resource:
+    type: rest
+    prefix: /
+    resource: "@AppBundle/Controller/EquipmentResourceController.php"
+    name_prefix:  api_1_ # naming collision
+app_dream:
+    type: rest
+    prefix: /
+    resource: "@AppBundle/Controller/DreamController.php"
+    name_prefix:  api_1_ # naming collision
+app_equipment_contribute:
+    type: rest
+    prefix: /
+    resource: "@AppBundle/Controller/EquipmentContributeController.php"
+    name_prefix:  api_1_ # naming collision

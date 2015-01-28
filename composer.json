@@ -31,7 +31,6 @@
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
-
     },
     "scripts": {
         "post-root-package-install": [

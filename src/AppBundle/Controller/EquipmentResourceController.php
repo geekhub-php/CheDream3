@@ -4,37 +4,35 @@ namespace AppBundle\Controller;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Controller\Annotations;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\View\View;
 
-class DreamController extends FOSRestController
+class EquipmentResourceController extends FOSRestController
 {
     /**
-     * Get single Dream,
+     * Get single EquipmentResource,
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets a Dream for a given id",
-     * output = "AppBundle\Document\Dream",
+     * description = "Gets a EquipmentResource for a given id",
+     * output = "AppBundle\Document\EquipmentResource",
      * statusCodes = {
          * 200 = "Returned when successful",
-         * 404 = "Returned when the Dream is not found"
+         * 404 = "Returned when the EquipmentResourcee is not found"
      * }
      * )
      *
-     * @Annotations\View(templateVar="dream")
      *
      * RestView()
-     * @param $slug
+     * @param
      * @return mixed
      *
      * @throws NotFoundHttpException when page not exist
      */
-    public function getDreamAction($slug)
+    public function getEquipmentResourceAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $dream = $manager->getRepository('AppBundle:Dream')->findBySlug($slug);
+        $dream = $manager->getRepository('AppBundle:EquipmentResource')->findAll();
         $restView = View::create();
         $restView->setData($dream);
 
