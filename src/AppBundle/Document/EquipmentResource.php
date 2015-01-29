@@ -71,13 +71,16 @@ class EquipmentResource extends AbstractResource
      */
     protected $dream;
 
+<<<<<<< Temporary merge branch 1
+=======
     /**
      * @var array
      *
-     * @ODM\ReferenceMany(targetDocument="equipment_contribute")
+     * @ODM\ReferenceMany(targetDocument="equipment_contribute", mappedBy="equipmentResource")
      */
     protected $equipmentContributes = array();
 
+>>>>>>> Temporary merge branch 2
     /**
      * Get id
      *

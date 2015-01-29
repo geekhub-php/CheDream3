@@ -18,7 +18,7 @@ class WorkContribute extends AbstractContribute
     protected $id;
 
     /**
-     * @ReferenceOne(targetDocument="WorkResource")
+     * @ReferenceOne(targetDocument="WorkResource", inversedBy="workContributions")
      */
     protected $workResource;
 
@@ -46,7 +46,7 @@ class WorkContribute extends AbstractContribute
     /**
      * @var \AppBundle\Document\User
      *
-     * @ODM\ReferenceOne(type="User")
+     * @ODM\ReferenceOne(type="User", inversedBy="workContributions")
      */
     protected $user;
 

@@ -3,7 +3,14 @@
 require __DIR__ . '/base_script.php';
 
 show_run("Drop DB", "app/console doctrine:mongodb:schema:drop");
+<<<<<<< Temporary merge branch 1
+show_run("Create scheme", "app/console doctrine:mongodb:schema:create ");
 show_run("Install assets", "app/console assets:install");
 
 show_run("Load fixtures", "app/console doctrine:mongodb:fixtures:load");
+=======
+show_run("Install assets", "app/console assets:install");
+
+show_run("Load fixtures", "app/console doctrine:mongodb:fixtures:load --no-interaction");
+>>>>>>> Temporary merge branch 2
 

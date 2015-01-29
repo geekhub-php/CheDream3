@@ -20,7 +20,7 @@ class EquipmentContribute extends AbstractContribute
     protected $id;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="equipment_resource")
+     * @ODM\ReferenceOne(targetDocument="equipment_resource", inversedBy="equipmentContributes")
      */
     protected $equipmentResource;
 
@@ -49,7 +49,7 @@ class EquipmentContribute extends AbstractContribute
     /**
      * @var \AppBundle\Document\User
      *
-     * @ODM\ReferenceOne(targetDocument="User")
+     * @ODM\ReferenceOne(targetDocument="User", inversedBy="equipmentContributions")
      */
     protected $user;
 

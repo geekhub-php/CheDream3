@@ -45,7 +45,7 @@ class WorkResource extends AbstractResource
     /**
      * @var array
      *
-     * @ODM\ReferenceMany(targetDocument="WorkContribution")
+     * @ODM\ReferenceMany(targetDocument="WorkContribution", mapped="workResource")
      */
     protected $workContributions = array();
 
