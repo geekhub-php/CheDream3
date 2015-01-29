@@ -3,7 +3,6 @@
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class FinancialResource
@@ -18,26 +17,41 @@ class FinancialResource extends AbstractResource
      * @ODM\Id
      */
     private $id;
+
     /**
      * @var string $title
+     *
+     * @ODM\Field(type="string")
      */
     protected $title;
 
     /**
      * @var date $createdAt
+     *
+     * @ODM\Field(type="date")
      */
     protected $createdAt;
 
     /**
      * @var float $quantity
+     *
+     * @ODM\Field(type="float")
      */
     protected $quantity;
 
     /**
      * @var \AppBundle\Document\Dream
+     *
+     * @ODM\ReferenceOne(targetDocument="Dream", inversedBy="dreamFinancialContributions")
      */
     protected $dream;
 
+    /**
+     * @var array
+     *
+     * @ODM\ReferenceMany(targetDocument="FinancialContribute", mappedBy="financialResource")
+     */
+    protected $financialContributes = array();
 
     /**
      * Get id
@@ -52,12 +66,13 @@ class FinancialResource extends AbstractResource
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return self
      */
     public function setTitle($title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -74,12 +89,13 @@ class FinancialResource extends AbstractResource
     /**
      * Set createdAt
      *
-     * @param date $createdAt
+     * @param  date $createdAt
      * @return self
      */
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -96,12 +112,13 @@ class FinancialResource extends AbstractResource
     /**
      * Set quantity
      *
-     * @param float $quantity
+     * @param  float $quantity
      * @return self
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+
         return $this;
     }
 
@@ -118,12 +135,13 @@ class FinancialResource extends AbstractResource
     /**
      * Set dream
      *
-     * @param \AppBundle\Document\Dream $dream
+     * @param  \AppBundle\Document\Dream $dream
      * @return self
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+
         return $this;
     }
 

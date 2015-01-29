@@ -15,18 +15,25 @@ class WorkResource extends AbstractResource
      * @ODM\Id
      */
     protected $id;
+
     /**
      * @var string $title
+     *
+     * @ODM\Field(type="string")
      */
     protected $title;
 
     /**
      * @var date $createdAt
+     *
+     * @ODM\Field(type="date")
      */
     protected $createdAt;
 
     /**
      * @var float $quantity
+     *
+     * @ODM\Field(type="float")
      */
     protected $quantity;
 
@@ -35,6 +42,12 @@ class WorkResource extends AbstractResource
      */
     protected $dream;
 
+    /**
+     * @var array
+     *
+     * @ODM\ReferenceMany(targetDocument="WorkContribution", mapped="workResource")
+     */
+    protected $workContributions = array();
 
     /**
      * Get id
@@ -49,12 +62,13 @@ class WorkResource extends AbstractResource
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return self
      */
     public function setTitle($title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -71,12 +85,13 @@ class WorkResource extends AbstractResource
     /**
      * Set createdAt
      *
-     * @param date $createdAt
+     * @param  date $createdAt
      * @return self
      */
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -93,12 +108,13 @@ class WorkResource extends AbstractResource
     /**
      * Set quantity
      *
-     * @param float $quantity
+     * @param  float $quantity
      * @return self
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+
         return $this;
     }
 
@@ -115,12 +131,13 @@ class WorkResource extends AbstractResource
     /**
      * Set dream
      *
-     * @param \AppBundle\Document\Dream $dream
+     * @param  \AppBundle\Document\Dream $dream
      * @return self
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+
         return $this;
     }
 
