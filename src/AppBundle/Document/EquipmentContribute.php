@@ -20,12 +20,14 @@ class EquipmentContribute extends AbstractContribute
     protected $id;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="EquipmentResource")
+     * @ODM\ReferenceOne(targetDocument="equipment_resource", inversedBy="equipmentContributes")
      */
     protected $equipmentResource;
 
     /**
      * @var boolean $hiddenContributor
+     *
+     * @ODM\Field(type="boolean")
      */
     protected $hiddenContributor;
 
@@ -39,18 +41,17 @@ class EquipmentContribute extends AbstractContribute
 
     /**
      * @var float $quantity
+     *
+     * @ODM\Field(type="float")
      */
     protected $quantity;
 
     /**
      * @var \AppBundle\Document\User
+     *
+     * @ODM\ReferenceOne(targetDocument="User", inversedBy="equipmentContributions")
      */
     protected $user;
-
-    /**
-     * @var \AppBundle\Document\Dream
-     */
-    protected $dream;
 
     /**
      * Get id
