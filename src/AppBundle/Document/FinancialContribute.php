@@ -19,34 +19,37 @@ class FinancialContribute extends AbstractContribute
     protected $id;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="FinancialResource")
+     * @ODM\ReferenceOne(targetDocument="FinancialResource", inversedBy="financialContributes")
      */
     protected $financialResource;
 
     /**
      * @var boolean $hiddenContributor
+     *
+     * @ODM\Field(type="boolean")
      */
     protected $hiddenContributor;
 
     /**
      * @var date $createdAt
+     *
+     * @ODM\Field(type="date")
      */
     protected $createdAt;
 
     /**
      * @var float $quantity
+     *
+     * @ODM\Field(type="float")
      */
     protected $quantity;
 
     /**
      * @var \AppBundle\Document\User
+     *
+     * @ODM\ReferenceOne(targetDocument="User", inversedBy="financialContributions")
      */
     protected $user;
-
-    /**
-     * @var \AppBundle\Document\Dream
-     */
-    protected $dream;
 
     /**
      * Get id
