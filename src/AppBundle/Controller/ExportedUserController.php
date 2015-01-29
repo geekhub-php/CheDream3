@@ -8,33 +8,33 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
 
-class UserController extends FOSRestController
+class ExportedUserController extends FOSRestController
 {
     /**
-     * Get single user,
+     * Get ExportedUser,
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets a User for a given firstname",
-     * output = "AppBundle\Document\UserContribute",
+     * description = "Gets all ExportedUser",
+     * output = "AppBundle\Document\ExportedUser",
      * statusCodes = {
      *      200 = "Returned when successful",
-     *      404 = "Returned when the user is not found"
+     *      404 = "Returned when the ExportedUser is not found"
      * }
      * )
      *
      * RestView()
-     * @param $firstName
+     * @param
      * @return View
      *
      * @throws NotFoundHttpException when page not exist
      */
-    public function getUserAction($firstName)
+    public function getExportedUserAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $user = $manager->getRepository('AppBundle:User')->findOneByfirstName($firstName);
+        $exported_user = $manager->getRepository('AppBundle:ExportedUser')->findAll();
         $restView = View::create();
-        $restView->setData($user);
+        $restView->setData($exported_user);
 
         return $restView;
     }

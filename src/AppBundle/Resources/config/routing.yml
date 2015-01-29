@@ -28,3 +28,9 @@ app_work_contribute:
 app_work_resource:
    type: rest
    resource: "@AppBundle/Controller/WorkResourceController.php"
+app_status:
+   type: rest
+   resource: "@AppBundle/Controller/StatusController.php"
+app_exported_user:
+   type: rest
+   resource: "@AppBundle/Controller/ExportedUserController.php"
