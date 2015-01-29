@@ -19,7 +19,7 @@ class WorkContributeController extends FOSRestController
      * output = "AppBundle\Document\WorkContribute",
      * statusCodes = {
      *      200 = "Returned when successful",
-     *      404 = "Returned when the EquipmentContribute is not found"
+     *      404 = "Returned when the WorkContributors is not found"
      * }
      * )
      *
@@ -30,7 +30,7 @@ class WorkContributeController extends FOSRestController
      *
      * @throws NotFoundHttpException when page not exist
      */
-    public function getEquipmentContributeAction()
+    public function getWorkContributorsAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
         $work_contribute = $manager->getRepository('AppBundle:WorkContribute')->findAll();

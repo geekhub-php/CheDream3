@@ -16,4 +16,5 @@ class DreamControllerTest extends WebTestCase
 
         $this->assertEquals($response, 200);
     }
+
 }

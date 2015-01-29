@@ -11,7 +11,7 @@ use FOS\RestBundle\View\View;
 class WorkResourceController extends FOSRestController
 {
     /**
-     * Get work resource,
+     * Get work WorkResource,
      *
      * @ApiDoc(
      * resource = true,
@@ -29,7 +29,7 @@ class WorkResourceController extends FOSRestController
      *
      * @throws NotFoundHttpException when page not exist
      */
-    public function getOtherContributeAction($title)
+    public function getWorkResourceAction($title)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
         $work_resource = $manager->getRepository('AppBundle:WorkResource')->findOneByTitle($title);
