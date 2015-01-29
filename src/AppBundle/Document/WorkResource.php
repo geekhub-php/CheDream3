@@ -18,16 +18,22 @@ class WorkResource extends AbstractResource
 
     /**
      * @var string $title
+     *
+     * @ODM\Field(type="string")
      */
     protected $title;
 
     /**
      * @var date $createdAt
+     *
+     * @ODM\Field(type="date")
      */
     protected $createdAt;
 
     /**
      * @var float $quantity
+     *
+     * @ODM\Field(type="float")
      */
     protected $quantity;
 
@@ -35,6 +41,13 @@ class WorkResource extends AbstractResource
      * @var \AppBundle\Document\Dream
      */
     protected $dream;
+
+    /**
+     * @var array
+     *
+     * @ODM\ReferenceMany(targetDocument="WorkContribution", mapped="workResource")
+     */
+    protected $workContributions = array();
 
     /**
      * Get id

@@ -7,7 +7,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 /**
  * @ODM\MappedSuperclass
  */
-class AbstractContribute extends AbstractContributeResource implements EventInterface
+abstract class AbstractContribute extends AbstractContributeResource implements EventInterface
 {
     /**
      * @var boolean
@@ -30,7 +30,8 @@ class AbstractContribute extends AbstractContributeResource implements EventInte
     {
         return sprintf('%s %s contributed %s', $this->getUser()->getFirstName(), $this->getUser()->getLastName(), $this->getDream()->getTitle());
     }
-    public function getCreatedAt()
-    {
-    }
+
+    abstract public function getCreatedAt();
+
+    abstract public function setCreatedAt();
 }

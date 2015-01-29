@@ -20,23 +20,38 @@ class FinancialResource extends AbstractResource
 
     /**
      * @var string $title
+     *
+     * @ODM\Field(type="string")
      */
     protected $title;
 
     /**
      * @var date $createdAt
+     *
+     * @ODM\Field(type="date")
      */
     protected $createdAt;
 
     /**
      * @var float $quantity
+     *
+     * @ODM\Field(type="float")
      */
     protected $quantity;
 
     /**
      * @var \AppBundle\Document\Dream
+     *
+     * @ODM\ReferenceOne(targetDocument="Dream", inversedBy="dreamFinancialContributions")
      */
     protected $dream;
+
+    /**
+     * @var array
+     *
+     * @ODM\ReferenceMany(targetDocument="FinancialContribute", mappedBy="financialResource")
+     */
+    protected $financialContributes = array();
 
     /**
      * Get id
