@@ -20,7 +20,7 @@ class EquipmentContribute extends AbstractContribute
     protected $id;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="equipment_resource", inversedBy="equipmentContributes")
+     * @ODM\ReferenceOne(targetDocument="EquipmentResource", inversedBy="equipmentContributes")
      */
     protected $equipmentResource;
 

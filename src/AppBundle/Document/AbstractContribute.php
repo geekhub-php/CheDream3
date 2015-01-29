@@ -32,6 +32,4 @@ abstract class AbstractContribute extends AbstractContributeResource implements 
     }
 
     abstract public function getCreatedAt();
-
-    abstract public function setCreatedAt();
 }
