@@ -18,27 +18,35 @@ class WorkContribute extends AbstractContribute
     protected $id;
 
     /**
-     * @ReferenceOne(targetDocument="WorkResource")
+     * @ReferenceOne(targetDocument="WorkResource", inversedBy="workContributions")
      */
     protected $workResource;
 
     /**
      * @var boolean $hiddenContributor
+     *
+     * @ODM\Field(type="boolean")
      */
     protected $hiddenContributor;
 
     /**
      * @var date $createdAt
+     *
+     * @ODM\Field(type="date")
      */
     protected $createdAt;
 
     /**
      * @var float $quantity
+     *
+     * @ODM\Field(type="float")
      */
     protected $quantity;
 
     /**
      * @var \AppBundle\Document\User
+     *
+     * @ODM\ReferenceOne(type="User", inversedBy="workContributions")
      */
     protected $user;
 

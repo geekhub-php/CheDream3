@@ -71,6 +71,7 @@ stof_doctrine_extensions:
             loggable: true
             tree:    true
 
+
 nelmio_api_doc:
     name: Dream API
 
@@ -94,3 +95,4 @@ fos_rest:
             xml: true
             yml: true
             yml: true
+

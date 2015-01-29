@@ -44,6 +44,8 @@ class EquipmentResource extends AbstractResource
 
     /**
      * @var string $title
+     *
+     * @ODM\Field(type="string")
      */
     protected $title;
 
@@ -57,13 +59,24 @@ class EquipmentResource extends AbstractResource
 
     /**
      * @var float $quantity
+     *
+     * @ODM\Field(type="float")
      */
     protected $quantity;
 
     /**
      * @var \AppBundle\Document\Dream
+     *
+     * @ODM\ReferenceOne(targetDocument="Dream", )
      */
     protected $dream;
+
+    /**
+     * @var array
+     *
+     * @ODM\ReferenceMany(targetDocument="equipment_contribute", mappedBy="equipmentResource")
+     */
+    protected $equipmentContributes = array();
 
     /**
      * Get id

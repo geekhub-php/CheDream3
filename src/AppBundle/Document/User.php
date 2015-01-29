@@ -13,16 +13,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User extends BaseUser //implements DreamUserInterface
 {
-
     const FAKE_EMAIL_PART = "@example.com";
-
     /**
      * @var integer
      *
      * @ODM\Id
      */
     protected $id;
-
     /**
      * @var string
      *
@@ -30,105 +27,88 @@ class User extends BaseUser //implements DreamUserInterface
      * @ODM\Field(type="string")
      */
     protected $firstName;
-
     /**
      * @var string
      *
      * @ODM\Field(type="string")
      */
     protected $middleName;
-
     /**
      * @var string
      *
      * @ODM\Field(type="string")
      */
     protected $lastName;
-
-//    /**
-//     * @ODM\ReferenceOne(targetDocument="Application\Sonata\MediaBundle\Entity\Media", cascade="all")
-//     */
-//    protected $avatar;
-
+// /**
+// * @ODM\ReferenceOne(targetDocument="Application\Sonata\MediaBundle\Entity\Media", cascade="all")
+// */
+// protected $avatar;
     /**
      * @var \DateTime
      *
      * @ODM\Field(type="date")
      */
     protected $birthday;
-
     /**
      * @var string
      *
      * @ODM\Field(type="string")
      */
     protected $about;
-
     /**
      * @var string
      *
      * @ODM\Field(name="vkontakte_id", type="string")
      */
     protected $vkontakteId;
-
     /**
      * @var string
      *
      * @ODM\Field(name="facebook_id", type="string")
      */
     protected $facebookId;
-
     /**
      * @var string
      *
      * @ODM\Field(name="odnoklassniki_id", type="string")
      */
     protected $odnoklassnikiId;
-
     /**
      * @ODM\ReferenceMany(targetDocument="Dream", mappedBy="usersWhoFavorites" )
      */
-    protected $favoriteDreams = array();
-
+    protected $favoriteDreams;
     /**
      * @ODM\ReferenceMany(targetDocument="FinancialContribute", mappedBy="user")
      */
-    protected $financialContributions = array();
-
+    protected $financialContributions;
     /**
      * @ODM\ReferenceMany(targetDocument="EquipmentContribute", mappedBy="user")
      */
-    protected $equipmentContributions = array();
-
+    protected $equipmentContributions;
     /**
      * @ODM\ReferenceMany(targetDocument="WorkContribute", mappedBy="user")
      */
-    protected $workContributions = array();
-
+    protected $workContributions;
     /**
      * @ODM\ReferenceMany(targetDocument="OtherContribute", mappedBy="user")
      */
-    protected $otherContributions = array();
-
+    protected $otherContributions;
     /**
      * @ODM\ReferenceMany(targetDocument="Dream", mappedBy="author")
      */
-    protected $dreams = array();
-
+    protected $dreams;
     /**
      * @var string
      *
      * @ODM\Field(type="string")
      */
     protected $phone;
-
     /**
      * @var string
      *
      * @ODM\Field(type="string")
      */
     protected $skype;
-
     public function __construct()
     {
         $this->favoriteDreams = new \Doctrine\Common\Collections\ArrayCollection();
@@ -138,7 +118,6 @@ class User extends BaseUser //implements DreamUserInterface
         $this->otherContributions = new \Doctrine\Common\Collections\ArrayCollection();
         $this->dreams = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
     /**
      * Get id
      *
@@ -148,20 +127,17 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->id;
     }
-
     /**
      * Set firstName
      *
-     * @param  string $firstName
+     * @param string $firstName
      * @return self
      */
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
-
         return $this;
     }
-
     /**
      * Get firstName
      *
@@ -171,20 +147,17 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->firstName;
     }
-
     /**
      * Set middleName
      *
-     * @param  string $middleName
+     * @param string $middleName
      * @return self
      */
     public function setMiddleName($middleName)
     {
         $this->middleName = $middleName;
-
         return $this;
     }
-
     /**
      * Get middleName
      *
@@ -194,20 +167,17 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->middleName;
     }
-
     /**
      * Set lastName
      *
-     * @param  string $lastName
+     * @param string $lastName
      * @return self
      */
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
-
         return $this;
     }
-
     /**
      * Get lastName
      *
@@ -217,20 +187,17 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->lastName;
     }
-
     /**
      * Set birthday
      *
-     * @param  date $birthday
+     * @param date $birthday
      * @return self
      */
     public function setBirthday($birthday)
     {
         $this->birthday = $birthday;
-
         return $this;
     }
-
     /**
      * Get birthday
      *
@@ -240,20 +207,17 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->birthday;
     }
-
     /**
      * Set about
      *
-     * @param  string $about
+     * @param string $about
      * @return self
      */
     public function setAbout($about)
     {
         $this->about = $about;
-
         return $this;
     }
-
     /**
      * Get about
      *
@@ -263,20 +227,17 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->about;
     }
-
     /**
      * Set vkontakteId
      *
-     * @param  string $vkontakteId
+     * @param string $vkontakteId
      * @return self
      */
     public function setVkontakteId($vkontakteId)
     {
         $this->vkontakteId = $vkontakteId;
-
         return $this;
     }
-
     /**
      * Get vkontakteId
      *
@@ -286,20 +247,17 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->vkontakteId;
     }
-
     /**
      * Set facebookId
      *
-     * @param  string $facebookId
+     * @param string $facebookId
      * @return self
      */
     public function setFacebookId($facebookId)
     {
         $this->facebookId = $facebookId;
-
         return $this;
     }
-
     /**
      * Get facebookId
      *
@@ -309,20 +267,17 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->facebookId;
     }
-
     /**
      * Set odnoklassnikiId
      *
-     * @param  string $odnoklassnikiId
+     * @param string $odnoklassnikiId
      * @return self
      */
     public function setOdnoklassnikiId($odnoklassnikiId)
     {
         $this->odnoklassnikiId = $odnoklassnikiId;
-
         return $this;
     }
-
     /**
      * Get odnoklassnikiId
      *
@@ -332,200 +287,179 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->odnoklassnikiId;
     }
-
     /**
      * Add favoriteDream
      *
-     * @param AppBundle\Document\Dream $favoriteDream
+     * @param \AppBundle\Document\Dream $favoriteDream
      */
     public function addFavoriteDream(\AppBundle\Document\Dream $favoriteDream)
     {
         $this->favoriteDreams[] = $favoriteDream;
     }
-
     /**
      * Remove favoriteDream
      *
-     * @param AppBundle\Document\Dream $favoriteDream
+     * @param \AppBundle\Document\Dream $favoriteDream
      */
     public function removeFavoriteDream(\AppBundle\Document\Dream $favoriteDream)
     {
         $this->favoriteDreams->removeElement($favoriteDream);
     }
-
     /**
      * Get favoriteDreams
      *
-     * @return Doctrine\Common\Collections\Collection $favoriteDreams
+     * @return \Doctrine\Common\Collections\Collection $favoriteDreams
      */
     public function getFavoriteDreams()
     {
         return $this->favoriteDreams;
     }
-
     /**
      * Add financialContribution
      *
-     * @param AppBundle\Document\FinancialContribute $financialContribution
+     * @param \AppBundle\Document\FinancialContribute $financialContribution
      */
     public function addFinancialContribution(\AppBundle\Document\FinancialContribute $financialContribution)
     {
         $this->financialContributions[] = $financialContribution;
     }
-
     /**
      * Remove financialContribution
      *
-     * @param AppBundle\Document\FinancialContribute $financialContribution
+     * @param \AppBundle\Document\FinancialContribute $financialContribution
      */
     public function removeFinancialContribution(\AppBundle\Document\FinancialContribute $financialContribution)
     {
         $this->financialContributions->removeElement($financialContribution);
     }
-
     /**
      * Get financialContributions
      *
-     * @return Doctrine\Common\Collections\Collection $financialContributions
+     * @return \Doctrine\Common\Collections\Collection $financialContributions
      */
     public function getFinancialContributions()
     {
         return $this->financialContributions;
     }
-
     /**
      * Add equipmentContribution
      *
-     * @param AppBundle\Document\EquipmentContribute $equipmentContribution
+     * @param \AppBundle\Document\EquipmentContribute $equipmentContribution
      */
     public function addEquipmentContribution(\AppBundle\Document\EquipmentContribute $equipmentContribution)
     {
         $this->equipmentContributions[] = $equipmentContribution;
     }
-
     /**
      * Remove equipmentContribution
      *
-     * @param AppBundle\Document\EquipmentContribute $equipmentContribution
+     * @param \AppBundle\Document\EquipmentContribute $equipmentContribution
      */
     public function removeEquipmentContribution(\AppBundle\Document\EquipmentContribute $equipmentContribution)
     {
         $this->equipmentContributions->removeElement($equipmentContribution);
     }
-
     /**
      * Get equipmentContributions
      *
-     * @return Doctrine\Common\Collections\Collection $equipmentContributions
+     * @return \Doctrine\Common\Collections\Collection $equipmentContributions
      */
     public function getEquipmentContributions()
     {
         return $this->equipmentContributions;
     }
-
     /**
      * Add workContribution
      *
-     * @param AppBundle\Document\WorkContribute $workContribution
+     * @param \AppBundle\Document\WorkContribute $workContribution
      */
     public function addWorkContribution(\AppBundle\Document\WorkContribute $workContribution)
     {
         $this->workContributions[] = $workContribution;
     }
-
     /**
      * Remove workContribution
      *
-     * @param AppBundle\Document\WorkContribute $workContribution
+     * @param \AppBundle\Document\WorkContribute $workContribution
      */
     public function removeWorkContribution(\AppBundle\Document\WorkContribute $workContribution)
     {
         $this->workContributions->removeElement($workContribution);
     }
-
     /**
      * Get workContributions
      *
-     * @return Doctrine\Common\Collections\Collection $workContributions
+     * @return \Doctrine\Common\Collections\Collection $workContributions
      */
     public function getWorkContributions()
     {
         return $this->workContributions;
     }
-
     /**
      * Add otherContribution
      *
-     * @param AppBundle\Document\OtherContribute $otherContribution
+     * @param \AppBundle\Document\OtherContribute $otherContribution
      */
     public function addOtherContribution(\AppBundle\Document\OtherContribute $otherContribution)
     {
         $this->otherContributions[] = $otherContribution;
     }
-
     /**
      * Remove otherContribution
      *
-     * @param AppBundle\Document\OtherContribute $otherContribution
+     * @param \AppBundle\Document\OtherContribute $otherContribution
      */
     public function removeOtherContribution(\AppBundle\Document\OtherContribute $otherContribution)
     {
         $this->otherContributions->removeElement($otherContribution);
     }
-
     /**
      * Get otherContributions
      *
-     * @return Doctrine\Common\Collections\Collection $otherContributions
+     * @return \Doctrine\Common\Collections\Collection $otherContributions
      */
     public function getOtherContributions()
     {
         return $this->otherContributions;
     }
-
     /**
      * Add dream
      *
-     * @param AppBundle\Document\Dream $dream
+     * @param \AppBundle\Document\Dream $dream
      */
     public function addDream(\AppBundle\Document\Dream $dream)
     {
         $this->dreams[] = $dream;
     }
-
     /**
      * Remove dream
      *
-     * @param AppBundle\Document\Dream $dream
+     * @param \AppBundle\Document\Dream $dream
      */
     public function removeDream(\AppBundle\Document\Dream $dream)
     {
         $this->dreams->removeElement($dream);
     }
-
     /**
      * Get dreams
      *
-     * @return Doctrine\Common\Collections\Collection $dreams
+     * @return \Doctrine\Common\Collections\Collection $dreams
      */
     public function getDreams()
     {
         return $this->dreams;
     }
-
     /**
      * Set phone
      *
-     * @param  string $phone
+     * @param string $phone
      * @return self
      */
     public function setPhone($phone)
     {
         $this->phone = $phone;
-
         return $this;
     }
-
     /**
      * Get phone
      *
@@ -535,20 +469,17 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->phone;
     }
-
     /**
      * Set skype
      *
-     * @param  string $skype
+     * @param string $skype
      * @return self
      */
     public function setSkype($skype)
     {
         $this->skype = $skype;
-
         return $this;
     }
-
     /**
      * Get skype
      *
