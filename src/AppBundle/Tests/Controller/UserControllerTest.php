@@ -27,5 +27,4 @@ class UserControllerTest extends WebTestCase
             $response->headers
         );
     }
-
 }

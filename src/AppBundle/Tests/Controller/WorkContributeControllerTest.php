@@ -27,5 +27,4 @@ class WorkContributeControllerTest extends WebTestCase
             $response->headers
         );
     }
-
 }

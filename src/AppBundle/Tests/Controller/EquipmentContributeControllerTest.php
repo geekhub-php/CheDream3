@@ -27,5 +27,4 @@ class EquipmentContributeControllerTest extends WebTestCase
             $response->headers
         );
     }
-
 }

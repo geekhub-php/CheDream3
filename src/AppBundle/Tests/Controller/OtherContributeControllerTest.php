@@ -27,5 +27,4 @@ class OtherContributeControllerTest extends WebTestCase
             $response->headers
         );
     }
-
 }

@@ -27,5 +27,4 @@ class ExportedUserControllerTest extends WebTestCase
             $response->headers
         );
     }
-
 }

@@ -27,5 +27,4 @@ class FinancialResourceControllerTest extends WebTestCase
             $response->headers
         );
     }
-
 }

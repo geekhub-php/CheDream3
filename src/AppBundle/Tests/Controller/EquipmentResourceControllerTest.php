@@ -27,5 +27,4 @@ class EquipmentResourceControllerTest extends WebTestCase
             $response->headers
         );
     }
-
 }

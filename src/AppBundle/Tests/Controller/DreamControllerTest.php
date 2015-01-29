@@ -27,5 +27,4 @@ class DreamControllerTest extends WebTestCase
             $response->headers
         );
     }
-
 }

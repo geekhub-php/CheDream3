@@ -27,5 +27,4 @@ class WorkResourceControllerTest extends WebTestCase
             $response->headers
         );
     }
-
 }

@@ -27,5 +27,4 @@ class StatusControllerTest extends WebTestCase
             $response->headers
         );
     }
-
 }

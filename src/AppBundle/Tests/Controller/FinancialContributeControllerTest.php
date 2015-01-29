@@ -27,5 +27,4 @@ class FinancialContributeControllerTest extends WebTestCase
             $response->headers
         );
     }
-
 }

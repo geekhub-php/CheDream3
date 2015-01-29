@@ -27,5 +27,4 @@ class FaqControllerTest extends WebTestCase
             $response->headers
         );
     }
-
 }
