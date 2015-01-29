@@ -4,7 +4,7 @@ namespace Acme\BlogBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class FinancialResourceController extends WebTestCase
+class FinancialResourceControllerTest extends WebTestCase
 {
     public function testGet()
     {

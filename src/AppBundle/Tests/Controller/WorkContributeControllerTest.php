@@ -4,7 +4,7 @@ namespace Acme\BlogBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class WorkContributeController extends WebTestCase
+class WorkContributeControllerTest extends WebTestCase
 {
     public function testGet()
     {
