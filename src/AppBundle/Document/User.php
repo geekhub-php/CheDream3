@@ -39,10 +39,6 @@ class User extends BaseUser //implements DreamUserInterface
      * @ODM\Field(type="string")
      */
     protected $lastName;
-// /**
-// * @ODM\ReferenceOne(targetDocument="Application\Sonata\MediaBundle\Entity\Media", cascade="all")
-// */
-// protected $avatar;
     /**
      * @var \DateTime
      *
@@ -74,27 +70,27 @@ class User extends BaseUser //implements DreamUserInterface
      */
     protected $odnoklassnikiId;
     /**
-     * @ODM\ReferenceMany(targetDocument="Dream", mappedBy="usersWhoFavorites" )
+     * @ODM\ReferenceMany(targetDocument="Dream")
      */
     protected $favoriteDreams;
     /**
-     * @ODM\ReferenceMany(targetDocument="FinancialContribute", mappedBy="user")
+     * @ODM\ReferenceMany(targetDocument="FinancialContribute")
      */
     protected $financialContributions;
     /**
-     * @ODM\ReferenceMany(targetDocument="EquipmentContribute", mappedBy="user")
+     * @ODM\ReferenceMany(targetDocument="EquipmentContribute")
      */
     protected $equipmentContributions;
     /**
-     * @ODM\ReferenceMany(targetDocument="WorkContribute", mappedBy="user")
+     * @ODM\ReferenceMany(targetDocument="WorkContribute")
      */
     protected $workContributions;
     /**
-     * @ODM\ReferenceMany(targetDocument="OtherContribute", mappedBy="user")
+     * @ODM\ReferenceMany(targetDocument="OtherContribute")
      */
     protected $otherContributions;
     /**
-     * @ODM\ReferenceMany(targetDocument="Dream", mappedBy="author")
+     * @ODM\ReferenceMany(targetDocument="Dream")
      */
     protected $dreams;
     /**

@@ -19,7 +19,7 @@ class FinancialContribute extends AbstractContribute
     protected $id;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="FinancialResource", inversedBy="financialContributes")
+     * @ODM\ReferenceOne(targetDocument="FinancialResource")
      */
     protected $financialResource;
 
@@ -47,7 +47,7 @@ class FinancialContribute extends AbstractContribute
     /**
      * @var \AppBundle\Document\User
      *
-     * @ODM\ReferenceOne(targetDocument="User", inversedBy="financialContributions")
+     * @ODM\ReferenceOne(targetDocument="User")
      */
     protected $user;
 

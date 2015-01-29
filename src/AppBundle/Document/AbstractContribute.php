@@ -4,7 +4,6 @@ namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
-
 /**
  * @ODM\MappedSuperclass
  */
@@ -18,7 +17,7 @@ abstract class AbstractContribute extends AbstractContributeResource implements 
     protected $hiddenContributor;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\User", inversedBy="equipmentContributions")
+     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\User")
      */
     protected $user;
 

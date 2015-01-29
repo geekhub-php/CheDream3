@@ -44,7 +44,7 @@ class Status implements EventInterface
     protected $createdAt;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="Dream", inversedBy="statuses")
+     * @ODM\ReferenceOne(targetDocument="Dream")
      */
     protected $dream;
 

@@ -131,7 +131,7 @@ class Dream
     protected $tags;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="User", inversedBy="favoriteDreams")
+     * @ODM\ReferenceMany(targetDocument="User")
      */
     protected $usersWhoFavorites = array();
 
@@ -143,12 +143,12 @@ class Dream
     protected $favoritesCount;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="User", inversedBy="dreams")
+     * @ODM\ReferenceOne(targetDocument="User")
      */
     protected $author;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="Status", mappedBy="dream", cascade={"persist"})
+     * @ODM\ReferenceMany(targetDocument="Status", cascade={"persist"})
      */
     protected $statuses = array();
 
@@ -190,22 +190,22 @@ class Dream
     protected $dreamVideos;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="FinancialResource", mappedBy="dream", cascade={"persist"})
+     * @ODM\ReferenceMany(targetDocument="FinancialResource", cascade={"persist"})
      */
     protected $dreamFinancialResources;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="EquipmentResource", mappedBy="dream", cascade={"persist"})
+     * @ODM\ReferenceMany(targetDocument="EquipmentResource", cascade={"persist"})
      */
     protected $dreamEquipmentResources;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="WorkResource", mappedBy="dream", cascade={"persist"})
+     * @ODM\ReferenceMany(targetDocument="WorkResource", cascade={"persist"})
      */
     protected $dreamWorkResources;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="OtherContribute", mappedBy="dream")
+     * @ODM\ReferenceMany(targetDocument="OtherContribute")
      */
     protected $dreamOtherContributions;
 

@@ -42,14 +42,14 @@ class FinancialResource extends AbstractResource
     /**
      * @var \AppBundle\Document\Dream
      *
-     * @ODM\ReferenceOne(targetDocument="Dream", inversedBy="dreamFinancialContributions")
+     * @ODM\ReferenceOne(targetDocument="Dream")
      */
     protected $dream;
 
     /**
      * @var array
      *
-     * @ODM\ReferenceMany(targetDocument="FinancialContribute", mappedBy="financialResource")
+     * @ODM\ReferenceMany(targetDocument="FinancialContribute")
      */
     protected $financialContributes = array();
 
