@@ -4,12 +4,12 @@ namespace Acme\BlogBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class DreamControllerTest extends WebTestCase
+class EquipmentContributeTest extends WebTestCase
 {
     public function testGet()
     {
         $client   = static::createClient();
-        $crawler  = $client->request('GET', '/dreams/{slug}');
+        $crawler  = $client->request('GET', '/equipment/contribute');
 
         $response = $client->getResponse();
 

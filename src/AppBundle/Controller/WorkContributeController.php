@@ -30,7 +30,7 @@ class WorkContributeController extends FOSRestController
      *
      * @throws NotFoundHttpException when page not exist
      */
-    public function getWorkContributorsAction()
+    public function getWorkContributeAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
         $work_contribute = $manager->getRepository('AppBundle:WorkContribute')->findAll();
