@@ -13,7 +13,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User extends BaseUser //implements DreamUserInterface
 {
-
     const FAKE_EMAIL_PART = "@example.com";
 
     /**
