@@ -15,7 +15,7 @@ class WorkContributeController extends FOSRestController
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets all WorkContributors",
+     * description = "Gets all WorkContribute",
      * output = "AppBundle\Document\WorkContribute",
      * statusCodes = {
      *      200 = "Returned when successful",

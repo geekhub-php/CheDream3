@@ -11,7 +11,7 @@ use FOS\RestBundle\View\View;
 class OtherContributeController extends FOSRestController
 {
     /**
-     * Get other contribute,
+     * Get OtherContribute,
      *
      * @ApiDoc(
      * resource = true,
@@ -19,7 +19,7 @@ class OtherContributeController extends FOSRestController
      * output = "AppBundle\Document\OtherContribute",
      * statusCodes = {
      *      200 = "Returned when successful",
-     *      404 = "Returned when the page is not found"
+     *      404 = "Returned when the OtherContribute is not found"
      * }
      * )
      *
