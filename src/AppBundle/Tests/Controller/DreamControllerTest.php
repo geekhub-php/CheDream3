@@ -10,11 +10,22 @@ class DreamControllerTest extends WebTestCase
     public function testGet()
     {
         $client   = static::createClient();
-        $crawler  = $client->request('GET', '/api/dreams/');
+        $crawler  = $client->request('GET', '/api/dreams/{slug}');
 
         $response = $client->getResponse();
 
-        $this->assertEquals($response, 200);
+        $this->assertJsonResponse($response, 200);
+    }
+    protected function assertJsonResponse($response, $statusCode = 200)
+    {
+        $this->assertEquals(
+            $statusCode, $response->getStatusCode(),
+            $response->getContent()
+        );
+        $this->assertTrue(
+            $response->headers->contains('Content-Type', 'application/json'),
+            $response->headers
+        );
     }
 
 }
