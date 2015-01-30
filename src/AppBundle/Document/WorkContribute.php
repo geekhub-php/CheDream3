@@ -147,7 +147,7 @@ class WorkContribute extends AbstractContribute
      * @param  User $user
      * @return self
      */
-    public function setUser(\User $user)
+    public function setUser(\AppBundle\Document\User $user)
     {
         $this->user = $user;
 
