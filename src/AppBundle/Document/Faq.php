@@ -37,7 +37,6 @@ class Faq
      * @var string
      *
      * @ODM\Field(type="string")
-     * @Expose()
      */
     protected $question;
 
