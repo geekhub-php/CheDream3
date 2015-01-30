@@ -11,15 +11,15 @@ use FOS\RestBundle\View\View;
 class OtherContributeController extends FOSRestController
 {
     /**
-     * Get OtherContribute,
+     * Get OtherContributes,
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets other contribute your dream",
+     * description = "Gets other contributes your dream",
      * output = "AppBundle\Document\OtherContribute",
      * statusCodes = {
      *      200 = "Returned when successful",
-     *      404 = "Returned when the OtherContribute is not found"
+     *      404 = "Returned when the OtherContributes is not found"
      * }
      * )
      *
@@ -29,10 +29,10 @@ class OtherContributeController extends FOSRestController
      *
      * @throws NotFoundHttpException when page not exist
      */
-    public function getOtherContributeAction($title)
+    public function getOtherContributesAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $contribute = $manager->getRepository('AppBundle:OtherContribute')->findOneByTitle($title);
+        $contribute = $manager->getRepository('AppBundle:OtherContribute')->findAll();
         $restView = View::create();
         $restView->setData($contribute);
 

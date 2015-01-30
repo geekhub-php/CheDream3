@@ -11,15 +11,15 @@ use FOS\RestBundle\View\View;
 class EquipmentContributeController extends FOSRestController
 {
     /**
-     * Get single EquipmentContribute,
+     * Get EquipmentContributes,
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets a EquipmentContribute for a given id",
+     * description = "Gets all EquipmentContributes",
      * output = "AppBundle\Document\EquipmentContribute",
      * statusCodes = {
      *      200 = "Returned when successful",
-     *      404 = "Returned when the EquipmentContribute is not found"
+     *      404 = "Returned when the EquipmentContributes is not found"
      * }
      * )
      *
@@ -29,12 +29,12 @@ class EquipmentContributeController extends FOSRestController
      *
      * @throws NotFoundHttpException when page not exist
      */
-    public function getEquipmentContributeAction()
+    public function getEquipmentContributesAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $equipment_contribute = $manager->getRepository('AppBundle:EquipmentContribute')->findAll();
+        $equipment_contributes = $manager->getRepository('AppBundle:EquipmentContribute')->findAll();
         $restView = View::create();
-        $restView->setData($equipment_contribute);
+        $restView->setData($equipment_contributes);
 
         return $restView;
     }

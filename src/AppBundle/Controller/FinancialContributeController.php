@@ -11,15 +11,15 @@ use FOS\RestBundle\View\View;
 class FinancialContributeController extends FOSRestController
 {
     /**
-     * Get single FinancialContribute,
+     * Get FinancialContributes,
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets a FinancialContribute for a given id",
+     * description = "Gets all FinancialContributes",
      * output = "AppBundle\Document\FinancialContribute",
      * statusCodes = {
      *      200 = "Returned when successful",
-     *      404 = "Returned when the FinancialContribute is not found"
+     *      404 = "Returned when the FinancialContributes is not found"
      * }
      * )
      *
@@ -29,12 +29,12 @@ class FinancialContributeController extends FOSRestController
      *
      * @throws NotFoundHttpException when page not exist
      */
-    public function getFinancialContributeAction()
+    public function getFinancialContributesAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $financial_contribute = $manager->getRepository('AppBundle:FinancialContribute')->findAll();
+        $financial_contributes = $manager->getRepository('AppBundle:FinancialContribute')->findAll();
         $restView = View::create();
-        $restView->setData($financial_contribute);
+        $restView->setData($financial_contributes);
 
         return $restView;
     }

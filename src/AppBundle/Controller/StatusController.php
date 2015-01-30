@@ -11,15 +11,15 @@ use FOS\RestBundle\View\View;
 class StatusController extends FOSRestController
 {
     /**
-     * Get single status,
+     * Get status,
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets a status for a given title",
+     * description = "Gets status for a given id",
      * output = "AppBundle\Document\Status",
      * statusCodes = {
      *      200 = "Returned when successful",
-     *      404 = "Returned when the page is not found"
+     *      404 = "Returned when the status is not found"
      * }
      * )
      *
@@ -29,10 +29,10 @@ class StatusController extends FOSRestController
      *
      * @throws NotFoundHttpException when page not exist
      */
-    public function getStatusAction($title)
+    public function getStatusAction($id)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $status = $manager->getRepository('AppBundle:Status')->findByTitle($title);
+        $status = $manager->getRepository('AppBundle:Status')->findBy($id);
         $restView = View::create();
         $restView->setData($status);
 

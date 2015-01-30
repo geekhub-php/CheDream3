@@ -11,15 +11,15 @@ use FOS\RestBundle\View\View;
 class FinancialResourceController extends FOSRestController
 {
     /**
-     * Get single FinancialResource,
+     * Get FinancialResources,
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets a FinancialResource for a given id",
+     * description = "Gets all FinancialResources",
      * output = "AppBundle\Document\FinancialResource",
      * statusCodes = {
      *      200 = "Returned when successful",
-     *      404 = "Returned when the FinancialResource is not found"
+     *      404 = "Returned when the FinancialResources is not found"
      * }
      * )
      *
@@ -30,12 +30,12 @@ class FinancialResourceController extends FOSRestController
      *
      * @throws NotFoundHttpException when page not exist
      */
-    public function getFinancialResourceAction()
+    public function getFinancialResourcesAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $financial_resource = $manager->getRepository('AppBundle:FinancialResource')->findAll();
+        $financial_resources = $manager->getRepository('AppBundle:FinancialResource')->findAll();
         $restView = View::create();
-        $restView->setData($financial_resource);
+        $restView->setData($financial_resources);
 
         return $restView;
     }

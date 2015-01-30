@@ -11,15 +11,15 @@ use FOS\RestBundle\View\View;
 class FaqController extends FOSRestController
 {
     /**
-     * Get single Faq,
+     * Get Faqs,
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets a Faq for a given id",
+     * description = "Gets all Faq",
      * output = "AppBundle\Document\Faq",
      * statusCodes = {
      *      200 = "Returned when successful",
-     *      404 = "Returned when the Faq is not found"
+     *      404 = "Returned when the Faqs is not found"
      * }
      * )
      *
@@ -29,12 +29,12 @@ class FaqController extends FOSRestController
      *
      * @throws NotFoundHttpException when page not exist
      */
-    public function getFaqAction()
+    public function getFaqsAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $faq = $manager->getRepository('AppBundle:Faq')->findAll();
+        $faqs = $manager->getRepository('AppBundle:Faq')->findAll();
         $restView = View::create();
-        $restView->setData($faq);
+        $restView->setData($faqs);
 
         return $restView;
     }

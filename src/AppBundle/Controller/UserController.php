@@ -15,7 +15,7 @@ class UserController extends FOSRestController
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets a User for a given firstname",
+     * description = "Gets a User for a given id",
      * output = "AppBundle\Document\UserContribute",
      * statusCodes = {
      *      200 = "Returned when successful",
@@ -29,10 +29,10 @@ class UserController extends FOSRestController
      *
      * @throws NotFoundHttpException when page not exist
      */
-    public function getUserAction($firstName)
+    public function getUserAction($id)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $user = $manager->getRepository('AppBundle:User')->findOneByfirstName($firstName);
+        $user = $manager->getRepository('AppBundle:User')->findBy($id);
         $restView = View::create();
         $restView->setData($user);
 

@@ -11,15 +11,15 @@ use FOS\RestBundle\View\View;
 class WorkResourceController extends FOSRestController
 {
     /**
-     * Get WorkResource,
+     * Get WorkResources,
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets all WorkContribute",
+     * description = "Gets all WorkContributes",
      * output = "AppBundle\Document\WorkResource",
      * statusCodes = {
      *      200 = "Returned when successful",
-     *      404 = "Returned when the page is not found"
+     *      404 = "Returned when the WorkContributes is not found"
      * }
      * )
      *
@@ -29,12 +29,12 @@ class WorkResourceController extends FOSRestController
      *
      * @throws NotFoundHttpException when page not exist
      */
-    public function getWorkResourceAction()
+    public function getWorkResourcesAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $work_resource = $manager->getRepository('AppBundle:WorkResource')->findAll();
+        $work_resources = $manager->getRepository('AppBundle:WorkResource')->findAll();
         $restView = View::create();
-        $restView->setData($work_resource);
+        $restView->setData($work_resources);
 
         return $restView;
     }

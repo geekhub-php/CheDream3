@@ -14,12 +14,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User extends BaseUser //implements DreamUserInterface
 {
     const FAKE_EMAIL_PART = "@example.com";
+
     /**
      * @var integer
      *
      * @ODM\Id
      */
     protected $id;
+
     /**
      * @var string
      *
@@ -27,84 +29,100 @@ class User extends BaseUser //implements DreamUserInterface
      * @ODM\Field(type="string")
      */
     protected $firstName;
+
     /**
      * @var string
      *
      * @ODM\Field(type="string")
      */
     protected $middleName;
+
     /**
      * @var string
      *
      * @ODM\Field(type="string")
      */
     protected $lastName;
+
     /**
      * @var \DateTime
      *
      * @ODM\Field(type="date")
      */
     protected $birthday;
+
     /**
      * @var string
      *
      * @ODM\Field(type="string")
      */
     protected $about;
+
     /**
      * @var string
      *
      * @ODM\Field(name="vkontakte_id", type="string")
      */
     protected $vkontakteId;
+
     /**
      * @var string
      *
      * @ODM\Field(name="facebook_id", type="string")
      */
     protected $facebookId;
+
     /**
      * @var string
      *
      * @ODM\Field(name="odnoklassniki_id", type="string")
      */
     protected $odnoklassnikiId;
+
     /**
      * @ODM\ReferenceMany(targetDocument="Dream")
      */
     protected $favoriteDreams;
+
     /**
      * @ODM\ReferenceMany(targetDocument="FinancialContribute")
      */
     protected $financialContributions;
+
     /**
      * @ODM\ReferenceMany(targetDocument="EquipmentContribute")
      */
     protected $equipmentContributions;
+
     /**
      * @ODM\ReferenceMany(targetDocument="WorkContribute")
      */
     protected $workContributions;
+
     /**
      * @ODM\ReferenceMany(targetDocument="OtherContribute")
      */
     protected $otherContributions;
+
     /**
      * @ODM\ReferenceMany(targetDocument="Dream")
      */
     protected $dreams;
+
     /**
      * @var string
      *
      * @ODM\Field(type="string")
      */
     protected $phone;
+
     /**
      * @var string
      *
      * @ODM\Field(type="string")
      */
     protected $skype;
+
     public function __construct()
     {
         $this->favoriteDreams = new \Doctrine\Common\Collections\ArrayCollection();
@@ -114,6 +132,7 @@ class User extends BaseUser //implements DreamUserInterface
         $this->otherContributions = new \Doctrine\Common\Collections\ArrayCollection();
         $this->dreams = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
     /**
      * Get id
      *
@@ -123,6 +142,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->id;
     }
+
     /**
      * Set firstName
      *
@@ -135,6 +155,7 @@ class User extends BaseUser //implements DreamUserInterface
 
         return $this;
     }
+
     /**
      * Get firstName
      *
@@ -144,6 +165,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->firstName;
     }
+
     /**
      * Set middleName
      *
@@ -156,6 +178,7 @@ class User extends BaseUser //implements DreamUserInterface
 
         return $this;
     }
+
     /**
      * Get middleName
      *
@@ -165,6 +188,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->middleName;
     }
+
     /**
      * Set lastName
      *
@@ -177,6 +201,7 @@ class User extends BaseUser //implements DreamUserInterface
 
         return $this;
     }
+
     /**
      * Get lastName
      *
@@ -186,6 +211,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->lastName;
     }
+
     /**
      * Set birthday
      *
@@ -198,6 +224,7 @@ class User extends BaseUser //implements DreamUserInterface
 
         return $this;
     }
+
     /**
      * Get birthday
      *
@@ -207,6 +234,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->birthday;
     }
+
     /**
      * Set about
      *
@@ -219,6 +247,7 @@ class User extends BaseUser //implements DreamUserInterface
 
         return $this;
     }
+
     /**
      * Get about
      *
@@ -228,6 +257,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->about;
     }
+
     /**
      * Set vkontakteId
      *
@@ -240,6 +270,7 @@ class User extends BaseUser //implements DreamUserInterface
 
         return $this;
     }
+
     /**
      * Get vkontakteId
      *
@@ -249,6 +280,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->vkontakteId;
     }
+
     /**
      * Set facebookId
      *
@@ -261,6 +293,7 @@ class User extends BaseUser //implements DreamUserInterface
 
         return $this;
     }
+
     /**
      * Get facebookId
      *
@@ -270,6 +303,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->facebookId;
     }
+
     /**
      * Set odnoklassnikiId
      *
@@ -282,6 +316,7 @@ class User extends BaseUser //implements DreamUserInterface
 
         return $this;
     }
+
     /**
      * Get odnoklassnikiId
      *
@@ -291,6 +326,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->odnoklassnikiId;
     }
+
     /**
      * Add favoriteDream
      *
@@ -300,6 +336,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         $this->favoriteDreams[] = $favoriteDream;
     }
+
     /**
      * Remove favoriteDream
      *
@@ -309,6 +346,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         $this->favoriteDreams->removeElement($favoriteDream);
     }
+
     /**
      * Get favoriteDreams
      *
@@ -318,6 +356,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->favoriteDreams;
     }
+
     /**
      * Add financialContribution
      *
@@ -327,6 +366,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         $this->financialContributions[] = $financialContribution;
     }
+
     /**
      * Remove financialContribution
      *
@@ -336,6 +376,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         $this->financialContributions->removeElement($financialContribution);
     }
+
     /**
      * Get financialContributions
      *
@@ -345,6 +386,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->financialContributions;
     }
+
     /**
      * Add equipmentContribution
      *
@@ -354,6 +396,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         $this->equipmentContributions[] = $equipmentContribution;
     }
+
     /**
      * Remove equipmentContribution
      *
@@ -363,6 +406,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         $this->equipmentContributions->removeElement($equipmentContribution);
     }
+
     /**
      * Get equipmentContributions
      *
@@ -372,6 +416,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->equipmentContributions;
     }
+
     /**
      * Add workContribution
      *
@@ -381,6 +426,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         $this->workContributions[] = $workContribution;
     }
+
     /**
      * Remove workContribution
      *
@@ -390,6 +436,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         $this->workContributions->removeElement($workContribution);
     }
+
     /**
      * Get workContributions
      *
@@ -399,6 +446,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->workContributions;
     }
+
     /**
      * Add otherContribution
      *
@@ -408,6 +456,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         $this->otherContributions[] = $otherContribution;
     }
+
     /**
      * Remove otherContribution
      *
@@ -417,6 +466,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         $this->otherContributions->removeElement($otherContribution);
     }
+
     /**
      * Get otherContributions
      *
@@ -426,6 +476,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->otherContributions;
     }
+
     /**
      * Add dream
      *
@@ -435,6 +486,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         $this->dreams[] = $dream;
     }
+
     /**
      * Remove dream
      *
@@ -444,6 +496,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         $this->dreams->removeElement($dream);
     }
+
     /**
      * Get dreams
      *
@@ -453,6 +506,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->dreams;
     }
+
     /**
      * Set phone
      *
@@ -465,6 +519,7 @@ class User extends BaseUser //implements DreamUserInterface
 
         return $this;
     }
+
     /**
      * Get phone
      *
@@ -474,6 +529,7 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->phone;
     }
+
     /**
      * Set skype
      *
@@ -486,6 +542,7 @@ class User extends BaseUser //implements DreamUserInterface
 
         return $this;
     }
+
     /**
      * Get skype
      *

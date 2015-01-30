@@ -74,7 +74,7 @@ class EquipmentResource extends AbstractResource
     /**
      * @var array
      *
-     * @ODM\ReferenceMany(targetDocument="equipment_contribute", mappedBy="equipmentResource")
+     * @ODM\ReferenceMany(targetDocument="EquipmentContribute", mappedBy="equipmentResource")
      */
     protected $equipmentContributes = array();
 

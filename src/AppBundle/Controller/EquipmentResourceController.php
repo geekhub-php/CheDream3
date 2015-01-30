@@ -11,15 +11,15 @@ use FOS\RestBundle\View\View;
 class EquipmentResourceController extends FOSRestController
 {
     /**
-     * Get single EquipmentResource,
+     * Get EquipmentResources,
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets a EquipmentResource for a given id",
+     * description = "Gets all EquipmentResources",
      * output = "AppBundle\Document\EquipmentResource",
      * statusCodes = {
      *      200 = "Returned when successful",
-     *      404 = "Returned when the EquipmentResourcee is not found"
+     *      404 = "Returned when the EquipmentResources is not found"
      * }
      * )
      *
@@ -29,12 +29,12 @@ class EquipmentResourceController extends FOSRestController
      *
      * @throws NotFoundHttpException when page not exist
      */
-    public function getEquipmentResourceAction()
+    public function getEquipmentResourcesAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $equipment_resource = $manager->getRepository('AppBundle:EquipmentResource')->findAll();
+        $equipment_resources = $manager->getRepository('AppBundle:EquipmentResource')->findAll();
         $restView = View::create();
-        $restView->setData($equipment_resource);
+        $restView->setData($equipment_resources);
 
         return $restView;
     }
