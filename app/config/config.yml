@@ -94,5 +94,5 @@ fos_rest:
             json: true
             xml: true
             yml: true
-            yml: true
+
 

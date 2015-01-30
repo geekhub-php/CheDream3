@@ -15,7 +15,7 @@ class DreamController extends FOSRestController
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets a Dream for a given id",
+     * description = "Gets a Dream for a given slug",
      * output = "AppBundle\Document\Dream",
      * statusCodes = {
      *      200 = "Returned when successful",
@@ -28,7 +28,7 @@ class DreamController extends FOSRestController
      * @param $slug
      * @return mixed
      *
-     * @throws NotFoundHttpException when page not exist
+     * @throws NotFoundHttpException when not exist
      */
     public function getDreamAction($slug)
     {
