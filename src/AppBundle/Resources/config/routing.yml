@@ -31,6 +31,3 @@ app_work_resource:
 app_status:
    type: rest
    resource: "@AppBundle/Controller/StatusController.php"
-app_exported_user:
-   type: rest
-   resource: "@AppBundle/Controller/ExportedUserController.php"
