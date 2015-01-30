@@ -44,7 +44,7 @@ class Status implements EventInterface
     protected $createdAt;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="Dream", inversedBy="statuses")
+     * @ODM\ReferenceOne(targetDocument="Dream")
      */
     protected $dream;
 
@@ -94,13 +94,12 @@ class Status implements EventInterface
     /**
      * Set title
      *
-     * @param  string $title
+     * @param string $title
      * @return self
      */
     public function setTitle($title)
     {
         $this->title = $title;
-
         return $this;
     }
 
@@ -117,20 +116,19 @@ class Status implements EventInterface
     /**
      * Set dream
      *
-     * @param  \AppBundle\Document\Dream $dream
+     * @param AppBundle\Document\Dream $dream
      * @return self
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
-
         return $this;
     }
 
     /**
      * Get dream
      *
-     * @return \AppBundle\Document\Dream $dream
+     * @return AppBundle\Document\Dream $dream
      */
     public function getDream()
     {

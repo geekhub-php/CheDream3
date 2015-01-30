@@ -131,7 +131,7 @@ class Dream
     protected $tags;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="User", inversedBy="favoriteDreams")
+     * @ODM\ReferenceMany(targetDocument="User")
      */
     protected $usersWhoFavorites = array();
 
@@ -143,12 +143,12 @@ class Dream
     protected $favoritesCount;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="User", inversedBy="dreams")
+     * @ODM\ReferenceOne(targetDocument="User")
      */
     protected $author;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="Status", mappedBy="dream", cascade={"persist"})
+     * @ODM\ReferenceMany(targetDocument="Status", cascade={"persist"})
      */
     protected $statuses = array();
 
@@ -190,37 +190,37 @@ class Dream
     protected $dreamVideos;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="FinancialResource", mappedBy="dream", cascade={"persist"})
+     * @ODM\ReferenceMany(targetDocument="FinancialResource", cascade={"persist"})
      */
     protected $dreamFinancialResources;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="EquipmentResource", mappedBy="dream", cascade={"persist"})
+     * @ODM\ReferenceMany(targetDocument="EquipmentResource", cascade={"persist"})
      */
     protected $dreamEquipmentResources;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="WorkResource", mappedBy="dream", cascade={"persist"})
+     * @ODM\ReferenceMany(targetDocument="WorkResource", cascade={"persist"})
      */
     protected $dreamWorkResources;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="FinancialContribute", mappedBy="dream")
+     * @ODM\ReferenceMany(targetDocument="FinancialContribute")
      */
     protected $dreamFinancialContributions;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="EquipmentContribute", mappedBy="dream")
+     * @ODM\ReferenceMany(targetDocument="EquipmentContribute")
      */
     protected $dreamEquipmentContributions;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="WorkContribute", mappedBy="dream")
+     * @ODM\ReferenceMany(targetDocument="WorkContribute")
      */
     protected $dreamWorkContributions;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="OtherContribute", mappedBy="dream")
+     * @ODM\ReferenceMany(targetDocument="OtherContribute")
      */
     protected $dreamOtherContributions;
     public function __construct()
@@ -235,7 +235,7 @@ class Dream
         $this->dreamWorkContributions = new \Doctrine\Common\Collections\ArrayCollection();
         $this->dreamOtherContributions = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      * Get id
      *
@@ -249,13 +249,12 @@ class Dream
     /**
      * Set title
      *
-     * @param  string $title
+     * @param string $title
      * @return self
      */
     public function setTitle($title)
     {
         $this->title = $title;
-
         return $this;
     }
 
@@ -272,13 +271,12 @@ class Dream
     /**
      * Set description
      *
-     * @param  string $description
+     * @param string $description
      * @return self
      */
     public function setDescription($description)
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -295,13 +293,12 @@ class Dream
     /**
      * Set rejectedDescription
      *
-     * @param  string $rejectedDescription
+     * @param string $rejectedDescription
      * @return self
      */
     public function setRejectedDescription($rejectedDescription)
     {
         $this->rejectedDescription = $rejectedDescription;
-
         return $this;
     }
 
@@ -318,13 +315,12 @@ class Dream
     /**
      * Set implementedDescription
      *
-     * @param  string $implementedDescription
+     * @param string $implementedDescription
      * @return self
      */
     public function setImplementedDescription($implementedDescription)
     {
         $this->implementedDescription = $implementedDescription;
-
         return $this;
     }
 
@@ -341,13 +337,12 @@ class Dream
     /**
      * Set completedDescription
      *
-     * @param  string $completedDescription
+     * @param string $completedDescription
      * @return self
      */
     public function setCompletedDescription($completedDescription)
     {
         $this->completedDescription = $completedDescription;
-
         return $this;
     }
 
@@ -364,13 +359,12 @@ class Dream
     /**
      * Set phone
      *
-     * @param  string $phone
+     * @param string $phone
      * @return self
      */
     public function setPhone($phone)
     {
         $this->phone = $phone;
-
         return $this;
     }
 
@@ -387,13 +381,12 @@ class Dream
     /**
      * Set slug
      *
-     * @param  string $slug
+     * @param string $slug
      * @return self
      */
     public function setSlug($slug)
     {
         $this->slug = $slug;
-
         return $this;
     }
 
@@ -410,13 +403,12 @@ class Dream
     /**
      * Set createdAt
      *
-     * @param  date $createdAt
+     * @param date $createdAt
      * @return self
      */
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
@@ -433,13 +425,12 @@ class Dream
     /**
      * Set updatedAt
      *
-     * @param  date $updatedAt
+     * @param date $updatedAt
      * @return self
      */
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
-
         return $this;
     }
 
@@ -456,13 +447,12 @@ class Dream
     /**
      * Set deletedAt
      *
-     * @param  date $deletedAt
+     * @param date $deletedAt
      * @return self
      */
     public function setDeletedAt($deletedAt)
     {
         $this->deletedAt = $deletedAt;
-
         return $this;
     }
 
@@ -479,13 +469,12 @@ class Dream
     /**
      * Set expiredDate
      *
-     * @param  date $expiredDate
+     * @param date $expiredDate
      * @return self
      */
     public function setExpiredDate($expiredDate)
     {
         $this->expiredDate = $expiredDate;
-
         return $this;
     }
 
@@ -502,13 +491,12 @@ class Dream
     /**
      * Set financialCompleted
      *
-     * @param  int  $financialCompleted
+     * @param int $financialCompleted
      * @return self
      */
     public function setFinancialCompleted($financialCompleted)
     {
         $this->financialCompleted = $financialCompleted;
-
         return $this;
     }
 
@@ -525,13 +513,12 @@ class Dream
     /**
      * Set workCompleted
      *
-     * @param  int  $workCompleted
+     * @param int $workCompleted
      * @return self
      */
     public function setWorkCompleted($workCompleted)
     {
         $this->workCompleted = $workCompleted;
-
         return $this;
     }
 
@@ -548,13 +535,12 @@ class Dream
     /**
      * Set equipmentCompleted
      *
-     * @param  int  $equipmentCompleted
+     * @param int $equipmentCompleted
      * @return self
      */
     public function setEquipmentCompleted($equipmentCompleted)
     {
         $this->equipmentCompleted = $equipmentCompleted;
-
         return $this;
     }
 
@@ -571,7 +557,7 @@ class Dream
     /**
      * Add usersWhoFavorite
      *
-     * @param \AppBundle\Document\User $usersWhoFavorite
+     * @param AppBundle\Document\User $usersWhoFavorite
      */
     public function addUsersWhoFavorite(\AppBundle\Document\User $usersWhoFavorite)
     {
@@ -581,7 +567,7 @@ class Dream
     /**
      * Remove usersWhoFavorite
      *
-     * @param \AppBundle\Document\User $usersWhoFavorite
+     * @param AppBundle\Document\User $usersWhoFavorite
      */
     public function removeUsersWhoFavorite(\AppBundle\Document\User $usersWhoFavorite)
     {
@@ -591,7 +577,7 @@ class Dream
     /**
      * Get usersWhoFavorites
      *
-     * @return \Doctrine\Common\Collections\Collection $usersWhoFavorites
+     * @return Doctrine\Common\Collections\Collection $usersWhoFavorites
      */
     public function getUsersWhoFavorites()
     {
@@ -601,13 +587,12 @@ class Dream
     /**
      * Set favoritesCount
      *
-     * @param  int  $favoritesCount
+     * @param int $favoritesCount
      * @return self
      */
     public function setFavoritesCount($favoritesCount)
     {
         $this->favoritesCount = $favoritesCount;
-
         return $this;
     }
 
@@ -624,20 +609,19 @@ class Dream
     /**
      * Set author
      *
-     * @param  \AppBundle\Document\User $author
+     * @param AppBundle\Document\User $author
      * @return self
      */
     public function setAuthor(\AppBundle\Document\User $author)
     {
         $this->author = $author;
-
         return $this;
     }
 
     /**
      * Get author
      *
-     * @return \AppBundle\Document\User $author
+     * @return AppBundle\Document\User $author
      */
     public function getAuthor()
     {
@@ -647,7 +631,7 @@ class Dream
     /**
      * Add status
      *
-     * @param \AppBundle\Document\Status $status
+     * @param AppBundle\Document\Status $status
      */
     public function addStatus(\AppBundle\Document\Status $status)
     {
@@ -657,7 +641,7 @@ class Dream
     /**
      * Remove status
      *
-     * @param \AppBundle\Document\Status $status
+     * @param AppBundle\Document\Status $status
      */
     public function removeStatus(\AppBundle\Document\Status $status)
     {
@@ -667,7 +651,7 @@ class Dream
     /**
      * Get statuses
      *
-     * @return \Doctrine\Common\Collections\Collection $statuses
+     * @return Doctrine\Common\Collections\Collection $statuses
      */
     public function getStatuses()
     {
@@ -677,13 +661,12 @@ class Dream
     /**
      * Set currentStatus
      *
-     * @param  string $currentStatus
+     * @param string $currentStatus
      * @return self
      */
     public function setCurrentStatus($currentStatus)
     {
         $this->currentStatus = $currentStatus;
-
         return $this;
     }
 
@@ -700,7 +683,7 @@ class Dream
     /**
      * Add dreamFinancialResource
      *
-     * @param \AppBundle\Document\FinancialResource $dreamFinancialResource
+     * @param AppBundle\Document\FinancialResource $dreamFinancialResource
      */
     public function addDreamFinancialResource(\AppBundle\Document\FinancialResource $dreamFinancialResource)
     {
@@ -710,7 +693,7 @@ class Dream
     /**
      * Remove dreamFinancialResource
      *
-     * @param \AppBundle\Document\FinancialResource $dreamFinancialResource
+     * @param AppBundle\Document\FinancialResource $dreamFinancialResource
      */
     public function removeDreamFinancialResource(\AppBundle\Document\FinancialResource $dreamFinancialResource)
     {
@@ -720,7 +703,7 @@ class Dream
     /**
      * Get dreamFinancialResources
      *
-     * @return \Doctrine\Common\Collections\Collection $dreamFinancialResources
+     * @return Doctrine\Common\Collections\Collection $dreamFinancialResources
      */
     public function getDreamFinancialResources()
     {
@@ -730,7 +713,7 @@ class Dream
     /**
      * Add dreamEquipmentResource
      *
-     * @param \AppBundle\Document\EquipmentResource $dreamEquipmentResource
+     * @param AppBundle\Document\EquipmentResource $dreamEquipmentResource
      */
     public function addDreamEquipmentResource(\AppBundle\Document\EquipmentResource $dreamEquipmentResource)
     {
@@ -740,7 +723,7 @@ class Dream
     /**
      * Remove dreamEquipmentResource
      *
-     * @param \AppBundle\Document\EquipmentResource $dreamEquipmentResource
+     * @param AppBundle\Document\EquipmentResource $dreamEquipmentResource
      */
     public function removeDreamEquipmentResource(\AppBundle\Document\EquipmentResource $dreamEquipmentResource)
     {
@@ -750,7 +733,7 @@ class Dream
     /**
      * Get dreamEquipmentResources
      *
-     * @return \Doctrine\Common\Collections\Collection $dreamEquipmentResources
+     * @return Doctrine\Common\Collections\Collection $dreamEquipmentResources
      */
     public function getDreamEquipmentResources()
     {
@@ -760,7 +743,7 @@ class Dream
     /**
      * Add dreamWorkResource
      *
-     * @param \AppBundle\Document\WorkResource $dreamWorkResource
+     * @param AppBundle\Document\WorkResource $dreamWorkResource
      */
     public function addDreamWorkResource(\AppBundle\Document\WorkResource $dreamWorkResource)
     {
@@ -770,7 +753,7 @@ class Dream
     /**
      * Remove dreamWorkResource
      *
-     * @param \AppBundle\Document\WorkResource $dreamWorkResource
+     * @param AppBundle\Document\WorkResource $dreamWorkResource
      */
     public function removeDreamWorkResource(\AppBundle\Document\WorkResource $dreamWorkResource)
     {
@@ -780,7 +763,7 @@ class Dream
     /**
      * Get dreamWorkResources
      *
-     * @return \Doctrine\Common\Collections\Collection $dreamWorkResources
+     * @return Doctrine\Common\Collections\Collection $dreamWorkResources
      */
     public function getDreamWorkResources()
     {
@@ -790,7 +773,7 @@ class Dream
     /**
      * Add dreamFinancialContribution
      *
-     * @param \AppBundle\Document\FinancialContribute $dreamFinancialContribution
+     * @param AppBundle\Document\FinancialContribute $dreamFinancialContribution
      */
     public function addDreamFinancialContribution(\AppBundle\Document\FinancialContribute $dreamFinancialContribution)
     {
@@ -800,7 +783,7 @@ class Dream
     /**
      * Remove dreamFinancialContribution
      *
-     * @param \AppBundle\Document\FinancialContribute $dreamFinancialContribution
+     * @param AppBundle\Document\FinancialContribute $dreamFinancialContribution
      */
     public function removeDreamFinancialContribution(\AppBundle\Document\FinancialContribute $dreamFinancialContribution)
     {
@@ -810,7 +793,7 @@ class Dream
     /**
      * Get dreamFinancialContributions
      *
-     * @return \Doctrine\Common\Collections\Collection $dreamFinancialContributions
+     * @return Doctrine\Common\Collections\Collection $dreamFinancialContributions
      */
     public function getDreamFinancialContributions()
     {
@@ -820,7 +803,7 @@ class Dream
     /**
      * Add dreamEquipmentContribution
      *
-     * @param \AppBundle\Document\EquipmentContribute $dreamEquipmentContribution
+     * @param AppBundle\Document\EquipmentContribute $dreamEquipmentContribution
      */
     public function addDreamEquipmentContribution(\AppBundle\Document\EquipmentContribute $dreamEquipmentContribution)
     {
@@ -830,7 +813,7 @@ class Dream
     /**
      * Remove dreamEquipmentContribution
      *
-     * @param \AppBundle\Document\EquipmentContribute $dreamEquipmentContribution
+     * @param AppBundle\Document\EquipmentContribute $dreamEquipmentContribution
      */
     public function removeDreamEquipmentContribution(\AppBundle\Document\EquipmentContribute $dreamEquipmentContribution)
     {
@@ -840,7 +823,7 @@ class Dream
     /**
      * Get dreamEquipmentContributions
      *
-     * @return \Doctrine\Common\Collections\Collection $dreamEquipmentContributions
+     * @return Doctrine\Common\Collections\Collection $dreamEquipmentContributions
      */
     public function getDreamEquipmentContributions()
     {
@@ -850,7 +833,7 @@ class Dream
     /**
      * Add dreamWorkContribution
      *
-     * @param \AppBundle\Document\WorkContribute $dreamWorkContribution
+     * @param AppBundle\Document\WorkContribute $dreamWorkContribution
      */
     public function addDreamWorkContribution(\AppBundle\Document\WorkContribute $dreamWorkContribution)
     {
@@ -860,7 +843,7 @@ class Dream
     /**
      * Remove dreamWorkContribution
      *
-     * @param \AppBundle\Document\WorkContribute $dreamWorkContribution
+     * @param AppBundle\Document\WorkContribute $dreamWorkContribution
      */
     public function removeDreamWorkContribution(\AppBundle\Document\WorkContribute $dreamWorkContribution)
     {
@@ -870,7 +853,7 @@ class Dream
     /**
      * Get dreamWorkContributions
      *
-     * @return \Doctrine\Common\Collections\Collection $dreamWorkContributions
+     * @return Doctrine\Common\Collections\Collection $dreamWorkContributions
      */
     public function getDreamWorkContributions()
     {
@@ -880,7 +863,7 @@ class Dream
     /**
      * Add dreamOtherContribution
      *
-     * @param \AppBundle\Document\OtherContribute $dreamOtherContribution
+     * @param AppBundle\Document\OtherContribute $dreamOtherContribution
      */
     public function addDreamOtherContribution(\AppBundle\Document\OtherContribute $dreamOtherContribution)
     {
@@ -890,7 +873,7 @@ class Dream
     /**
      * Remove dreamOtherContribution
      *
-     * @param \AppBundle\Document\OtherContribute $dreamOtherContribution
+     * @param AppBundle\Document\OtherContribute $dreamOtherContribution
      */
     public function removeDreamOtherContribution(\AppBundle\Document\OtherContribute $dreamOtherContribution)
     {
@@ -900,7 +883,7 @@ class Dream
     /**
      * Get dreamOtherContributions
      *
-     * @return \Doctrine\Common\Collections\Collection $dreamOtherContributions
+     * @return Doctrine\Common\Collections\Collection $dreamOtherContributions
      */
     public function getDreamOtherContributions()
     {

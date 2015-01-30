@@ -6,7 +6,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\ODM\MongoDB\Mapping\Annotations\ReferenceOne;
 
 /**
- *@ODM\Document(collection="work_contributes", repositoryClass="AppBundle\Repository\CommonRepository")
+ *  @ODM\Document(collection="work_contributes", repositoryClass="AppBundle\Repository\CommonRepository")
  */
 class WorkContribute extends AbstractContribute
 {
@@ -18,7 +18,7 @@ class WorkContribute extends AbstractContribute
     protected $id;
 
     /**
-     * @ReferenceOne(targetDocument="WorkResource", inversedBy="workContributions")
+     * @ODM\ReferenceOne(targetDocument="WorkResource")
      */
     protected $workResource;
 
@@ -46,9 +46,25 @@ class WorkContribute extends AbstractContribute
     /**
      * @var \AppBundle\Document\User
      *
-     * @ODM\ReferenceOne(type="User", inversedBy="workContributions")
+     * @ODM\ReferenceOne(type="User")
      */
     protected $user;
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+    /**
+     * @var AppBundle\Document\Dream
+     */
+    protected $dream;
+
 
     /**
      * Get id
@@ -63,20 +79,19 @@ class WorkContribute extends AbstractContribute
     /**
      * Set workResource
      *
-     * @param  \AppBundle\Document\WorkResource $workResource
+     * @param AppBundle\Document\WorkResource $workResource
      * @return self
      */
     public function setWorkResource(\AppBundle\Document\WorkResource $workResource)
     {
         $this->workResource = $workResource;
-
         return $this;
     }
 
     /**
      * Get workResource
      *
-     * @return \AppBundle\Document\WorkResource $workResource
+     * @return AppBundle\Document\WorkResource $workResource
      */
     public function getWorkResource()
     {
@@ -86,13 +101,12 @@ class WorkContribute extends AbstractContribute
     /**
      * Set hiddenContributor
      *
-     * @param  boolean $hiddenContributor
+     * @param boolean $hiddenContributor
      * @return self
      */
     public function setHiddenContributor($hiddenContributor)
     {
         $this->hiddenContributor = $hiddenContributor;
-
         return $this;
     }
 
@@ -107,61 +121,14 @@ class WorkContribute extends AbstractContribute
     }
 
     /**
-     * Set user
-     *
-     * @param  \AppBundle\Document\User $user
-     * @return self
-     */
-    public function setUser(\AppBundle\Document\User $user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Document\User $user
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param  date $createdAt
-     * @return self
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return date $createdAt
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
      * Set quantity
      *
-     * @param  float $quantity
+     * @param float $quantity
      * @return self
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
-
         return $this;
     }
 
@@ -176,22 +143,43 @@ class WorkContribute extends AbstractContribute
     }
 
     /**
+     * Set user
+     *
+     * @param User $user
+     * @return self
+     */
+    public function setUser(\User $user)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return User $user
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
      * Set dream
      *
-     * @param  \AppBundle\Document\Dream $dream
+     * @param AppBundle\Document\Dream $dream
      * @return self
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
-
         return $this;
     }
 
     /**
      * Get dream
      *
-     * @return \AppBundle\Document\Dream $dream
+     * @return AppBundle\Document\Dream $dream
      */
     public function getDream()
     {

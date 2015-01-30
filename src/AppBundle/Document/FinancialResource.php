@@ -42,17 +42,21 @@ class FinancialResource extends AbstractResource
     /**
      * @var \AppBundle\Document\Dream
      *
-     * @ODM\ReferenceOne(targetDocument="Dream", inversedBy="dreamFinancialContributions")
+     * @ODM\ReferenceOne(targetDocument="Dream")
      */
     protected $dream;
 
     /**
      * @var array
      *
-     * @ODM\ReferenceMany(targetDocument="FinancialContribute", mappedBy="financialResource")
+     * @ODM\ReferenceMany(targetDocument="FinancialContribute")
      */
     protected $financialContributes = array();
-
+    public function __construct()
+    {
+        $this->financialContributes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -66,13 +70,12 @@ class FinancialResource extends AbstractResource
     /**
      * Set title
      *
-     * @param  string $title
+     * @param string $title
      * @return self
      */
     public function setTitle($title)
     {
         $this->title = $title;
-
         return $this;
     }
 
@@ -89,13 +92,12 @@ class FinancialResource extends AbstractResource
     /**
      * Set createdAt
      *
-     * @param  date $createdAt
+     * @param date $createdAt
      * @return self
      */
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
@@ -112,13 +114,12 @@ class FinancialResource extends AbstractResource
     /**
      * Set quantity
      *
-     * @param  float $quantity
+     * @param float $quantity
      * @return self
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
-
         return $this;
     }
 
@@ -135,23 +136,52 @@ class FinancialResource extends AbstractResource
     /**
      * Set dream
      *
-     * @param  \AppBundle\Document\Dream $dream
+     * @param AppBundle\Document\Dream $dream
      * @return self
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
-
         return $this;
     }
 
     /**
      * Get dream
      *
-     * @return \AppBundle\Document\Dream $dream
+     * @return AppBundle\Document\Dream $dream
      */
     public function getDream()
     {
         return $this->dream;
+    }
+
+    /**
+     * Add financialContribute
+     *
+     * @param AppBundle\Document\FinancialContribute $financialContribute
+     */
+    public function addFinancialContribute(\AppBundle\Document\FinancialContribute $financialContribute)
+    {
+        $this->financialContributes[] = $financialContribute;
+    }
+
+    /**
+     * Remove financialContribute
+     *
+     * @param AppBundle\Document\FinancialContribute $financialContribute
+     */
+    public function removeFinancialContribute(\AppBundle\Document\FinancialContribute $financialContribute)
+    {
+        $this->financialContributes->removeElement($financialContribute);
+    }
+
+    /**
+     * Get financialContributes
+     *
+     * @return Doctrine\Common\Collections\Collection $financialContributes
+     */
+    public function getFinancialContributes()
+    {
+        return $this->financialContributes;
     }
 }

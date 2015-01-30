@@ -32,7 +32,7 @@ abstract class AbstractContributeResource
     protected $quantity;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="Dream", inversedBy="dreamEquipmentContributions")
+     * @ODM\ReferenceOne(targetDocument="Dream")
      */
     protected $dream;
 }

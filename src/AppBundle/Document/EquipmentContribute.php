@@ -20,7 +20,7 @@ class EquipmentContribute extends AbstractContribute
     protected $id;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="equipment_resource", inversedBy="equipmentContributes")
+     * @ODM\ReferenceOne(targetDocument="EquipmentResource")
      */
     protected $equipmentResource;
 
@@ -49,9 +49,25 @@ class EquipmentContribute extends AbstractContribute
     /**
      * @var \AppBundle\Document\User
      *
-     * @ODM\ReferenceOne(targetDocument="User", inversedBy="equipmentContributions")
+     * @ODM\ReferenceOne(targetDocument="User")
      */
     protected $user;
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+    /**
+     * @var AppBundle\Document\Dream
+     */
+    protected $dream;
+
 
     /**
      * Get id
@@ -66,20 +82,19 @@ class EquipmentContribute extends AbstractContribute
     /**
      * Set equipmentResource
      *
-     * @param  \AppBundle\Document\EquipmentResource $equipmentResource
+     * @param AppBundle\Document\EquipmentResource $equipmentResource
      * @return self
      */
     public function setEquipmentResource(\AppBundle\Document\EquipmentResource $equipmentResource)
     {
         $this->equipmentResource = $equipmentResource;
-
         return $this;
     }
 
     /**
      * Get equipmentResource
      *
-     * @return \AppBundle\Document\EquipmentResource $equipmentResource
+     * @return AppBundle\Document\EquipmentResource $equipmentResource
      */
     public function getEquipmentResource()
     {
@@ -89,13 +104,12 @@ class EquipmentContribute extends AbstractContribute
     /**
      * Set hiddenContributor
      *
-     * @param  boolean $hiddenContributor
+     * @param boolean $hiddenContributor
      * @return self
      */
     public function setHiddenContributor($hiddenContributor)
     {
         $this->hiddenContributor = $hiddenContributor;
-
         return $this;
     }
 
@@ -110,61 +124,14 @@ class EquipmentContribute extends AbstractContribute
     }
 
     /**
-     * Set user
-     *
-     * @param  \AppBundle\Document\User $user
-     * @return self
-     */
-    public function setUser(\AppBundle\Document\User $user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Document\User $user
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param  \DateTime $createdAt
-     * @return self
-     */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime $createdAt
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
      * Set quantity
      *
-     * @param  float $quantity
+     * @param float $quantity
      * @return self
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
-
         return $this;
     }
 
@@ -179,22 +146,43 @@ class EquipmentContribute extends AbstractContribute
     }
 
     /**
+     * Set user
+     *
+     * @param AppBundle\Document\User $user
+     * @return self
+     */
+    public function setUser(\AppBundle\Document\User $user)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return AppBundle\Document\User $user
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
      * Set dream
      *
-     * @param  \AppBundle\Document\Dream $dream
+     * @param AppBundle\Document\Dream $dream
      * @return self
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
-
         return $this;
     }
 
     /**
      * Get dream
      *
-     * @return \AppBundle\Document\Dream $dream
+     * @return AppBundle\Document\Dream $dream
      */
     public function getDream()
     {

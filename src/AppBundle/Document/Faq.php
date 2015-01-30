@@ -57,22 +57,31 @@ class Faq
     protected $slug;
 
     /**
+     * Get id
+     *
+     * @return id $id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * Set title
      *
-     * @param  string $title
-     * @return Faq
+     * @param string $title
+     * @return self
      */
     public function setTitle($title)
     {
         $this->title = $title;
-
         return $this;
     }
 
     /**
      * Get title
      *
-     * @return string
+     * @return string $title
      */
     public function getTitle()
     {
@@ -82,20 +91,19 @@ class Faq
     /**
      * Set question
      *
-     * @param  string $question
-     * @return Faq
+     * @param string $question
+     * @return self
      */
     public function setQuestion($question)
     {
         $this->question = $question;
-
         return $this;
     }
 
     /**
      * Get question
      *
-     * @return string
+     * @return string $question
      */
     public function getQuestion()
     {
@@ -105,20 +113,19 @@ class Faq
     /**
      * Set answer
      *
-     * @param  string $answer
-     * @return Faq
+     * @param string $answer
+     * @return self
      */
     public function setAnswer($answer)
     {
         $this->answer = $answer;
-
         return $this;
     }
 
     /**
      * Get answer
      *
-     * @return string
+     * @return string $answer
      */
     public function getAnswer()
     {
@@ -128,20 +135,19 @@ class Faq
     /**
      * Set deletedAt
      *
-     * @param  \DateTime $deletedAt
-     * @return Faq
+     * @param date $deletedAt
+     * @return self
      */
     public function setDeletedAt($deletedAt)
     {
         $this->deletedAt = $deletedAt;
-
         return $this;
     }
 
     /**
      * Get deletedAt
      *
-     * @return \DateTime
+     * @return date $deletedAt
      */
     public function getDeletedAt()
     {
@@ -151,33 +157,22 @@ class Faq
     /**
      * Set slug
      *
-     * @param  string $slug
-     * @return Faq
+     * @param string $slug
+     * @return self
      */
     public function setSlug($slug)
     {
         $this->slug = $slug;
-
         return $this;
     }
 
     /**
      * Get slug
      *
-     * @return string
+     * @return string $slug
      */
     public function getSlug()
     {
         return $this->slug;
-    }
-
-    /**
-     * Get id
-     *
-     * @return id $id
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 }
