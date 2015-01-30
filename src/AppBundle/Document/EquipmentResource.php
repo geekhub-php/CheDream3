@@ -67,16 +67,44 @@ class EquipmentResource extends AbstractResource
     /**
      * @var \AppBundle\Document\Dream
      *
-     * @ODM\ReferenceOne(targetDocument="Dream", )
+     * @ODM\ReferenceOne(targetDocument="Dream")
      */
     protected $dream;
 
     /**
      * @var array
      *
-     * @ODM\ReferenceMany(targetDocument="EquipmentContribute", mappedBy="equipmentResource")
+     * @ODM\ReferenceMany(targetDocument="EquipmentContribute")
      */
     protected $equipmentContributes = array();
+
+    /**
+     * Set createdAt
+     *
+     * @param  \DateTime $createdAt
+     * @return self
+     */
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime $createdAt
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function __construct()
+    {
+        $this->equipmentContributes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -112,25 +140,107 @@ class EquipmentResource extends AbstractResource
     }
 
     /**
-     * Set createdAt
+     * Set title
      *
-     * @param  \DateTime $createdAt
+     * @param  string $title
      * @return self
      */
-    public function setCreatedAt(\DateTime $createdAt)
+    public function setTitle($title)
     {
-        $this->createdAt = $createdAt;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get createdAt
+     * Get title
      *
-     * @return \DateTime $createdAt
+     * @return string $title
      */
-    public function getCreatedAt()
+    public function getTitle()
     {
-        return $this->createdAt;
+        return $this->title;
+    }
+
+    /**
+     * Set quantity
+     *
+     * @param  float $quantity
+     * @return self
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Get quantity
+     *
+     * @return float $quantity
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * Set dream
+     *
+     * @param  Dream $dream
+     * @return $this
+     */
+    public function setDream(\AppBundle\Document\Dream $dream)
+    {
+        $this->dream = $dream;
+
+        return $this;
+    }
+
+    /**
+     * Get dream
+     *
+     * @return Dream
+     */
+    public function getDream()
+    {
+        return $this->dream;
+    }
+
+    /**
+     * Add equipmentContribute
+     *
+     * @param  EquipmentContribute $equipmentContribute
+     * @return $this
+     */
+    public function addEquipmentContribute(\AppBundle\Document\EquipmentContribute $equipmentContribute)
+    {
+        $this->equipmentContributes[] = $equipmentContribute;
+
+        return $this;
+    }
+
+    /**
+     * Remove equipmentContribute
+     *
+     * @param  EquipmentContribute $equipmentContribute
+     * @return $this
+     */
+    public function removeEquipmentContribute(\AppBundle\Document\EquipmentContribute $equipmentContribute)
+    {
+        $this->equipmentContributes->removeElement($equipmentContribute);
+
+        return $this;
+    }
+
+    /**
+     * Get equipmentContributes
+     *
+     * @return array|\Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getEquipmentContributes()
+    {
+        return $this->equipmentContributes;
     }
 }

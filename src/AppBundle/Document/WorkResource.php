@@ -39,15 +39,21 @@ class WorkResource extends AbstractResource
 
     /**
      * @var \AppBundle\Document\Dream
+     *
+     * @ODM\ReferenceOne(targetDocument="Dream")
      */
     protected $dream;
 
     /**
      * @var array
-     *
-     * @ODM\ReferenceMany(targetDocument="WorkContribution", mappedBy="workResource")
+     * @ODM\ReferenceMany(targetDocument="WorkContribution")
      */
     protected $workContributions = array();
+
+    public function __construct()
+    {
+        $this->workContributions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -129,10 +135,10 @@ class WorkResource extends AbstractResource
     }
 
     /**
-     * Set dream
+     * set dream
      *
-     * @param  \AppBundle\Document\Dream $dream
-     * @return self
+     * @param  Dream $dream
+     * @return $this
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
@@ -142,12 +148,48 @@ class WorkResource extends AbstractResource
     }
 
     /**
-     * Get dream
+     * Get Dream
      *
-     * @return \AppBundle\Document\Dream $dream
+     * @return Dream
      */
     public function getDream()
     {
         return $this->dream;
+    }
+
+    /**
+     * Add workContribution
+     *
+     * @param  WorkContribution $workContribution
+     * @return $this
+     */
+    public function addWorkContribution(\AppBundle\Document\WorkContribution $workContribution)
+    {
+        $this->workContributions[] = $workContribution;
+
+        return $this;
+    }
+
+    /**
+     * Remove workContribution
+     *
+     * @param  WorkContribution $workContribution
+     * @return $this
+     */
+    public function removeWorkContribution(\AppBundle\Document\WorkContribution $workContribution)
+    {
+        $this->workContributions->removeElement($workContribution);
+
+        return $this;
+    }
+
+    /**
+     * Get workContributions
+     *
+     * @return array|\Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getWorkContributions()
+    {
+        return $this->workContributions;
     }
 }
