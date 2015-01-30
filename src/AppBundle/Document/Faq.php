@@ -69,12 +69,13 @@ class Faq
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return self
      */
     public function setTitle($title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -91,12 +92,13 @@ class Faq
     /**
      * Set question
      *
-     * @param string $question
+     * @param  string $question
      * @return self
      */
     public function setQuestion($question)
     {
         $this->question = $question;
+
         return $this;
     }
 
@@ -113,12 +115,13 @@ class Faq
     /**
      * Set answer
      *
-     * @param string $answer
+     * @param  string $answer
      * @return self
      */
     public function setAnswer($answer)
     {
         $this->answer = $answer;
+
         return $this;
     }
 
@@ -135,12 +138,13 @@ class Faq
     /**
      * Set deletedAt
      *
-     * @param date $deletedAt
+     * @param  date $deletedAt
      * @return self
      */
     public function setDeletedAt($deletedAt)
     {
         $this->deletedAt = $deletedAt;
+
         return $this;
     }
 
@@ -157,12 +161,13 @@ class Faq
     /**
      * Set slug
      *
-     * @param string $slug
+     * @param  string $slug
      * @return self
      */
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
         return $this;
     }
 

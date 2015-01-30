@@ -100,11 +100,12 @@ class EquipmentResource extends AbstractResource
     {
         return $this->createdAt;
     }
+
     public function __construct()
     {
         $this->equipmentContributes = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
@@ -118,12 +119,13 @@ class EquipmentResource extends AbstractResource
     /**
      * Set quantityType
      *
-     * @param string $quantityType
+     * @param  string $quantityType
      * @return self
      */
     public function setQuantityType($quantityType)
     {
         $this->quantityType = $quantityType;
+
         return $this;
     }
 
@@ -140,12 +142,13 @@ class EquipmentResource extends AbstractResource
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return self
      */
     public function setTitle($title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -162,12 +165,13 @@ class EquipmentResource extends AbstractResource
     /**
      * Set quantity
      *
-     * @param float $quantity
+     * @param  float $quantity
      * @return self
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+
         return $this;
     }
 
@@ -184,19 +188,20 @@ class EquipmentResource extends AbstractResource
     /**
      * Set dream
      *
-     * @param AppBundle\Document\Dream $dream
-     * @return self
+     * @param  Dream $dream
+     * @return $this
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+
         return $this;
     }
 
     /**
      * Get dream
      *
-     * @return AppBundle\Document\Dream $dream
+     * @return Dream
      */
     public function getDream()
     {
@@ -206,27 +211,33 @@ class EquipmentResource extends AbstractResource
     /**
      * Add equipmentContribute
      *
-     * @param AppBundle\Document\EquipmentContribute $equipmentContribute
+     * @param  EquipmentContribute $equipmentContribute
+     * @return $this
      */
     public function addEquipmentContribute(\AppBundle\Document\EquipmentContribute $equipmentContribute)
     {
         $this->equipmentContributes[] = $equipmentContribute;
+
+        return $this;
     }
 
     /**
      * Remove equipmentContribute
      *
-     * @param AppBundle\Document\EquipmentContribute $equipmentContribute
+     * @param  EquipmentContribute $equipmentContribute
+     * @return $this
      */
     public function removeEquipmentContribute(\AppBundle\Document\EquipmentContribute $equipmentContribute)
     {
         $this->equipmentContributes->removeElement($equipmentContribute);
+
+        return $this;
     }
 
     /**
      * Get equipmentContributes
      *
-     * @return Doctrine\Common\Collections\Collection $equipmentContributes
+     * @return array|\Doctrine\Common\Collections\ArrayCollection
      */
     public function getEquipmentContributes()
     {

@@ -69,30 +69,27 @@ class FinancialContribute extends AbstractContribute
     public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
-    /**
-     * @var AppBundle\Document\Dream
-     */
-    protected $dream;
-
 
     /**
      * Set financialResource
      *
-     * @param AppBundle\Document\FinancialResource $financialResource
-     * @return self
+     * @param  FinancialResource $financialResource
+     * @return $this
      */
     public function setFinancialResource(\AppBundle\Document\FinancialResource $financialResource)
     {
         $this->financialResource = $financialResource;
+
         return $this;
     }
 
     /**
      * Get financialResource
      *
-     * @return AppBundle\Document\FinancialResource $financialResource
+     * @return mixed
      */
     public function getFinancialResource()
     {
@@ -102,12 +99,13 @@ class FinancialContribute extends AbstractContribute
     /**
      * Set hiddenContributor
      *
-     * @param boolean $hiddenContributor
+     * @param  boolean $hiddenContributor
      * @return self
      */
     public function setHiddenContributor($hiddenContributor)
     {
         $this->hiddenContributor = $hiddenContributor;
+
         return $this;
     }
 
@@ -124,12 +122,13 @@ class FinancialContribute extends AbstractContribute
     /**
      * Set quantity
      *
-     * @param float $quantity
+     * @param  float $quantity
      * @return self
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+
         return $this;
     }
 
@@ -146,19 +145,20 @@ class FinancialContribute extends AbstractContribute
     /**
      * Set user
      *
-     * @param AppBundle\Document\User $user
-     * @return self
+     * @param  User  $user
+     * @return $this
      */
     public function setUser(\AppBundle\Document\User $user)
     {
         $this->user = $user;
+
         return $this;
     }
 
     /**
      * Get user
      *
-     * @return AppBundle\Document\User $user
+     * @return User
      */
     public function getUser()
     {
@@ -168,19 +168,20 @@ class FinancialContribute extends AbstractContribute
     /**
      * Set dream
      *
-     * @param AppBundle\Document\Dream $dream
-     * @return self
+     * @param  Dream $dream
+     * @return $this
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+
         return $this;
     }
 
     /**
      * Get dream
      *
-     * @return AppBundle\Document\Dream $dream
+     * @return mixed
      */
     public function getDream()
     {

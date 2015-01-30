@@ -66,6 +66,7 @@ class OtherContribute extends AbstractContribute
     public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -82,12 +83,13 @@ class OtherContribute extends AbstractContribute
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return self
      */
     public function setTitle($title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -104,12 +106,13 @@ class OtherContribute extends AbstractContribute
     /**
      * Set hiddenContributor
      *
-     * @param boolean $hiddenContributor
+     * @param  boolean $hiddenContributor
      * @return self
      */
     public function setHiddenContributor($hiddenContributor)
     {
         $this->hiddenContributor = $hiddenContributor;
+
         return $this;
     }
 
@@ -126,12 +129,13 @@ class OtherContribute extends AbstractContribute
     /**
      * Set quantity
      *
-     * @param quantity $quantity
+     * @param  quantity $quantity
      * @return self
      */
     public function setQuantity(\quantity $quantity)
     {
         $this->quantity = $quantity;
+
         return $this;
     }
 
@@ -148,19 +152,20 @@ class OtherContribute extends AbstractContribute
     /**
      * Set user
      *
-     * @param AppBundle\Document\User $user
-     * @return self
+     * @param  User  $user
+     * @return $this
      */
     public function setUser(\AppBundle\Document\User $user)
     {
         $this->user = $user;
+
         return $this;
     }
 
     /**
      * Get user
      *
-     * @return AppBundle\Document\User $user
+     * @return User
      */
     public function getUser()
     {
@@ -170,19 +175,20 @@ class OtherContribute extends AbstractContribute
     /**
      * Set dream
      *
-     * @param AppBundle\Document\Dream $dream
-     * @return self
+     * @param  Dream $dream
+     * @return $this
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+
         return $this;
     }
 
     /**
      * Get dream
      *
-     * @return AppBundle\Document\Dream $dream
+     * @return Dream
      */
     public function getDream()
     {

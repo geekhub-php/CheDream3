@@ -94,12 +94,13 @@ class Status implements EventInterface
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return self
      */
     public function setTitle($title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -116,19 +117,20 @@ class Status implements EventInterface
     /**
      * Set dream
      *
-     * @param AppBundle\Document\Dream $dream
-     * @return self
+     * @param  Dream $dream
+     * @return $this
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+
         return $this;
     }
 
     /**
-     * Get dream
+     * Set dream
      *
-     * @return AppBundle\Document\Dream $dream
+     * @return mixed
      */
     public function getDream()
     {

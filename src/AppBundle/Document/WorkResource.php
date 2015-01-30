@@ -50,11 +50,12 @@ class WorkResource extends AbstractResource
      * @ODM\ReferenceMany(targetDocument="WorkContribution")
      */
     protected $workContributions = array();
+
     public function __construct()
     {
         $this->workContributions = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
@@ -68,12 +69,13 @@ class WorkResource extends AbstractResource
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return self
      */
     public function setTitle($title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -90,12 +92,13 @@ class WorkResource extends AbstractResource
     /**
      * Set createdAt
      *
-     * @param date $createdAt
+     * @param  date $createdAt
      * @return self
      */
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -112,12 +115,13 @@ class WorkResource extends AbstractResource
     /**
      * Set quantity
      *
-     * @param float $quantity
+     * @param  float $quantity
      * @return self
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+
         return $this;
     }
 
@@ -132,21 +136,22 @@ class WorkResource extends AbstractResource
     }
 
     /**
-     * Set dream
+     * set dream
      *
-     * @param AppBundle\Document\Dream $dream
-     * @return self
+     * @param  Dream $dream
+     * @return $this
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+
         return $this;
     }
 
     /**
-     * Get dream
+     * Get Dream
      *
-     * @return AppBundle\Document\Dream $dream
+     * @return Dream
      */
     public function getDream()
     {
@@ -156,27 +161,33 @@ class WorkResource extends AbstractResource
     /**
      * Add workContribution
      *
-     * @param AppBundle\Document\WorkContribution $workContribution
+     * @param  WorkContribution $workContribution
+     * @return $this
      */
     public function addWorkContribution(\AppBundle\Document\WorkContribution $workContribution)
     {
         $this->workContributions[] = $workContribution;
+
+        return $this;
     }
 
     /**
      * Remove workContribution
      *
-     * @param AppBundle\Document\WorkContribution $workContribution
+     * @param  WorkContribution $workContribution
+     * @return $this
      */
     public function removeWorkContribution(\AppBundle\Document\WorkContribution $workContribution)
     {
         $this->workContributions->removeElement($workContribution);
+
+        return $this;
     }
 
     /**
      * Get workContributions
      *
-     * @return Doctrine\Common\Collections\Collection $workContributions
+     * @return array|\Doctrine\Common\Collections\ArrayCollection
      */
     public function getWorkContributions()
     {

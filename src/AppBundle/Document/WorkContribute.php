@@ -58,13 +58,9 @@ class WorkContribute extends AbstractContribute
     public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
-    /**
-     * @var AppBundle\Document\Dream
-     */
-    protected $dream;
-
 
     /**
      * Get id
@@ -79,19 +75,20 @@ class WorkContribute extends AbstractContribute
     /**
      * Set workResource
      *
-     * @param AppBundle\Document\WorkResource $workResource
-     * @return self
+     * @param  WorkResource $workResource
+     * @return $this
      */
     public function setWorkResource(\AppBundle\Document\WorkResource $workResource)
     {
         $this->workResource = $workResource;
+
         return $this;
     }
 
     /**
      * Get workResource
      *
-     * @return AppBundle\Document\WorkResource $workResource
+     * @return mixed
      */
     public function getWorkResource()
     {
@@ -101,12 +98,13 @@ class WorkContribute extends AbstractContribute
     /**
      * Set hiddenContributor
      *
-     * @param boolean $hiddenContributor
+     * @param  boolean $hiddenContributor
      * @return self
      */
     public function setHiddenContributor($hiddenContributor)
     {
         $this->hiddenContributor = $hiddenContributor;
+
         return $this;
     }
 
@@ -123,12 +121,13 @@ class WorkContribute extends AbstractContribute
     /**
      * Set quantity
      *
-     * @param float $quantity
+     * @param  float $quantity
      * @return self
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+
         return $this;
     }
 
@@ -145,12 +144,13 @@ class WorkContribute extends AbstractContribute
     /**
      * Set user
      *
-     * @param User $user
+     * @param  User $user
      * @return self
      */
     public function setUser(\User $user)
     {
         $this->user = $user;
+
         return $this;
     }
 
@@ -167,19 +167,20 @@ class WorkContribute extends AbstractContribute
     /**
      * Set dream
      *
-     * @param AppBundle\Document\Dream $dream
-     * @return self
+     * @param  Dream $dream
+     * @return $this
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+
         return $this;
     }
 
     /**
      * Get dream
      *
-     * @return AppBundle\Document\Dream $dream
+     * @return mixed
      */
     public function getDream()
     {

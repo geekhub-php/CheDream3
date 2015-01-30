@@ -52,11 +52,12 @@ class FinancialResource extends AbstractResource
      * @ODM\ReferenceMany(targetDocument="FinancialContribute")
      */
     protected $financialContributes = array();
+
     public function __construct()
     {
         $this->financialContributes = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
@@ -70,12 +71,13 @@ class FinancialResource extends AbstractResource
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return self
      */
     public function setTitle($title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -92,12 +94,13 @@ class FinancialResource extends AbstractResource
     /**
      * Set createdAt
      *
-     * @param date $createdAt
+     * @param  date $createdAt
      * @return self
      */
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -114,12 +117,13 @@ class FinancialResource extends AbstractResource
     /**
      * Set quantity
      *
-     * @param float $quantity
+     * @param  float $quantity
      * @return self
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+
         return $this;
     }
 
@@ -136,19 +140,20 @@ class FinancialResource extends AbstractResource
     /**
      * Set dream
      *
-     * @param AppBundle\Document\Dream $dream
-     * @return self
+     * @param  Dream $dream
+     * @return $this
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+
         return $this;
     }
 
     /**
      * Get dream
      *
-     * @return AppBundle\Document\Dream $dream
+     * @return Dream
      */
     public function getDream()
     {
@@ -158,27 +163,33 @@ class FinancialResource extends AbstractResource
     /**
      * Add financialContribute
      *
-     * @param AppBundle\Document\FinancialContribute $financialContribute
+     * @param  FinancialContribute $financialContribute
+     * @return $this
      */
     public function addFinancialContribute(\AppBundle\Document\FinancialContribute $financialContribute)
     {
         $this->financialContributes[] = $financialContribute;
+
+        return $this;
     }
 
     /**
-     * Remove financialContribute
+     * Remove financial contribute
      *
-     * @param AppBundle\Document\FinancialContribute $financialContribute
+     * @param  FinancialContribute $financialContribute
+     * @return $this
      */
     public function removeFinancialContribute(\AppBundle\Document\FinancialContribute $financialContribute)
     {
         $this->financialContributes->removeElement($financialContribute);
+
+        return $this;
     }
 
     /**
      * Get financialContributes
      *
-     * @return Doctrine\Common\Collections\Collection $financialContributes
+     * @return array|\Doctrine\Common\Collections\ArrayCollection
      */
     public function getFinancialContributes()
     {
