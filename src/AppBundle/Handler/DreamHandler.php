@@ -4,7 +4,7 @@ namespace AppBundle\Handler;
 
 use Doctrine\Common\Persistence\ObjectManager;
 
-class DreamHendler
+class DreamHandler
 {
     private $om;
     private $entityClass;
