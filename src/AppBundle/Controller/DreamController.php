@@ -2,41 +2,42 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Controller\Annotations;
+use FOS\RestBundle\Request\ParamFetcherInterface;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use FOS\RestBundle\Controller\Annotations\View as RestView;
-use FOS\RestBundle\View\View;
 
 class DreamController extends FOSRestController
 {
     /**
-     * Get single Dream,
+     * List all dreams.
      *
      * @ApiDoc(
-     * resource = true,
-     * description = "Gets a Dream for a given slug",
-     * output = "AppBundle\Document\Dream",
-     * statusCodes = {
-     *      200 = "Returned when successful",
-     *      404 = "Returned when the Dream is not found"
-     * }
+     *   resource = true,
+     *   statusCodes = {
+     *     200 = "Returned when successful"
+     *   }
      * )
      *
+     * @Annotations\QueryParam(name="offset", requirements="\d+", nullable=true, description="Offset from which to start listing dreams.")
+     * @Annotations\QueryParam(name="limit", requirements="\d+", default="5", description="How many dreams to return.")
      *
-     * RestView()
-     * @param $slug
-     * @return mixed
+     * @Annotations\View(
+     *  templateVar="dreams"
+     * )
      *
-     * @throws NotFoundHttpException when not exist
+     * @param Request               $request      the request object
+     * @param ParamFetcherInterface $paramFetcher param fetcher service
+     *
+     * @return array
      */
-    public function getDreamAction($slug)
+    public function getDreamsAction(Request $request, ParamFetcherInterface $paramFetcher)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
-        $dream = $manager->getRepository('AppBundle:Dream')->findBySlug($slug);
-        $restView = View::create();
-        $restView->setData($dream);
+        $offset = $paramFetcher->get('offset');
+        $offset = null == $offset ? 0 : $offset;
+        $limit = $paramFetcher->get('limit');
 
-        return $restView;
+        return $this->container->get('dream.handler')->all($limit, $offset);
     }
 }

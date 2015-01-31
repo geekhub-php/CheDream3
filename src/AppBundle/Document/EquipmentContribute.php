@@ -5,10 +5,6 @@ namespace AppBundle\Document;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\Exclude;
-use JMS\Serializer\Annotation\Groups;
-use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\MaxDepth;
 
 /**
@@ -27,8 +23,9 @@ class EquipmentContribute extends AbstractContribute
     protected $id;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="EquipmentResource")
      * @MaxDepth(2)
+     * @ODM\ReferenceOne(targetDocument="EquipmentResource")
+     *
      */
     protected $equipmentResource;
 
@@ -55,10 +52,11 @@ class EquipmentContribute extends AbstractContribute
     protected $quantity;
 
     /**
+     * @MaxDepth(2)
      * @var \AppBundle\Document\User
      *
      * @ODM\ReferenceOne(targetDocument="User")
-     * @MaxDepth(2)
+     *
      */
     protected $user;
 
