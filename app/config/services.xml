@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="dream.handler.class">AppBundle\Handler\DreamHendler</parameter>
+        <parameter key="dream.class">AppBundle\Document\Dream</parameter>
+    </parameters>
+
+    <services>
+        <service id="dream.handler" class="%dream.handler.class%">
+            <argument type="service" id="doctrine.odm.mongodb.document_manager" />
+            <argument>%dream.class%</argument>
+
+        </service>
+    </services>
+</container>
+
+
