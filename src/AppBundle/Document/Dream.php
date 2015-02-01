@@ -23,7 +23,6 @@ class Dream
      * @var integer
      *
      * @ODM\Id
-     * @Expose()
      */
     protected $id;
 
@@ -148,6 +147,7 @@ class Dream
     /**
      * @ODM\ReferenceOne(targetDocument="User")
      * @MaxDepth(1)
+     * @Expose()
      */
     protected $author;
 
