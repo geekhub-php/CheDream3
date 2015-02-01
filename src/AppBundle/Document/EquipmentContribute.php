@@ -6,16 +6,13 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\Exclude;
-use JMS\Serializer\Annotation\Groups;
-use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * Class EquipmentContribute
  *
  * @ODM\Document(collection="equipment_contributes", repositoryClass="AppBundle\Repository\CommonRepository")
- * @ExclusionPolicy("none")
+ * @ExclusionPolicy("all")
  */
 class EquipmentContribute extends AbstractContribute
 {
@@ -29,6 +26,7 @@ class EquipmentContribute extends AbstractContribute
     /**
      * @ODM\ReferenceOne(targetDocument="EquipmentResource")
      * @MaxDepth(2)
+     * @Expose()
      */
     protected $equipmentResource;
 
@@ -59,6 +57,7 @@ class EquipmentContribute extends AbstractContribute
      *
      * @ODM\ReferenceOne(targetDocument="User")
      * @MaxDepth(2)
+     * @Expose()
      */
     protected $user;
 

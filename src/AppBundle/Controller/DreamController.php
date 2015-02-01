@@ -15,7 +15,7 @@ class DreamController extends FOSRestController
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets a Dream for a given slug",
+     * description = "Gets all Dream",
      * output = "AppBundle\Document\Dream",
      * statusCodes = {
      *      200 = "Returned when successful",
@@ -25,15 +25,15 @@ class DreamController extends FOSRestController
      *
      *
      * RestView()
-     * @param $slug
+     * @param
      * @return mixed
      *
      * @throws NotFoundHttpException when not exist
      */
-    public function getDreamAction($slug)
+    public function getDreamAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $dream = $manager->getRepository('AppBundle:Dream')->findBySlug($slug);
+        $dream = $manager->getRepository('AppBundle:Dream')->findAll();
         $restView = View::create();
         $restView->setData($dream);
 

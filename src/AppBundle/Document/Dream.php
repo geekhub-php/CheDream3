@@ -3,6 +3,9 @@
 namespace AppBundle\Document;
 
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
@@ -12,6 +15,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
  *
  * @ODM\Document(collection="dreams", repositoryClass="AppBundle\Repository\DreamRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @ExclusionPolicy("all")
  */
 class Dream
 {
@@ -128,8 +132,6 @@ class Dream
      */
     protected $equipmentCompleted;
 
-    protected $tags;
-
     /**
      * @ODM\ReferenceMany(targetDocument="User")
      */
@@ -144,6 +146,8 @@ class Dream
 
     /**
      * @ODM\ReferenceOne(targetDocument="User")
+     * @Expose()
+     * @MaxDepth(1)
      */
     protected $author;
 
