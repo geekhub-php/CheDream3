@@ -206,4 +206,10 @@ class EquipmentContribute extends AbstractContribute
     {
         return $this->dream;
     }
+    /**
+     * @var AppBundle\Document\Dream
+     */
+    protected $dream;
+
+
 }

@@ -154,4 +154,38 @@ class FinancialResource extends AbstractResource
     {
         return $this->dream;
     }
+    public function __construct()
+    {
+        $this->financialContributes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add financialContribute
+     *
+     * @param AppBundle\Document\FinancialContribute $financialContribute
+     */
+    public function addFinancialContribute(\AppBundle\Document\FinancialContribute $financialContribute)
+    {
+        $this->financialContributes[] = $financialContribute;
+    }
+
+    /**
+     * Remove financialContribute
+     *
+     * @param AppBundle\Document\FinancialContribute $financialContribute
+     */
+    public function removeFinancialContribute(\AppBundle\Document\FinancialContribute $financialContribute)
+    {
+        $this->financialContributes->removeElement($financialContribute);
+    }
+
+    /**
+     * Get financialContributes
+     *
+     * @return Doctrine\Common\Collections\Collection $financialContributes
+     */
+    public function getFinancialContributes()
+    {
+        return $this->financialContributes;
+    }
 }

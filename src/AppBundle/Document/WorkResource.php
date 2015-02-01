@@ -150,4 +150,38 @@ class WorkResource extends AbstractResource
     {
         return $this->dream;
     }
+    public function __construct()
+    {
+        $this->workContributions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add workContribution
+     *
+     * @param AppBundle\Document\WorkContribute $workContribution
+     */
+    public function addWorkContribution(\AppBundle\Document\WorkContribute $workContribution)
+    {
+        $this->workContributions[] = $workContribution;
+    }
+
+    /**
+     * Remove workContribution
+     *
+     * @param AppBundle\Document\WorkContribute $workContribution
+     */
+    public function removeWorkContribution(\AppBundle\Document\WorkContribute $workContribution)
+    {
+        $this->workContributions->removeElement($workContribution);
+    }
+
+    /**
+     * Get workContributions
+     *
+     * @return Doctrine\Common\Collections\Collection $workContributions
+     */
+    public function getWorkContributions()
+    {
+        return $this->workContributions;
+    }
 }

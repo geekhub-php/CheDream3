@@ -3,6 +3,7 @@
 namespace AppBundle\Document;
 
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation\Exclude;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\MaxDepth;
@@ -23,6 +24,7 @@ class Dream
      * @var integer
      *
      * @ODM\Id
+     * @Expose()
      */
     protected $id;
 
@@ -32,6 +34,7 @@ class Dream
      * @Assert\NotBlank(message = "dream.not_blank")
      * @Assert\Length(min = "5", minMessage = "dream.min_length")
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $title;
 
@@ -40,6 +43,7 @@ class Dream
      *
      * @Assert\NotBlank(message = "dream.not_blank")
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $description;
 
@@ -47,6 +51,7 @@ class Dream
      * @var string
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $rejectedDescription;
 
@@ -54,6 +59,7 @@ class Dream
      * @var string
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $implementedDescription;
 
@@ -61,6 +67,7 @@ class Dream
      * @var string
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $completedDescription;
 
@@ -70,6 +77,7 @@ class Dream
      * @Assert\NotBlank(message = "dream.not_blank")
      * @Assert\Regex(pattern="/^[+0-9 ()-]+$/", message="dream.only_numbers")
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $phone;
 
@@ -78,6 +86,7 @@ class Dream
      *
      * @Gedmo\Slug(fields={"title"})
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $slug;
 
@@ -86,6 +95,7 @@ class Dream
      *
      * @Gedmo\Timestampable(on="create")
      * @ODM\Field(type="date")
+     * @Expose()
      */
     protected $createdAt;
 
@@ -94,6 +104,7 @@ class Dream
      *
      * @Gedmo\Timestampable(on="update")
      * @ODM\Field(type="date")
+     * @Expose()
      */
     protected $updatedAt;
 
@@ -101,6 +112,7 @@ class Dream
      * @var \DateTime
      *
      * @ODM\Field(type="date")
+     * @Expose()
      */
     protected $deletedAt;
 
@@ -108,6 +120,7 @@ class Dream
      * @var \DateTime
      *
      * @ODM\Field(type="date")
+     * @Expose()
      */
     protected $expiredDate;
 
@@ -115,6 +128,7 @@ class Dream
      * @var integer
      *
      * @ODM\Field(type="int")
+     * @Expose()
      */
     protected $financialCompleted;
 
@@ -122,6 +136,7 @@ class Dream
      * @var integer
      *
      * @ODM\Field(type="int")
+     * @Expose()
      */
     protected $workCompleted;
 
@@ -129,11 +144,13 @@ class Dream
      * @var integer
      *
      * @ODM\Field(type="int")
+     * @Expose()
      */
     protected $equipmentCompleted;
 
     /**
      * @ODM\ReferenceMany(targetDocument="User")
+     * @Expose()
      */
     protected $usersWhoFavorites = array();
 
@@ -141,23 +158,24 @@ class Dream
      * @var integer
      *
      * @ODM\Field(type="int")
+     * @Expose()
      */
     protected $favoritesCount;
 
     /**
      * @ODM\ReferenceOne(targetDocument="User")
      * @MaxDepth(1)
-     * @Expose()
      */
     protected $author;
 
     /**
      * @ODM\ReferenceMany(targetDocument="Status", cascade={"persist"})
      */
-    protected $statuses = array();
+    protected $statuses;
 
     /**
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $currentStatus;
 
@@ -195,21 +213,25 @@ class Dream
 
     /**
      * @ODM\ReferenceMany(targetDocument="FinancialResource", cascade={"persist"})
+     * @Expose()
      */
     protected $dreamFinancialResources;
 
     /**
      * @ODM\ReferenceMany(targetDocument="EquipmentResource", cascade={"persist"})
+     * @Expose()
      */
     protected $dreamEquipmentResources;
 
     /**
      * @ODM\ReferenceMany(targetDocument="WorkResource", cascade={"persist"})
+     * @Expose()
      */
     protected $dreamWorkResources;
 
     /**
      * @ODM\ReferenceMany(targetDocument="OtherContribute")
+     * @Expose()
      */
     protected $dreamOtherContributions;
 

@@ -139,4 +139,104 @@ class EquipmentResource extends AbstractResource
     {
         return $this->createdAt;
     }
+    public function __construct()
+    {
+        $this->equipmentContributes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return self
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string $title
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set quantity
+     *
+     * @param float $quantity
+     * @return self
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+        return $this;
+    }
+
+    /**
+     * Get quantity
+     *
+     * @return float $quantity
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * Set dream
+     *
+     * @param AppBundle\Document\Dream $dream
+     * @return self
+     */
+    public function setDream(\AppBundle\Document\Dream $dream)
+    {
+        $this->dream = $dream;
+        return $this;
+    }
+
+    /**
+     * Get dream
+     *
+     * @return AppBundle\Document\Dream $dream
+     */
+    public function getDream()
+    {
+        return $this->dream;
+    }
+
+    /**
+     * Add equipmentContribute
+     *
+     * @param AppBundle\Document\EquipmentContribute $equipmentContribute
+     */
+    public function addEquipmentContribute(\AppBundle\Document\EquipmentContribute $equipmentContribute)
+    {
+        $this->equipmentContributes[] = $equipmentContribute;
+    }
+
+    /**
+     * Remove equipmentContribute
+     *
+     * @param AppBundle\Document\EquipmentContribute $equipmentContribute
+     */
+    public function removeEquipmentContribute(\AppBundle\Document\EquipmentContribute $equipmentContribute)
+    {
+        $this->equipmentContributes->removeElement($equipmentContribute);
+    }
+
+    /**
+     * Get equipmentContributes
+     *
+     * @return Doctrine\Common\Collections\Collection $equipmentContributes
+     */
+    public function getEquipmentContributes()
+    {
+        return $this->equipmentContributes;
+    }
 }
