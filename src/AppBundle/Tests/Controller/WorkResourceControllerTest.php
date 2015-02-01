@@ -9,7 +9,7 @@ class WorkResourceControllerTest extends WebTestCase
     public function testGet()
     {
         $client   = static::createClient();
-        $crawler  = $client->request('GET', '/work/resource');
+        $crawler  = $client->request('GET', '/work/resources');
 
         $response = $client->getResponse();
 

@@ -9,7 +9,7 @@ class EquipmentContributeControllerTest extends WebTestCase
     public function testGet()
     {
         $client   = static::createClient();
-        $crawler  = $client->request('GET', '/equipment/contribute');
+        $crawler  = $client->request('GET', '/equipment/contributes');
 
         $response = $client->getResponse();
 

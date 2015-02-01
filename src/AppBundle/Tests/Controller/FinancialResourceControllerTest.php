@@ -9,7 +9,7 @@ class FinancialResourceControllerTest extends WebTestCase
     public function testGet()
     {
         $client   = static::createClient();
-        $crawler  = $client->request('GET', '/financial/resource');
+        $crawler  = $client->request('GET', '/financial/resources');
 
         $response = $client->getResponse();
 

@@ -15,7 +15,7 @@ class StatusController extends FOSRestController
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets status for a given id",
+     * description = "Gets all statuses",
      * output = "AppBundle\Document\Status",
      * statusCodes = {
      *      200 = "Returned when successful",
@@ -24,15 +24,15 @@ class StatusController extends FOSRestController
      * )
      *
      * RestView()
-     * @param $title
+     * @param
      * @return View
      *
      * @throws NotFoundHttpException when page not exist
      */
-    public function getStatusAction($id)
+    public function getStatusAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $status = $manager->getRepository('AppBundle:Status')->findBy($id);
+        $status = $manager->getRepository('AppBundle:Status')->findAll();
         $restView = View::create();
         $restView->setData($status);
 

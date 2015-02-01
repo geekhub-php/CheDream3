@@ -9,7 +9,7 @@ class StatusControllerTest extends WebTestCase
     public function testGet()
     {
         $client   = static::createClient();
-        $crawler  = $client->request('GET', '/statuses/{title}');
+        $crawler  = $client->request('GET', '/status');
 
         $response = $client->getResponse();
 

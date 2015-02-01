@@ -15,7 +15,7 @@ use JMS\Serializer\Annotation\VirtualProperty;
  *
  * @ODM\Document(collection="faq")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
- * @ExclusionPolicy("All")
+ * @ExclusionPolicy("none")
  */
 class Faq
 {

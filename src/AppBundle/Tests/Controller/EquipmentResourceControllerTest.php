@@ -9,7 +9,7 @@ class EquipmentResourceControllerTest extends WebTestCase
     public function testGet()
     {
         $client   = static::createClient();
-        $crawler  = $client->request('GET', '/equipment/resource');
+        $crawler  = $client->request('GET', '/equipment/resources');
 
         $response = $client->getResponse();
 

@@ -8,14 +8,14 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
 
-class UserController extends FOSRestController
+class UsersController extends FOSRestController
 {
     /**
-     * Get single user,
+     * Get Users,
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets a User for a given id",
+     * description = "Gets all Users",
      * output = "AppBundle\Document\UserContribute",
      * statusCodes = {
      *      200 = "Returned when successful",
@@ -24,15 +24,15 @@ class UserController extends FOSRestController
      * )
      *
      * RestView()
-     * @param $firstName
+     * @param
      * @return View
      *
      * @throws NotFoundHttpException when page not exist
      */
-    public function getUserAction($id)
+    public function getUsersAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $user = $manager->getRepository('AppBundle:User')->findBy($id);
+        $user = $manager->getRepository('AppBundle:User')->findAll();
         $restView = View::create();
         $restView->setData($user);
 

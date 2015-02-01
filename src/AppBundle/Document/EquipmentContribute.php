@@ -26,7 +26,6 @@ class EquipmentContribute extends AbstractContribute
     /**
      * @ODM\ReferenceOne(targetDocument="EquipmentResource")
      * @MaxDepth(2)
-     * @Expose()
      */
     protected $equipmentResource;
 
@@ -57,7 +56,6 @@ class EquipmentContribute extends AbstractContribute
      *
      * @ODM\ReferenceOne(targetDocument="User")
      * @MaxDepth(2)
-     * @Expose()
      */
     protected $user;
 

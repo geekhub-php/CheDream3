@@ -9,7 +9,7 @@ class DreamControllerTest extends WebTestCase
     public function testGet()
     {
         $client   = static::createClient();
-        $crawler  = $client->request('GET', '/dreams/{slug}');
+        $crawler  = $client->request('GET', '/dream');
 
         $response = $client->getResponse();
 

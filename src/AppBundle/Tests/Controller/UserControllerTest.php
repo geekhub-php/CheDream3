@@ -9,7 +9,7 @@ class UserControllerTest extends WebTestCase
     public function testGet()
     {
         $client   = static::createClient();
-        $crawler  = $client->request('GET', '/users/Adah');
+        $crawler  = $client->request('GET', '/users');
 
         $response = $client->getResponse();
 

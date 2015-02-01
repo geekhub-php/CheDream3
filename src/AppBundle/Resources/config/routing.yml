@@ -19,9 +19,9 @@ app_financial_resource:
 app_other_contribute:
    type: rest
    resource: "@AppBundle/Controller/OtherContributeController.php"
-app_user:
+app_users:
    type: rest
-   resource: "@AppBundle/Controller/UserController.php"
+   resource: "@AppBundle/Controller/UsersController.php"
 app_work_contribute:
    type: rest
    resource: "@AppBundle/Controller/WorkContributeController.php"

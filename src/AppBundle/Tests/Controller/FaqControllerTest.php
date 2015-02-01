@@ -9,7 +9,7 @@ class FaqControllerTest extends WebTestCase
     public function testGet()
     {
         $client   = static::createClient();
-        $crawler  = $client->request('GET', '/faq');
+        $crawler  = $client->request('GET', '/faqs');
 
         $response = $client->getResponse();
 

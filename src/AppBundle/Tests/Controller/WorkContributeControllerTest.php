@@ -9,7 +9,7 @@ class WorkContributeControllerTest extends WebTestCase
     public function testGet()
     {
         $client   = static::createClient();
-        $crawler  = $client->request('GET', '/work/contribute');
+        $crawler  = $client->request('GET', '/work/contributes');
 
         $response = $client->getResponse();
 

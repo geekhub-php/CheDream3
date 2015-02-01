@@ -9,7 +9,7 @@ class FinancialContributeControllerTest extends WebTestCase
     public function testGet()
     {
         $client   = static::createClient();
-        $crawler  = $client->request('GET', '/financial/contribute');
+        $crawler  = $client->request('GET', '/financial/contributes');
 
         $response = $client->getResponse();
 
