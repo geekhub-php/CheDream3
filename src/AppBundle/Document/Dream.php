@@ -3,6 +3,8 @@
 namespace AppBundle\Document;
 
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
@@ -12,6 +14,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
  *
  * @ODM\Document(collection="dreams", repositoryClass="AppBundle\Repository\DreamRepository")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @ExclusionPolicy(all)
  */
 class Dream
 {
@@ -28,6 +31,7 @@ class Dream
      * @Assert\NotBlank(message = "dream.not_blank")
      * @Assert\Length(min = "5", minMessage = "dream.min_length")
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $title;
 
@@ -562,6 +566,7 @@ class Dream
     public function addUsersWhoFavorite(\AppBundle\Document\User $usersWhoFavorite)
     {
         $this->usersWhoFavorites[] = $usersWhoFavorite;
+        return $this;
     }
 
     /**
@@ -571,7 +576,7 @@ class Dream
      */
     public function removeUsersWhoFavorite(\AppBundle\Document\User $usersWhoFavorite)
     {
-        $this->usersWhoFavorites->removeElement($usersWhoFavorite);
+        return $this->usersWhoFavorites->removeElement($usersWhoFavorite);
     }
 
     /**
@@ -638,6 +643,7 @@ class Dream
     public function addStatus(\AppBundle\Document\Status $status)
     {
         $this->statuses[] = $status;
+        return $this;
     }
 
     /**
@@ -648,6 +654,7 @@ class Dream
     public function removeStatus(\AppBundle\Document\Status $status)
     {
         $this->statuses->removeElement($status);
+        return $this;
     }
 
     /**
@@ -691,6 +698,7 @@ class Dream
     public function addDreamFinancialResource(\AppBundle\Document\FinancialResource $dreamFinancialResource)
     {
         $this->dreamFinancialResources[] = $dreamFinancialResource;
+        return $this;
     }
 
     /**
@@ -701,6 +709,7 @@ class Dream
     public function removeDreamFinancialResource(\AppBundle\Document\FinancialResource $dreamFinancialResource)
     {
         $this->dreamFinancialResources->removeElement($dreamFinancialResource);
+        return $this;
     }
 
     /**
@@ -721,6 +730,7 @@ class Dream
     public function addDreamEquipmentResource(\AppBundle\Document\EquipmentResource $dreamEquipmentResource)
     {
         $this->dreamEquipmentResources[] = $dreamEquipmentResource;
+        return $this;
     }
 
     /**
@@ -731,6 +741,7 @@ class Dream
     public function removeDreamEquipmentResource(\AppBundle\Document\EquipmentResource $dreamEquipmentResource)
     {
         $this->dreamEquipmentResources->removeElement($dreamEquipmentResource);
+        return $this;
     }
 
     /**
@@ -751,6 +762,7 @@ class Dream
     public function addDreamWorkResource(\AppBundle\Document\WorkResource $dreamWorkResource)
     {
         $this->dreamWorkResources[] = $dreamWorkResource;
+        return $this;
     }
 
     /**
@@ -761,6 +773,7 @@ class Dream
     public function removeDreamWorkResource(\AppBundle\Document\WorkResource $dreamWorkResource)
     {
         $this->dreamWorkResources->removeElement($dreamWorkResource);
+        return $this;
     }
 
     /**
@@ -781,6 +794,7 @@ class Dream
     public function addDreamFinancialContribution(\AppBundle\Document\FinancialContribute $dreamFinancialContribution)
     {
         $this->dreamFinancialContributions[] = $dreamFinancialContribution;
+        return $this;
     }
 
     /**
@@ -791,6 +805,7 @@ class Dream
     public function removeDreamFinancialContribution(\AppBundle\Document\FinancialContribute $dreamFinancialContribution)
     {
         $this->dreamFinancialContributions->removeElement($dreamFinancialContribution);
+        return $this;
     }
 
     /**
@@ -811,6 +826,7 @@ class Dream
     public function addDreamEquipmentContribution(\AppBundle\Document\EquipmentContribute $dreamEquipmentContribution)
     {
         $this->dreamEquipmentContributions[] = $dreamEquipmentContribution;
+        return $this;
     }
 
     /**
@@ -821,6 +837,7 @@ class Dream
     public function removeDreamEquipmentContribution(\AppBundle\Document\EquipmentContribute $dreamEquipmentContribution)
     {
         $this->dreamEquipmentContributions->removeElement($dreamEquipmentContribution);
+        return $this;
     }
 
     /**
@@ -841,6 +858,7 @@ class Dream
     public function addDreamWorkContribution(\AppBundle\Document\WorkContribute $dreamWorkContribution)
     {
         $this->dreamWorkContributions[] = $dreamWorkContribution;
+        return $this;
     }
 
     /**
@@ -851,6 +869,7 @@ class Dream
     public function removeDreamWorkContribution(\AppBundle\Document\WorkContribute $dreamWorkContribution)
     {
         $this->dreamWorkContributions->removeElement($dreamWorkContribution);
+        return $this;
     }
 
     /**
@@ -871,6 +890,7 @@ class Dream
     public function addDreamOtherContribution(\AppBundle\Document\OtherContribute $dreamOtherContribution)
     {
         $this->dreamOtherContributions[] = $dreamOtherContribution;
+        return $this;
     }
 
     /**
@@ -881,6 +901,7 @@ class Dream
     public function removeDreamOtherContribution(\AppBundle\Document\OtherContribute $dreamOtherContribution)
     {
         $this->dreamOtherContributions->removeElement($dreamOtherContribution);
+        return $this;
     }
 
     /**
