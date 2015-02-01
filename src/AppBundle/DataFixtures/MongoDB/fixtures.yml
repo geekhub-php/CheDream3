@@ -1,0 +1,88 @@
+AppBundle\Document\User:
+  users{1..20}:
+    firstName: <firstName()>
+    middleName: <userName()>
+    lastName: <lastName()>
+    birthday: <date()>
+    about: <realText()>
+    vkontakteId: <numberBetween(1, 100000)>
+    facebookId: <numberBetween(1, 100000)>
+    odnoklassnikiId: <numberBetween(1, 100000)>
+    favoriteDreams: 5x @dreams*
+    phone: <phoneNumber()>
+    skype: skypeName
+
+AppBundle\Document\Dream:
+  dreams{1..30}:
+    title: <word()>
+    description: <realText()>
+    rejectedDescription: <realText()>
+    implementedDescription: <realText()>
+    completedDescription: <realText()>
+    phone: <phoneNumber()>
+    expiredDate: <dateTimeBetween("+10 days", "+2 month")>
+    financialCompleted: <numberBetween(250, 10000)>
+    workCompleted: <numberBetween(5, 100)>
+    equipmentCompleted: <numberBetween(5, 250)>
+    author: @users*
+    statuses: 4x @statuses*
+    currentStatus: <word()>
+
+AppBundle\Document\FinancialResource:
+  financialResources{1..100}:
+    title: <word()>
+    quantity: <numberBetween(100, 1000)>
+    dream: @dreams*
+
+AppBundle\Document\FinancialContribute:
+  financialContributes{1..100}:
+    financialResource: @financialResources*
+    hiddenContributor: <boolean()>
+    quantity: <numberBetween(50, 500)>
+    user: @users*
+
+AppBundle\Document\EquipmentResource:
+  equipmentresources{1..100}:
+    quantityType: "ton"
+    title: <word()>
+    quantity: <numberBetween(100, 1000)>
+    dream: @dreams*
+
+AppBundle\Document\EquipmentContribute:
+  equipmentcontributes{1..100}:
+    equipmentResource: @equipmentresources*
+    hiddenContributor: <boolean()>
+    quantity: <numberBetween(50, 500)>
+    user: @users*
+
+AppBundle\Document\WorkResource:
+  workresources{1..100}:
+    title: <word()>
+    quantity: <numberBetween(100, 1000)>
+    dream: @dreams*
+
+AppBundle\Document\WorkContribute:
+  workcontributes{1..100}:
+    workResource: @workresources*
+    hiddenContributor: <boolean()>
+    quantity: <numberBetween(50, 500)>
+    user: @users*
+
+AppBundle\Document\OtherContribute:
+  othercontribute{1..50}:
+    title: <word()>
+    hiddenContributor: <boolean()>
+    quantity: <numberBetween(50, 500)>
+    user: @users*
+    dream: @dreams*
+
+AppBundle\Document\Faq:
+  faq{1..15}:
+    title: <word()>
+    question: <realText(100)>
+    answer: <realText()>
+
+AppBundle\Document\Status:
+  statuses{1..30}:
+    title: <word()>
+    dream: @dreams*

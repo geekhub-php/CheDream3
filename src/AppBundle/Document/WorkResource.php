@@ -46,8 +46,7 @@ class WorkResource extends AbstractResource
 
     /**
      * @var array
-     *
-     * @ODM\ReferenceMany(targetDocument="WorkContribution")
+     * @ODM\ReferenceMany(targetDocument="WorkContribute")
      */
     protected $workContributions = array();
 
@@ -161,10 +160,10 @@ class WorkResource extends AbstractResource
     /**
      * Add workContribution
      *
-     * @param  WorkContribution $workContribution
+     * @param  WorkContribute $workContribution
      * @return $this
      */
-    public function addWorkContribution(\AppBundle\Document\WorkContribution $workContribution)
+    public function addWorkContribution(\AppBundle\Document\WorkContribute $workContribution)
     {
         $this->workContributions[] = $workContribution;
 
@@ -174,10 +173,10 @@ class WorkResource extends AbstractResource
     /**
      * Remove workContribution
      *
-     * @param  WorkContribution $workContribution
+     * @param  WorkContribute $workContribution
      * @return $this
      */
-    public function removeWorkContribution(\AppBundle\Document\WorkContribution $workContribution)
+    public function removeWorkContribution(\AppBundle\Document\WorkContribute $workContribution)
     {
         $this->workContributions->removeElement($workContribution);
 

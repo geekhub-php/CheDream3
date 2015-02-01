@@ -46,7 +46,7 @@ class WorkContribute extends AbstractContribute
     /**
      * @var \AppBundle\Document\User
      *
-     * @ODM\ReferenceOne(type="User")
+     * @ODM\ReferenceOne(targetDocument="User")
      */
     protected $user;
 
@@ -147,7 +147,7 @@ class WorkContribute extends AbstractContribute
      * @param  User $user
      * @return self
      */
-    public function setUser(\User $user)
+    public function setUser(\AppBundle\Document\User $user)
     {
         $this->user = $user;
 

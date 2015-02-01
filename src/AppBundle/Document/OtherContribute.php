@@ -40,7 +40,7 @@ class OtherContribute extends AbstractContribute
     /**
      * @var float $quantity
      *
-     * @ODM\Field(type="quantity")
+     * @ODM\Field(type="float")
      */
     protected $quantity;
 
@@ -129,10 +129,10 @@ class OtherContribute extends AbstractContribute
     /**
      * Set quantity
      *
-     * @param  quantity $quantity
+     * @param  float $quantity
      * @return self
      */
-    public function setQuantity(\quantity $quantity)
+    public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
 
@@ -142,7 +142,7 @@ class OtherContribute extends AbstractContribute
     /**
      * Get quantity
      *
-     * @return quantity $quantity
+     * @return $quantity
      */
     public function getQuantity()
     {
