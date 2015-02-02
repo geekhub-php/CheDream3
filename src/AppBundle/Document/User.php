@@ -4,12 +4,16 @@ namespace AppBundle\Document;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Users
  *
  * @ODM\Document(collection="users", repositoryClass="AppBundle\Repository\UsersRepository")
+ * @ExclusionPolicy("all")
  */
 class User extends BaseUser //implements DreamUserInterface
 {
@@ -19,6 +23,7 @@ class User extends BaseUser //implements DreamUserInterface
      * @var integer
      *
      * @ODM\Id
+     * @Expose()
      */
     protected $id;
 
@@ -27,6 +32,7 @@ class User extends BaseUser //implements DreamUserInterface
      *
      * @Assert\NotBlank()
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $firstName;
 
@@ -34,6 +40,7 @@ class User extends BaseUser //implements DreamUserInterface
      * @var string
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $middleName;
 
@@ -41,6 +48,7 @@ class User extends BaseUser //implements DreamUserInterface
      * @var string
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $lastName;
 
@@ -48,6 +56,7 @@ class User extends BaseUser //implements DreamUserInterface
      * @var \DateTime
      *
      * @ODM\Field(type="date")
+     * @Expose()
      */
     protected $birthday;
 
@@ -55,6 +64,7 @@ class User extends BaseUser //implements DreamUserInterface
      * @var string
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $about;
 
@@ -62,6 +72,7 @@ class User extends BaseUser //implements DreamUserInterface
      * @var string
      *
      * @ODM\Field(name="vkontakte_id", type="string")
+     * @Expose()
      */
     protected $vkontakteId;
 
@@ -69,6 +80,7 @@ class User extends BaseUser //implements DreamUserInterface
      * @var string
      *
      * @ODM\Field(name="facebook_id", type="string")
+     * @Expose()
      */
     protected $facebookId;
 
@@ -76,6 +88,7 @@ class User extends BaseUser //implements DreamUserInterface
      * @var string
      *
      * @ODM\Field(name="odnoklassniki_id", type="string")
+     * @Expose()
      */
     protected $odnoklassnikiId;
 
@@ -86,26 +99,32 @@ class User extends BaseUser //implements DreamUserInterface
 
     /**
      * @ODM\ReferenceMany(targetDocument="FinancialContribute")
+     * @Expose()
      */
     protected $financialContributions;
 
     /**
      * @ODM\ReferenceMany(targetDocument="EquipmentContribute")
+     * @Expose()
      */
     protected $equipmentContributions;
 
     /**
      * @ODM\ReferenceMany(targetDocument="WorkContribute")
+     * @Expose()
      */
     protected $workContributions;
 
     /**
      * @ODM\ReferenceMany(targetDocument="OtherContribute")
+     * @Expose()
      */
     protected $otherContributions;
 
     /**
      * @ODM\ReferenceMany(targetDocument="Dream")
+     * @MaxDepth(1)
+     * @Expose()
      */
     protected $dreams;
 
@@ -113,6 +132,7 @@ class User extends BaseUser //implements DreamUserInterface
      * @var string
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $phone;
 
@@ -120,6 +140,7 @@ class User extends BaseUser //implements DreamUserInterface
      * @var string
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $skype;
 

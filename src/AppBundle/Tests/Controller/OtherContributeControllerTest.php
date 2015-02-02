@@ -9,7 +9,7 @@ class OtherContributeControllerTest extends WebTestCase
     public function testGet()
     {
         $client   = static::createClient();
-        $crawler  = $client->request('GET', '/others/contributes');
+        $crawler  = $client->request('GET', '/other/contributes');
 
         $response = $client->getResponse();
 

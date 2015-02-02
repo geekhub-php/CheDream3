@@ -30,7 +30,7 @@ class DreamController extends FOSRestController
      *
      * @throws NotFoundHttpException when not exist
      */
-    public function getDreamAction()
+    public function getDreamsAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
         $dream = $manager->getRepository('AppBundle:Dream')->findAll();
