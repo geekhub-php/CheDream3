@@ -5,11 +5,13 @@ namespace AppBundle\Document;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Users
  *
  * @ODM\Document(collection="users", repositoryClass="AppBundle\Repository\UsersRepository")
+ * @JMS\ExclusionPolicy("all")
  */
 class User extends BaseUser //implements DreamUserInterface
 {
@@ -19,6 +21,7 @@ class User extends BaseUser //implements DreamUserInterface
      * @var integer
      *
      * @ODM\Id
+     * @JMS\Expose()
      */
     protected $id;
 

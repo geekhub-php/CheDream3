@@ -164,6 +164,7 @@ class Dream
 
     /**
      * @ODM\ReferenceOne(targetDocument="User")
+     * @Expose()
      * @MaxDepth(1)
      */
     protected $author;
