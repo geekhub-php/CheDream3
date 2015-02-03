@@ -13,6 +13,7 @@ use JMS\Serializer\Annotation\MaxDepth;
  * Class EquipmentResource
  *
  * @ODM\Document(collection="equipment_resource")
+ * @ExclusionPolicy("all")
  */
 class EquipmentResource extends AbstractResource
 {
@@ -36,6 +37,7 @@ class EquipmentResource extends AbstractResource
      * @var integer
      *
      * @ODM\Id
+     * @Expose()
      */
     private $id;
 
@@ -43,6 +45,7 @@ class EquipmentResource extends AbstractResource
      * @var string
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $quantityType;
 
@@ -50,6 +53,7 @@ class EquipmentResource extends AbstractResource
      * @var string $title
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $title;
 
@@ -58,6 +62,7 @@ class EquipmentResource extends AbstractResource
      *
      * @Gedmo\Timestampable(on="create")
      * @ODM\Field(type="date")
+     * @Expose()
      */
     protected $createdAt;
 
@@ -65,6 +70,7 @@ class EquipmentResource extends AbstractResource
      * @var float $quantity
      *
      * @ODM\Field(type="float")
+     * @Expose()
      */
     protected $quantity;
 
@@ -72,7 +78,7 @@ class EquipmentResource extends AbstractResource
      * @var \AppBundle\Document\Dream
      *
      * @ODM\ReferenceOne(targetDocument="Dream", )
-     * @MaxDepth(1)
+     * @Expose()
      */
     protected $dream;
 
@@ -80,9 +86,9 @@ class EquipmentResource extends AbstractResource
      * @var array
      *
      * @ODM\ReferenceMany(targetDocument="EquipmentContribute")
-     * @MaxDepth(1)
+     * @Expose()
      */
-    protected $equipmentContributes = array();
+    protected $equipmentContributes = [];
 
     /**
      * Get id
@@ -191,7 +197,7 @@ class EquipmentResource extends AbstractResource
     /**
      * Set dream
      *
-     * @param AppBundle\Document\Dream $dream
+     * @param \AppBundle\Document\Dream $dream
      * @return self
      */
     public function setDream(\AppBundle\Document\Dream $dream)
@@ -203,7 +209,7 @@ class EquipmentResource extends AbstractResource
     /**
      * Get dream
      *
-     * @return AppBundle\Document\Dream $dream
+     * @return \AppBundle\Document\Dream $dream
      */
     public function getDream()
     {
@@ -213,7 +219,7 @@ class EquipmentResource extends AbstractResource
     /**
      * Add equipmentContribute
      *
-     * @param AppBundle\Document\EquipmentContribute $equipmentContribute
+     * @param \AppBundle\Document\EquipmentContribute $equipmentContribute
      */
     public function addEquipmentContribute(\AppBundle\Document\EquipmentContribute $equipmentContribute)
     {
@@ -223,7 +229,7 @@ class EquipmentResource extends AbstractResource
     /**
      * Remove equipmentContribute
      *
-     * @param AppBundle\Document\EquipmentContribute $equipmentContribute
+     * @param \AppBundle\Document\EquipmentContribute $equipmentContribute
      */
     public function removeEquipmentContribute(\AppBundle\Document\EquipmentContribute $equipmentContribute)
     {
@@ -233,7 +239,7 @@ class EquipmentResource extends AbstractResource
     /**
      * Get equipmentContributes
      *
-     * @return Doctrine\Common\Collections\Collection $equipmentContributes
+     * @return \Doctrine\Common\Collections\Collection $equipmentContributes
      */
     public function getEquipmentContributes()
     {

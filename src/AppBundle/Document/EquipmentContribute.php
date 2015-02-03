@@ -6,7 +6,6 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * Class EquipmentContribute
@@ -20,12 +19,13 @@ class EquipmentContribute extends AbstractContribute
      * @var integer
      *
      * @ODM\Id
+     * @Expose()
      */
     protected $id;
 
     /**
      * @ODM\ReferenceOne(targetDocument="EquipmentResource")
-     * @MaxDepth(2)
+     * @Expose()
      */
     protected $equipmentResource;
 
@@ -33,6 +33,7 @@ class EquipmentContribute extends AbstractContribute
      * @var boolean $hiddenContributor
      *
      * @ODM\Field(type="boolean")
+     * @Expose()
      */
     protected $hiddenContributor;
 
@@ -40,6 +41,7 @@ class EquipmentContribute extends AbstractContribute
      * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")
+     * @Expose()
      * @ODM\Field(type="date")
      */
     protected $createdAt;
@@ -48,6 +50,7 @@ class EquipmentContribute extends AbstractContribute
      * @var float $quantity
      *
      * @ODM\Field(type="float")
+     * @Expose()
      */
     protected $quantity;
 
@@ -55,7 +58,7 @@ class EquipmentContribute extends AbstractContribute
      * @var \AppBundle\Document\User
      *
      * @ODM\ReferenceOne(targetDocument="User")
-     * @MaxDepth(2)
+     * @Expose()
      */
     protected $user;
 
@@ -207,7 +210,7 @@ class EquipmentContribute extends AbstractContribute
         return $this->dream;
     }
     /**
-     * @var AppBundle\Document\Dream
+     * @var \AppBundle\Document\Dream
      */
     protected $dream;
 
