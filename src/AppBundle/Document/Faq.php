@@ -6,16 +6,13 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\Groups;
-use JMS\Serializer\Annotation\VirtualProperty;
-
 
 /**
  * Faq
  *
  * @ODM\Document(collection="faq")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
- * @ExclusionPolicy("none")
+ * @ExclusionPolicy("all")
  */
 class Faq
 {
@@ -23,6 +20,7 @@ class Faq
      * @var integer
      *
      * @ODM\Id
+     * @Expose()
      */
     protected $id;
 
@@ -30,6 +28,7 @@ class Faq
      * @var string
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $title;
 
@@ -37,6 +36,7 @@ class Faq
      * @var string
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $question;
 
@@ -44,6 +44,7 @@ class Faq
      * @var string
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $answer;
 
@@ -51,6 +52,7 @@ class Faq
      * @var \DateTime
      *
      * @ODM\Field(type="date")
+     * @Expose()
      */
     protected $deletedAt;
 
@@ -59,6 +61,7 @@ class Faq
      *
      * @Gedmo\Slug(fields={"title"})
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $slug;
 

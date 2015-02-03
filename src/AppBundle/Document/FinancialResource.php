@@ -3,11 +3,14 @@
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Class FinancialResource
  *
  * @ODM\Document(collection="financial_resource", repositoryClass="AppBundle\Repository\CommonRepository")
+ * @ExclusionPolicy("all")
  */
 class FinancialResource extends AbstractResource
 {
@@ -15,6 +18,7 @@ class FinancialResource extends AbstractResource
      * @var integer
      *
      * @ODM\Id
+     * @Expose()
      */
     private $id;
 
@@ -22,6 +26,7 @@ class FinancialResource extends AbstractResource
      * @var string $title
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $title;
 
@@ -29,6 +34,7 @@ class FinancialResource extends AbstractResource
      * @var date $createdAt
      *
      * @ODM\Field(type="date")
+     * @Expose()
      */
     protected $createdAt;
 
@@ -36,6 +42,7 @@ class FinancialResource extends AbstractResource
      * @var float $quantity
      *
      * @ODM\Field(type="float")
+     * @Expose()
      */
     protected $quantity;
 
@@ -43,6 +50,7 @@ class FinancialResource extends AbstractResource
      * @var \AppBundle\Document\Dream
      *
      * @ODM\ReferenceOne(targetDocument="Dream")
+     * @Expose()
      */
     protected $dream;
 
@@ -50,8 +58,9 @@ class FinancialResource extends AbstractResource
      * @var array
      *
      * @ODM\ReferenceMany(targetDocument="FinancialContribute")
+     * @Expose()
      */
-    protected $financialContributes = array();
+    protected $financialContributes = [];
 
     /**
      * Get id
@@ -162,7 +171,7 @@ class FinancialResource extends AbstractResource
     /**
      * Add financialContribute
      *
-     * @param AppBundle\Document\FinancialContribute $financialContribute
+     * @param \AppBundle\Document\FinancialContribute $financialContribute
      */
     public function addFinancialContribute(\AppBundle\Document\FinancialContribute $financialContribute)
     {
@@ -172,7 +181,7 @@ class FinancialResource extends AbstractResource
     /**
      * Remove financialContribute
      *
-     * @param AppBundle\Document\FinancialContribute $financialContribute
+     * @param \AppBundle\Document\FinancialContribute $financialContribute
      */
     public function removeFinancialContribute(\AppBundle\Document\FinancialContribute $financialContribute)
     {
@@ -182,7 +191,7 @@ class FinancialResource extends AbstractResource
     /**
      * Get financialContributes
      *
-     * @return Doctrine\Common\Collections\Collection $financialContributes
+     * @return \Doctrine\Common\Collections\Collection $financialContributes
      */
     public function getFinancialContributes()
     {
