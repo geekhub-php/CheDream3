@@ -4,9 +4,12 @@ namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\ODM\MongoDB\Mapping\Annotations\ReferenceOne;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  *@ODM\Document(collection="work_contributes", repositoryClass="AppBundle\Repository\CommonRepository")
+ * @ExclusionPolicy("all")
  */
 class WorkContribute extends AbstractContribute
 {
@@ -14,11 +17,13 @@ class WorkContribute extends AbstractContribute
      * @var integer
      *
      * @ODM\Id
+     * @Expose()
      */
     protected $id;
 
     /**
      * @ODM\ReferenceOne(targetDocument="WorkResource")
+     * @Expose()
      */
     protected $workResource;
 
@@ -26,6 +31,7 @@ class WorkContribute extends AbstractContribute
      * @var boolean $hiddenContributor
      *
      * @ODM\Field(type="boolean")
+     * @Expose()
      */
     protected $hiddenContributor;
 
@@ -33,6 +39,7 @@ class WorkContribute extends AbstractContribute
      * @var date $createdAt
      *
      * @ODM\Field(type="date")
+     * @Expose()
      */
     protected $createdAt;
 
@@ -40,6 +47,7 @@ class WorkContribute extends AbstractContribute
      * @var float $quantity
      *
      * @ODM\Field(type="float")
+     * @Expose()
      */
     protected $quantity;
 
@@ -47,6 +55,7 @@ class WorkContribute extends AbstractContribute
      * @var \AppBundle\Document\User
      *
      * @ODM\ReferenceOne(targetDocument="User")
+     * @Expose()
      */
     protected $user;
 
@@ -198,7 +207,7 @@ class WorkContribute extends AbstractContribute
         return $this->dream;
     }
     /**
-     * @var AppBundle\Document\Dream
+     * @var \AppBundle\Document\Dream
      */
     protected $dream;
 

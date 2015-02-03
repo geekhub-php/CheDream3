@@ -3,9 +3,12 @@
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  *@ODM\Document(collection="work_resource")
+ * @ExclusionPolicy("all")
  */
 class WorkResource extends AbstractResource
 {
@@ -13,6 +16,7 @@ class WorkResource extends AbstractResource
      * @var integer
      *
      * @ODM\Id
+     * @Expose()
      */
     protected $id;
 
@@ -20,6 +24,7 @@ class WorkResource extends AbstractResource
      * @var string $title
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $title;
 
@@ -27,6 +32,7 @@ class WorkResource extends AbstractResource
      * @var date $createdAt
      *
      * @ODM\Field(type="date")
+     * @Expose()
      */
     protected $createdAt;
 
@@ -34,11 +40,14 @@ class WorkResource extends AbstractResource
      * @var float $quantity
      *
      * @ODM\Field(type="float")
+     * @Expose()
      */
     protected $quantity;
 
     /**
      * @var \AppBundle\Document\Dream
+     * @ODM\ReferenceOne(targetDocument="Dream")
+     * @Expose()
      */
     protected $dream;
 
@@ -46,8 +55,9 @@ class WorkResource extends AbstractResource
      * @var array
      *
      * @ODM\ReferenceMany(targetDocument="WorkContribute")
+     * @Expose()
      */
-    protected $workContributions = array();
+    protected $workContributions = [];
 
     /**
      * Get id
@@ -158,7 +168,7 @@ class WorkResource extends AbstractResource
     /**
      * Add workContribution
      *
-     * @param AppBundle\Document\WorkContribute $workContribution
+     * @param \AppBundle\Document\WorkContribute $workContribution
      */
     public function addWorkContribution(\AppBundle\Document\WorkContribute $workContribution)
     {
@@ -168,7 +178,7 @@ class WorkResource extends AbstractResource
     /**
      * Remove workContribution
      *
-     * @param AppBundle\Document\WorkContribute $workContribution
+     * @param \AppBundle\Document\WorkContribute $workContribution
      */
     public function removeWorkContribution(\AppBundle\Document\WorkContribute $workContribution)
     {
@@ -178,7 +188,7 @@ class WorkResource extends AbstractResource
     /**
      * Get workContributions
      *
-     * @return Doctrine\Common\Collections\Collection $workContributions
+     * @return \Doctrine\Common\Collections\Collection $workContributions
      */
     public function getWorkContributions()
     {

@@ -6,7 +6,6 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
 
@@ -124,7 +123,6 @@ class User extends BaseUser //implements DreamUserInterface
 
     /**
      * @ODM\ReferenceMany(targetDocument="Dream")
-     * @MaxDepth(1)
      * @Expose()
      */
     protected $dreams;
