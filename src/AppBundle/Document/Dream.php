@@ -2,11 +2,9 @@
 
 namespace AppBundle\Document;
 
-use Gedmo\Mapping\Annotation as Gedmo;
-use JMS\Serializer\Annotation\Exclude;
+use Gedmo\Mapping\Annotation as Gedmo;;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
@@ -172,7 +170,7 @@ class Dream
 
     /**
      * @ODM\ReferenceMany(targetDocument="Status", cascade={"persist"})
-     * @MaxDepth(1)
+     * @Expose()
      */
     protected $statuses = [];
 

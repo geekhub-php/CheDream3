@@ -94,6 +94,7 @@ class User extends BaseUser //implements DreamUserInterface
 
     /**
      * @ODM\ReferenceMany(targetDocument="Dream")
+     * @Expose()
      */
     protected $favoriteDreams;
 
