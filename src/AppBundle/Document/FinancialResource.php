@@ -62,6 +62,11 @@ class FinancialResource extends AbstractResource
      */
     protected $financialContributes = [];
 
+    public function __construct()
+    {
+        $this->financialContributes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Get id
      *
@@ -144,8 +149,8 @@ class FinancialResource extends AbstractResource
     /**
      * Set dream
      *
-     * @param  \AppBundle\Document\Dream $dream
-     * @return self
+     * @param  Dream $dream
+     * @return $this
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
@@ -157,41 +162,43 @@ class FinancialResource extends AbstractResource
     /**
      * Get dream
      *
-     * @return \AppBundle\Document\Dream $dream
+     * @return Dream
      */
     public function getDream()
     {
         return $this->dream;
     }
-    public function __construct()
-    {
-        $this->financialContributes = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
+
     /**
      * Add financialContribute
      *
-     * @param \AppBundle\Document\FinancialContribute $financialContribute
+     * @param  FinancialContribute $financialContribute
+     * @return $this
      */
     public function addFinancialContribute(\AppBundle\Document\FinancialContribute $financialContribute)
     {
         $this->financialContributes[] = $financialContribute;
+
+        return $this;
     }
 
     /**
-     * Remove financialContribute
+     * Remove financial contribute
      *
-     * @param \AppBundle\Document\FinancialContribute $financialContribute
+     * @param  FinancialContribute $financialContribute
+     * @return $this
      */
     public function removeFinancialContribute(\AppBundle\Document\FinancialContribute $financialContribute)
     {
         $this->financialContributes->removeElement($financialContribute);
+
+        return $this;
     }
 
     /**
      * Get financialContributes
      *
-     * @return \Doctrine\Common\Collections\Collection $financialContributes
+     * @return array|\Doctrine\Common\Collections\ArrayCollection
      */
     public function getFinancialContributes()
     {

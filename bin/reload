@@ -6,5 +6,5 @@ show_run("Drop DB", "app/console doctrine:mongodb:schema:drop");
 show_run("Create scheme", "app/console doctrine:mongodb:schema:create ");
 show_run("Install assets", "app/console assets:install");
 
-show_run("Load fixtures", "app/console doctrine:mongodb:fixtures:load --no-interaction");
+show_run("Load fixtures", "app/console doctrine:mongodb:fixtures:load");
 

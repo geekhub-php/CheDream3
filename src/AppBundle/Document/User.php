@@ -351,27 +351,33 @@ class User extends BaseUser //implements DreamUserInterface
     /**
      * Add favoriteDream
      *
-     * @param \AppBundle\Document\Dream $favoriteDream
+     * @param  Dream $favoriteDream
+     * @return $this
      */
     public function addFavoriteDream(\AppBundle\Document\Dream $favoriteDream)
     {
         $this->favoriteDreams[] = $favoriteDream;
+
+        return $this;
     }
 
     /**
      * Remove favoriteDream
      *
-     * @param \AppBundle\Document\Dream $favoriteDream
+     * @param  Dream $favoriteDream
+     * @return $this
      */
     public function removeFavoriteDream(\AppBundle\Document\Dream $favoriteDream)
     {
         $this->favoriteDreams->removeElement($favoriteDream);
+
+        return $this;
     }
 
     /**
      * Get favoriteDreams
      *
-     * @return \Doctrine\Common\Collections\Collection $favoriteDreams
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getFavoriteDreams()
     {
@@ -381,27 +387,33 @@ class User extends BaseUser //implements DreamUserInterface
     /**
      * Add financialContribution
      *
-     * @param \AppBundle\Document\FinancialContribute $financialContribution
+     * @param  FinancialContribute $financialContribution
+     * @return $this
      */
     public function addFinancialContribution(\AppBundle\Document\FinancialContribute $financialContribution)
     {
         $this->financialContributions[] = $financialContribution;
+
+        return $this;
     }
 
     /**
      * Remove financialContribution
      *
-     * @param \AppBundle\Document\FinancialContribute $financialContribution
+     * @param  FinancialContribute $financialContribution
+     * @return $this
      */
     public function removeFinancialContribution(\AppBundle\Document\FinancialContribute $financialContribution)
     {
         $this->financialContributions->removeElement($financialContribution);
+
+        return $this;
     }
 
     /**
      * Get financialContributions
      *
-     * @return \Doctrine\Common\Collections\Collection $financialContributions
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getFinancialContributions()
     {
@@ -411,27 +423,33 @@ class User extends BaseUser //implements DreamUserInterface
     /**
      * Add equipmentContribution
      *
-     * @param \AppBundle\Document\EquipmentContribute $equipmentContribution
+     * @param  EquipmentContribute $equipmentContribution
+     * @return $this
      */
     public function addEquipmentContribution(\AppBundle\Document\EquipmentContribute $equipmentContribution)
     {
         $this->equipmentContributions[] = $equipmentContribution;
+
+        return $this;
     }
 
     /**
      * Remove equipmentContribution
      *
-     * @param \AppBundle\Document\EquipmentContribute $equipmentContribution
+     * @param  EquipmentContribute $equipmentContribution
+     * @return $this
      */
     public function removeEquipmentContribution(\AppBundle\Document\EquipmentContribute $equipmentContribution)
     {
         $this->equipmentContributions->removeElement($equipmentContribution);
+
+        return $this;
     }
 
     /**
      * Get equipmentContributions
      *
-     * @return \Doctrine\Common\Collections\Collection $equipmentContributions
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getEquipmentContributions()
     {
@@ -441,27 +459,33 @@ class User extends BaseUser //implements DreamUserInterface
     /**
      * Add workContribution
      *
-     * @param \AppBundle\Document\WorkContribute $workContribution
+     * @param  WorkContribute $workContribution
+     * @return $this
      */
     public function addWorkContribution(\AppBundle\Document\WorkContribute $workContribution)
     {
         $this->workContributions[] = $workContribution;
+
+        return $this;
     }
 
     /**
      * Remove workContribution
      *
-     * @param \AppBundle\Document\WorkContribute $workContribution
+     * @param  WorkContribute $workContribution
+     * @return $this
      */
     public function removeWorkContribution(\AppBundle\Document\WorkContribute $workContribution)
     {
         $this->workContributions->removeElement($workContribution);
+
+        return $this;
     }
 
     /**
      * Get workContributions
      *
-     * @return \Doctrine\Common\Collections\Collection $workContributions
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getWorkContributions()
     {
@@ -471,27 +495,33 @@ class User extends BaseUser //implements DreamUserInterface
     /**
      * Add otherContribution
      *
-     * @param \AppBundle\Document\OtherContribute $otherContribution
+     * @param  OtherContribute $otherContribution
+     * @return $this
      */
     public function addOtherContribution(\AppBundle\Document\OtherContribute $otherContribution)
     {
         $this->otherContributions[] = $otherContribution;
+
+        return $this;
     }
 
     /**
      * Remove otherContribution
      *
-     * @param \AppBundle\Document\OtherContribute $otherContribution
+     * @param  OtherContribute $otherContribution
+     * @return $this
      */
     public function removeOtherContribution(\AppBundle\Document\OtherContribute $otherContribution)
     {
         $this->otherContributions->removeElement($otherContribution);
+
+        return $this;
     }
 
     /**
      * Get otherContributions
      *
-     * @return \Doctrine\Common\Collections\Collection $otherContributions
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getOtherContributions()
     {
@@ -501,27 +531,33 @@ class User extends BaseUser //implements DreamUserInterface
     /**
      * Add dream
      *
-     * @param \AppBundle\Document\Dream $dream
+     * @param  Dream $dream
+     * @return $this
      */
     public function addDream(\AppBundle\Document\Dream $dream)
     {
         $this->dreams[] = $dream;
+
+        return $this;
     }
 
     /**
      * Remove dream
      *
-     * @param \AppBundle\Document\Dream $dream
+     * @param  Dream $dream
+     * @return $this
      */
     public function removeDream(\AppBundle\Document\Dream $dream)
     {
         $this->dreams->removeElement($dream);
+
+        return $this;
     }
 
     /**
      * Get dreams
      *
-     * @return \Doctrine\Common\Collections\Collection $dreams
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getDreams()
     {

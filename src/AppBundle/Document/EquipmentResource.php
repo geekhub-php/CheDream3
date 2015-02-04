@@ -6,8 +6,6 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\Exclude;
-use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * Class EquipmentResource
@@ -91,6 +89,34 @@ class EquipmentResource extends AbstractResource
     protected $equipmentContributes = [];
 
     /**
+     * Set createdAt
+     *
+     * @param  \DateTime $createdAt
+     * @return self
+     */
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime $createdAt
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function __construct()
+    {
+        $this->equipmentContributes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return id $id
@@ -124,41 +150,15 @@ class EquipmentResource extends AbstractResource
     }
 
     /**
-     * Set createdAt
-     *
-     * @param  \DateTime $createdAt
-     * @return self
-     */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime $createdAt
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-    public function __construct()
-    {
-        $this->equipmentContributes = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
-    /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return self
      */
     public function setTitle($title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -175,12 +175,13 @@ class EquipmentResource extends AbstractResource
     /**
      * Set quantity
      *
-     * @param float $quantity
+     * @param  float $quantity
      * @return self
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+
         return $this;
     }
 
@@ -197,19 +198,20 @@ class EquipmentResource extends AbstractResource
     /**
      * Set dream
      *
-     * @param \AppBundle\Document\Dream $dream
-     * @return self
+     * @param  Dream $dream
+     * @return $this
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+
         return $this;
     }
 
     /**
      * Get dream
      *
-     * @return \AppBundle\Document\Dream $dream
+     * @return Dream
      */
     public function getDream()
     {
@@ -219,27 +221,33 @@ class EquipmentResource extends AbstractResource
     /**
      * Add equipmentContribute
      *
-     * @param \AppBundle\Document\EquipmentContribute $equipmentContribute
+     * @param  EquipmentContribute $equipmentContribute
+     * @return $this
      */
     public function addEquipmentContribute(\AppBundle\Document\EquipmentContribute $equipmentContribute)
     {
         $this->equipmentContributes[] = $equipmentContribute;
+
+        return $this;
     }
 
     /**
      * Remove equipmentContribute
      *
-     * @param \AppBundle\Document\EquipmentContribute $equipmentContribute
+     * @param  EquipmentContribute $equipmentContribute
+     * @return $this
      */
     public function removeEquipmentContribute(\AppBundle\Document\EquipmentContribute $equipmentContribute)
     {
         $this->equipmentContributes->removeElement($equipmentContribute);
+
+        return $this;
     }
 
     /**
      * Get equipmentContributes
      *
-     * @return \Doctrine\Common\Collections\Collection $equipmentContributes
+     * @return array|\Doctrine\Common\Collections\ArrayCollection
      */
     public function getEquipmentContributes()
     {

@@ -124,8 +124,8 @@ class Status implements EventInterface
     /**
      * Set dream
      *
-     * @param  \AppBundle\Document\Dream $dream
-     * @return self
+     * @param  Dream $dream
+     * @return $this
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
@@ -135,9 +135,9 @@ class Status implements EventInterface
     }
 
     /**
-     * Get dream
+     * Set dream
      *
-     * @return \AppBundle\Document\Dream $dream
+     * @return mixed
      */
     public function getDream()
     {

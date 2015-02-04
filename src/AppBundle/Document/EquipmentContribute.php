@@ -62,6 +62,18 @@ class EquipmentContribute extends AbstractContribute
      */
     protected $user;
 
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
     /**
      * Get id
      *
@@ -73,10 +85,10 @@ class EquipmentContribute extends AbstractContribute
     }
 
     /**
-     * Set equipmentResource
+     * set EquipmentResource
      *
-     * @param  \AppBundle\Document\EquipmentResource $equipmentResource
-     * @return self
+     * @param  EquipmentResource $equipmentResource
+     * @return $this
      */
     public function setEquipmentResource(\AppBundle\Document\EquipmentResource $equipmentResource)
     {
@@ -88,7 +100,7 @@ class EquipmentContribute extends AbstractContribute
     /**
      * Get equipmentResource
      *
-     * @return \AppBundle\Document\EquipmentResource $equipmentResource
+     * @return mixed
      */
     public function getEquipmentResource()
     {
@@ -119,52 +131,6 @@ class EquipmentContribute extends AbstractContribute
     }
 
     /**
-     * Set user
-     *
-     * @param  \AppBundle\Document\User $user
-     * @return self
-     */
-    public function setUser(\AppBundle\Document\User $user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Document\User $user
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param  \DateTime $createdAt
-     * @return self
-     */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime $createdAt
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
      * Set quantity
      *
      * @param  float $quantity
@@ -188,10 +154,33 @@ class EquipmentContribute extends AbstractContribute
     }
 
     /**
+     * Set user
+     *
+     * @param  User  $user
+     * @return $this
+     */
+    public function setUser(\AppBundle\Document\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
      * Set dream
      *
-     * @param  \AppBundle\Document\Dream $dream
-     * @return self
+     * @param  Dream $dream
+     * @return $this
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
@@ -203,7 +192,7 @@ class EquipmentContribute extends AbstractContribute
     /**
      * Get dream
      *
-     * @return \AppBundle\Document\Dream $dream
+     * @return mixed
      */
     public function getDream()
     {
@@ -213,6 +202,5 @@ class EquipmentContribute extends AbstractContribute
      * @var \AppBundle\Document\Dream
      */
     protected $dream;
-
 
 }

@@ -59,6 +59,11 @@ class WorkResource extends AbstractResource
      */
     protected $workContributions = [];
 
+    public function __construct()
+    {
+        $this->workContributions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Get id
      *
@@ -139,10 +144,10 @@ class WorkResource extends AbstractResource
     }
 
     /**
-     * Set dream
+     * set dream
      *
-     * @param  \AppBundle\Document\Dream $dream
-     * @return self
+     * @param  Dream $dream
+     * @return $this
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
@@ -152,43 +157,47 @@ class WorkResource extends AbstractResource
     }
 
     /**
-     * Get dream
+     * Get Dream
      *
-     * @return \AppBundle\Document\Dream $dream
+     * @return Dream
      */
     public function getDream()
     {
         return $this->dream;
     }
-    public function __construct()
-    {
-        $this->workContributions = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
+
     /**
      * Add workContribution
      *
-     * @param \AppBundle\Document\WorkContribute $workContribution
+     * @param  WorkContribute $workContribution
+     * @return $this
      */
     public function addWorkContribution(\AppBundle\Document\WorkContribute $workContribution)
     {
         $this->workContributions[] = $workContribution;
+
+        return $this;
+
     }
 
     /**
      * Remove workContribution
      *
-     * @param \AppBundle\Document\WorkContribute $workContribution
+     * @param  WorkContribute $workContribution
+     * @return $this
      */
     public function removeWorkContribution(\AppBundle\Document\WorkContribute $workContribution)
     {
         $this->workContributions->removeElement($workContribution);
+
+        return $this;
+
     }
 
     /**
      * Get workContributions
      *
-     * @return \Doctrine\Common\Collections\Collection $workContributions
+     * @return array|\Doctrine\Common\Collections\ArrayCollection
      */
     public function getWorkContributions()
     {

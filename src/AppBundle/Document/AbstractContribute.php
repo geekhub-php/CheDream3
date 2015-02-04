@@ -31,4 +31,6 @@ abstract class AbstractContribute extends AbstractContributeResource implements 
         return sprintf('%s %s contributed %s', $this->getUser()->getFirstName(), $this->getUser()->getLastName(), $this->getDream()->getTitle());
     }
     abstract public function getCreatedAt();
+
+    abstract public function setCreatedAt(\DateTime $createdAt);
 }

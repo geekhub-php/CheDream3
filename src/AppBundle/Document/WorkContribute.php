@@ -3,7 +3,6 @@
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use Doctrine\ODM\MongoDB\Mapping\Annotations\ReferenceOne;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 
@@ -59,6 +58,18 @@ class WorkContribute extends AbstractContribute
      */
     protected $user;
 
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
     /**
      * Get id
      *
@@ -72,8 +83,8 @@ class WorkContribute extends AbstractContribute
     /**
      * Set workResource
      *
-     * @param  \AppBundle\Document\WorkResource $workResource
-     * @return self
+     * @param  WorkResource $workResource
+     * @return $this
      */
     public function setWorkResource(\AppBundle\Document\WorkResource $workResource)
     {
@@ -85,7 +96,7 @@ class WorkContribute extends AbstractContribute
     /**
      * Get workResource
      *
-     * @return \AppBundle\Document\WorkResource $workResource
+     * @return mixed
      */
     public function getWorkResource()
     {
@@ -116,52 +127,6 @@ class WorkContribute extends AbstractContribute
     }
 
     /**
-     * Set user
-     *
-     * @param  \AppBundle\Document\User $user
-     * @return self
-     */
-    public function setUser(\AppBundle\Document\User $user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Document\User $user
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param  date $createdAt
-     * @return self
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return date $createdAt
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
      * Set quantity
      *
      * @param  float $quantity
@@ -185,10 +150,33 @@ class WorkContribute extends AbstractContribute
     }
 
     /**
+     * Set user
+     *
+     * @param  User $user
+     * @return self
+     */
+    public function setUser(\AppBundle\Document\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return User $user
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
      * Set dream
      *
-     * @param  \AppBundle\Document\Dream $dream
-     * @return self
+     * @param  Dream $dream
+     * @return $this
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
@@ -200,7 +188,7 @@ class WorkContribute extends AbstractContribute
     /**
      * Get dream
      *
-     * @return \AppBundle\Document\Dream $dream
+     * @return mixed
      */
     public function getDream()
     {
@@ -210,6 +198,5 @@ class WorkContribute extends AbstractContribute
      * @var \AppBundle\Document\Dream
      */
     protected $dream;
-
 
 }
