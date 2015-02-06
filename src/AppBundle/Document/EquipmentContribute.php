@@ -4,11 +4,14 @@ namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Class EquipmentContribute
  *
- * @ODM\Document(collection="equipment_contributes", repositoryClass="AppBundle\Repository\CommonRepository")
+ * @ODM\Document(collection="equipment_contributes")
+ * @ExclusionPolicy("all")
  */
 class EquipmentContribute extends AbstractContribute
 {
@@ -16,11 +19,13 @@ class EquipmentContribute extends AbstractContribute
      * @var integer
      *
      * @ODM\Id
+     * @Expose()
      */
     protected $id;
 
     /**
      * @ODM\ReferenceOne(targetDocument="EquipmentResource")
+     * @Expose()
      */
     protected $equipmentResource;
 
@@ -28,6 +33,7 @@ class EquipmentContribute extends AbstractContribute
      * @var boolean $hiddenContributor
      *
      * @ODM\Field(type="boolean")
+     * @Expose()
      */
     protected $hiddenContributor;
 
@@ -35,6 +41,7 @@ class EquipmentContribute extends AbstractContribute
      * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")
+     * @Expose()
      * @ODM\Field(type="date")
      */
     protected $createdAt;
@@ -43,6 +50,7 @@ class EquipmentContribute extends AbstractContribute
      * @var float $quantity
      *
      * @ODM\Field(type="float")
+     * @Expose()
      */
     protected $quantity;
 
@@ -50,6 +58,7 @@ class EquipmentContribute extends AbstractContribute
      * @var \AppBundle\Document\User
      *
      * @ODM\ReferenceOne(targetDocument="User")
+     * @Expose()
      */
     protected $user;
 
@@ -165,28 +174,5 @@ class EquipmentContribute extends AbstractContribute
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * Set dream
-     *
-     * @param  Dream $dream
-     * @return $this
-     */
-    public function setDream(\AppBundle\Document\Dream $dream)
-    {
-        $this->dream = $dream;
-
-        return $this;
-    }
-
-    /**
-     * Get dream
-     *
-     * @return mixed
-     */
-    public function getDream()
-    {
-        return $this->dream;
     }
 }

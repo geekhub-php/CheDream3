@@ -4,11 +4,14 @@ namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Status
  *
- * @ODM\Document(collection="status", repositoryClass="AppBundle\Repository\CommonRepository")
+ * @ODM\Document(collection="status")
+ * @ExclusionPolicy("all")
  */
 class Status implements EventInterface
 {
@@ -24,6 +27,7 @@ class Status implements EventInterface
      * @var integer
      *
      * @ODM\Id
+     * @Expose()
      */
     protected $id;
 
@@ -32,6 +36,7 @@ class Status implements EventInterface
      * @return string
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $title;
 
@@ -40,11 +45,13 @@ class Status implements EventInterface
      *
      * @Gedmo\Timestampable(on="create")
      * @ODM\Field(type="date")
+     * @Expose()
      */
     protected $createdAt;
 
     /**
      * @ODM\ReferenceOne(targetDocument="Dream")
+     * @Expose()
      */
     protected $dream;
 

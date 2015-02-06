@@ -9,4 +9,3 @@ function show_run($text, $command, $canFail = false)
         exit(1);
     }
 }
-

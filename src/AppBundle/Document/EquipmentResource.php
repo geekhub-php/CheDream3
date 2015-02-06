@@ -4,11 +4,14 @@ namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Class EquipmentResource
  *
  * @ODM\Document(collection="equipment_resource")
+ * @ExclusionPolicy("all")
  */
 class EquipmentResource extends AbstractResource
 {
@@ -32,6 +35,7 @@ class EquipmentResource extends AbstractResource
      * @var integer
      *
      * @ODM\Id
+     * @Expose()
      */
     private $id;
 
@@ -39,6 +43,7 @@ class EquipmentResource extends AbstractResource
      * @var string
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $quantityType;
 
@@ -46,6 +51,7 @@ class EquipmentResource extends AbstractResource
      * @var string $title
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $title;
 
@@ -54,6 +60,7 @@ class EquipmentResource extends AbstractResource
      *
      * @Gedmo\Timestampable(on="create")
      * @ODM\Field(type="date")
+     * @Expose()
      */
     protected $createdAt;
 
@@ -61,13 +68,15 @@ class EquipmentResource extends AbstractResource
      * @var float $quantity
      *
      * @ODM\Field(type="float")
+     * @Expose()
      */
     protected $quantity;
 
     /**
      * @var \AppBundle\Document\Dream
      *
-     * @ODM\ReferenceOne(targetDocument="Dream")
+     * @ODM\ReferenceOne(targetDocument="Dream", )
+     * @Expose()
      */
     protected $dream;
 
@@ -75,8 +84,9 @@ class EquipmentResource extends AbstractResource
      * @var array
      *
      * @ODM\ReferenceMany(targetDocument="EquipmentContribute")
+     * @Expose()
      */
-    protected $equipmentContributes = array();
+    protected $equipmentContributes = [];
 
     /**
      * Set createdAt

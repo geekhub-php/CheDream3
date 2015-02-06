@@ -1,4 +1,4 @@
-{
+    {
     "name": "symfony/framework-standard-edition",
     "license": "MIT",
     "type": "project",
@@ -30,7 +30,6 @@
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
-
     },
     "scripts": {
         "post-root-package-install": [

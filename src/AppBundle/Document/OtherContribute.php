@@ -3,9 +3,12 @@
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
- *@ODM\Document(collection="other_contributes", repositoryClass="AppBundle\Repository\CommonRepository")
+ *@ODM\Document(collection="other_contributes")
+ * @ExclusionPolicy("all")
  */
 class OtherContribute extends AbstractContribute
 {
@@ -13,6 +16,7 @@ class OtherContribute extends AbstractContribute
      * @var integer
      *
      * @ODM\Id
+     * @Expose()
      */
     protected $id;
 
@@ -20,6 +24,7 @@ class OtherContribute extends AbstractContribute
      * @var string
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $title;
 
@@ -27,6 +32,7 @@ class OtherContribute extends AbstractContribute
      * @var boolean $hiddenContributor
      *
      * @ODM\Field(type="boolean")
+     * @Expose()
      */
     protected $hiddenContributor;
 
@@ -48,6 +54,7 @@ class OtherContribute extends AbstractContribute
      * @var \AppBundle\Document\User
      *
      * @ODM\ReferenceOne(targetDocument="User")
+     * @Expose()
      */
     protected $user;
 
@@ -55,6 +62,7 @@ class OtherContribute extends AbstractContribute
      * @var \AppBundle\Document\Dream
      *
      * @ODM\ReferenceOne(targetDocument="Dream")
+     * @Expose()
      */
     protected $dream;
 
@@ -142,7 +150,7 @@ class OtherContribute extends AbstractContribute
     /**
      * Get quantity
      *
-     * @return $quantity
+     * @return $this
      */
     public function getQuantity()
     {

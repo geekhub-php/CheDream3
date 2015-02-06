@@ -3,9 +3,12 @@
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  *@ODM\Document(collection="work_resource")
+ * @ExclusionPolicy("all")
  */
 class WorkResource extends AbstractResource
 {
@@ -13,6 +16,7 @@ class WorkResource extends AbstractResource
      * @var integer
      *
      * @ODM\Id
+     * @Expose()
      */
     protected $id;
 
@@ -20,6 +24,7 @@ class WorkResource extends AbstractResource
      * @var string $title
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $title;
 
@@ -27,6 +32,7 @@ class WorkResource extends AbstractResource
      * @var date $createdAt
      *
      * @ODM\Field(type="date")
+     * @Expose()
      */
     protected $createdAt;
 
@@ -34,21 +40,24 @@ class WorkResource extends AbstractResource
      * @var float $quantity
      *
      * @ODM\Field(type="float")
+     * @Expose()
      */
     protected $quantity;
 
     /**
      * @var \AppBundle\Document\Dream
-     *
      * @ODM\ReferenceOne(targetDocument="Dream")
+     * @Expose()
      */
     protected $dream;
 
     /**
      * @var array
+     *
      * @ODM\ReferenceMany(targetDocument="WorkContribute")
+     * @Expose()
      */
-    protected $workContributions = array();
+    protected $workContributions = [];
 
     public function __construct()
     {
@@ -168,6 +177,7 @@ class WorkResource extends AbstractResource
         $this->workContributions[] = $workContribution;
 
         return $this;
+
     }
 
     /**
@@ -181,6 +191,7 @@ class WorkResource extends AbstractResource
         $this->workContributions->removeElement($workContribution);
 
         return $this;
+
     }
 
     /**
