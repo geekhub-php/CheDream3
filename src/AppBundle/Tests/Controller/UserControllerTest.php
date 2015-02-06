@@ -1,10 +1,8 @@
 <?php
 
-namespace Acme\BlogBundle\Tests\Controller;
+namespace AppBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
-class UserControllerTest extends WebTestCase
+class UserControllerTest extends AbstractApiTest
 {
     public function testGet()
     {
@@ -14,17 +12,5 @@ class UserControllerTest extends WebTestCase
         $response = $client->getResponse();
 
         $this->assertJsonResponse($response, 200);
-    }
-
-    protected function assertJsonResponse($response, $statusCode = 200)
-    {
-        $this->assertEquals(
-            $statusCode, $response->getStatusCode(),
-            $response->getContent()
-        );
-        $this->assertTrue(
-            $response->headers->contains('Content-Type', 'application/json'),
-            $response->headers
-        );
     }
 }
