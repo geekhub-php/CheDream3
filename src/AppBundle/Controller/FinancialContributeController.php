@@ -32,9 +32,9 @@ class FinancialContributeController extends FOSRestController
     public function getFinancialContributesAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $financial_contributes = $manager->getRepository('AppBundle:FinancialContribute')->findAll();
+        $financialContributes = $manager->getRepository('AppBundle:FinancialContribute')->findAll();
         $restView = View::create();
-        $restView->setData($financial_contributes);
+        $restView->setData($financialContributes);
 
         return $restView;
     }

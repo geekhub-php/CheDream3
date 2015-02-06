@@ -32,9 +32,9 @@ class WorkResourceController extends FOSRestController
     public function getWorkResourcesAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $work_resources = $manager->getRepository('AppBundle:WorkResource')->findAll();
+        $workResources = $manager->getRepository('AppBundle:WorkResource')->findAll();
         $restView = View::create();
-        $restView->setData($work_resources);
+        $restView->setData($workResources);
 
         return $restView;
     }

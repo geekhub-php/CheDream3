@@ -10,7 +10,7 @@ use JMS\Serializer\Annotation\Expose;
 /**
  * Status
  *
- * @ODM\Document(collection="status", repositoryClass="AppBundle\Repository\CommonRepository")
+ * @ODM\Document(collection="status")
  * @ExclusionPolicy("all")
  */
 class Status implements EventInterface

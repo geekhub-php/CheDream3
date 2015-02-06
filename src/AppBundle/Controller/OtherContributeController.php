@@ -24,7 +24,7 @@ class OtherContributeController extends FOSRestController
      * )
      *
      * RestView()
-     * @param $title
+     * @param
      * @return View
      *
      * @throws NotFoundHttpException when page not exist

@@ -32,9 +32,9 @@ class EquipmentContributeController extends FOSRestController
     public function getEquipmentContributesAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $equipment_contributes = $manager->getRepository('AppBundle:EquipmentContribute')->findAll();
+        $equipmentContributes = $manager->getRepository('AppBundle:EquipmentContribute')->findAll();
         $restView = View::create();
-        $restView->setData($equipment_contributes);
+        $restView->setData($equipmentContributes);
 
         return $restView;
     }

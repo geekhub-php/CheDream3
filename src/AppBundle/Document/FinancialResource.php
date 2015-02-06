@@ -9,7 +9,7 @@ use JMS\Serializer\Annotation\Expose;
 /**
  * Class FinancialResource
  *
- * @ODM\Document(collection="financial_resource", repositoryClass="AppBundle\Repository\CommonRepository")
+ * @ODM\Document(collection="financial_resource")
  * @ExclusionPolicy("all")
  */
 class FinancialResource extends AbstractResource

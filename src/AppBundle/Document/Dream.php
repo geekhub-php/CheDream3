@@ -12,7 +12,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
  * Class Dream
  * @package AppBundle\Document
  *
- * @ODM\Document(collection="dreams", repositoryClass="AppBundle\Repository\DreamRepository")
+ * @ODM\Document(collection="dreams")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  * @ExclusionPolicy("all")
  */
@@ -170,7 +170,6 @@ class Dream
 
     /**
      * @ODM\ReferenceMany(targetDocument="Status", cascade={"persist"})
-     * @Expose()
      */
     protected $statuses = [];
 
@@ -870,6 +869,7 @@ class Dream
 
         return $this;
     }
+
     /**
      * Get dreamFinancialContributions
      *
@@ -892,6 +892,7 @@ class Dream
 
         return $this;
     }
+
     /**
      * Remove dreamEquipmentContribution
      *
@@ -904,6 +905,7 @@ class Dream
 
         return $this;
     }
+
     /**
      * Get dreamEquipmentContributions
      *
@@ -926,6 +928,7 @@ class Dream
 
         return $this;
     }
+
     /**
      * Remove dreamWorkContribution
      *
@@ -938,6 +941,7 @@ class Dream
 
         return $this;
     }
+
     /**
      * Get dreamWorkContributions
      *

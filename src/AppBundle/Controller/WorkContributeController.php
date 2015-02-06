@@ -33,9 +33,9 @@ class WorkContributeController extends FOSRestController
     public function getWorkContributesAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $work_contributes = $manager->getRepository('AppBundle:WorkContribute')->findAll();
+        $workContributes = $manager->getRepository('AppBundle:WorkContribute')->findAll();
         $restView = View::create();
-        $restView->setData($work_contributes);
+        $restView->setData($workContributes);
 
         return $restView;
     }

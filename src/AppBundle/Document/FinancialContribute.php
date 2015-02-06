@@ -9,7 +9,7 @@ use JMS\Serializer\Annotation\Expose;
 /**
  * Class FinancialContribute
  *
- * @ODM\Document(collection="financial_contributes", repositoryClass="AppBundle\Repository\CommonRepository")
+ * @ODM\Document(collection="financial_contributes")
  * @ExclusionPolicy("all")
  */
 class FinancialContribute extends AbstractContribute
@@ -173,32 +173,4 @@ class FinancialContribute extends AbstractContribute
     {
         return $this->user;
     }
-
-    /**
-     * Set dream
-     *
-     * @param  Dream $dream
-     * @return $this
-     */
-    public function setDream(\AppBundle\Document\Dream $dream)
-    {
-        $this->dream = $dream;
-
-        return $this;
-    }
-
-    /**
-     * Get dream
-     *
-     * @return mixed
-     */
-    public function getDream()
-    {
-        return $this->dream;
-    }
-    /**
-     * @var \AppBundle\Document\Dream
-     */
-    protected $dream;
-
 }

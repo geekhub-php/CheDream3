@@ -32,9 +32,9 @@ class EquipmentResourceController extends FOSRestController
     public function getEquipmentResourcesAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $equipment_resources = $manager->getRepository('AppBundle:EquipmentResource')->findAll();
+        $equipmentResources = $manager->getRepository('AppBundle:EquipmentResource')->findAll();
         $restView = View::create();
-        $restView->setData($equipment_resources);
+        $restView->setData($equipmentResources);
 
         return $restView;
     }

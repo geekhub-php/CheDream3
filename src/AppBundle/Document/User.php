@@ -12,7 +12,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Users
  *
- * @ODM\Document(collection="users", repositoryClass="AppBundle\Repository\UsersRepository")
+ * @ODM\Document(collection="users")
  * @ExclusionPolicy("all")
  */
 class User extends BaseUser //implements DreamUserInterface
@@ -94,7 +94,6 @@ class User extends BaseUser //implements DreamUserInterface
 
     /**
      * @ODM\ReferenceMany(targetDocument="Dream")
-     * @Expose()
      */
     protected $favoriteDreams;
 

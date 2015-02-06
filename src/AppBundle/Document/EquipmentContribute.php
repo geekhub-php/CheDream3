@@ -10,7 +10,7 @@ use JMS\Serializer\Annotation\Expose;
 /**
  * Class EquipmentContribute
  *
- * @ODM\Document(collection="equipment_contributes", repositoryClass="AppBundle\Repository\CommonRepository")
+ * @ODM\Document(collection="equipment_contributes")
  * @ExclusionPolicy("all")
  */
 class EquipmentContribute extends AbstractContribute
@@ -175,32 +175,4 @@ class EquipmentContribute extends AbstractContribute
     {
         return $this->user;
     }
-
-    /**
-     * Set dream
-     *
-     * @param  Dream $dream
-     * @return $this
-     */
-    public function setDream(\AppBundle\Document\Dream $dream)
-    {
-        $this->dream = $dream;
-
-        return $this;
-    }
-
-    /**
-     * Get dream
-     *
-     * @return mixed
-     */
-    public function getDream()
-    {
-        return $this->dream;
-    }
-    /**
-     * @var \AppBundle\Document\Dream
-     */
-    protected $dream;
-
 }

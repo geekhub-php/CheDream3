@@ -7,7 +7,7 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 
 /**
- *@ODM\Document(collection="work_contributes", repositoryClass="AppBundle\Repository\CommonRepository")
+ *@ODM\Document(collection="work_contributes")
  * @ExclusionPolicy("all")
  */
 class WorkContribute extends AbstractContribute
@@ -171,32 +171,4 @@ class WorkContribute extends AbstractContribute
     {
         return $this->user;
     }
-
-    /**
-     * Set dream
-     *
-     * @param  Dream $dream
-     * @return $this
-     */
-    public function setDream(\AppBundle\Document\Dream $dream)
-    {
-        $this->dream = $dream;
-
-        return $this;
-    }
-
-    /**
-     * Get dream
-     *
-     * @return mixed
-     */
-    public function getDream()
-    {
-        return $this->dream;
-    }
-    /**
-     * @var \AppBundle\Document\Dream
-     */
-    protected $dream;
-
 }
