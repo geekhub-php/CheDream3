@@ -13,6 +13,8 @@
 /bin/*
 !/bin/reload
 !/bin/base_script.php
+!/bin/common.php
+!/bin/symfony.php
 /composer.phar
 .idea/
 *~
