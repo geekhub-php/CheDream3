@@ -3,11 +3,14 @@
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Class FinancialContribute
  *
- * @ODM\Document(collection="financial_contributes", repositoryClass="AppBundle\Repository\CommonRepository")
+ * @ODM\Document(collection="financial_contributes")
+ * @ExclusionPolicy("all")
  */
 class FinancialContribute extends AbstractContribute
 {
@@ -15,11 +18,13 @@ class FinancialContribute extends AbstractContribute
      * @var integer
      *
      * @ODM\Id
+     * @Expose()
      */
     protected $id;
 
     /**
      * @ODM\ReferenceOne(targetDocument="FinancialResource")
+     * @Expose()
      */
     protected $financialResource;
 
@@ -27,6 +32,7 @@ class FinancialContribute extends AbstractContribute
      * @var boolean $hiddenContributor
      *
      * @ODM\Field(type="boolean")
+     * @Expose()
      */
     protected $hiddenContributor;
 
@@ -34,6 +40,7 @@ class FinancialContribute extends AbstractContribute
      * @var date $createdAt
      *
      * @ODM\Field(type="date")
+     * @Expose()
      */
     protected $createdAt;
 
@@ -41,6 +48,7 @@ class FinancialContribute extends AbstractContribute
      * @var float $quantity
      *
      * @ODM\Field(type="float")
+     * @Expose()
      */
     protected $quantity;
 
@@ -48,6 +56,7 @@ class FinancialContribute extends AbstractContribute
      * @var \AppBundle\Document\User
      *
      * @ODM\ReferenceOne(targetDocument="User")
+     * @Expose()
      */
     protected $user;
 
@@ -163,28 +172,5 @@ class FinancialContribute extends AbstractContribute
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * Set dream
-     *
-     * @param  Dream $dream
-     * @return $this
-     */
-    public function setDream(\AppBundle\Document\Dream $dream)
-    {
-        $this->dream = $dream;
-
-        return $this;
-    }
-
-    /**
-     * Get dream
-     *
-     * @return mixed
-     */
-    public function getDream()
-    {
-        return $this->dream;
     }
 }

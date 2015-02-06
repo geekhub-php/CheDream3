@@ -3,11 +3,14 @@
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Class FinancialResource
  *
- * @ODM\Document(collection="financial_resource", repositoryClass="AppBundle\Repository\CommonRepository")
+ * @ODM\Document(collection="financial_resource")
+ * @ExclusionPolicy("all")
  */
 class FinancialResource extends AbstractResource
 {
@@ -15,6 +18,7 @@ class FinancialResource extends AbstractResource
      * @var integer
      *
      * @ODM\Id
+     * @Expose()
      */
     private $id;
 
@@ -22,6 +26,7 @@ class FinancialResource extends AbstractResource
      * @var string $title
      *
      * @ODM\Field(type="string")
+     * @Expose()
      */
     protected $title;
 
@@ -29,6 +34,7 @@ class FinancialResource extends AbstractResource
      * @var date $createdAt
      *
      * @ODM\Field(type="date")
+     * @Expose()
      */
     protected $createdAt;
 
@@ -36,6 +42,7 @@ class FinancialResource extends AbstractResource
      * @var float $quantity
      *
      * @ODM\Field(type="float")
+     * @Expose()
      */
     protected $quantity;
 
@@ -43,6 +50,7 @@ class FinancialResource extends AbstractResource
      * @var \AppBundle\Document\Dream
      *
      * @ODM\ReferenceOne(targetDocument="Dream")
+     * @Expose()
      */
     protected $dream;
 
@@ -50,8 +58,9 @@ class FinancialResource extends AbstractResource
      * @var array
      *
      * @ODM\ReferenceMany(targetDocument="FinancialContribute")
+     * @Expose()
      */
-    protected $financialContributes = array();
+    protected $financialContributes = [];
 
     public function __construct()
     {
