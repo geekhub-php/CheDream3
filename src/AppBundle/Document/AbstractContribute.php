@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
@@ -16,7 +17,7 @@ abstract class AbstractContribute extends AbstractContributeResource implements 
     protected $hiddenContributor;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\User", inversedBy="equipmentContributions")
+     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\User")
      */
     protected $user;
 
@@ -31,4 +32,6 @@ abstract class AbstractContribute extends AbstractContributeResource implements 
     }
 
     abstract public function getCreatedAt();
+
+    abstract public function setCreatedAt(\DateTime $createdAt);
 }

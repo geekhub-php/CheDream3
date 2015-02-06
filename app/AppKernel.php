@@ -22,6 +22,8 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Hautelook\AliceBundle\HautelookAliceBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

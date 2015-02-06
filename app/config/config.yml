@@ -4,6 +4,7 @@ imports:
     - { resource: services.yml }
 
 framework:
+    translator: ~
     #esi:             ~
     #translator:      { fallback: "%locale%" }
     secret:          "%secret%"
@@ -71,3 +72,12 @@ stof_doctrine_extensions:
             tree:    true
 
 nelmio_api_doc: ~
+
+fos_user:
+    db_driver: mongodb
+    firewall_name: main
+    user_class: AppBundle\Document\User
+
+hautelook_alice:
+    locale: en_US   # default
+    seed: 1         # default

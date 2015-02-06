@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Document;
 
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -31,7 +32,7 @@ abstract class AbstractContributeResource
     protected $quantity;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="Dream", inversedBy="dreamEquipmentContributions")
+     * @ODM\ReferenceOne(targetDocument="Dream")
      */
     protected $dream;
 }

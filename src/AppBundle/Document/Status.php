@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
@@ -27,7 +28,7 @@ class Status implements EventInterface
     protected $id;
 
     /**
-     * @var string
+     * @var    string
      * @return string
      *
      * @ODM\Field(type="string")
@@ -43,7 +44,7 @@ class Status implements EventInterface
     protected $createdAt;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="Dream", inversedBy="statuses")
+     * @ODM\ReferenceOne(targetDocument="Dream")
      */
     protected $dream;
 
@@ -53,7 +54,7 @@ class Status implements EventInterface
      * @param  \DateTime $createdAt
      * @return Status
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
 
@@ -78,5 +79,61 @@ class Status implements EventInterface
     public function getEventTitle()
     {
         return sprintf('Dream "%s", has changed status to "%s"', $this->getDream()->getTitle(), $this->getTitle());
+    }
+
+    /**
+     * Get id
+     *
+     * @return id $id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param  string $title
+     * @return self
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string $title
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set dream
+     *
+     * @param  Dream $dream
+     * @return $this
+     */
+    public function setDream(\AppBundle\Document\Dream $dream)
+    {
+        $this->dream = $dream;
+
+        return $this;
+    }
+
+    /**
+     * Set dream
+     *
+     * @return mixed
+     */
+    public function getDream()
+    {
+        return $this->dream;
     }
 }
