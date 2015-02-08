@@ -25,8 +25,8 @@ class FaqController extends FOSRestController
      *
      *
      * RestView()
-     * @return View
-     *
+     * @param
+     * @return mixed
      * @throws NotFoundHttpException when page not exist
      */
     public function getFaqsAction()

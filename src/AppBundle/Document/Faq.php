@@ -8,7 +8,8 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 
 /**
- * Faq
+ * Class Faq
+ * @package AppBundle\Document
  *
  * @ODM\Document(collection="faq")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
