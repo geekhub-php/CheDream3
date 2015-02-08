@@ -25,6 +25,7 @@ class EquipmentResourceController extends FOSRestController
      *
      *
      * RestView()
+     * @param
      * @return View
      *
      * @throws NotFoundHttpException when page not exist
@@ -37,9 +38,9 @@ class EquipmentResourceController extends FOSRestController
 
         if (count($equipmentResources) == 0) {
             $restView->setStatusCode(204);
+
             return $restView;
         }
-
 
         $restView->setData($equipmentResources);
 

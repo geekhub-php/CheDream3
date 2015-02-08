@@ -38,6 +38,7 @@ class FinancialResourceController extends FOSRestController
 
         if (count($financialResources) == 0) {
             $restView->setStatusCode(204);
+
             return $restView;
         }
 

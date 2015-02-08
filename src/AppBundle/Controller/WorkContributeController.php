@@ -38,6 +38,7 @@ class WorkContributeController extends FOSRestController
 
         if (count($workContributes) == 0) {
             $restView->setStatusCode(204);
+
             return $restView;
         }
 

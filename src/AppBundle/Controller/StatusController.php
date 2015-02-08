@@ -37,6 +37,7 @@ class StatusController extends FOSRestController
 
         if (count($status) == 0) {
             $restView->setStatusCode(204);
+
             return $restView;
         }
 

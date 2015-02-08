@@ -2,8 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use JMS\Serializer\Annotation\SerializedName;
-use Michelf\_MarkdownExtra_TmpImpl;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
@@ -29,7 +27,7 @@ class DreamController extends FOSRestController
      *
      * RestView()
      * @param
-     * @return mixed
+     * @return View
      *
      * @throws NotFoundHttpException when not exist
      */
@@ -41,6 +39,7 @@ class DreamController extends FOSRestController
 
         if (count($dreams) == 0) {
             $restView->setStatusCode(204);
+
             return $restView;
         }
 
@@ -50,7 +49,7 @@ class DreamController extends FOSRestController
     }
 
     /**
-     * Get single Dream,
+     * Get single Dream for slug,
      *
      * @ApiDoc(
      * resource = true,
@@ -65,7 +64,7 @@ class DreamController extends FOSRestController
      *
      * RestView()
      * @param
-     * @return mixed
+     * @return View
      *
      * @throws NotFoundHttpException when not exist
      */
@@ -77,6 +76,7 @@ class DreamController extends FOSRestController
 
         if (count($dream) == 0) {
             $restView->setStatusCode(204);
+
             return $restView;
         }
 

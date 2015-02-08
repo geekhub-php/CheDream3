@@ -25,7 +25,8 @@ class FinancialContributeController extends FOSRestController
      *
      *
      * RestView()
-     * @return mixed
+     * @param
+     * @return View
      *
      * @throws NotFoundHttpException when page not exist
      */
@@ -37,6 +38,7 @@ class FinancialContributeController extends FOSRestController
 
         if (count($financialContributes) == 0) {
             $restView->setStatusCode(204);
+
             return $restView;
         }
 

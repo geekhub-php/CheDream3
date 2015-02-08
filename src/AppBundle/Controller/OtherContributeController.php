@@ -37,6 +37,7 @@ class OtherContributeController extends FOSRestController
 
         if (count($contribute) == 0) {
             $restView->setStatusCode(204);
+
             return $restView;
         }
 

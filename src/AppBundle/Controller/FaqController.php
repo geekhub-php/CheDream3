@@ -26,7 +26,8 @@ class FaqController extends FOSRestController
      *
      * RestView()
      * @param
-     * @return mixed
+     * @return View
+     *
      * @throws NotFoundHttpException when page not exist
      */
     public function getFaqsAction()
@@ -37,9 +38,9 @@ class FaqController extends FOSRestController
 
         if (count($faqs) == 0) {
             $restView->setStatusCode(204);
+
             return $restView;
         }
-
 
         $restView->setData($faqs);
 
