@@ -11,21 +11,18 @@ use FOS\RestBundle\View\View;
 class DreamController extends FOSRestController
 {
     /**
-     * Get single Dream,
+     * Return array of dreams
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets all Dream",
+     * description = "Return array of all dreams",
      * output = "AppBundle\Document\Dream",
      * statusCodes = {
-     *      200 = "Returned when successful",
-     *      404 = "Returned when the Dream is not found"
-     * }
+     *      200 = "Return when database has more that one dream",
+     *      204 = "Return when database don't has dreams"
+     *    }
      * )
      *
-     *
-     * RestView()
-     * @param
      * @return mixed
      *
      * @throws NotFoundHttpException when not exist
@@ -34,7 +31,15 @@ class DreamController extends FOSRestController
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
         $dream = $manager->getRepository('AppBundle:Dream')->findAll();
+
         $restView = View::create();
+
+        if (count($dream) == 0) {
+            $restView->setStatusCode(204);
+
+            return $restView;
+        }
+
         $restView->setData($dream);
 
         return $restView;
