@@ -34,6 +34,12 @@ class FinancialContributeController extends FOSRestController
         $manager = $this->get('doctrine_mongodb')->getManager();
         $financialContributes = $manager->getRepository('AppBundle:FinancialContribute')->findAll();
         $restView = View::create();
+
+        if (count($financialContributes) == 0) {
+            $restView->setStatusCode(204);
+            return $restView;
+        }
+
         $restView->setData($financialContributes);
 
         return $restView;

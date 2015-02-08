@@ -34,6 +34,13 @@ class FaqController extends FOSRestController
         $manager = $this->get('doctrine_mongodb')->getManager();
         $faqs = $manager->getRepository('AppBundle:Faq')->findAll();
         $restView = View::create();
+
+        if (count($faqs) == 0) {
+            $restView->setStatusCode(204);
+            return $restView;
+        }
+
+
         $restView->setData($faqs);
 
         return $restView;

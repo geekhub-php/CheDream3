@@ -6,6 +6,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * Class Faq
@@ -22,6 +23,7 @@ class Faq
      *
      * @ODM\Id
      * @Expose()
+     * @Type("integer")
      */
     protected $id;
 
@@ -30,6 +32,7 @@ class Faq
      *
      * @ODM\Field(type="string")
      * @Expose()
+     * @Type("string")
      */
     protected $title;
 
@@ -38,6 +41,7 @@ class Faq
      *
      * @ODM\Field(type="string")
      * @Expose()
+     * @Type("string")
      */
     protected $question;
 
@@ -46,6 +50,7 @@ class Faq
      *
      * @ODM\Field(type="string")
      * @Expose()
+     * @Type("string")
      */
     protected $answer;
 
@@ -54,6 +59,7 @@ class Faq
      *
      * @ODM\Field(type="date")
      * @Expose()
+     * @Type("DateTime")
      */
     protected $deletedAt;
 
@@ -63,6 +69,7 @@ class Faq
      * @Gedmo\Slug(fields={"title"})
      * @ODM\Field(type="string")
      * @Expose()
+     * @Type("string")
      */
     protected $slug;
 

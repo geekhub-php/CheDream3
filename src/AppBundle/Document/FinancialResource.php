@@ -5,6 +5,7 @@ namespace AppBundle\Document;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * Class FinancialResource
@@ -19,6 +20,7 @@ class FinancialResource extends AbstractResource
      *
      * @ODM\Id
      * @Expose()
+     * @Type("integer")
      */
     private $id;
 
@@ -27,6 +29,7 @@ class FinancialResource extends AbstractResource
      *
      * @ODM\Field(type="string")
      * @Expose()
+     * @Type("string")
      */
     protected $title;
 
@@ -35,6 +38,7 @@ class FinancialResource extends AbstractResource
      *
      * @ODM\Field(type="date")
      * @Expose()
+     * @Type("DateTime")
      */
     protected $createdAt;
 
@@ -43,6 +47,7 @@ class FinancialResource extends AbstractResource
      *
      * @ODM\Field(type="float")
      * @Expose()
+     * @Type("float")
      */
     protected $quantity;
 

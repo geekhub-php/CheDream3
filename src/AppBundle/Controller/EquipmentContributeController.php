@@ -34,6 +34,13 @@ class EquipmentContributeController extends FOSRestController
         $manager = $this->get('doctrine_mongodb')->getManager();
         $equipmentContributes = $manager->getRepository('AppBundle:EquipmentContribute')->findAll();
         $restView = View::create();
+
+        if (count($equipmentContributes) == 0) {
+            $restView->setStatusCode(204);
+            return $restView;
+        }
+
+
         $restView->setData($equipmentContributes);
 
         return $restView;

@@ -35,6 +35,12 @@ class FinancialResourceController extends FOSRestController
         $manager = $this->get('doctrine_mongodb')->getManager();
         $financialResources = $manager->getRepository('AppBundle:FinancialResource')->findAll();
         $restView = View::create();
+
+        if (count($financialResources) == 0) {
+            $restView->setStatusCode(204);
+            return $restView;
+        }
+
         $restView->setData($financialResources);
 
         return $restView;

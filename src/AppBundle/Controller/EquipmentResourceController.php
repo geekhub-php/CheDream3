@@ -34,6 +34,13 @@ class EquipmentResourceController extends FOSRestController
         $manager = $this->get('doctrine_mongodb')->getManager();
         $equipmentResources = $manager->getRepository('AppBundle:EquipmentResource')->findAll();
         $restView = View::create();
+
+        if (count($equipmentResources) == 0) {
+            $restView->setStatusCode(204);
+            return $restView;
+        }
+
+
         $restView->setData($equipmentResources);
 
         return $restView;
