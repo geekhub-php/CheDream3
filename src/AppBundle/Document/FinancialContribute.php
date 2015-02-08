@@ -9,6 +9,7 @@ use JMS\Serializer\Annotation\Type;
 
 /**
  * Class FinancialContribute
+ * @package AppBundle\Document
  *
  * @ODM\Document(collection="financial_contributes")
  * @ExclusionPolicy("all")

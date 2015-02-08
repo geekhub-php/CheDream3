@@ -10,6 +10,7 @@ use JMS\Serializer\Annotation\Type;
 
 /**
  * Class EquipmentContribute
+ * @package AppBundle\Document
  *
  * @ODM\Document(collection="equipment_contributes")
  * @ExclusionPolicy("all")

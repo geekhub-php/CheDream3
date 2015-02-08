@@ -6,9 +6,11 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 
 /**
- * Status
+ * Class Status
+ * @package AppBundle\Document
  *
  * @ODM\Document(collection="status")
  * @ExclusionPolicy("all")
@@ -28,6 +30,7 @@ class Status implements EventInterface
      *
      * @ODM\Id
      * @Expose()
+     * @Type("integer")
      */
     protected $id;
 
@@ -37,6 +40,7 @@ class Status implements EventInterface
      *
      * @ODM\Field(type="string")
      * @Expose()
+     * @Type("string")
      */
     protected $title;
 
@@ -46,6 +50,7 @@ class Status implements EventInterface
      * @Gedmo\Timestampable(on="create")
      * @ODM\Field(type="date")
      * @Expose()
+     * @Type("DateTime")
      */
     protected $createdAt;
 

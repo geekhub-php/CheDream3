@@ -16,7 +16,7 @@ class UsersController extends FOSRestController
      * @ApiDoc(
      * resource = true,
      * description = "Gets all Users",
-     * output = "AppBundle\Document\UserContribute",
+     * output =   { "class" = "AppBundle\Document\User", "collection" = true, "collectionName" = "users" },
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the user is not found"
@@ -34,6 +34,12 @@ class UsersController extends FOSRestController
         $manager = $this->get('doctrine_mongodb')->getManager();
         $user = $manager->getRepository('AppBundle:User')->findAll();
         $restView = View::create();
+
+        if (count($user) == 0) {
+            $restView->setStatusCode(204);
+            return $restView;
+        }
+
         $restView->setData($user);
 
         return $restView;

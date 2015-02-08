@@ -16,7 +16,7 @@ class EquipmentContributeController extends FOSRestController
      * @ApiDoc(
      * resource = true,
      * description = "Gets all EquipmentContributes",
-     * output = "AppBundle\Document\EquipmentContribute",
+     * output =   { "class" = "AppBundle\Document\EquipmentContribute", "collection" = true, "collectionName" = "equipment_contributes" },
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the EquipmentContributes is not found"
