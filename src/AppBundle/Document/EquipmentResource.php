@@ -6,6 +6,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * Class EquipmentResource
@@ -36,6 +37,7 @@ class EquipmentResource extends AbstractResource
      *
      * @ODM\Id
      * @Expose()
+     * @Type("integer")
      */
     private $id;
 
@@ -44,6 +46,7 @@ class EquipmentResource extends AbstractResource
      *
      * @ODM\Field(type="string")
      * @Expose()
+     * @Type("string")
      */
     protected $quantityType;
 
@@ -52,6 +55,7 @@ class EquipmentResource extends AbstractResource
      *
      * @ODM\Field(type="string")
      * @Expose()
+     * @Type("string")
      */
     protected $title;
 
@@ -61,6 +65,7 @@ class EquipmentResource extends AbstractResource
      * @Gedmo\Timestampable(on="create")
      * @ODM\Field(type="date")
      * @Expose()
+     * @Type("DateTime")
      */
     protected $createdAt;
 
@@ -69,6 +74,7 @@ class EquipmentResource extends AbstractResource
      *
      * @ODM\Field(type="float")
      * @Expose()
+     * @Type("float")
      */
     protected $quantity;
 

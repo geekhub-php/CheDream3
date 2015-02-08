@@ -6,6 +6,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * Class EquipmentContribute
@@ -20,6 +21,7 @@ class EquipmentContribute extends AbstractContribute
      *
      * @ODM\Id
      * @Expose()
+     * @Type("integer")
      */
     protected $id;
 
@@ -34,6 +36,7 @@ class EquipmentContribute extends AbstractContribute
      *
      * @ODM\Field(type="boolean")
      * @Expose()
+     * @Type("boolean")
      */
     protected $hiddenContributor;
 
@@ -41,8 +44,9 @@ class EquipmentContribute extends AbstractContribute
      * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")
-     * @Expose()
      * @ODM\Field(type="date")
+     * @Expose()
+     * @Type("DateTime")
      */
     protected $createdAt;
 
@@ -51,6 +55,7 @@ class EquipmentContribute extends AbstractContribute
      *
      * @ODM\Field(type="float")
      * @Expose()
+     * @Type("float")
      */
     protected $quantity;
 

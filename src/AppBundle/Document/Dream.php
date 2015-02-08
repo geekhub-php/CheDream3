@@ -167,7 +167,6 @@ class Dream
     /**
      * @ODM\ReferenceMany(targetDocument="User")
      * @Expose()
-     * @Type(name="User")
      */
     protected $usersWhoFavorites = [];
 
@@ -183,7 +182,6 @@ class Dream
     /**
      * @ODM\ReferenceOne(targetDocument="User")
      * @Expose()
-     * @Type(name="User")
      */
     protected $author;
 
@@ -233,47 +231,36 @@ class Dream
 
     /**
      * @ODM\ReferenceMany(targetDocument="FinancialResource", cascade={"persist"})
-     * @Expose()
-     * @Type(name="FinancialResource")
      */
     protected $dreamFinancialResources;
 
     /**
      * @ODM\ReferenceMany(targetDocument="EquipmentResource", cascade={"persist"})
-     * @Expose()
-     * @Type(name="EquipmentResource")
      */
     protected $dreamEquipmentResources;
 
     /**
      * @ODM\ReferenceMany(targetDocument="WorkResource", cascade={"persist"})
-     * @Expose()
-     * @Type(name="WorkResource")
      */
     protected $dreamWorkResources;
 
     /**
      * @ODM\ReferenceMany(targetDocument="FinancialContribute")
-     * @Expose()
-     * @Type(name="FinancialContribute")
      */
     protected $dreamFinancialContributions;
 
     /**
      * @ODM\ReferenceMany(targetDocument="EquipmentContribute")
-     * @Type(name="EquipmentContribute")
      */
     protected $dreamEquipmentContributions;
 
     /**
      * @ODM\ReferenceMany(targetDocument="WorkContribute")
-     * @Type(name="WorkContribute")
      */
     protected $dreamWorkContributions;
 
     /**
      * @ODM\ReferenceMany(targetDocument="OtherContribute")
-     * @Type(name="OtherContribute")
      */
     protected $dreamOtherContributions;
 
