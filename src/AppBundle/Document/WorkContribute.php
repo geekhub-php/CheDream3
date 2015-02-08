@@ -5,8 +5,12 @@ namespace AppBundle\Document;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 
 /**
+ * Class WorkContribute
+ * @package AppBundle\Document
+ *
  *@ODM\Document(collection="work_contributes")
  * @ExclusionPolicy("all")
  */
@@ -17,6 +21,7 @@ class WorkContribute extends AbstractContribute
      *
      * @ODM\Id
      * @Expose()
+     * @Type("integer")
      */
     protected $id;
 
@@ -31,6 +36,7 @@ class WorkContribute extends AbstractContribute
      *
      * @ODM\Field(type="boolean")
      * @Expose()
+     * @Type("boolean")
      */
     protected $hiddenContributor;
 
@@ -39,6 +45,7 @@ class WorkContribute extends AbstractContribute
      *
      * @ODM\Field(type="date")
      * @Expose()
+     * @Type("DateTime")
      */
     protected $createdAt;
 
@@ -47,6 +54,7 @@ class WorkContribute extends AbstractContribute
      *
      * @ODM\Field(type="float")
      * @Expose()
+     * @Type("float")
      */
     protected $quantity;
 
