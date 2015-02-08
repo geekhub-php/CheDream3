@@ -167,6 +167,7 @@ class Dream
     /**
      * @ODM\ReferenceMany(targetDocument="User")
      * @Expose()
+     * @Type("array<string, User>")
      */
     protected $usersWhoFavorites = [];
 
@@ -231,36 +232,50 @@ class Dream
 
     /**
      * @ODM\ReferenceMany(targetDocument="FinancialResource", cascade={"persist"})
+     * @Expose()
+     * @Type("array<string, FinancialResource>")
      */
     protected $dreamFinancialResources;
 
     /**
      * @ODM\ReferenceMany(targetDocument="EquipmentResource", cascade={"persist"})
+     * @Expose()
+     * @Type("array<string, EquipmentResource>")
      */
     protected $dreamEquipmentResources;
 
     /**
      * @ODM\ReferenceMany(targetDocument="WorkResource", cascade={"persist"})
+     * @Expose()
+     * @Type("array<string, WorkResource>")
      */
     protected $dreamWorkResources;
 
     /**
      * @ODM\ReferenceMany(targetDocument="FinancialContribute")
+     * @Expose()
+     * @Type("array<string, FinancialContribute>")
      */
     protected $dreamFinancialContributions;
 
     /**
      * @ODM\ReferenceMany(targetDocument="EquipmentContribute")
+     * @Expose()
+     * @Type("array<string, EquipmentContribute>")
      */
     protected $dreamEquipmentContributions;
 
     /**
      * @ODM\ReferenceMany(targetDocument="WorkContribute")
+     * @Expose()
+     * @Type("array<string, WorkContribute>")
      */
     protected $dreamWorkContributions;
 
     /**
      * @ODM\ReferenceMany(targetDocument="OtherContribute")
+     * @Expose()
+     * @Type("array<string, OtherContribute>")
      */
     protected $dreamOtherContributions;
 
