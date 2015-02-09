@@ -38,8 +38,6 @@ class EquipmentResourceController extends FOSRestController
 
         if (count($equipmentResources) == 0) {
             $restView->setStatusCode(204);
-
-            return $restView;
         }
 
         $restView->setData($equipmentResources);

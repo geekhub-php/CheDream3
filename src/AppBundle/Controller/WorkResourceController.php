@@ -37,8 +37,6 @@ class WorkResourceController extends FOSRestController
 
         if (count($workResources) == 0) {
             $restView->setStatusCode(204);
-
-            return $restView;
         }
 
         $restView->setData($workResources);

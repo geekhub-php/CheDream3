@@ -73,8 +73,6 @@ class UsersController extends FOSRestController
 
         if (count($user) == 0) {
             $restView->setStatusCode(204);
-
-            return $restView;
         }
 
         $restView->setData($user);

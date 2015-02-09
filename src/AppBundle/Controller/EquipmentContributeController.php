@@ -38,8 +38,6 @@ class EquipmentContributeController extends FOSRestController
 
         if (count($equipmentContributes) == 0) {
             $restView->setStatusCode(204);
-
-            return $restView;
         }
 
         $restView->setData($equipmentContributes);

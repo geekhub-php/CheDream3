@@ -39,8 +39,6 @@ class DreamController extends FOSRestController
 
         if (count($dreams) == 0) {
             $restView->setStatusCode(204);
-
-            return $restView;
         }
 
         $restView->setData($dreams);
@@ -76,8 +74,6 @@ class DreamController extends FOSRestController
 
         if (count($dream) == 0) {
             $restView->setStatusCode(204);
-
-            return $restView;
         }
 
         $restView->setData($dream);

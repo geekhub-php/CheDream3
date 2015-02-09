@@ -38,8 +38,6 @@ class FaqController extends FOSRestController
 
         if (count($faqs) == 0) {
             $restView->setStatusCode(204);
-
-            return $restView;
         }
 
         $restView->setData($faqs);
