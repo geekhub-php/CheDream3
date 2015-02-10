@@ -3,6 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Document\Dream;
+use AppBundle\Document\EquipmentResource;
+use AppBundle\Document\FinancialResource;
+use AppBundle\Document\WorkResource;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use FOS\RestBundle\Controller\FOSRestController;
@@ -45,12 +48,58 @@ class DreamController extends FOSRestController
     /**
      * Create dream
      *
-     * @ApiDoc()
+     * @ApiDoc(
+     *      resource = true,
+     *      description = "Create single dream"
+     * )
      *
      * @param Request $request
+     *
+     * @return mixed
      */
     public function postDreamAction(Request $request)
     {
+        $data = $request->request;
+        $user = $this->getUser();
+        $dm = $this->get('doctrine.odm.mongodb.document_manager');
+
         $dream = new Dream();
+        $dream->setTitle($data->get('title'));
+        $dream->setDescription($data->get('description'));
+        $dream->setPhone($data->get('phone'));
+        $dream->setAuthor($user);
+
+        foreach ($data->get('equipment_resource') as $equipment) {
+            $er = new EquipmentResource();
+
+            $er->setTitle($equipment['title']);
+            $er->setQuantity($equipment['quantity']);
+            $er->setQuantityType($equipment['quantityType']);
+
+            $dm->persist($er);
+        }
+
+        foreach ($data->get('financial_resource') as $financial) {
+            $fr = new FinancialResource();
+
+            $fr->setTitle($financial['title']);
+            $fr->setQuantity($financial['quantity']);;
+
+            $dm->persist($fr);
+        }
+
+        foreach ($data->get('work_resource') as $work) {
+            $wr = new WorkResource();
+
+            $wr->setTitle($work['title']);
+            $wr->setQuantity($work['quantity']);
+
+            $dm->persist($wr);
+        }
+
+        $restView = View::create();
+        $restView->setStatusCode(201);
+
+        return $restView;
     }
 }
