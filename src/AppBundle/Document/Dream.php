@@ -2,7 +2,7 @@
 
 namespace AppBundle\Document;
 
-use Gedmo\Mapping\Annotation as Gedmo;;
+use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -27,6 +27,8 @@ class Dream
     protected $id;
 
     /**
+     * Dream name
+     *
      * @var string
      *
      * @Assert\NotBlank(message = "dream.not_blank")
@@ -37,11 +39,14 @@ class Dream
     protected $title;
 
     /**
+     * Dream description
+     *
      * @var string
      *
      * @Assert\NotBlank(message = "dream.not_blank")
      * @ODM\Field(type="string")
      * @Expose()
+     *
      */
     protected $description;
 
@@ -57,7 +62,8 @@ class Dream
      * @var string
      *
      * @ODM\Field(type="string")
-     * @Expose()
+     * @Expose()n
+     *
      */
     protected $implementedDescription;
 

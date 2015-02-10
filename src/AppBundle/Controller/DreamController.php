@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Document\Dream;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
@@ -38,5 +40,17 @@ class DreamController extends FOSRestController
         $restView->setData($dream);
 
         return $restView;
+    }
+
+    /**
+     * Create dream
+     *
+     * @ApiDoc()
+     *
+     * @param Request $request
+     */
+    public function postDreamAction(Request $request)
+    {
+        $dream = new Dream();
     }
 }
