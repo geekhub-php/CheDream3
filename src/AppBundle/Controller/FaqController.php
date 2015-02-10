@@ -16,7 +16,7 @@ class FaqController extends FOSRestController
      * @ApiDoc(
      * resource = true,
      * description = "Gets all Faq",
-     * output =   { "class" = "AppBundle\Document\Faq", "collection" = true, "collectionName" = "faq" },
+     * output="array<AppBundle\Document\Faq>",
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the Faqs is not found"

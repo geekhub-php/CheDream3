@@ -16,7 +16,7 @@ class StatusController extends FOSRestController
      * @ApiDoc(
      * resource = true,
      * description = "Gets all statuses",
-     * output =   { "class" = "AppBundle\Document\Status", "collection" = true, "collectionName" = "status" },
+     * output="array<AppBundle\Document\Status>",
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the status is not found"

@@ -17,7 +17,7 @@ class DreamController extends FOSRestController
      * @ApiDoc(
      * resource = true,
      * description = "Gets all Dream",
-     * output =   { "class" = "AppBundle\Document\Dream", "collection" = true, "collectionName" = "dreams" },
+     * output="array<AppBundle\Document\Dream>",
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the Dream is not found"
@@ -52,7 +52,7 @@ class DreamController extends FOSRestController
      * @ApiDoc(
      * resource = true,
      * description = "Gets Dream for slug",
-     * output =   { "class" = "AppBundle\Document\Dream", "collection" = true, "collectionName" = "dreams" },
+     * output="array<AppBundle\Document\Dream>",
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the Dream is not found"

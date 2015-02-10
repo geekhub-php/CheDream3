@@ -16,7 +16,7 @@ class UsersController extends FOSRestController
      * @ApiDoc(
      * resource = true,
      * description = "Gets all Users",
-     * output =   { "class" = "AppBundle\Document\User", "collection" = true, "collectionName" = "users" },
+     * output="array<AppBundle\Document\User>",
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the user is not found"
@@ -52,7 +52,7 @@ class UsersController extends FOSRestController
      * @ApiDoc(
      * resource = true,
      * description = "Gets User for id",
-     * output =   { "class" = "AppBundle\Document\User", "collection" = true, "collectionName" = "users" },
+     * output="array<AppBundle\Document\User>",
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the user is not found"

@@ -16,7 +16,7 @@ class FinancialResourceController extends FOSRestController
      * @ApiDoc(
      * resource = true,
      * description = "Gets all FinancialResources",
-     * output =   { "class" = "AppBundle\Document\FinancialResource", "collection" = true, "collectionName" = "financial_resource" },
+     * output="array<AppBundle\Document\FinancialResource>",
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the FinancialResources is not found"

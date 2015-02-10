@@ -16,7 +16,7 @@ class EquipmentResourceController extends FOSRestController
      * @ApiDoc(
      * resource = true,
      * description = "Gets all EquipmentResources",
-     * output =   { "class" = "AppBundle\Document\EquipmentResource", "collection" = true, "collectionName" = "equipment_resource" },
+     * output="array<AppBundle\Document\EquipmentResource>",
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the EquipmentResources is not found"

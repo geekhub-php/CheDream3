@@ -15,8 +15,8 @@ class WorkResourceController extends FOSRestController
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets all WorkContributes",
-     * output =   { "class" = "AppBundle\Document\WorkResource", "collection" = true, "collectionName" = "work_resource" },
+     * description = "Gets all WorkResources",
+     * output="array<AppBundle\Document\WorkResource>",
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the WorkContributes is not found"

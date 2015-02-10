@@ -16,7 +16,7 @@ class OtherContributeController extends FOSRestController
      * @ApiDoc(
      * resource = true,
      * description = "Gets other contributes your dream",
-     * output =   { "class" = "AppBundle\Document\OtherContribute", "collection" = true, "collectionName" = "other_contributes" },
+     * output="array<AppBundle\Document\OtherContribute>",
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the OtherContributes is not found"
