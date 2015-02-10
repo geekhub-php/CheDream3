@@ -62,7 +62,7 @@ class Dream
      * @var string
      *
      * @ODM\Field(type="string")
-     * @Expose()n
+     * @Expose()
      *
      */
     protected $implementedDescription;

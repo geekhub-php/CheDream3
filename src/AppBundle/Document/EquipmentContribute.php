@@ -93,6 +93,7 @@ class EquipmentContribute extends AbstractContribute
     public function setEquipmentResource(\AppBundle\Document\EquipmentResource $equipmentResource)
     {
         $this->equipmentResource = $equipmentResource;
+        $equipmentResource->addEquipmentContribute($this);
 
         return $this;
     }

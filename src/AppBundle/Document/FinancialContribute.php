@@ -91,6 +91,7 @@ class FinancialContribute extends AbstractContribute
     public function setFinancialResource(\AppBundle\Document\FinancialResource $financialResource)
     {
         $this->financialResource = $financialResource;
+        $financialResource->addFinancialContribute($this);
 
         return $this;
     }

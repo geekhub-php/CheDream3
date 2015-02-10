@@ -152,6 +152,7 @@ class WorkResource extends AbstractResource
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+        $dream->addDreamWorkContribution($this);
 
         return $this;
     }
