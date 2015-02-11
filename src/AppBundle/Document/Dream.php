@@ -183,6 +183,7 @@ class Dream
     /**
      * @ODM\ReferenceOne(targetDocument="User")
      * @Expose()
+     * @Type("string")
      */
     protected $author;
 
