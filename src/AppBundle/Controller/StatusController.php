@@ -97,10 +97,11 @@ class StatusController extends FOSRestController
         }
 
         $dreams = $manager->getRepository('AppBundle:Dream')->findByStatuses($status);
+
         $restView = View::create();
 
-        if (count($dreams) == 0) {
-            $restView->setStatusCode(204);
+        if (!in_array($paramFetcher->get('status'), ['submitted', 'rejected'])) {
+            $restView->setStatusCode(400);
         }
 
         $restView->setData($dreams);
