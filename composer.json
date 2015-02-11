@@ -26,7 +26,9 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "doctrine/data-fixtures": "dev-master",
         "doctrine/doctrine-fixtures-bundle": "2.2.*",
-        "hautelook/alice-bundle": "0.1.*"
+        "hautelook/alice-bundle": "0.1.*",
+        "phpunit/phpunit": "4.7.*@dev",
+        "guzzle/guzzle": "3.9.*@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

@@ -4,7 +4,7 @@ namespace AppBundle\Tests\Controller;
 
 class EquipmentResourceControllerTest extends AbstractApiTest
 {
-    public function testGet()
+    public function testGetEquipmentResourcesAction()
     {
         $client   = static::createClient();
         $crawler  = $client->request('GET', '/equipment/resources');

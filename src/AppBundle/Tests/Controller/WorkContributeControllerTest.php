@@ -4,7 +4,7 @@ namespace AppBundle\Tests\Controller;
 
 class WorkContributeControllerTest extends AbstractApiTest
 {
-    public function testGet()
+    public function testGetWorkContributesAction()
     {
         $client   = static::createClient();
         $crawler  = $client->request('GET', '/work/contributes');

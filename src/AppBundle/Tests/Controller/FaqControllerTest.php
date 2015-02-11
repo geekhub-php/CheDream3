@@ -4,7 +4,7 @@ namespace AppBundle\Tests\Controller;
 
 class FaqControllerTest extends AbstractApiTest
 {
-    public function testGet()
+    public function testGetFaqAction()
     {
         $client   = static::createClient();
         $crawler  = $client->request('GET', '/faqs');
