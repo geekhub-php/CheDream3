@@ -4,7 +4,7 @@ namespace AppBundle\Tests\Controller;
 
 class StatusControllerTest extends AbstractApiTest
 {
-    public function testGet()
+    public function testGetStatusAction()
     {
         $client   = static::createClient();
         $crawler  = $client->request('GET', '/status');

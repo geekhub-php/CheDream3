@@ -16,7 +16,7 @@ class FaqController extends FOSRestController
      * @ApiDoc(
      * resource = true,
      * description = "Gets all Faq",
-     * output = "AppBundle\Document\Faq",
+     * output="array<AppBundle\Document\Faq>",
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the Faqs is not found"
@@ -25,6 +25,7 @@ class FaqController extends FOSRestController
      *
      *
      * RestView()
+     * @param
      * @return View
      *
      * @throws NotFoundHttpException when page not exist
@@ -34,6 +35,11 @@ class FaqController extends FOSRestController
         $manager = $this->get('doctrine_mongodb')->getManager();
         $faqs = $manager->getRepository('AppBundle:Faq')->findAll();
         $restView = View::create();
+
+        if (count($faqs) == 0) {
+            $restView->setStatusCode(204);
+        }
+
         $restView->setData($faqs);
 
         return $restView;

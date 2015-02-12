@@ -16,7 +16,7 @@ class UsersController extends FOSRestController
      * @ApiDoc(
      * resource = true,
      * description = "Gets all Users",
-     * output = "AppBundle\Document\UserContribute",
+     * output="array<AppBundle\Document\User>",
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the user is not found"
@@ -32,8 +32,49 @@ class UsersController extends FOSRestController
     public function getUsersAction()
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $user = $manager->getRepository('AppBundle:User')->findAll();
+        $users = $manager->getRepository('AppBundle:User')->findAll();
         $restView = View::create();
+
+        if (count($users) == 0) {
+            $restView->setStatusCode(204);
+
+            return $restView;
+        }
+
+        $restView->setData($users);
+
+        return $restView;
+    }
+
+    /**
+     * Get User for id,
+     *
+     * @ApiDoc(
+     * resource = true,
+     * description = "Gets User for id",
+     * output="array<AppBundle\Document\User>",
+     * statusCodes = {
+     *      200 = "Returned when successful",
+     *      404 = "Returned when the user is not found"
+     * }
+     * )
+     *
+     * RestView()
+     * @param
+     * @return View
+     *
+     * @throws NotFoundHttpException when page not exist
+     */
+    public function getUserAction($id)
+    {
+        $manager = $this->get('doctrine_mongodb')->getManager();
+        $user = $manager->getRepository('AppBundle:User')->findById($id);
+        $restView = View::create();
+
+        if (count($user) == 0) {
+            $restView->setStatusCode(204);
+        }
+
         $restView->setData($user);
 
         return $restView;

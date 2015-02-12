@@ -4,7 +4,7 @@ namespace AppBundle\Tests\Controller;
 
 class FinancialContributeControllerTest extends AbstractApiTest
 {
-    public function testGet()
+    public function testGetFinancialContributesAction()
     {
         $client   = static::createClient();
         $crawler  = $client->request('GET', '/financial/contributes');

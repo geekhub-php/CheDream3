@@ -5,6 +5,7 @@ namespace AppBundle\Document;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
@@ -23,6 +24,7 @@ class Dream
      *
      * @ODM\Id
      * @Expose()
+     * @Type("integer")
      */
     protected $id;
 
@@ -35,6 +37,7 @@ class Dream
      * @Assert\Length(min = "5", minMessage = "dream.min_length")
      * @ODM\Field(type="string")
      * @Expose()
+     * @Type("string")
      */
     protected $title;
 
@@ -46,7 +49,7 @@ class Dream
      * @Assert\NotBlank(message = "dream.not_blank")
      * @ODM\Field(type="string")
      * @Expose()
-     *
+     * @Type("string")
      */
     protected $description;
 
@@ -55,6 +58,7 @@ class Dream
      *
      * @ODM\Field(type="string")
      * @Expose()
+     * @Type("string")
      */
     protected $rejectedDescription;
 
@@ -63,7 +67,7 @@ class Dream
      *
      * @ODM\Field(type="string")
      * @Expose()
-     *
+     * @Type("string")
      */
     protected $implementedDescription;
 
@@ -72,6 +76,7 @@ class Dream
      *
      * @ODM\Field(type="string")
      * @Expose()
+     * @Type("string")
      */
     protected $completedDescription;
 
@@ -82,6 +87,7 @@ class Dream
      * @Assert\Regex(pattern="/^[+0-9 ()-]+$/", message="dream.only_numbers")
      * @ODM\Field(type="string")
      * @Expose()
+     * @Type("string")
      */
     protected $phone;
 
@@ -91,6 +97,7 @@ class Dream
      * @Gedmo\Slug(fields={"title"})
      * @ODM\Field(type="string")
      * @Expose()
+     * @Type("string")
      */
     protected $slug;
 
@@ -100,6 +107,7 @@ class Dream
      * @Gedmo\Timestampable(on="create")
      * @ODM\Field(type="date")
      * @Expose()
+     * @Type("DateTime")
      */
     protected $createdAt;
 
@@ -109,6 +117,7 @@ class Dream
      * @Gedmo\Timestampable(on="update")
      * @ODM\Field(type="date")
      * @Expose()
+     * @Type("DateTime")
      */
     protected $updatedAt;
 
@@ -117,6 +126,7 @@ class Dream
      *
      * @ODM\Field(type="date")
      * @Expose()
+     * @Type("DateTime")
      */
     protected $deletedAt;
 
@@ -125,6 +135,7 @@ class Dream
      *
      * @ODM\Field(type="date")
      * @Expose()
+     * @Type("DateTime")
      */
     protected $expiredDate;
 
@@ -133,6 +144,7 @@ class Dream
      *
      * @ODM\Field(type="int")
      * @Expose()
+     * @Type("integer")
      */
     protected $financialCompleted;
 
@@ -141,6 +153,7 @@ class Dream
      *
      * @ODM\Field(type="int")
      * @Expose()
+     * @Type("integer")
      */
     protected $workCompleted;
 
@@ -149,6 +162,7 @@ class Dream
      *
      * @ODM\Field(type="int")
      * @Expose()
+     * @Type("integer")
      */
     protected $equipmentCompleted;
 
@@ -157,6 +171,7 @@ class Dream
     /**
      * @ODM\ReferenceMany(targetDocument="User")
      * @Expose()
+     * @Type("array<string, User>")
      */
     protected $usersWhoFavorites = [];
 
@@ -165,12 +180,14 @@ class Dream
      *
      * @ODM\Field(type="int")
      * @Expose()
+     * @Type("integer")
      */
     protected $favoritesCount;
 
     /**
      * @ODM\ReferenceOne(targetDocument="User")
      * @Expose()
+     * @Type("string")
      */
     protected $author;
 
@@ -182,6 +199,7 @@ class Dream
     /**
      * @ODM\Field(type="string")
      * @Expose()
+     * @Type("string")
      */
     protected $currentStatus;
 
@@ -220,39 +238,49 @@ class Dream
     /**
      * @ODM\ReferenceMany(targetDocument="FinancialResource", cascade={"persist"})
      * @Expose()
+     * @Type("array<string, FinancialResource>")
      */
     protected $dreamFinancialResources;
 
     /**
      * @ODM\ReferenceMany(targetDocument="EquipmentResource", cascade={"persist"})
      * @Expose()
+     * @Type("array<string, EquipmentResource>")
      */
     protected $dreamEquipmentResources;
 
     /**
      * @ODM\ReferenceMany(targetDocument="WorkResource", cascade={"persist"})
      * @Expose()
+     * @Type("array<string, WorkResource>")
      */
     protected $dreamWorkResources;
 
     /**
      * @ODM\ReferenceMany(targetDocument="FinancialContribute")
      * @Expose()
+     * @Type("array<string, FinancialContribute>")
      */
     protected $dreamFinancialContributions;
 
     /**
      * @ODM\ReferenceMany(targetDocument="EquipmentContribute")
+     * @Expose()
+     * @Type("array<string, EquipmentContribute>")
      */
     protected $dreamEquipmentContributions;
 
     /**
      * @ODM\ReferenceMany(targetDocument="WorkContribute")
+     * @Expose()
+     * @Type("array<string, WorkContribute>")
      */
     protected $dreamWorkContributions;
 
     /**
      * @ODM\ReferenceMany(targetDocument="OtherContribute")
+     * @Expose()
+     * @Type("array<string, OtherContribute>")
      */
     protected $dreamOtherContributions;
 

@@ -5,8 +5,12 @@ namespace AppBundle\Document;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 
 /**
+ * Class WorkResource
+ * @package AppBundle\Document
+ *
  *@ODM\Document(collection="work_resource")
  * @ExclusionPolicy("all")
  */
@@ -17,6 +21,7 @@ class WorkResource extends AbstractResource
      *
      * @ODM\Id
      * @Expose()
+     * @Type("integer")
      */
     protected $id;
 
@@ -25,6 +30,7 @@ class WorkResource extends AbstractResource
      *
      * @ODM\Field(type="string")
      * @Expose()
+     * @Type("string")
      */
     protected $title;
 
@@ -33,6 +39,7 @@ class WorkResource extends AbstractResource
      *
      * @ODM\Field(type="date")
      * @Expose()
+     * @Type("DateTime")
      */
     protected $createdAt;
 
@@ -41,6 +48,7 @@ class WorkResource extends AbstractResource
      *
      * @ODM\Field(type="float")
      * @Expose()
+     * @Type("float")
      */
     protected $quantity;
 
