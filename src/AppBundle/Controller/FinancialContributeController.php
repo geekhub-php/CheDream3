@@ -33,17 +33,16 @@ class FinancialContributeController extends FOSRestController
      * @RestView
      *
      * @param  ParamFetcher $paramFetcher
-     * @param  Request $request
      * @return View
      *
      * @throws NotFoundHttpException when not exist
      */
-    public function getFinancialContributesAction(Request $request, ParamFetcher $paramFetcher)
+    public function getFinancialContributesAction(ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $financialContributesQuery = $manager->createQueryBuilder('AppBundle:FinancialContribute')->getQuery();
+        $financialQuery = $manager->createQueryBuilder('AppBundle:FinancialContribute')->getQuery();
 
-        if (count($financialContributesQuery) == 0) {
+        if (count($financialQuery) == 0) {
             throw new Exception("204 No Content");
         }
 
@@ -52,12 +51,12 @@ class FinancialContributeController extends FOSRestController
 
 
         $paginator  = $this->get('knp_paginator');
-        $financialContributesQuery = $paginator->paginate(
-            $financialContributesQuery,
-            $request->query->get('page', $page),
+        $financialQuery = $paginator->paginate(
+            $financialQuery,
+            $paramFetcher->get('page', $page),
             $limit
         );
 
-        return $financialContributesQuery;
+        return $financialQuery;
     }
 }

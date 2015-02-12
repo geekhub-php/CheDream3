@@ -33,12 +33,11 @@ class FaqController extends FOSRestController
      * @RestView
      *
      * @param  ParamFetcher $paramFetcher
-     * @param  Request $request
      * @return View
      *
      * @throws NotFoundHttpException when not exist
      */
-    public function getFaqsAction(Request $request, ParamFetcher $paramFetcher)
+    public function getFaqsAction(ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
         $faqsQuery = $manager->createQueryBuilder('AppBundle:Faq')->getQuery();
@@ -50,11 +49,10 @@ class FaqController extends FOSRestController
         $limit = $paramFetcher->get('limit');
         $page = $paramFetcher->get('page');
 
-
         $paginator  = $this->get('knp_paginator');
         $faqsQuery = $paginator->paginate(
             $faqsQuery,
-            $request->query->get('page', $page),
+            $paramFetcher->get('page', $page),
             $limit
         );
 

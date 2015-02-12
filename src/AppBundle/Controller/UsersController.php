@@ -33,12 +33,11 @@ class UsersController extends FOSRestController
      * @RestView
      *
      * @param  ParamFetcher $paramFetcher
-     * @param  Request $request
      * @return View
      *
      * @throws NotFoundHttpException when not exist
      */
-    public function getUsersAction(Request $request, ParamFetcher $paramFetcher)
+    public function getUsersAction(ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
         $users = $manager->createQueryBuilder('AppBundle:User')->getQuery();
@@ -50,11 +49,10 @@ class UsersController extends FOSRestController
         $limit = $paramFetcher->get('limit');
         $page = $paramFetcher->get('page');
 
-
         $paginator  = $this->get('knp_paginator');
         $users = $paginator->paginate(
             $users,
-            $request->query->get('page', $page),
+            $paramFetcher->get('page', $page),
             $limit
         );
 

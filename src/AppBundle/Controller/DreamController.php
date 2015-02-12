@@ -33,12 +33,11 @@ class DreamController extends FOSRestController
      * @RestView
      *
      * @param  ParamFetcher $paramFetcher
-     * @param  Request $request
      * @return View
      *
      * @throws NotFoundHttpException when not exist
      */
-    public function getDreamsAction(Request $request, ParamFetcher $paramFetcher)
+    public function getDreamsAction(ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
         $dreamsQuery = $manager->createQueryBuilder('AppBundle:Dream')->getQuery();
@@ -53,7 +52,7 @@ class DreamController extends FOSRestController
         $paginator  = $this->get('knp_paginator');
         $dreamsQuery = $paginator->paginate(
             $dreamsQuery,
-            $request->query->get('page', $page),
+            $paramFetcher->get('page', $page),
             $limit
         );
 
