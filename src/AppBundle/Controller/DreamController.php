@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
@@ -26,15 +27,23 @@ class DreamController extends FOSRestController
      *
      *
      * RestView()
-     * @param
+     * @param  Request $request
      * @return View
      *
      * @throws NotFoundHttpException when not exist
      */
-    public function getDreamsAction()
+    public function getDreamsAction(Request $request)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
         $dreams = $manager->getRepository('AppBundle:Dream')->findAll();
+
+        $paginator  = $this->get('knp_paginator');
+        $dreams = $paginator->paginate(
+            $dreams,
+            $request->query->get('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
         $restView = View::create();
 
         if (count($dreams) == 0) {
