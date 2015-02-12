@@ -59,43 +59,14 @@ class DreamController extends FOSRestController
      */
     public function postDreamAction(Request $request)
     {
-        $data = $request->request;
+        $data = $request->request->all();
         $user = $this->getUser();
+
+        $data = $this->get('serializer')->serialize($data, 'json');
+        $dream = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
+
+        var_dump($dream);
         $dm = $this->get('doctrine.odm.mongodb.document_manager');
-
-        $dream = new Dream();
-        $dream->setTitle($data->get('title'));
-        $dream->setDescription($data->get('description'));
-        $dream->setPhone($data->get('phone'));
-        $dream->setAuthor($user);
-
-        foreach ($data->get('equipment_resource') as $equipment) {
-            $er = new EquipmentResource();
-
-            $er->setTitle($equipment['title']);
-            $er->setQuantity($equipment['quantity']);
-            $er->setQuantityType($equipment['quantityType']);
-
-            $dm->persist($er);
-        }
-
-        foreach ($data->get('financial_resource') as $financial) {
-            $fr = new FinancialResource();
-
-            $fr->setTitle($financial['title']);
-            $fr->setQuantity($financial['quantity']);;
-
-            $dm->persist($fr);
-        }
-
-        foreach ($data->get('work_resource') as $work) {
-            $wr = new WorkResource();
-
-            $wr->setTitle($work['title']);
-            $wr->setQuantity($work['quantity']);
-
-            $dm->persist($wr);
-        }
 
         $restView = View::create();
         $restView->setStatusCode(201);
