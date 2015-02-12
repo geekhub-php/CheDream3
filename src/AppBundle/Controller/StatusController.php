@@ -7,6 +7,10 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
+use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\Request;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
+use FOS\RestBundle\Request\ParamFetcher;
 
 class StatusController extends FOSRestController
 {
@@ -23,24 +27,37 @@ class StatusController extends FOSRestController
      * }
      * )
      *
-     * RestView()
-     * @param
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count statuses at one page")
+     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
+     *
+     * @RestView
+     *
+     * @param  ParamFetcher $paramFetcher
+     * @param  Request $request
      * @return View
      *
-     * @throws NotFoundHttpException when page not exist
+     * @throws NotFoundHttpException when not exist
      */
-    public function getStatusAction()
+    public function getStatusAction(Request $request, ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $status = $manager->getRepository('AppBundle:Status')->findAll();
-        $restView = View::create();
+        $status = $manager->createQueryBuilder('AppBundle:EquipmentResource')->getQuery();
 
         if (count($status) == 0) {
-            $restView->setStatusCode(204);
+            throw new Exception("204 No Content");
         }
 
-        $restView->setData($status);
+        $limit = $paramFetcher->get('limit');
+        $page = $paramFetcher->get('page');
 
-        return $restView;
+
+        $paginator  = $this->get('knp_paginator');
+        $status = $paginator->paginate(
+            $status,
+            $request->query->get('page', $page),
+            $limit
+        );
+
+        return $status;
     }
 }
