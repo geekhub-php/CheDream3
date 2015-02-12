@@ -106,8 +106,9 @@ class DreamController extends FOSRestController
         $data = $this->get('serializer')->serialize($data, 'json');
         $dream = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
 
-        var_dump($dream);
         $dm = $this->get('doctrine.odm.mongodb.document_manager');
+        $dm->persist($dream);
+        $dm->flush();
 
         $restView = View::create();
         $restView->setStatusCode(201);
