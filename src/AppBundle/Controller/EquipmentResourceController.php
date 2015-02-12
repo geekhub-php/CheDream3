@@ -33,31 +33,29 @@ class EquipmentResourceController extends FOSRestController
      * @RestView
      *
      * @param  ParamFetcher $paramFetcher
-     * @param  Request $request
      * @return View
      *
      * @throws NotFoundHttpException when not exist
      */
-    public function getEquipmentResourcesAction(Request $request, ParamFetcher $paramFetcher)
+    public function getEquipmentResourcesAction(ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $equipmentResourcesQuery = $manager->createQueryBuilder('AppBundle:EquipmentResource')->getQuery();
+        $equipmentQuery = $manager->createQueryBuilder('AppBundle:EquipmentResource')->getQuery();
 
-        if (count($equipmentResourcesQuery) == 0) {
+        if (count($equipmentQuery) == 0) {
             throw new Exception("204 No Content");
         }
 
         $limit = $paramFetcher->get('limit');
         $page = $paramFetcher->get('page');
 
-
         $paginator  = $this->get('knp_paginator');
-        $equipmentResourcesQuery = $paginator->paginate(
-            $equipmentResourcesQuery,
-            $request->query->get('page', $page),
+        $equipmentQuery = $paginator->paginate(
+            $equipmentQuery,
+            $paramFetcher->get('page', $page),
             $limit
         );
 
-        return $equipmentResourcesQuery;
+        return $equipmentQuery;
     }
 }

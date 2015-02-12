@@ -33,31 +33,29 @@ class FinancialResourceController extends FOSRestController
      * @RestView
      *
      * @param  ParamFetcher $paramFetcher
-     * @param  Request $request
      * @return View
      *
      * @throws NotFoundHttpException when not exist
      */
-    public function getFinancialResourcesAction(Request $request, ParamFetcher $paramFetcher)
+    public function getFinancialResourcesAction(ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $financialResourcesQuery = $manager->createQueryBuilder('AppBundle:FinancialResource')->getQuery();
+        $financialQuery = $manager->createQueryBuilder('AppBundle:FinancialResource')->getQuery();
 
-        if (count($financialResourcesQuery) == 0) {
+        if (count($financialQuery) == 0) {
             throw new Exception("204 No Content");
         }
 
         $limit = $paramFetcher->get('limit');
         $page = $paramFetcher->get('page');
 
-
         $paginator  = $this->get('knp_paginator');
-        $financialResourcesQuery = $paginator->paginate(
-            $financialResourcesQuery,
-            $request->query->get('page', $page),
+        $financialQuery = $paginator->paginate(
+            $financialQuery,
+            $paramFetcher->get('page', $page),
             $limit
         );
 
-        return $financialResourcesQuery;
+        return $financialQuery;
     }
 }

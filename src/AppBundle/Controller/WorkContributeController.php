@@ -33,31 +33,29 @@ class WorkContributeController extends FOSRestController
      * @RestView
      *
      * @param  ParamFetcher $paramFetcher
-     * @param  Request $request
      * @return View
      *
      * @throws NotFoundHttpException when not exist
      */
-    public function getWorkContributesAction(Request $request, ParamFetcher $paramFetcher)
+    public function getWorkContributesAction(ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $workContributes = $manager->createQueryBuilder('AppBundle:WorkContribute')->getQuery();
+        $workQuery = $manager->createQueryBuilder('AppBundle:WorkContribute')->getQuery();
 
-        if (count($workContributes) == 0) {
+        if (count($workQuery) == 0) {
             throw new Exception("204 No Content");
         }
 
         $limit = $paramFetcher->get('limit');
         $page = $paramFetcher->get('page');
 
-
         $paginator  = $this->get('knp_paginator');
-        $workContributes = $paginator->paginate(
-            $workContributes,
-            $request->query->get('page', $page),
+        $workQuery = $paginator->paginate(
+            $workQuery,
+            $paramFetcher->get('page', $page),
             $limit
         );
 
-        return $workContributes;
+        return $workQuery;
     }
 }

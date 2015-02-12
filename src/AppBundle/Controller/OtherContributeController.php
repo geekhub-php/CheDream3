@@ -33,12 +33,11 @@ class OtherContributeController extends FOSRestController
      * @RestView
      *
      * @param  ParamFetcher $paramFetcher
-     * @param  Request $request
      * @return View
      *
      * @throws NotFoundHttpException when not exist
      */
-    public function getOtherContributesAction(Request $request, ParamFetcher $paramFetcher)
+    public function getOtherContributesAction(ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
         $contributesQuery = $manager->createQueryBuilder('AppBundle:OtherContribute')->getQuery();
@@ -50,11 +49,10 @@ class OtherContributeController extends FOSRestController
         $limit = $paramFetcher->get('limit');
         $page = $paramFetcher->get('page');
 
-
         $paginator  = $this->get('knp_paginator');
         $contributesQuery = $paginator->paginate(
             $contributesQuery,
-            $request->query->get('page', $page),
+            $paramFetcher->get('page', $page),
             $limit
         );
 

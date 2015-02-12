@@ -33,12 +33,11 @@ class StatusController extends FOSRestController
      * @RestView
      *
      * @param  ParamFetcher $paramFetcher
-     * @param  Request $request
      * @return View
      *
      * @throws NotFoundHttpException when not exist
      */
-    public function getStatusAction(Request $request, ParamFetcher $paramFetcher)
+    public function getStatusAction(ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
         $status = $manager->createQueryBuilder('AppBundle:Status')->getQuery();
@@ -50,11 +49,10 @@ class StatusController extends FOSRestController
         $limit = $paramFetcher->get('limit');
         $page = $paramFetcher->get('page');
 
-
         $paginator  = $this->get('knp_paginator');
         $status = $paginator->paginate(
             $status,
-            $request->query->get('page', $page),
+            $paramFetcher->get('page', $page),
             $limit
         );
 

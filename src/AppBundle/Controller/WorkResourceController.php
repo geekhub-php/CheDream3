@@ -33,31 +33,29 @@ class WorkResourceController extends FOSRestController
      * @RestView
      *
      * @param  ParamFetcher $paramFetcher
-     * @param  Request $request
      * @return View
      *
      * @throws NotFoundHttpException when not exist
      */
-    public function getWorkResourcesAction(Request $request, ParamFetcher $paramFetcher)
+    public function getWorkResourcesAction(ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $workResources = $manager->createQueryBuilder('AppBundle:WorkResource')->getQuery();
+        $workQuery = $manager->createQueryBuilder('AppBundle:WorkResource')->getQuery();
 
-        if (count($workResources) == 0) {
+        if (count($workQuery) == 0) {
             throw new Exception("204 No Content");
         }
 
         $limit = $paramFetcher->get('limit');
         $page = $paramFetcher->get('page');
 
-
         $paginator  = $this->get('knp_paginator');
-        $workResources = $paginator->paginate(
-            $workResources,
-            $request->query->get('page', $page),
+        $workQuery = $paginator->paginate(
+            $workQuery,
+            $paramFetcher->get('page', $page),
             $limit
         );
 
-        return $workResources;
+        return $workQuery;
     }
 }
