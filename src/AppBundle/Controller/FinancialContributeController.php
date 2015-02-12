@@ -41,7 +41,7 @@ class FinancialContributeController extends FOSRestController
     public function getFinancialContributesAction(Request $request, ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $financialContributesQuery = $manager->createQueryBuilder('AppBundle:EquipmentResource')->getQuery();
+        $financialContributesQuery = $manager->createQueryBuilder('AppBundle:FinancialContribute')->getQuery();
 
         if (count($financialContributesQuery) == 0) {
             throw new Exception("204 No Content");

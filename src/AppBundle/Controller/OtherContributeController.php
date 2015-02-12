@@ -41,7 +41,7 @@ class OtherContributeController extends FOSRestController
     public function getOtherContributesAction(Request $request, ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $contributesQuery = $manager->createQueryBuilder('AppBundle:EquipmentResource')->getQuery();
+        $contributesQuery = $manager->createQueryBuilder('AppBundle:OtherContribute')->getQuery();
 
         if (count($contributesQuery) == 0) {
             throw new Exception("204 No Content");
