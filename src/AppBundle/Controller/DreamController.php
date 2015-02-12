@@ -91,7 +91,15 @@ class DreamController extends FOSRestController
      *
      * @ApiDoc(
      *      resource = true,
-     *      description = "Create single dream"
+     *      description = "Create single dream",
+     *      parameters={
+     *          {"name"="title", "dataType"="string", "required"=true, "description"="Dream name"},
+     *          {"name"="description", "dataType"="string", "required"=true, "description"="Description about dream"},
+     *          {"name"="phone", "dataType"="integer", "required"=true, "description"="Phone number", "format"="(xxx) xxx xxx xxx"}
+     *      },
+     *      statusCodes = {
+                201 = "Dream sucessful created"
+     *      }
      * )
      *
      * @param Request $request
