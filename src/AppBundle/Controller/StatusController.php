@@ -61,8 +61,7 @@ class StatusController extends FOSRestController
      *
      * RestView()
      *
-     * @QueryParam(name="status", requirements="[a-z]+", description="Status")
-     *
+     * @QueryParam(name="status", strict=true, requirements="[a-z]+", description="Status", nullable=false)
      * @param  ParamFetcher $paramFetcher
      * @return View
      *
@@ -70,58 +69,21 @@ class StatusController extends FOSRestController
      */
     public function getDreamsAction(ParamFetcher $paramFetcher)
     {
+        $status = $paramFetcher->get('status');
+
         $manager = $this->get('doctrine_mongodb')->getManager();
 
-        $restView = View::create();
+        $dreams = $manager->createQueryBuilder('AppBundle:Dream')
+            ->field('currentStatus')->equals($status)
+            ->getQuery()->execute()->toArray();
 
-        switch ($paramFetcher->get('status')) {
-            case 'submitted':
-                $dreams = $manager->createQueryBuilder('AppBundle:Dream')
-                    ->field('status')->equals('submitted')
-                    ->getQuery()->execute();
-                $restView->setData($dreams);
-                break;
-            case 'rejected':
-                $dreams = $manager->createQueryBuilder('AppBundle:Dream')
-                    ->field('status')->equals('rejected')
-                    ->getQuery()->execute();
-                $restView->setData($dreams);
-                break;
-            case 'collecting-resources':
-                $dreams = $manager->createQueryBuilder('AppBundle:Dream')
-                    ->field('status')->equals('collecting-resources')
-                    ->getQuery()->execute();
-                $restView->setData($dreams);
-                break;
-            case 'implementing':
-                $dreams = $manager->createQueryBuilder('AppBundle:Dream')
-                    ->field('status')->equals('implementing')
-                    ->getQuery()->execute();
-                $restView->setData($dreams);
-                break;
-            case 'completed':
-                $dreams = $manager->createQueryBuilder('AppBundle:Dream')
-                    ->field('status')->equals('completed')
-                    ->getQuery()->execute();
-                $restView->setData($dreams);
-                break;
-            case 'success':
-                $dreams = $manager->createQueryBuilder('AppBundle:Dream')
-                    ->field('status')->equals('success')
-                    ->getQuery()->execute();
-                $restView->setData($dreams);
-                break;
-            case 'fail':
-                $dreams = $manager->createQueryBuilder('AppBundle:Dream')
-                    ->field('status')->equals('fail')
-                    ->getQuery()->execute();
-                $restView->setData($dreams);
-                break;
-        }
+        $restView = View::create();
 
         if (!in_array($paramFetcher->get('status'), ['submitted', 'rejected'])) {
             $restView->setStatusCode(400);
         }
+
+        $restView->setData($dreams);
 
         return $restView;
     }
