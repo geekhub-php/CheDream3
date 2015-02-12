@@ -9,7 +9,6 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
-use Symfony\Component\Validator\Constraints\All;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 
@@ -34,7 +33,7 @@ class DreamController extends FOSRestController
      * @RestView
      *
      * @param  ParamFetcher $paramFetcher
-     * @param  Request      $request
+     * @param  Request $request
      * @return View
      *
      * @throws NotFoundHttpException when not exist
@@ -43,6 +42,10 @@ class DreamController extends FOSRestController
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
         $dreamsQuery = $manager->createQueryBuilder('AppBundle:Dream')->getQuery();
+
+        if (count($dreamsQuery) == 0) {
+            throw new Exception("204 No Content");
+        }
 
         $limit = $paramFetcher->get('limit');
         $page = $paramFetcher->get('page');
@@ -53,10 +56,6 @@ class DreamController extends FOSRestController
             $request->query->get('page', $page),
             $limit
         );
-
-        if (count($dreamsQuery) == 0) {
-            throw new Exception("204 No Content");
-        }
 
         return $dreamsQuery;
     }
