@@ -27,7 +27,7 @@ class FaqController extends FOSRestController
      * }
      * )
      *
-     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count resources contributes at one page")
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count faqs at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      *
      * @RestView
