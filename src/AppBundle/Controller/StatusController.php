@@ -41,7 +41,7 @@ class StatusController extends FOSRestController
     public function getStatusAction(Request $request, ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $status = $manager->createQueryBuilder('AppBundle:EquipmentResource')->getQuery();
+        $status = $manager->createQueryBuilder('AppBundle:Status')->getQuery();
 
         if (count($status) == 0) {
             throw new Exception("204 No Content");

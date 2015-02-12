@@ -41,7 +41,7 @@ class FaqController extends FOSRestController
     public function getFaqsAction(Request $request, ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $faqsQuery = $manager->createQueryBuilder('AppBundle:EquipmentResource')->getQuery();
+        $faqsQuery = $manager->createQueryBuilder('AppBundle:Faq')->getQuery();
 
         if (count($faqsQuery) == 0) {
             throw new Exception("204 No Content");

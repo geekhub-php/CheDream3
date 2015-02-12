@@ -7,6 +7,10 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
+use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\Request;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
+use FOS\RestBundle\Request\ParamFetcher;
 
 class WorkResourceController extends FOSRestController
 {
@@ -22,25 +26,38 @@ class WorkResourceController extends FOSRestController
      *      404 = "Returned when the WorkContributes is not found"
      * }
      * )
+     * *
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count work resources at one page")
+     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      *
-     * RestView()
-     * @param
+     * @RestView
+     *
+     * @param  ParamFetcher $paramFetcher
+     * @param  Request $request
      * @return View
      *
-     * @throws NotFoundHttpException when page not exist
+     * @throws NotFoundHttpException when not exist
      */
-    public function getWorkResourcesAction()
+    public function getWorkResourcesAction(Request $request, ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $workResources = $manager->getRepository('AppBundle:WorkResource')->findAll();
-        $restView = View::create();
+        $workResources = $manager->createQueryBuilder('AppBundle:WorkResource')->getQuery();
 
         if (count($workResources) == 0) {
-            $restView->setStatusCode(204);
+            throw new Exception("204 No Content");
         }
 
-        $restView->setData($workResources);
+        $limit = $paramFetcher->get('limit');
+        $page = $paramFetcher->get('page');
 
-        return $restView;
+
+        $paginator  = $this->get('knp_paginator');
+        $workResources = $paginator->paginate(
+            $workResources,
+            $request->query->get('page', $page),
+            $limit
+        );
+
+        return $workResources;
     }
 }

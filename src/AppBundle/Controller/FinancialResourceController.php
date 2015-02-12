@@ -41,7 +41,7 @@ class FinancialResourceController extends FOSRestController
     public function getFinancialResourcesAction(Request $request, ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $financialResourcesQuery = $manager->createQueryBuilder('AppBundle:EquipmentResource')->getQuery();
+        $financialResourcesQuery = $manager->createQueryBuilder('AppBundle:FinancialResource')->getQuery();
 
         if (count($financialResourcesQuery) == 0) {
             throw new Exception("204 No Content");
