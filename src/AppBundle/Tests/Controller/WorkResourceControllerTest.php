@@ -4,7 +4,7 @@ namespace AppBundle\Tests\Controller;
 
 class WorkResourceControllerTest extends AbstractApiTest
 {
-    public function testGet()
+    public function testGetWorkResourcesAction()
     {
         $client   = static::createClient();
         $crawler  = $client->request('GET', '/work/resources');

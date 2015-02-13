@@ -15,8 +15,8 @@ class WorkResourceController extends FOSRestController
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets all WorkContributes",
-     * output = "AppBundle\Document\WorkResource",
+     * description = "Gets all WorkResources",
+     * output="array<AppBundle\Document\WorkResource>",
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the WorkContributes is not found"
@@ -34,6 +34,11 @@ class WorkResourceController extends FOSRestController
         $manager = $this->get('doctrine_mongodb')->getManager();
         $workResources = $manager->getRepository('AppBundle:WorkResource')->findAll();
         $restView = View::create();
+
+        if (count($workResources) == 0) {
+            $restView->setStatusCode(204);
+        }
+
         $restView->setData($workResources);
 
         return $restView;

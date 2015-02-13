@@ -16,7 +16,7 @@ class EquipmentResourceController extends FOSRestController
      * @ApiDoc(
      * resource = true,
      * description = "Gets all EquipmentResources",
-     * output = "AppBundle\Document\EquipmentResource",
+     * output="array<AppBundle\Document\EquipmentResource>",
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the EquipmentResources is not found"
@@ -25,6 +25,7 @@ class EquipmentResourceController extends FOSRestController
      *
      *
      * RestView()
+     * @param
      * @return View
      *
      * @throws NotFoundHttpException when page not exist
@@ -34,6 +35,11 @@ class EquipmentResourceController extends FOSRestController
         $manager = $this->get('doctrine_mongodb')->getManager();
         $equipmentResources = $manager->getRepository('AppBundle:EquipmentResource')->findAll();
         $restView = View::create();
+
+        if (count($equipmentResources) == 0) {
+            $restView->setStatusCode(204);
+        }
+
         $restView->setData($equipmentResources);
 
         return $restView;

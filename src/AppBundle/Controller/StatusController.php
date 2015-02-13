@@ -11,12 +11,12 @@ use FOS\RestBundle\View\View;
 class StatusController extends FOSRestController
 {
     /**
-     * Get status,
+     * Get Status,
      *
      * @ApiDoc(
      * resource = true,
      * description = "Gets all statuses",
-     * output = "AppBundle\Document\Status",
+     * output="array<AppBundle\Document\Status>",
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the status is not found"
@@ -34,6 +34,11 @@ class StatusController extends FOSRestController
         $manager = $this->get('doctrine_mongodb')->getManager();
         $status = $manager->getRepository('AppBundle:Status')->findAll();
         $restView = View::create();
+
+        if (count($status) == 0) {
+            $restView->setStatusCode(204);
+        }
+
         $restView->setData($status);
 
         return $restView;

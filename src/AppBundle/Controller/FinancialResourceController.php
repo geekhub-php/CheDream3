@@ -16,7 +16,7 @@ class FinancialResourceController extends FOSRestController
      * @ApiDoc(
      * resource = true,
      * description = "Gets all FinancialResources",
-     * output = "AppBundle\Document\FinancialResource",
+     * output="array<AppBundle\Document\FinancialResource>",
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the FinancialResources is not found"
@@ -35,6 +35,11 @@ class FinancialResourceController extends FOSRestController
         $manager = $this->get('doctrine_mongodb')->getManager();
         $financialResources = $manager->getRepository('AppBundle:FinancialResource')->findAll();
         $restView = View::create();
+
+        if (count($financialResources) == 0) {
+            $restView->setStatusCode(204);
+        }
+
         $restView->setData($financialResources);
 
         return $restView;

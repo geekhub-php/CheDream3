@@ -16,7 +16,7 @@ class FinancialContributeController extends FOSRestController
      * @ApiDoc(
      * resource = true,
      * description = "Gets all FinancialContributes",
-     * output = "AppBundle\Document\FinancialContribute",
+     * output="array<AppBundle\Document\FinancialContribute>",
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the FinancialContributes is not found"
@@ -25,7 +25,8 @@ class FinancialContributeController extends FOSRestController
      *
      *
      * RestView()
-     * @return mixed
+     * @param
+     * @return View
      *
      * @throws NotFoundHttpException when page not exist
      */
@@ -34,6 +35,11 @@ class FinancialContributeController extends FOSRestController
         $manager = $this->get('doctrine_mongodb')->getManager();
         $financialContributes = $manager->getRepository('AppBundle:FinancialContribute')->findAll();
         $restView = View::create();
+
+        if (count($financialContributes) == 0) {
+            $restView->setStatusCode(204);
+        }
+
         $restView->setData($financialContributes);
 
         return $restView;

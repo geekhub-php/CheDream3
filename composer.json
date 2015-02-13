@@ -19,7 +19,7 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/rest-bundle": "~1.4",
         "jms/serializer-bundle": "0.13.*",
-        "nelmio/api-doc-bundle": "~2.7",
+        "nelmio/api-doc-bundle": "2.7.*@dev",
         "stof/doctrine-extensions-bundle": "~1.1@dev",
         "doctrine/mongodb": "1.2.*@dev",
         "doctrine/mongodb-odm": "1.0.*@dev",
@@ -27,7 +27,9 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "doctrine/data-fixtures": "dev-master",
         "doctrine/doctrine-fixtures-bundle": "2.2.*",
-        "hautelook/alice-bundle": "0.1.*"
+        "hautelook/alice-bundle": "0.1.*",
+        "phpunit/phpunit": "4.7.*@dev",
+        "guzzle/guzzle": "3.9.*@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

@@ -10,7 +10,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Users
+ * Class Users
+ * @package AppBundle\Document
  *
  * @ODM\Document(collection="users")
  * @ExclusionPolicy("all")
@@ -24,6 +25,7 @@ class User extends BaseUser //implements DreamUserInterface
      *
      * @ODM\Id
      * @Expose()
+     * @JMS\Type("integer")
      */
     protected $id;
 
@@ -33,6 +35,7 @@ class User extends BaseUser //implements DreamUserInterface
      * @Assert\NotBlank()
      * @ODM\Field(type="string")
      * @Expose()
+     * @JMS\Type("string")
      */
     protected $firstName;
 
@@ -41,6 +44,7 @@ class User extends BaseUser //implements DreamUserInterface
      *
      * @ODM\Field(type="string")
      * @Expose()
+     * @JMS\Type("string")
      */
     protected $middleName;
 
@@ -49,6 +53,7 @@ class User extends BaseUser //implements DreamUserInterface
      *
      * @ODM\Field(type="string")
      * @Expose()
+     * @JMS\Type("string")
      */
     protected $lastName;
 
@@ -57,6 +62,7 @@ class User extends BaseUser //implements DreamUserInterface
      *
      * @ODM\Field(type="date")
      * @Expose()
+     * @JMS\Type("DateTime")
      */
     protected $birthday;
 
@@ -65,6 +71,7 @@ class User extends BaseUser //implements DreamUserInterface
      *
      * @ODM\Field(type="string")
      * @Expose()
+     * @JMS\Type("string")
      */
     protected $about;
 
@@ -73,6 +80,7 @@ class User extends BaseUser //implements DreamUserInterface
      *
      * @ODM\Field(name="vkontakte_id", type="string")
      * @Expose()
+     * @JMS\Type("string")
      */
     protected $vkontakteId;
 
@@ -81,6 +89,7 @@ class User extends BaseUser //implements DreamUserInterface
      *
      * @ODM\Field(name="facebook_id", type="string")
      * @Expose()
+     * @JMS\Type("string")
      */
     protected $facebookId;
 
@@ -89,6 +98,7 @@ class User extends BaseUser //implements DreamUserInterface
      *
      * @ODM\Field(name="odnoklassniki_id", type="string")
      * @Expose()
+     * @JMS\Type("string")
      */
     protected $odnoklassnikiId;
 
@@ -132,6 +142,7 @@ class User extends BaseUser //implements DreamUserInterface
      *
      * @ODM\Field(type="string")
      * @Expose()
+     * @JMS\Type("string")
      */
     protected $phone;
 
@@ -140,6 +151,7 @@ class User extends BaseUser //implements DreamUserInterface
      *
      * @ODM\Field(type="string")
      * @Expose()
+     * @JMS\Type("string")
      */
     protected $skype;
 
