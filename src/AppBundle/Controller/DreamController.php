@@ -2,17 +2,20 @@
 
 namespace AppBundle\Controller;
 
+use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
-use Symfony\Component\Validator\Constraints\All;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
+use FOS\RestBundle\Request\ParamFetcher;
 
 class DreamController extends FOSRestController
 {
     /**
-     * Gets all Dream,
+     * Gets all Dreams,
      *
      * @ApiDoc(
      * resource = true,
@@ -24,26 +27,36 @@ class DreamController extends FOSRestController
      * }
      * )
      *
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count dreams at one page")
+     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      *
-     * RestView()
-     * @param
+     * @RestView
+     *
+     * @param  ParamFetcher $paramFetcher
      * @return View
      *
      * @throws NotFoundHttpException when not exist
      */
-    public function getDreamsAction()
+    public function getDreamsAction(ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $dreams = $manager->getRepository('AppBundle:Dream')->findAll();
-        $restView = View::create();
+        $dreamsQuery = $manager->createQueryBuilder('AppBundle:Dream')->getQuery();
 
-        if (count($dreams) == 0) {
-            $restView->setStatusCode(204);
+        if (count($dreamsQuery) == 0) {
+            throw new Exception("204 No Content");
         }
 
-        $restView->setData($dreams);
+        $limit = $paramFetcher->get('limit');
+        $page = $paramFetcher->get('page');
 
-        return $restView;
+        $paginator  = $this->get('knp_paginator');
+        $dreamsQuery = $paginator->paginate(
+            $dreamsQuery,
+            $paramFetcher->get('page', $page),
+            $limit
+        );
+
+        return $dreamsQuery;
     }
 
     /**

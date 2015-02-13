@@ -7,6 +7,10 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
+use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\Request;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
+use FOS\RestBundle\Request\ParamFetcher;
 
 class FaqController extends FOSRestController
 {
@@ -23,25 +27,35 @@ class FaqController extends FOSRestController
      * }
      * )
      *
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count faqs at one page")
+     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      *
-     * RestView()
-     * @param
+     * @RestView
+     *
+     * @param  ParamFetcher $paramFetcher
      * @return View
      *
-     * @throws NotFoundHttpException when page not exist
+     * @throws NotFoundHttpException when not exist
      */
-    public function getFaqsAction()
+    public function getFaqsAction(ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $faqs = $manager->getRepository('AppBundle:Faq')->findAll();
-        $restView = View::create();
+        $faqsQuery = $manager->createQueryBuilder('AppBundle:Faq')->getQuery();
 
-        if (count($faqs) == 0) {
-            $restView->setStatusCode(204);
+        if (count($faqsQuery) == 0) {
+            throw new Exception("204 No Content");
         }
 
-        $restView->setData($faqs);
+        $limit = $paramFetcher->get('limit');
+        $page = $paramFetcher->get('page');
 
-        return $restView;
+        $paginator  = $this->get('knp_paginator');
+        $faqsQuery = $paginator->paginate(
+            $faqsQuery,
+            $paramFetcher->get('page', $page),
+            $limit
+        );
+
+        return $faqsQuery;
     }
 }

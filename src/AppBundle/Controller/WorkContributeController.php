@@ -7,6 +7,10 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
+use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\Request;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
+use FOS\RestBundle\Request\ParamFetcher;
 
 class WorkContributeController extends FOSRestController
 {
@@ -23,25 +27,35 @@ class WorkContributeController extends FOSRestController
      * }
      * )
      *
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count work contributes at one page")
+     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      *
-     * RestView()
-     * @param
+     * @RestView
+     *
+     * @param  ParamFetcher $paramFetcher
      * @return View
      *
-     * @throws NotFoundHttpException when page not exist
+     * @throws NotFoundHttpException when not exist
      */
-    public function getWorkContributesAction()
+    public function getWorkContributesAction(ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $workContributes = $manager->getRepository('AppBundle:WorkContribute')->findAll();
-        $restView = View::create();
+        $workQuery = $manager->createQueryBuilder('AppBundle:WorkContribute')->getQuery();
 
-        if (count($workContributes) == 0) {
-            $restView->setStatusCode(204);
+        if (count($workQuery) == 0) {
+            throw new Exception("204 No Content");
         }
 
-        $restView->setData($workContributes);
+        $limit = $paramFetcher->get('limit');
+        $page = $paramFetcher->get('page');
 
-        return $restView;
+        $paginator  = $this->get('knp_paginator');
+        $workQuery = $paginator->paginate(
+            $workQuery,
+            $paramFetcher->get('page', $page),
+            $limit
+        );
+
+        return $workQuery;
     }
 }
