@@ -7,10 +7,8 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
-use Symfony\Component\Config\Definition\Exception\Exception;
-use Symfony\Component\HttpFoundation\Request;
-use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
 
 class StatusController extends FOSRestController
 {
@@ -27,35 +25,66 @@ class StatusController extends FOSRestController
      * }
      * )
      *
-     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count statuses at one page")
-     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
+     * RestView()
+     * @param
+     * @return View
      *
-     * @RestView
+     * @throws NotFoundHttpException when page not exist
+     */
+    public function getStatusAction()
+    {
+        $manager = $this->get('doctrine_mongodb')->getManager();
+        $status = $manager->getRepository('AppBundle:Status')->findAll();
+        $restView = View::create();
+
+        if (count($status) == 0) {
+            $restView->setStatusCode(204);
+        }
+
+        $restView->setData($status);
+
+        return $restView;
+    }
+
+    /**
+     * Gets Dreams by status,
      *
+     * @ApiDoc(
+     * resource = true,
+     * description = "Gets Dreams by status",
+     * output =   { "class" = "AppBundle\Document\Dream", "collection" = true, "collectionName" = "status" },
+     * statusCodes = {
+     *      200 = "Returned when successful",
+     *      404 = "Returned when the status is not found"
+     * }
+     * )
+     *
+     * RestView()
+     *
+     * @QueryParam(name="status", strict=true, requirements="[a-z]+", description="Status", nullable=false)
      * @param  ParamFetcher $paramFetcher
      * @return View
      *
-     * @throws NotFoundHttpException when not exist
+     * @throws NotFoundHttpException when page not exist
      */
-    public function getStatusAction(ParamFetcher $paramFetcher)
+    public function getDreamsAction(ParamFetcher $paramFetcher)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
-        $status = $manager->createQueryBuilder('AppBundle:Status')->getQuery();
+        $status = $paramFetcher->get('status');
 
-        if (count($status) == 0) {
-            throw new Exception("204 No Content");
+        $manager = $this->get('doctrine_mongodb')->getManager();
+
+        $dreams = $manager->createQueryBuilder('AppBundle:Dream')
+            ->field('currentStatus')->equals($status)
+            ->getQuery()->execute()->toArray();
+
+        $restView = View::create();
+
+        if (!in_array($paramFetcher->get('status'), ['submitted', 'rejected'])) {
+            $restView->setStatusCode(400);
         }
 
-        $limit = $paramFetcher->get('limit');
-        $page = $paramFetcher->get('page');
+        $restView->setData($dreams);
 
-        $paginator  = $this->get('knp_paginator');
-        $status = $paginator->paginate(
-            $status,
-            $paramFetcher->get('page', $page),
-            $limit
-        );
-
-        return $status;
+        return $restView;
     }
 }
