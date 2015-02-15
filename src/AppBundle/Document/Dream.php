@@ -33,7 +33,7 @@ class Dream
      *
      * @var string
      *
-     * @Assert\NotBlank(message = "dream.not_blank")
+     * @Assert\NotBlank()
      * @Assert\Length(min = "5", minMessage = "dream.min_length")
      * @ODM\Field(type="string")
      * @Expose()
