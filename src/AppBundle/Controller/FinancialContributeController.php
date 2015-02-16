@@ -49,7 +49,6 @@ class FinancialContributeController extends FOSRestController
         $limit = $paramFetcher->get('limit');
         $page = $paramFetcher->get('page');
 
-
         $paginator  = $this->get('knp_paginator');
         $financialQuery = $paginator->paginate(
             $financialQuery,

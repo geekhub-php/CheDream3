@@ -3,9 +3,6 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Document\Dream;
-use AppBundle\Document\EquipmentResource;
-use AppBundle\Document\FinancialResource;
-use AppBundle\Document\WorkResource;
 use FOS\RestBundle\Util\Codes;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
@@ -117,8 +114,8 @@ class DreamController extends FOSRestController
      * )
      *
      *
-     * @param Request $request
-     *
+     * @param  Request $request the request object
+     * @param  int     $id      the page id
      * @return mixed
      */
     public function putDreamAction(Request $request, $id)
@@ -127,7 +124,6 @@ class DreamController extends FOSRestController
         $user = $this->getUser();
         $data = $this->get('serializer')->serialize($data, 'json');
         $dream = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
-
 
             if (!($dm = $this->get('doctrine.odm.mongodb.document_manager')->getRepository('AppBundle:Dream')->findById($id)))
 
