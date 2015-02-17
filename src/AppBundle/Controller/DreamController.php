@@ -86,7 +86,7 @@ class DreamController extends FOSRestController
     public function getDreamAction($slug)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $dream = $manager->getRepository('AppBundle:Dream')->findBySlug($slug);
+        $dream = $manager->getRepository('AppBundle:Dream')->findOneBySlug($slug);
         $restView = View::create();
 
         if (count($dream) == 0) {
@@ -125,6 +125,7 @@ class DreamController extends FOSRestController
 
         $data = $this->get('serializer')->serialize($data, 'json');
         $dream = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
+        $dream->setAuthor($user);
 
         $dm = $this->get('doctrine.odm.mongodb.document_manager');
         $dm->persist($dream);
@@ -136,3 +137,4 @@ class DreamController extends FOSRestController
         return $restView;
     }
 }
+за
