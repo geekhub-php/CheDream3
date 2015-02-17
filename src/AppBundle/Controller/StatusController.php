@@ -25,25 +25,36 @@ class StatusController extends FOSRestController
      * }
      * )
      *
-     * RestView()
-     * @param
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count statuses at one page")
+     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
+     *
+     * @RestView
+     *
+     * @param  ParamFetcher $paramFetcher
      * @return View
      *
-     * @throws NotFoundHttpException when page not exist
+     * @throws Exception
      */
-    public function getStatusAction()
+    public function getStatusAction(ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $status = $manager->getRepository('AppBundle:Status')->findAll();
-        $restView = View::create();
+        $status = $manager->createQueryBuilder('AppBundle:Status')->getQuery();
 
         if (count($status) == 0) {
-            $restView->setStatusCode(204);
+            throw new Exception("204 No Content");
         }
 
-        $restView->setData($status);
+        $limit = $paramFetcher->get('limit');
+        $page = $paramFetcher->get('page');
 
-        return $restView;
+        $paginator  = $this->get('knp_paginator');
+        $status = $paginator->paginate(
+            $status,
+            $paramFetcher->get('page', $page),
+            $limit
+        );
+
+        return $status;
     }
 
     /**
@@ -62,6 +73,8 @@ class StatusController extends FOSRestController
      * RestView()
      *
      * @QueryParam(name="status", strict=true, requirements="[a-z]+", description="Status", nullable=false)
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count statuses at one page")
+     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      * @param  ParamFetcher $paramFetcher
      * @return View
      *
@@ -76,6 +89,17 @@ class StatusController extends FOSRestController
         $dreams = $manager->createQueryBuilder('AppBundle:Dream')
             ->field('currentStatus')->equals($status)
             ->getQuery()->execute()->toArray();
+
+        $limit = $paramFetcher->get('limit');
+        $page = $paramFetcher->get('page');
+
+        $paginator  = $this->get('knp_paginator');
+
+        $dreams = $paginator->paginate(
+            $dreams,
+            $paramFetcher->get('page', $page),
+            $limit
+        );
 
         $restView = View::create();
 
