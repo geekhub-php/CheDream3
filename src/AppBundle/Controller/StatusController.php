@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
@@ -56,62 +55,5 @@ class StatusController extends FOSRestController
         );
 
         return $status;
-    }
-
-    /**
-     * Gets Dreams by status,
-     *
-     * @ApiDoc(
-     * resource = true,
-     * description = "Gets Dreams by status",
-     * output =   { "class" = "AppBundle\Document\Dream", "collection" = true, "collectionName" = "status" },
-     * statusCodes = {
-     *      200 = "Returned when successful",
-     *      404 = "Returned when the status is not found"
-     * }
-     * )
-     *
-     * RestView()
-     *
-     * @QueryParam(name="status", strict=true, requirements="[a-z]+", description="Status", nullable=true)
-     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count statuses at one page")
-     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
-     * @QueryParam(name="sort_by", strict=true, requirements="[a-z]+", description="Sort by", nullable=true)
-     * @QueryParam(name="sort_order", strict=true, requirements="[a-z]+", description="Sort order", nullable=true)
-     * @param  ParamFetcher $paramFetcher
-     * @return View
-     *
-     * @throws NotFoundHttpException when page not exist
-     */
-    public function getDreamsAction(ParamFetcher $paramFetcher)
-    {
-        $status = $paramFetcher->get('status');
-
-        $manager = $this->get('doctrine_mongodb')->getManager();
-
-        $dreams = $manager->createQueryBuilder('AppBundle:Dream')
-            ->field('currentStatus')->equals($status)
-            ->getQuery()->execute()->toArray();
-
-        $limit = $paramFetcher->get('limit');
-        $page = $paramFetcher->get('page');
-
-        $paginator  = $this->get('knp_paginator');
-
-        $dreams = $paginator->paginate(
-            $dreams,
-            $paramFetcher->get('page', $page),
-            $limit
-        );
-
-        $restView = View::create();
-
-        if (!in_array($paramFetcher->get('status'), ['submitted', 'rejected'])) {
-            $restView->setStatusCode(400);
-        }
-
-        $restView->setData($dreams);
-
-        return $restView;
     }
 }

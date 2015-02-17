@@ -15,48 +15,60 @@ use FOS\RestBundle\Request\ParamFetcher;
 class DreamController extends FOSRestController
 {
     /**
-     * Gets all Dreams,
+     * Gets Dreams by status,
      *
      * @ApiDoc(
      * resource = true,
-     * description = "Gets all Dream",
-     * output="array<AppBundle\Document\Dream>",
+     * description = "Gets Dreams by status",
+     * output =   { "class" = "AppBundle\Document\Dream", "collection" = true, "collectionName" = "status" },
      * statusCodes = {
      *      200 = "Returned when successful",
-     *      404 = "Returned when the Dream is not found"
+     *      404 = "Returned when the status is not found"
      * }
      * )
      *
-     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count dreams at one page")
+     * RestView()
+     *
+     * @QueryParam(name="status", strict=true, requirements="[a-z]+", description="Status", nullable=true)
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count statuses at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
-     *
-     * @RestView
-     *
+     * @QueryParam(name="sort_by", strict=true, requirements="[a-z]+", description="Sort by", nullable=true)
+     * @QueryParam(name="sort_order", strict=true, requirements="[a-z]+", description="Sort order", nullable=true)
      * @param  ParamFetcher $paramFetcher
      * @return View
      *
-     * @throws NotFoundHttpException when not exist
+     * @throws NotFoundHttpException when page not exist
      */
     public function getDreamsAction(ParamFetcher $paramFetcher)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
-        $dreamsQuery = $manager->createQueryBuilder('AppBundle:Dream')->getQuery();
+        $status = $paramFetcher->get('status');
 
-        if (count($dreamsQuery) == 0) {
-            throw new Exception("204 No Content");
-        }
+        $manager = $this->get('doctrine_mongodb')->getManager();
+
+        $dreams = $manager->createQueryBuilder('AppBundle:Dream')
+            ->field('currentStatus')->equals($status)
+            ->getQuery()->execute()->toArray();
 
         $limit = $paramFetcher->get('limit');
         $page = $paramFetcher->get('page');
 
         $paginator  = $this->get('knp_paginator');
-        $dreamsQuery = $paginator->paginate(
-            $dreamsQuery,
+
+        $dreams = $paginator->paginate(
+            $dreams,
             $paramFetcher->get('page', $page),
             $limit
         );
 
-        return $dreamsQuery;
+        $restView = View::create();
+
+        if (!in_array($paramFetcher->get('status'), ['submitted', 'rejected'])) {
+            $restView->setStatusCode(400);
+        }
+
+        $restView->setData($dreams);
+
+        return $restView;
     }
 
     /**
