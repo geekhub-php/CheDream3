@@ -57,4 +57,46 @@ class StatusController extends AbstractController
 
         return $status;
     }
+
+    /**
+     * Gets Dreams by status,
+     *
+     * @ApiDoc(
+     * resource = true,
+     * description = "Gets Dreams by status",
+     * output =   { "class" = "AppBundle\Document\Dream", "collection" = true, "collectionName" = "status" },
+     * statusCodes = {
+     *      200 = "Returned when successful",
+     *      404 = "Returned when the status is not found"
+     * }
+     * )
+     *
+     * @RestView
+     *
+     * @QueryParam(name="status", strict=true, requirements="[a-z]+", description="Status", nullable=false)
+     * @param  ParamFetcher $paramFetcher
+     * @return View
+     *
+     * @throws NotFoundHttpException when page not exist
+     */
+    public function getDreamsAction(ParamFetcher $paramFetcher)
+    {
+        $status = $paramFetcher->get('status');
+
+        $manager = $this->get('doctrine_mongodb')->getManager();
+
+        $dreams = $manager->createQueryBuilder('AppBundle:Dream')
+            ->field('currentStatus')->equals($status)
+            ->getQuery()->execute()->toArray();
+
+        $restView = View::create();
+
+        if (!in_array($paramFetcher->get('status'), ['submitted', 'rejected'])) {
+            $restView->setStatusCode(400);
+        }
+
+        $restView->setData($dreams);
+
+        return $restView;
+    }
 }
