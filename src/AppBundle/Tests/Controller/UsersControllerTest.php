@@ -18,7 +18,7 @@ class UsersControllerTest extends AbstractApiTest
 
     public function testGetUserAction()
     {
-        $client = new Client("http://chedream3/app_dev.php");
+        $client = new Client("http://chedream.local/app_dev.php");
         $request = $client->get('/users/54d1de7530d0c3bf178b4567');
         $response = $request->send();
 
