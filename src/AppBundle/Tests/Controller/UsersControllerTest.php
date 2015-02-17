@@ -22,6 +22,6 @@ class UsersControllerTest extends AbstractApiTest
         $request = $client->get('/users/54d1de7530d0c3bf178b4567');
         $response = $request->send();
 
-        $this->assertEquals($response->getStatusCode(),200);
+        $this->assertEquals($response->getStatusCode(), 200);
     }
 }

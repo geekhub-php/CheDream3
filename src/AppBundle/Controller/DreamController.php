@@ -3,9 +3,6 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Document\Dream;
-use AppBundle\Document\EquipmentResource;
-use AppBundle\Document\FinancialResource;
-use AppBundle\Document\WorkResource;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
