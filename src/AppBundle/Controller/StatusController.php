@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
@@ -72,9 +73,11 @@ class StatusController extends FOSRestController
      *
      * RestView()
      *
-     * @QueryParam(name="status", strict=true, requirements="[a-z]+", description="Status", nullable=false)
+     * @QueryParam(name="status", strict=true, requirements="[a-z]+", description="Status", nullable=true)
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count statuses at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
+     * @QueryParam(name="sort_by", strict=true, requirements="[a-z]+", description="Sort by", nullable=true)
+     * @QueryParam(name="sort_order", strict=true, requirements="[a-z]+", description="Sort order", nullable=true)
      * @param  ParamFetcher $paramFetcher
      * @return View
      *
