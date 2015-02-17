@@ -11,7 +11,7 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 
-class StatusController extends FOSRestController
+class StatusController extends AbstractController
 {
     /**
      * Get Status,
@@ -38,7 +38,7 @@ class StatusController extends FOSRestController
      */
     public function getStatusAction(ParamFetcher $paramFetcher)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
+        $manager = $this->getMongoDbManager();
         $status = $manager->createQueryBuilder('AppBundle:Status')->getQuery();
 
         if (count($status) == 0) {

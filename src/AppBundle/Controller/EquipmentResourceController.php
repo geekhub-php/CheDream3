@@ -11,7 +11,7 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 
-class EquipmentResourceController extends FOSRestController
+class EquipmentResourceController extends AbstractController
 {
     /**
      * Get EquipmentResources,
@@ -38,7 +38,7 @@ class EquipmentResourceController extends FOSRestController
      */
     public function getEquipmentResourcesAction(ParamFetcher $paramFetcher)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
+        $manager = $this->getMongoDbManager();
         $equipmentQuery = $manager->createQueryBuilder('AppBundle:EquipmentResource')->getQuery();
 
         if (count($equipmentQuery) == 0) {

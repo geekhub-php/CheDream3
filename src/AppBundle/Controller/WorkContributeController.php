@@ -11,7 +11,7 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 
-class WorkContributeController extends FOSRestController
+class WorkContributeController extends AbstractController
 {
     /**
      * Get WorkContributes,
@@ -38,7 +38,7 @@ class WorkContributeController extends FOSRestController
      */
     public function getWorkContributesAction(ParamFetcher $paramFetcher)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
+        $manager = $this->getMongoDbManager();
         $workQuery = $manager->createQueryBuilder('AppBundle:WorkContribute')->getQuery();
 
         if (count($workQuery) == 0) {

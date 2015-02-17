@@ -11,7 +11,7 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 
-class FinancialContributeController extends FOSRestController
+class FinancialContributeController extends AbstractController
 {
     /**
      * Get FinancialContributes,
@@ -38,7 +38,7 @@ class FinancialContributeController extends FOSRestController
      */
     public function getFinancialContributesAction(ParamFetcher $paramFetcher)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
+        $manager = $this->getMongoDbManager();
         $financialQuery = $manager->createQueryBuilder('AppBundle:FinancialContribute')->getQuery();
 
         if (count($financialQuery) == 0) {

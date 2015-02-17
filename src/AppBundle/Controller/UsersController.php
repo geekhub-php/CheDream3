@@ -11,7 +11,7 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 
-class UsersController extends FOSRestController
+class UsersController extends AbstractController
 {
     /**
      * Get Users,
@@ -38,7 +38,7 @@ class UsersController extends FOSRestController
      */
     public function getUsersAction(ParamFetcher $paramFetcher)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
+        $manager = $this->getMongoDbManager();
         $users = $manager->createQueryBuilder('AppBundle:User')->getQuery();
 
         if (count($users) == 0) {
@@ -79,7 +79,7 @@ class UsersController extends FOSRestController
      */
     public function getUserAction($id)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
+        $manager = $this->getMongoDbManager();
         $user = $manager->getRepository('AppBundle:User')->findById($id);
         $restView = View::create();
 

@@ -11,7 +11,7 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 
-class OtherContributeController extends FOSRestController
+class OtherContributeController extends AbstractController
 {
     /**
      * Get OtherContributes,
@@ -38,7 +38,7 @@ class OtherContributeController extends FOSRestController
      */
     public function getOtherContributesAction(ParamFetcher $paramFetcher)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
+        $manager = $this->getMongoDbManager();
         $contributesQuery = $manager->createQueryBuilder('AppBundle:OtherContribute')->getQuery();
 
         if (count($contributesQuery) == 0) {

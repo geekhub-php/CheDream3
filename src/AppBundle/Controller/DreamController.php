@@ -13,7 +13,7 @@ use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 
-class DreamController extends FOSRestController
+class DreamController extends AbstractController
 {
     /**
      * Gets all Dreams,
@@ -40,7 +40,7 @@ class DreamController extends FOSRestController
      */
     public function getDreamsAction(ParamFetcher $paramFetcher)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
+        $manager = $this->getMongoDbManager();
         $dreamsQuery = $manager->createQueryBuilder('AppBundle:Dream')->getQuery();
 
         if (count($dreamsQuery) == 0) {
@@ -82,7 +82,7 @@ class DreamController extends FOSRestController
      */
     public function getDreamAction($slug)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
+        $manager = $this->getMongoDbManager();
         $dream = $manager->getRepository('AppBundle:Dream')->findOneBySlug($slug);
         $restView = View::create();
 

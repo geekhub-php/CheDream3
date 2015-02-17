@@ -11,7 +11,7 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 
-class FaqController extends FOSRestController
+class FaqController extends AbstractController
 {
     /**
      * Get Faqs,
@@ -38,7 +38,7 @@ class FaqController extends FOSRestController
      */
     public function getFaqsAction(ParamFetcher $paramFetcher)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
+        $manager = $this->getMongoDbManager();
         $faqsQuery = $manager->createQueryBuilder('AppBundle:Faq')->getQuery();
 
         if (count($faqsQuery) == 0) {

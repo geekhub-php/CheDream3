@@ -4,7 +4,7 @@ namespace AppBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
 
-class AbstractController extends FOSRestController
+abstract class AbstractController extends FOSRestController
 {
     public function getMongoDbManager()
     {
