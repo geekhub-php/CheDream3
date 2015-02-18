@@ -42,10 +42,13 @@ class DreamController extends FOSRestController
     public function getDreamsAction(ParamFetcher $paramFetcher)
     {
         $status = $paramFetcher->get('status');
+        $sort_by = $paramFetcher->get('sort_by');
+        $sort_order = $paramFetcher->get('sort_order');
 
         $manager = $this->get('doctrine_mongodb')->getManager();
 
         $dreams = $manager->createQueryBuilder('AppBundle:Dream')
+            ->sort($sort_by, $sort_order)
             ->field('currentStatus')->equals($status)
             ->getQuery()->execute()->toArray();
 
@@ -54,21 +57,17 @@ class DreamController extends FOSRestController
 
         $paginator  = $this->get('knp_paginator');
 
+        if (!in_array($paramFetcher->get('status'), ['submitted', 'rejected'])) {
+            throw new Exception("400");
+        }
+
         $dreams = $paginator->paginate(
             $dreams,
             $paramFetcher->get('page', $page),
             $limit
         );
 
-        $restView = View::create();
-
-        if (!in_array($paramFetcher->get('status'), ['submitted', 'rejected'])) {
-            $restView->setStatusCode(400);
-        }
-
-        $restView->setData($dreams);
-
-        return $restView;
+        return $dreams;
     }
 
     /**
