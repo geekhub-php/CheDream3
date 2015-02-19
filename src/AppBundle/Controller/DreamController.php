@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Document\Dream;
+use FOS\RestBundle\Util\Codes;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -92,5 +94,52 @@ class DreamController extends FOSRestController
         $restView->setData($dream);
 
         return $restView;
+    }
+
+    /**
+     * Update existing dream from the submitted data or create a new dream at a specific location.
+     *
+     * @ApiDoc(
+     * resource = true,
+     * description = "Create/Update single dream",
+     * parameters={
+     * {"name"="title", "dataType"="string", "required"=true, "description"="Dream name"},
+     * {"name"="description", "dataType"="string", "required"=true, "description"="Description about dream"},
+     * {"name"="phone", "dataType"="integer", "required"=true, "description"="Phone number", "format"="(xxx) xxx xxx xxx"}
+     * },
+     * statusCodes = {
+     * 201 = "Returned when the Page is created",
+     * 204 = "Returned when successful",
+     * }
+     * )
+     *
+     *
+     * @param  Request $request the request object
+     * @param  int     $id      the page id
+     * @return mixed
+     */
+    public function putDreamAction(Request $request, $id)
+    {
+        $data = $request->request->all();
+        $user = $this->getUser();
+        $data = $this->get('serializer')->serialize($data, 'json');
+        $dream = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
+
+            if (!($dm = $this->get('doctrine.odm.mongodb.document_manager')->getRepository('AppBundle:Dream')->findById($id)))
+
+            {
+                $dm = $this->get('doctrine.odm.mongodb.document_manager');
+                $dm->persist($dream);
+                $dm->flush();
+                $restView = View::create();
+                $restView->setStatusCode(Codes::HTTP_CREATED);
+
+            } else {
+                $restView = View::create();
+                $restView->setStatusCode(Codes::HTTP_NO_CONTENT);
+            }
+
+            return $restView;
+
     }
 }
