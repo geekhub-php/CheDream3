@@ -29,28 +29,29 @@ class DreamController extends FOSRestController
      *
      * RestView()
      *
-     * @QueryParam(name="status", strict=true, requirements="[a-z]+", description="Status", nullable=true)
+     * @QueryParam(name="status", strict=true, requirements="[a-z]+", default="submitted", description="Status", nullable=true)
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count statuses at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
-     * @QueryParam(name="sort_by", strict=true, requirements="[a-z]+", description="Sort by", nullable=true)
-     * @QueryParam(name="sort_order", strict=true, requirements="[a-z]+", description="Sort order", nullable=true)
+     * @QueryParam(name="sort_by", strict=true, requirements="[a-z]+", default="status_update", description="Sort by", nullable=true)
+     * @QueryParam(name="sort_order", strict=true, requirements="[a-z]+", default="DESC", description="Sort order", nullable=true)
      * @param  ParamFetcher $paramFetcher
      * @return View
      *
      * @throws NotFoundHttpException when page not exist
      */
+
     public function getDreamsAction(ParamFetcher $paramFetcher)
     {
         $status = $paramFetcher->get('status');
-        $sort_by = $paramFetcher->get('sort_by');
-        $sort_order = $paramFetcher->get('sort_order');
+        $sortBy = $paramFetcher->get('sort_by');
+        $sortOrder = $paramFetcher->get('sort_order');
 
         $manager = $this->get('doctrine_mongodb')->getManager();
 
         $dreams = $manager->createQueryBuilder('AppBundle:Dream')
-            ->sort($sort_by, $sort_order)
+            ->sort($sortBy, $sortOrder)
             ->field('currentStatus')->equals($status)
-            ->getQuery()->execute()->toArray();
+            ->getQuery();
 
         $limit = $paramFetcher->get('limit');
         $page = $paramFetcher->get('page');
@@ -61,13 +62,13 @@ class DreamController extends FOSRestController
             throw new Exception("400");
         }
 
-        $dreams = $paginator->paginate(
+        $dreamsPagination = $paginator->paginate(
             $dreams,
             $paramFetcher->get('page', $page),
             $limit
         );
 
-        return $dreams;
+        return $dreamsPagination;
     }
 
     /**

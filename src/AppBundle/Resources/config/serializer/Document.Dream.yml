@@ -1,0 +1,5 @@
+AppBundle\Document\Dream:
+    exclusion_policy: All
+    properties:
+        current_page_number:
+          exclude: true
