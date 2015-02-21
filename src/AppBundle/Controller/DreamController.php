@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Model\DreamsResponse;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -53,14 +54,20 @@ class DreamController extends FOSRestController
             ->field('currentStatus')->equals($status)
             ->getQuery();
 
-        $limit = $paramFetcher->get('limit');
-        $page = $paramFetcher->get('page');
-
-        $paginator  = $this->get('knp_paginator');
-
         if (!in_array($paramFetcher->get('status'), ['submitted', 'rejected'])) {
             throw new Exception("400");
         }
+
+        $limit = $paramFetcher->get('limit');
+        $page = $paramFetcher->get('page');
+
+        $dreamsManager = new DreamsResponse();
+        $dreamsManager->setLimit($limit);
+        $dreamsManager->setPage($page);
+        $dreamsManager->setSortBy($sortBy);
+        $dreamsManager->setSortOrder($sortOrder);
+
+        $paginator  = $this->get('knp_paginator');
 
         $dreamsPagination = $paginator->paginate(
             $dreams,
@@ -68,7 +75,9 @@ class DreamController extends FOSRestController
             $limit
         );
 
-        return $dreamsPagination;
+        $dreamsManager->setDreams($dreamsPagination);
+
+        return $dreamsManager;
     }
 
     /**
