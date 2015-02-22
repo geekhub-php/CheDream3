@@ -3,7 +3,6 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Document\Dream;
-use FOS\RestBundle\Util\Codes;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -115,7 +114,7 @@ class DreamController extends FOSRestController
      *
      *
      * @param  Request $request the request object
-     * @param  string     $slug      the page id
+     * @param  string  $slug    the page id
      * @return mixed
      */
     public function putDreamAction(Request $request, $slug)

@@ -2,8 +2,6 @@
 
 namespace AppBundle\Services;
 
-use AppBundle\Document\Dream;
-use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class ObjectUpdater
 {

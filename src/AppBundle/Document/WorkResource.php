@@ -185,7 +185,6 @@ class WorkResource extends AbstractResource
         $this->workContributions[] = $workContribution;
 
         return $this;
-
     }
 
     /**
@@ -199,7 +198,6 @@ class WorkResource extends AbstractResource
         $this->workContributions->removeElement($workContribution);
 
         return $this;
-
     }
 
     /**
