@@ -79,16 +79,12 @@ class UsersController extends FOSRestController
      */
     public function getUserAction($id)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
-        $user = $manager->getRepository('AppBundle:User')->findById($id);
-        $restView = View::create();
+        $user = $this->get('doctrine_mongodb')->getManager()->getRepository('AppBundle:User')->findOneById($id);
 
-        if (count($user) == 0) {
-            $restView->setStatusCode(204);
+        if (!$user) {
+            throw new NotFoundHttpException();
         }
 
-        $restView->setData($user);
-
-        return $restView;
+        return $user;
     }
 }

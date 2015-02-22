@@ -19,12 +19,11 @@ class DreamController extends FOSRestController
      * Gets all Dreams,
      *
      * @ApiDoc(
-     * resource = true,
-     * description = "Gets all Dream",
-     * output="array<AppBundle\Document\Dream>",
-     * statusCodes = {
+     *  resource = true,
+     *  description = "Gets all Dream",
+     *  output="array<AppBundle\Document\Dream>",
+     *  statusCodes = {
      *      200 = "Returned when successful",
-     *      404 = "Returned when the Dream is not found"
      * }
      * )
      *
@@ -35,17 +34,11 @@ class DreamController extends FOSRestController
      *
      * @param  ParamFetcher $paramFetcher
      * @return View
-     *
-     * @throws NotFoundHttpException when not exist
      */
     public function getDreamsAction(ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
         $dreamsQuery = $manager->createQueryBuilder('AppBundle:Dream')->getQuery();
-
-        if (count($dreamsQuery) == 0) {
-            throw new Exception("204 No Content");
-        }
 
         $limit = $paramFetcher->get('limit');
         $page = $paramFetcher->get('page');
@@ -74,7 +67,7 @@ class DreamController extends FOSRestController
      * )
      *
      *
-     * RestView()
+     * @RestView()
      * @param
      * @return View
      *
@@ -82,17 +75,13 @@ class DreamController extends FOSRestController
      */
     public function getDreamAction($slug)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
-        $dream = $manager->getRepository('AppBundle:Dream')->findBySlug($slug);
-        $restView = View::create();
+        $dream = $this->get('doctrine_mongodb')->getManager()->getRepository('AppBundle:Dream')->findBySlug($slug);
 
-        if (count($dream) == 0) {
-            $restView->setStatusCode(204);
+        if (!$dream) {
+            throw new NotFoundHttpException();
         }
 
-        $restView->setData($dream);
-
-        return $restView;
+        return $dream;
     }
 
     /**
