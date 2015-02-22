@@ -93,11 +93,13 @@ class DreamController extends FOSRestController
      * parameters={
      * {"name"="title", "dataType"="string", "required"=true, "description"="Dream name"},
      * {"name"="description", "dataType"="string", "required"=true, "description"="Description about dream"},
-     * {"name"="phone", "dataType"="integer", "required"=true, "description"="Phone number", "format"="(xxx) xxx xxx xxx"}
+     * {"name"="phone", "dataType"="integer", "required"=true, "description"="Phone number", "format"="(xxx) xxx xxx xxx"},
+     * {"name"="dreamFinancialResources", "dataType"="array<AppBundle\Document\EquipmentResource>", "required"=true, "description"="Equipment resources"},
+     * {"name"="dreamWorkResources", "dataType"="array<AppBundle\Document\WorkResource>", "required"=true, "description"="Work resources"},
+     * {"name"="dreamFinancialResources", "dataType"="array<AppBundle\Document\FinancialResource>", "required"=true, "description"="Financial resources"}
      * },
      * statusCodes = {
-     * 201 = "Returned when the Page is created",
-     * 204 = "Returned when successful",
+     * 200 = "Dream successful update",
      * }
      * )
      *
