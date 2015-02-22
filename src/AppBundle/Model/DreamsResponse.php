@@ -22,32 +22,32 @@ class DreamsResponse
     protected $dreams;
 
     /**
-     * @var integer
-     * @Type("integer")
-     * @Expose
-     */
-    protected $limit;
-
-    /**
-     * @var integer
-     * @Type("integer")
-     * @Expose
-     */
-    protected $page;
-
-    /**
-     * @var string
-     * @Type("string")
-     * @Expose
-     */
-    protected $sortBy;
-
-    /**
      * @var string
      * @Type("string")
      * @Expose
      */
     protected $sortOrder;
+
+    /**
+     * @var string
+     * @Type("string")
+     * @Expose
+     */
+    protected $nextPage;
+
+    /**
+     * @var string
+     * @Type("string")
+     * @Expose
+     */
+    protected $previousPage;
+
+    /**
+     * @var integer
+     * @Type("integer")
+     * @Expose
+     */
+    protected $pageCount;
 
     /**
      * @param mixed $dreams
@@ -66,54 +66,6 @@ class DreamsResponse
     }
 
     /**
-     * @param mixed $limit
-     */
-    public function setLimit($limit)
-    {
-        $this->limit = $limit;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLimit()
-    {
-        return $this->limit;
-    }
-
-    /**
-     * @param mixed $page
-     */
-    public function setPage($page)
-    {
-        $this->page = $page;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPage()
-    {
-        return $this->page;
-    }
-
-    /**
-     * @param mixed $sortBy
-     */
-    public function setSortBy($sortBy)
-    {
-        $this->sortBy = $sortBy;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSortBy()
-    {
-        return $this->sortBy;
-    }
-
-    /**
      * @param mixed $sortOrder
      */
     public function setSortOrder($sortOrder)
@@ -129,4 +81,51 @@ class DreamsResponse
         return $this->sortOrder;
     }
 
+    /**
+     * @param mixed $nextPage
+     */
+    public function setNextPage($nextPage)
+    {
+        $this->nextPage = $nextPage;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNextPage()
+    {
+        return $this->nextPage;
+    }
+
+    /**
+     * @param mixed $previousPage
+     */
+    public function setPreviousPage($previousPage)
+    {
+        $this->previousPage = $previousPage;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPreviousPage()
+    {
+        return $this->previousPage;
+    }
+
+    /**
+     * @param mixed $pageCount
+     */
+    public function setPageCount($pageCount)
+    {
+        $this->pageCount = $pageCount;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPageCount()
+    {
+        return $this->pageCount;
+    }
 }
