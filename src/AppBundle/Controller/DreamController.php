@@ -12,6 +12,8 @@ use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 class DreamController extends FOSRestController
 {
@@ -49,33 +51,45 @@ class DreamController extends FOSRestController
 
         $manager = $this->get('doctrine_mongodb')->getManager();
 
-        $dreams = $manager->createQueryBuilder('AppBundle:Dream')
+        $dreamsQuery = $manager->createQueryBuilder('AppBundle:Dream')
             ->sort($sortBy, $sortOrder)
             ->field('currentStatus')->equals($status)
-            ->getQuery();
+            ->getQuery()->execute()->toArray();
 
         if (!in_array($paramFetcher->get('status'), ['submitted', 'rejected'])) {
             throw new Exception("400");
         }
 
-        $limit = $paramFetcher->get('limit');
-        $page = $paramFetcher->get('page');
-
         $dreamsManager = new DreamsResponse();
-        $dreamsManager->setLimit($limit);
-        $dreamsManager->setPage($page);
-        $dreamsManager->setSortBy($sortBy);
         $dreamsManager->setSortOrder($sortOrder);
 
-        $paginator  = $this->get('knp_paginator');
+        $paginator = new Pagerfanta(new ArrayAdapter($dreamsQuery));
+        $paginator
+            ->setMaxPerPage($paramFetcher->get('limit'))
+            ->setCurrentPage($paramFetcher->get('page'))
+        ;
 
-        $dreamsPagination = $paginator->paginate(
-            $dreams,
-            $paramFetcher->get('page', $page),
-            $limit
-        );
+        $dreamsManager->setDreams($paginator->getCurrentPageResults());
+        $dreamsManager->setPageCount($paginator->getNbPages());
 
-        $dreamsManager->setDreams($dreamsPagination);
+        $nextPage = $paginator->hasNextPage() ?
+            $this->generateUrl('get_dreams', array(
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')+1,
+                )
+            ) :
+            'false';
+
+        $previsiousPage = $paginator->hasPreviousPage() ?
+            $this->generateUrl('get_dreams', array(
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')-1,
+                )
+            ) :
+            'false';
+
+        $dreamsManager->setNextPage($nextPage);
+        $dreamsManager->setPreviousPage($previsiousPage);
 
         return $dreamsManager;
     }
