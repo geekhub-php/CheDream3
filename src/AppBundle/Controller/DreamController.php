@@ -19,12 +19,11 @@ class DreamController extends AbstractController
      * Gets all Dreams,
      *
      * @ApiDoc(
-     * resource = true,
-     * description = "Gets all Dream",
-     * output="array<AppBundle\Document\Dream>",
-     * statusCodes = {
+     *  resource = true,
+     *  description = "Gets all Dream",
+     *  output="array<AppBundle\Document\Dream>",
+     *  statusCodes = {
      *      200 = "Returned when successful",
-     *      404 = "Returned when the Dream is not found"
      * }
      * )
      *
@@ -35,17 +34,11 @@ class DreamController extends AbstractController
      *
      * @param  ParamFetcher $paramFetcher
      * @return View
-     *
-     * @throws NotFoundHttpException when not exist
      */
     public function getDreamsAction(ParamFetcher $paramFetcher)
     {
         $manager = $this->getMongoDbManager();
         $dreamsQuery = $manager->createQueryBuilder('AppBundle:Dream')->getQuery();
-
-        if (count($dreamsQuery) == 0) {
-            throw new Exception("204 No Content");
-        }
 
         $limit = $paramFetcher->get('limit');
         $page = $paramFetcher->get('page');
@@ -74,7 +67,7 @@ class DreamController extends AbstractController
      * )
      *
      *
-     * RestView()
+     * @RestView()
      * @param
      * @return View
      *
@@ -83,16 +76,14 @@ class DreamController extends AbstractController
     public function getDreamAction($slug)
     {
         $manager = $this->getMongoDbManager();
-        $dream = $manager->getRepository('AppBundle:Dream')->findOneBySlug($slug);
-        $restView = View::create();
+        $dream = $manager->getRepository('AppBundle:Dream')
+                        ->findOneBySlug($slug);
 
-        if (count($dream) == 0) {
-            $restView->setStatusCode(204);
+        if (!$dream) {
+            throw new NotFoundHttpException();
         }
 
-        $restView->setData($dream);
-
-        return $restView;
+        return $dream;
     }
 
     /**
@@ -104,10 +95,13 @@ class DreamController extends AbstractController
      *      parameters={
      *          {"name"="title", "dataType"="string", "required"=true, "description"="Dream name"},
      *          {"name"="description", "dataType"="string", "required"=true, "description"="Description about dream"},
-     *          {"name"="phone", "dataType"="integer", "required"=true, "description"="Phone number", "format"="(xxx) xxx xxx xxx"}
+     *          {"name"="phone", "dataType"="integer", "required"=true, "description"="Phone number", "format"="(xxx) xxx xxx xxx"},
+     *          {"name"="dreamFinancialResources", "dataType"="array<AppBundle\Document\EquipmentResource>", "required"=true, "description"="Equipment resources"},
+     *          {"name"="dreamWorkResources", "dataType"="array<AppBundle\Document\WorkResource>", "required"=true, "description"="Work resources"},
+     *          {"name"="dreamFinancialResources", "dataType"="array<AppBundle\Document\FinancialResource>", "required"=true, "description"="Financial resources"}
      *      },
      *      statusCodes = {
-                201 = "Dream sucessful created"
+     *          201 = "Dream sucessful created"
      *      }
      * )
      *

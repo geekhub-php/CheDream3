@@ -81,14 +81,11 @@ class UsersController extends AbstractController
     {
         $manager = $this->getMongoDbManager();
         $user = $manager->getRepository('AppBundle:User')->findById($id);
-        $restView = View::create();
 
-        if (count($user) == 0) {
-            $restView->setStatusCode(204);
+        if (!$user) {
+            throw new NotFoundHttpException();
         }
 
-        $restView->setData($user);
-
-        return $restView;
+        return $user;
     }
 }

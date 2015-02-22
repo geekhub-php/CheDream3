@@ -7,7 +7,7 @@ class DreamControllerTest extends AbstractApiTest
     public function testGetDreamsAction()
     {
         $client   = static::createClient();
-        $crawler  = $client->request('GET', '/dreams');
+        $client->request('GET', '/dreams');
 
         $response = $client->getResponse();
 
