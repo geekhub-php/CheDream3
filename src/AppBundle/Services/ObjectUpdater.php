@@ -10,23 +10,21 @@ class ObjectUpdater
     public function updateObject($objectOld, $objectNew)
     {
         if (get_class($objectOld) != get_class($objectNew)) {
-            throw new \Exception();
+            throw new \Exception('class not equals');
         }
 
-        $accessor = PropertyAccess::createPropertyAccessor();
+        $accessor = $propertyAccessor  = new PropertyAccessor();
 
         $reflect = new \ReflectionClass($objectOld);
-        $properties = $reflect->getProperties(\ReflectionProperty::IS_PUBLIC | \ReflectionProperty::IS_PROTECTED);
+        $properties = $reflect->getProperties(\ReflectionProperty::IS_PUBLIC | \ReflectionProperty::IS_PROTECTED | \ReflectionProperty::IS_PRIVATE);
 
         foreach ($properties as $property) {
-            $prop = $accessor->getValue($property, 'name');
+            $prop = $property->getName();
 
-            $uc_prop = ucfirst($prop);
-            $get_prop = 'get'.$uc_prop;
-            $set_prop = 'set'.$uc_prop;
+            $newValue = $accessor->getValue($objectNew, $prop);
 
-            if ($objectNew->$get_prop() !== null) {
-                $objectOld->$set_prop($objectNew->$get_prop());
+            if ($newValue !== null) {
+                $accessor->setValue($objectOld, $prop, $newValue);
             }
         }
 
