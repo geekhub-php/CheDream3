@@ -115,31 +115,20 @@ class DreamController extends FOSRestController
      *
      *
      * @param  Request $request the request object
-     * @param  int     $id      the page id
+     * @param  string     $slug      the page id
      * @return mixed
      */
-    public function putDreamAction(Request $request, $id)
+    public function putDreamAction(Request $request, $slug)
     {
         $data = $request->request->all();
-        $user = $this->getUser();
+        $dm = $this->get('doctrine.odm.mongodb.document_manager');
+
+        $dreamOld = $dm->getRepository('AppBundle:Dream')
+                        ->findOneBySlug($slug);
+
         $data = $this->get('serializer')->serialize($data, 'json');
-        $dream = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
+        $dreamNew = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
 
-            if (!($dm = $this->get('doctrine.odm.mongodb.document_manager')->getRepository('AppBundle:Dream')->findById($id)))
-
-            {
-                $dm = $this->get('doctrine.odm.mongodb.document_manager');
-                $dm->persist($dream);
-                $dm->flush();
-                $restView = View::create();
-                $restView->setStatusCode(Codes::HTTP_CREATED);
-
-            } else {
-                $restView = View::create();
-                $restView->setStatusCode(Codes::HTTP_NO_CONTENT);
-            }
-
-            return $restView;
-
+        $this->get('app.services.object_updater')->updateObject($dreamOld, $dreamNew);
     }
 }
