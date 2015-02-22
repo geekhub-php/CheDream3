@@ -32,7 +32,7 @@ class DreamController extends FOSRestController
      *
      * RestView()
      *
-     * @QueryParam(name="status", strict=true, requirements="[a-z]+", default="submitted", description="Status", nullable=true)
+     * @QueryParam(name="status", strict=true, requirements="[a-z]+", default="fail", description="Status", nullable=true)
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count statuses at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      * @QueryParam(name="sort_by", strict=true, requirements="[a-z]+", default="status_update", description="Sort by", nullable=true)
@@ -51,10 +51,17 @@ class DreamController extends FOSRestController
 
         $manager = $this->get('doctrine_mongodb')->getManager();
 
-        $dreamsQuery = $manager->createQueryBuilder('AppBundle:Dream')
-            ->sort($sortBy, $sortOrder)
-            ->field('currentStatus')->equals($status)
-            ->getQuery()->execute()->toArray();
+        if($status=='fail') {
+            $dreamsQuery = $manager->createQueryBuilder('AppBundle:Dream')
+                ->sort($sortBy, $sortOrder)
+                ->field('currentStatus')->notEqual($status)
+                ->getQuery()->execute()->toArray();
+        }else{
+            $dreamsQuery = $manager->createQueryBuilder('AppBundle:Dream')
+                ->sort($sortBy, $sortOrder)
+                ->field('currentStatus')->equals($status)
+                ->getQuery()->execute()->toArray();
+        }
 
         if (!in_array($paramFetcher->get('status'), ['submitted', 'rejected'])) {
             throw new Exception("400");
