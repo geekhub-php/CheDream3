@@ -23,7 +23,7 @@ before_script:
 #    - sudo sed -i -e "s,/var/www,$(pwd)/web,g" /etc/apache2/sites-available/default
 #    - sudo sed -i -e "/DocumentRoot/i\ServerName chedream.local" /etc/apache2/sites-available/default
 #    - echo "127.0.0.1 chedream.local" | sudo tee -a /etc/hosts
-#    - sudo /etc/init.d/apache2 restart
+    - sudo /etc/init.d/apache2 restart
     - composer self-update
 #    - composer install
     - php bin/reload`
