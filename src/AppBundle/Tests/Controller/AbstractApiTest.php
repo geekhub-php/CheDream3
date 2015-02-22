@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 abstract class AbstractApiTest extends WebTestCase
 {
-
     protected function assertJsonResponse($response, $statusCode = 200)
     {
             $this->assertEquals(

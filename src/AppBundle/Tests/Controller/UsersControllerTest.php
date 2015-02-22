@@ -18,8 +18,12 @@ class UsersControllerTest extends AbstractApiTest
 
     public function testGetUserAction()
     {
-        $client = new Client("http://chedream.local/app_dev.php");
-        $request = $client->get('/users/54d1de7530d0c3bf178b4567');
+        $kernel = static::createKernel();
+        $kernel->boot();
+        $user = $kernel->getContainer()->get('doctrine.odm.mongodb.document_manager')->getRepository('AppBundle:User')->findOneBy([]);
+
+        $client = new Client();
+        $request = $client->get('/users/' . $user->getId());
         $response = $request->send();
 
         $this->assertEquals($response->getStatusCode(),200);
