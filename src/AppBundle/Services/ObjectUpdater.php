@@ -13,18 +13,18 @@ class ObjectUpdater
             throw new \Exception('class not equals');
         }
 
-        $accessor = $propertyAccessor  = new PropertyAccessor();
+        $accessor = new PropertyAccessor();
 
         $reflect = new \ReflectionClass($objectOld);
         $properties = $reflect->getProperties(\ReflectionProperty::IS_PUBLIC | \ReflectionProperty::IS_PROTECTED | \ReflectionProperty::IS_PRIVATE);
 
         foreach ($properties as $property) {
-            $prop = $property->getName();
+            $propertyName = $property->getName();
 
-            $newValue = $accessor->getValue($objectNew, $prop);
+            $newValue = $accessor->getValue($objectNew, $propertyName);
 
             if ($newValue !== null) {
-                $accessor->setValue($objectOld, $prop, $newValue);
+                $accessor->setValue($objectOld, $propertyName, $newValue);
             }
         }
 
