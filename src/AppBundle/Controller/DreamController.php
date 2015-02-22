@@ -129,6 +129,10 @@ class DreamController extends FOSRestController
         $data = $this->get('serializer')->serialize($data, 'json');
         $dreamNew = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
 
-        $this->get('app.services.object_updater')->updateObject($dreamOld, $dreamNew);
+        $dreamOld = $this->get('app.services.object_updater')->updateObject($dreamOld, $dreamNew);
+
+        $dm->flush();
+
+        return View::create();
     }
 }
