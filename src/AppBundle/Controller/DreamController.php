@@ -100,6 +100,7 @@ class DreamController extends FOSRestController
      * },
      * statusCodes = {
      * 200 = "Dream successful update",
+     * 404 = "Return when dream with current slug not isset"
      * }
      * )
      *
@@ -116,13 +117,21 @@ class DreamController extends FOSRestController
         $dreamOld = $dm->getRepository('AppBundle:Dream')
                         ->findOneBySlug($slug);
 
-        $data = $this->get('serializer')->serialize($data, 'json');
-        $dreamNew = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
+        if (!$dreamOld) {
+            $view = View::create();
+            $view->setStatusCode(404);
+        } else {
+            $data = $this->get('serializer')->serialize($data, 'json');
+            $dreamNew = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
 
-        $dreamOld = $this->get('app.services.object_updater')->updateObject($dreamOld, $dreamNew);
+            $dreamOld = $this->get('app.services.object_updater')->updateObject($dreamOld, $dreamNew);
 
-        $dm->flush();
+            $dm->flush();
 
-        return View::create();
+            $view = View::create();
+            $view->setStatusCode(200);
+        }
+
+        return $view;
     }
 }
