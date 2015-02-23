@@ -53,7 +53,6 @@ class Dream
      * @var string
      *
      * @ODM\Field(type="string")
-     * @Expose()
      * @Type("string")
      */
     protected $rejectedDescription;
@@ -62,7 +61,6 @@ class Dream
      * @var string
      *
      * @ODM\Field(type="string")
-     * @Expose()
      * @Type("string")
      */
     protected $implementedDescription;
@@ -71,7 +69,6 @@ class Dream
      * @var string
      *
      * @ODM\Field(type="string")
-     * @Expose()
      * @Type("string")
      */
     protected $completedDescription;
@@ -102,7 +99,6 @@ class Dream
      *
      * @Gedmo\Timestampable(on="create")
      * @ODM\Field(type="date")
-     * @Expose()
      * @Type("DateTime")
      */
     protected $createdAt;
@@ -112,7 +108,6 @@ class Dream
      *
      * @Gedmo\Timestampable(on="update")
      * @ODM\Field(type="date")
-     * @Expose()
      * @Type("DateTime")
      */
     protected $updatedAt;
@@ -121,7 +116,6 @@ class Dream
      * @var \DateTime
      *
      * @ODM\Field(type="date")
-     * @Expose()
      * @Type("DateTime")
      */
     protected $deletedAt;
@@ -130,7 +124,6 @@ class Dream
      * @var \DateTime
      *
      * @ODM\Field(type="date")
-     * @Expose()
      * @Type("DateTime")
      */
     protected $expiredDate;
@@ -139,7 +132,6 @@ class Dream
      * @var integer
      *
      * @ODM\Field(type="int")
-     * @Expose()
      * @Type("integer")
      */
     protected $financialCompleted;
@@ -148,7 +140,6 @@ class Dream
      * @var integer
      *
      * @ODM\Field(type="int")
-     * @Expose()
      * @Type("integer")
      */
     protected $workCompleted;
@@ -157,7 +148,6 @@ class Dream
      * @var integer
      *
      * @ODM\Field(type="int")
-     * @Expose()
      * @Type("integer")
      */
     protected $equipmentCompleted;
@@ -166,7 +156,6 @@ class Dream
 
     /**
      * @ODM\ReferenceMany(targetDocument="User")
-     * @Expose()
      * @Type("array<string, User>")
      */
     protected $usersWhoFavorites = [];
@@ -175,14 +164,12 @@ class Dream
      * @var integer
      *
      * @ODM\Field(type="int")
-     * @Expose()
      * @Type("integer")
      */
     protected $favoritesCount;
 
     /**
      * @ODM\ReferenceOne(targetDocument="User")
-     * @Expose()
      * @Type("string")
      */
     protected $author;
@@ -194,7 +181,6 @@ class Dream
 
     /**
      * @ODM\Field(type="string")
-     * @Expose()
      * @Type("string")
      */
     protected $currentStatus;
@@ -233,49 +219,42 @@ class Dream
 
     /**
      * @ODM\ReferenceMany(targetDocument="FinancialResource", cascade={"persist"})
-     * @Expose()
      * @Type("array<string, FinancialResource>")
      */
     protected $dreamFinancialResources;
 
     /**
      * @ODM\ReferenceMany(targetDocument="EquipmentResource", cascade={"persist"})
-     * @Expose()
      * @Type("array<string, EquipmentResource>")
      */
     protected $dreamEquipmentResources;
 
     /**
      * @ODM\ReferenceMany(targetDocument="WorkResource", cascade={"persist"})
-     * @Expose()
      * @Type("array<string, WorkResource>")
      */
     protected $dreamWorkResources;
 
     /**
      * @ODM\ReferenceMany(targetDocument="FinancialContribute")
-     * @Expose()
      * @Type("array<string, FinancialContribute>")
      */
     protected $dreamFinancialContributions;
 
     /**
      * @ODM\ReferenceMany(targetDocument="EquipmentContribute")
-     * @Expose()
      * @Type("array<string, EquipmentContribute>")
      */
     protected $dreamEquipmentContributions;
 
     /**
      * @ODM\ReferenceMany(targetDocument="WorkContribute")
-     * @Expose()
      * @Type("array<string, WorkContribute>")
      */
     protected $dreamWorkContributions;
 
     /**
      * @ODM\ReferenceMany(targetDocument="OtherContribute")
-     * @Expose()
      * @Type("array<string, OtherContribute>")
      */
     protected $dreamOtherContributions;
