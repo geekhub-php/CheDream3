@@ -16,7 +16,6 @@ class ObjectUpdaterTest extends AbstractApiTest
                            ->getRepository('AppBundle:Dream')
                            ->findOneBySlug('sunt');
 
-
         $dreamTmp = new Dream();
         $dreamTmp->setTitle('test1');
         $dreamTmp->setDescription('test2');

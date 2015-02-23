@@ -23,7 +23,7 @@ class UsersControllerTest extends AbstractApiTest
         $user = $kernel->getContainer()->get('doctrine.odm.mongodb.document_manager')->getRepository('AppBundle:User')->findOneBy([]);
 
         $client   = static::createClient();
-        $client->request('GET', '/users/' . $user->getId());
+        $client->request('GET', '/users/'.$user->getId());
         $response = $client->getResponse();
 
         $this->assertEquals($response->getStatusCode(), 200);
