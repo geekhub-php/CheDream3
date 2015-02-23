@@ -51,7 +51,7 @@ class DreamController extends FOSRestController
 
         $manager = $this->get('doctrine_mongodb')->getManager();
 
-        if($status=='fail') {
+        if($status == 'fail') {
             $dreamsQuery = $manager->createQueryBuilder('AppBundle:Dream')
                 ->sort($sortBy, $sortOrder)
                 ->field('currentStatus')->notEqual($status)
@@ -61,10 +61,10 @@ class DreamController extends FOSRestController
                 ->sort($sortBy, $sortOrder)
                 ->field('currentStatus')->equals($status)
                 ->getQuery()->execute()->toArray();
-        }
 
-        if (!in_array($paramFetcher->get('status'), ['submitted', 'rejected'])) {
-            throw new Exception("400");
+            if (!in_array($status, ['submitted', 'rejected'])) {
+                throw new Exception("400");
+            }
         }
 
         $dreamsManager = new DreamsResponse();
