@@ -2,6 +2,7 @@
 
 namespace AppBundle\Services;
 
+use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 class ObjectUpdater
 {
