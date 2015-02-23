@@ -75,7 +75,7 @@ class DreamController extends FOSRestController
      */
     public function getDreamAction($slug)
     {
-        $dream = $this->get('doctrine_mongodb')->getManager()->getRepository('AppBundle:Dream')->findBySlug($slug);
+        $dream = $this->get('doctrine_mongodb')->getManager()->getRepository('AppBundle:Dream')->findOneBySlug($slug);
 
         if (!$dream) {
             throw new NotFoundHttpException();
