@@ -45,31 +45,27 @@ class DreamController extends FOSRestController
 
     public function getDreamsAction(ParamFetcher $paramFetcher)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
-
+        $repository = $this->get('doctrine_mongodb')->getManager()->getRepository('AppBundle:Dream');
         if(!$paramFetcher->get('status')) {
-            $dreamsQuery = $manager->createQueryBuilder('AppBundle:Dream')
+            $queryBuilder = $repository->createQueryBuilder('dream')
                 ->sort($paramFetcher->get('sort_by'), $paramFetcher->get('sort_order'))
-                ->field('currentStatus')->notEqual('fail')
+                ->field('dream.currentStatus')->notEqual('fail')
                 ->getQuery()->execute()->toArray();
         }else{
-            $dreamsQuery = $manager->createQueryBuilder('AppBundle:Dream')
-                ->sort($paramFetcher->get('sort_by'), $paramFetcher->get('sort_order'))
-                ->field('currentStatus')->equals($paramFetcher->get('status'))
-                ->getQuery()->execute()->toArray();
+            $queryBuilder = $repository->findByCurrentStatus($paramFetcher->get('status'));
         }
 
-        $dreamsManager = new DreamsResponse();
-        $dreamsManager->setSortOrder($paramFetcher->get('sort_order'));
+        $dreamsResponse = new DreamsResponse();
+        $dreamsResponse->setSortOrder($paramFetcher->get('sort_order'));
 
-        $paginator = new Pagerfanta(new ArrayAdapter($dreamsQuery));
+        $paginator = new Pagerfanta(new ArrayAdapter($queryBuilder));
         $paginator
             ->setMaxPerPage($paramFetcher->get('limit'))
             ->setCurrentPage($paramFetcher->get('page'))
         ;
 
-        $dreamsManager->setDreams($paginator->getCurrentPageResults());
-        $dreamsManager->setPageCount($paginator->getNbPages());
+        $dreamsResponse->setDreams($paginator->getCurrentPageResults());
+        $dreamsResponse->setPageCount($paginator->getNbPages());
 
         $nextPage = $paginator->hasNextPage() ?
             $this->generateUrl('get_dreams', array(
@@ -87,10 +83,10 @@ class DreamController extends FOSRestController
             ) :
             'false';
 
-        $dreamsManager->setNextPage($nextPage);
-        $dreamsManager->setPreviousPage($previsiousPage);
+        $dreamsResponse->setNextPage($nextPage);
+        $dreamsResponse->setPreviousPage($previsiousPage);
 
-        return $dreamsManager;
+        return $dreamsResponse;
     }
 
     /**
