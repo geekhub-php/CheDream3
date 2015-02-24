@@ -2,13 +2,9 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
-use Symfony\Component\Config\Definition\Exception\Exception;
-use FOS\RestBundle\Controller\Annotations\QueryParam;
 
 class FaqController extends FOSRestController
 {
@@ -39,13 +35,12 @@ class FaqController extends FOSRestController
             $view->setStatusCode(204);
         } else {
             $view->setData([
-                "faqs" => $faqsQuery
+                "faqs" => $faqsQuery,
             ]);
         }
 
         return $view;
     }
-
 
     /**
      * @ApiDoc(
@@ -73,7 +68,7 @@ class FaqController extends FOSRestController
             $view->setStatusCode(404);
         } else {
             $view->setData([
-                "faq" => $faq
+                "faq" => $faq,
             ]);
         }
 
