@@ -7,31 +7,25 @@ class DreamControllerTest extends AbstractApiTest
     /**
      * @dataProvider providerData
      */
-    public function testGetDreamsAction($sortBy,$sortOrder,$limit,$page)
+    public function testGetDreamsAction($sortOrder, $pageCount)
     {
-        $client   = static::createClient();
+        $client = static::createClient();
 
-        $crawler  = $client->request('GET', '/dreams');
+        $client->request('GET', '/dreams');
 
         $response = $client->getResponse();
 
-        $dream =  json_decode($response->getContent(),true);
+        $kernel = static::createKernel();
+        $kernel->boot();
 
-        $this->assertJsonResponse($response, 200);
+        $container = $kernel->getContainer();
 
-        $this->assertTrue(
-            $client->getResponse()->headers->contains(
-                'Content-Type',
-                'application/json'
-            )
-        );
+        $serializer =$container->get('jms_serializer');
 
-        $this->assertTrue($client->getResponse()->isSuccessful());
+        $dreamsResponse = $serializer->deserialize($response->getContent(), 'AppBundle\Model\DreamsResponse', 'json');
 
-        $this->assertEquals($dream['sort_by'],$sortBy);
-        $this->assertEquals($dream['sort_order'],$sortOrder);
-        $this->assertEquals($dream['limit'],$limit);
-        $this->assertEquals($dream['page'],$page);
+        $this->assertEquals($dreamsResponse->getPageCount(),$pageCount);
+        $this->assertEquals($dreamsResponse->getSortOrder(),$sortOrder);
     }
 
     public function testGetDreamAction()
@@ -46,7 +40,7 @@ class DreamControllerTest extends AbstractApiTest
 
     public function providerData(){
         return [
-            ['status_update','DESC',10,1]
+            ['DESC', 3]
         ];
     }
 }
