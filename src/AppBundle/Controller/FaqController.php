@@ -25,23 +25,58 @@ class FaqController extends FOSRestController
      * }
      * )
      *
-     * @Rest\View()
-     *
      * @return View
-     *
-     * @throws NotFoundHttpException when not exist
      */
     public function getFaqsAction()
     {
         $manager = $this->get('doctrine_mongodb.odm.document_manager');
-        $faqsQuery = $manager->getRepository('AppBundle:Faq')->findAll();
+        $faqsQuery = $manager->getRepository('AppBundle:Faq')
+                            ->findAll();
+
+        $view = View::create();
 
         if (count($faqsQuery) == 0) {
-            throw new Exception("204 No Content");
+            $view->setStatusCode(204);
+        } else {
+            $view->setData([
+                "faqs" => $faqsQuery
+            ]);
         }
 
-        return [
-            "faqs" => $faqsQuery
-        ];
+        return $view;
+    }
+
+
+    /**
+     * @ApiDoc(
+     * resource = true,
+     * description = "Gets faq by slug",
+     * output="array<AppBundle\Document\Faq>",
+     * statusCodes = {
+     *      200 = "Returned if faq exist",
+     *      404 = "Returned if faq not exist"
+     * }
+     * )
+     *
+     * @param $slug
+     * @return View
+     */
+    public function getFaqAction($slug)
+    {
+        $manager = $this->get('doctrine_mongodb.odm.document_manager');
+        $faq = $manager->getRepository('AppBundle:Faq')
+                       ->findOneBySlug($slug);
+
+        $view = View::create();
+
+        if (!$faq) {
+            $view->setStatusCode(404);
+        } else {
+            $view->setData([
+                "faq" => $faq
+            ]);
+        }
+
+        return $view;
     }
 }
