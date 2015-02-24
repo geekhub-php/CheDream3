@@ -1,5 +1,0 @@
-AppBundle\Model\DreamsResponse:
-    exclusion_policy: All
-    properties:
-        dreams:
-            exclude: true
