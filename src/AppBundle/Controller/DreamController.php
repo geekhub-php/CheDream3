@@ -3,8 +3,6 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Model\DreamsResponse;
-use Symfony\Component\Config\Definition\Exception\Exception;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
@@ -18,7 +16,7 @@ use Pagerfanta\Adapter\ArrayAdapter;
 class DreamController extends FOSRestController
 {
     /**
-     * Gets Dreams by status,
+     * Gets Dreams by status,.
      *
      * @ApiDoc(
      * resource = true,
@@ -37,21 +35,23 @@ class DreamController extends FOSRestController
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      * @QueryParam(name="sort_by", strict=true, requirements="[a-z]+", default="status_update", description="Sort by", nullable=true)
      * @QueryParam(name="sort_order", strict=true, requirements="[a-z]+", default="DESC", description="Sort order", nullable=true)
-     * @param  ParamFetcher $paramFetcher
+     *
+     * @param ParamFetcher $paramFetcher
+     *
      * @return View
      *
      * @throws NotFoundHttpException when page not exist
      */
-
     public function getDreamsAction(ParamFetcher $paramFetcher)
     {
         $repository = $this->get('doctrine_mongodb')->getManager()->getRepository('AppBundle:Dream');
-        if(!$paramFetcher->get('status')) {
+
+        if (!$paramFetcher->get('status')) {
             $queryBuilder = $repository->createQueryBuilder('dream')
                 ->sort($paramFetcher->get('sort_by'), $paramFetcher->get('sort_order'))
                 ->field('dream.currentStatus')->notEqual('fail')
                 ->getQuery()->execute()->toArray();
-        }else{
+        } else {
             $queryBuilder = $repository->findByCurrentStatus($paramFetcher->get('status'));
         }
 
@@ -90,7 +90,7 @@ class DreamController extends FOSRestController
     }
 
     /**
-     * Get single Dream for slug,
+     * Get single Dream for slug,.
      *
      * @ApiDoc(
      * resource = true,
@@ -101,10 +101,9 @@ class DreamController extends FOSRestController
      *      404 = "Returned when the Dream is not found"
      * }
      * )
-     *
-     *
      * RestView()
      * @param
+     *
      * @return View
      *
      * @throws NotFoundHttpException when not exist
