@@ -1,0 +1,6 @@
+parameters:
+  app.services.object_updater_class: AppBundle\Services\ObjectUpdater
+
+services:
+  app.services.object_updater:
+    class: ["%app.services.object_updater_class%"]
