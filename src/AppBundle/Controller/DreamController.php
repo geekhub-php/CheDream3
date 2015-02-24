@@ -45,26 +45,22 @@ class DreamController extends FOSRestController
 
     public function getDreamsAction(ParamFetcher $paramFetcher)
     {
-        $status = $paramFetcher->get('status');
-        $sortBy = $paramFetcher->get('sort_by');
-        $sortOrder = $paramFetcher->get('sort_order');
-
         $manager = $this->get('doctrine_mongodb')->getManager();
 
-        if(!$status) {
+        if(!$paramFetcher->get('status')) {
             $dreamsQuery = $manager->createQueryBuilder('AppBundle:Dream')
-                ->sort($sortBy, $sortOrder)
+                ->sort($paramFetcher->get('sort_by'), $paramFetcher->get('sort_order'))
                 ->field('currentStatus')->notEqual('fail')
                 ->getQuery()->execute()->toArray();
         }else{
             $dreamsQuery = $manager->createQueryBuilder('AppBundle:Dream')
-                ->sort($sortBy, $sortOrder)
-                ->field('currentStatus')->equals($status)
+                ->sort($paramFetcher->get('sort_by'), $paramFetcher->get('sort_order'))
+                ->field('currentStatus')->equals($paramFetcher->get('status'))
                 ->getQuery()->execute()->toArray();
         }
 
         $dreamsManager = new DreamsResponse();
-        $dreamsManager->setSortOrder($sortOrder);
+        $dreamsManager->setSortOrder($paramFetcher->get('sort_order'));
 
         $paginator = new Pagerfanta(new ArrayAdapter($dreamsQuery));
         $paginator
