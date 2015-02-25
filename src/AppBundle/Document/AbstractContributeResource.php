@@ -14,13 +14,6 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
  */
 abstract class AbstractContributeResource
 {
-    /**
-     * @var \DateTime
-     *
-     * @Gedmo\Timestampable(on="create")
-     * @ODM\Field(type="date")
-     */
-    protected $createdAt;
 
     /**
      * @var float

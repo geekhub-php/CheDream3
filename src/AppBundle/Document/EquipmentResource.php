@@ -21,6 +21,8 @@ class EquipmentResource extends AbstractResource
     const KG = 'kg';
     const PIECE = 'piece';
 
+    use Timestampable;
+
     /**
      * @return array
      */
@@ -61,16 +63,6 @@ class EquipmentResource extends AbstractResource
     protected $title;
 
     /**
-     * @var \DateTime
-     *
-     * @Gedmo\Timestampable(on="create")
-     * @ODM\Field(type="date")
-     * @Expose()
-     * @Type("DateTime")
-     */
-    protected $createdAt;
-
-    /**
      * @var float $quantity
      *
      * @ODM\Field(type="float")
@@ -94,29 +86,6 @@ class EquipmentResource extends AbstractResource
      * @Expose()
      */
     protected $equipmentContributes = [];
-
-    /**
-     * Set createdAt
-     *
-     * @param  \DateTime $createdAt
-     * @return self
-     */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime $createdAt
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
 
     public function __construct()
     {

@@ -16,6 +16,7 @@ use JMS\Serializer\Annotation\Type;
  */
 class WorkResource extends AbstractResource
 {
+    use Timestampable;
     /**
      * @var integer
      *
@@ -33,15 +34,6 @@ class WorkResource extends AbstractResource
      * @Type("string")
      */
     protected $title;
-
-    /**
-     * @var date $createdAt
-     *
-     * @ODM\Field(type="date")
-     * @Expose()
-     * @Type("DateTime")
-     */
-    protected $createdAt;
 
     /**
      * @var float $quantity
@@ -103,29 +95,6 @@ class WorkResource extends AbstractResource
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param  date $createdAt
-     * @return self
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return date $createdAt
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
     }
 
     /**
