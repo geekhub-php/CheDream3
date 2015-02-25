@@ -55,9 +55,7 @@ doctrine_mongodb:
     default_database: %database_name%
     document_managers:
         default:
-            auto_mapping:
-                     ApplicationSonataMediaBundle: ~
-                     SonataMediaBundle: ~
+            auto_mapping: true
 
 # Swiftmailer Configuration
 swiftmailer:
