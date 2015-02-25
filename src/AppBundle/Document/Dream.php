@@ -8,7 +8,6 @@ use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use AppBundle\Document\Timestampable;
 
 /**
  * Class Dream

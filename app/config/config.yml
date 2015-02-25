@@ -55,7 +55,9 @@ doctrine_mongodb:
     default_database: %database_name%
     document_managers:
         default:
-            auto_mapping: true
+            auto_mapping:
+                     ApplicationSonataMediaBundle: ~
+                     SonataMediaBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -148,5 +150,3 @@ nelmio_cors:
             allow_headers: ['*']
             allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
             max_age: 3600
-
-
