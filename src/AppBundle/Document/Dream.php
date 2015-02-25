@@ -918,4 +918,9 @@ class Dream
     {
         return $this->dreamOtherContributions;
     }
+
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
 }

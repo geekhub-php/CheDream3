@@ -7,10 +7,10 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class FaqAdmin extends Admin
+class StatusAdmin extends Admin
 {
-    protected $baseRouteName = 'AppBundle\Document\Faq';
-    protected $baseRoutePattern = 'Faq';
+    protected $baseRouteName = 'AppBundle\Document\Status';
+    protected $baseRoutePattern = 'Status';
     protected $datagridValues = [
         '_sort_order' => 'ASC',
         '_sort_by'    => 'name',
@@ -19,13 +19,9 @@ class FaqAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title', 'text', array('label' => 'Faq Title'))
-            ->add('question', 'text')
-            ->add('answer', 'text')
+            ->add('title', 'text', array('label' => 'Status Title'))
             ->add('createdAt', 'date')
-            ->add('updatedAt', 'date')
-            ->add('deletedAt', 'date')
-
+            ->add('dream', 'document', array('class' => 'AppBundle\Document\Dream'))
         ;
     }
 
@@ -34,7 +30,7 @@ class FaqAdmin extends Admin
     {
         $datagridMapper
             ->add('title')
-            ->add('question')
+            ->add('user')
         ;
     }
 
@@ -43,8 +39,8 @@ class FaqAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('title')
-            ->add('slug')
-            ->add('question')
+            ->add('createdAt')
+            ->add('dream')
         ;
     }
 }
