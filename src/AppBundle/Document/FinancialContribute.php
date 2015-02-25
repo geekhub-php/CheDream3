@@ -26,7 +26,7 @@ class FinancialContribute extends AbstractContribute
     protected $id;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="FinancialResource")
+     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\FinancialResource")
      * @Expose()
      */
     protected $financialResource;

@@ -234,23 +234,23 @@ class Dream
 //    protected $dreamVideos;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="FinancialResource", cascade={"persist"})
+     * @ODM\ReferenceMany(targetDocument="AppBundle\Document\FinancialResource", cascade={"persist"})
      * @Expose()
-     * @Type("array<string, FinancialResource>")
+     * @Type("array<string, AppBundle\Document\FinancialResource>")
      */
     protected $dreamFinancialResources;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="EquipmentResource", cascade={"persist"})
+     * @ODM\ReferenceMany(targetDocument="AppBundle\Document\EquipmentResource", cascade={"persist"})
      * @Expose()
-     * @Type("array<string, EquipmentResource>")
+     * @Type("array<string, AppBundle\Document\EquipmentResource>")
      */
     protected $dreamEquipmentResources;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="WorkResource", cascade={"persist"})
+     * @ODM\ReferenceMany(targetDocument="AppBundle\Document\WorkResource", cascade={"persist"})
      * @Expose()
-     * @Type("array<string, WorkResource>")
+     * @Type("array<string, AppBundle\Document\WorkResource>")
      */
     protected $dreamWorkResources;
 

@@ -27,7 +27,7 @@ class EquipmentContribute extends AbstractContribute
     protected $id;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="EquipmentResource")
+     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\EquipmentResource")
      * @Expose()
      */
     protected $equipmentResource;
