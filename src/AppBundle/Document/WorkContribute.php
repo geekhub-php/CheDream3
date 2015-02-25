@@ -97,6 +97,7 @@ class WorkContribute extends AbstractContribute
     public function setWorkResource(\AppBundle\Document\WorkResource $workResource)
     {
         $this->workResource = $workResource;
+        $workResource->addWorkContribution($this);
 
         return $this;
     }

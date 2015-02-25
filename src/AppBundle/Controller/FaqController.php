@@ -2,11 +2,10 @@
 
 namespace AppBundle\Controller;
 
-use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\View\View;
 
-class FaqController extends FOSRestController
+class FaqController extends AbstractController
 {
     /**
      * Get Faqs,
