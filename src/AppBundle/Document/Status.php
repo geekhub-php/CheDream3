@@ -148,4 +148,9 @@ class Status implements EventInterface
     {
         return $this->dream;
     }
+
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
 }

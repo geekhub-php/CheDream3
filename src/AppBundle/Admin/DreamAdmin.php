@@ -40,10 +40,10 @@ class DreamAdmin extends Admin
             ->add('dreamFinancialResources', 'document', array('class' => 'AppBundle\Document\FinancialResource'))
             ->add('dreamEquipmentResources', 'document', array('class' => 'AppBundle\Document\EquipmentResource'))
             ->add('dreamWorkResources', 'document', array('class' => 'AppBundle\Document\WorkResource'))
-            ->add('dreamFinancialContributions', 'document', array('class' => 'AppBundle\Document\FinancialContribute'))
-            ->add('dreamEquipmentContributions', 'document', array('class' => 'AppBundle\Document\EquipmentContribute'))
-            ->add('dreamWorkContributions', 'document', array('class' => 'AppBundle\Document\WorkContribute'))
-            ->add('dreamOtherContributions', 'document', array('class' => 'AppBundle\Document\OtherContribute'))
+//            ->add('dreamFinancialContributions', 'document', array('class' => 'AppBundle\Document\FinancialContribute'))
+//            ->add('dreamEquipmentContributions', 'document', array('class' => 'AppBundle\Document\EquipmentContribute'))
+//            ->add('dreamWorkContributions', 'document', array('class' => 'AppBundle\Document\WorkContribute'))
+//            ->add('dreamOtherContributions', 'document', array('class' => 'AppBundle\Document\OtherContribute'))
         ;
     }
 

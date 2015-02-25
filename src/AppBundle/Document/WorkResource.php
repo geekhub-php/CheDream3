@@ -178,4 +178,9 @@ class WorkResource extends AbstractResource
     {
         return $this->workContributions;
     }
+
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
 }

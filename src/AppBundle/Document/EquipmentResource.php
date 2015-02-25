@@ -228,4 +228,9 @@ class EquipmentResource extends AbstractResource
     {
         return $this->equipmentContributes;
     }
+
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
 }

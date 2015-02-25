@@ -206,4 +206,9 @@ class FinancialContribute extends AbstractContribute
     {
         return $this->dream;
     }
+
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
 }

@@ -179,4 +179,9 @@ class FinancialResource extends AbstractResource
     {
         return $this->financialContributes;
     }
+
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
 }
