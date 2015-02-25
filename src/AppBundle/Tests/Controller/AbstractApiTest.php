@@ -12,6 +12,7 @@ abstract class AbstractApiTest extends WebTestCase
                 $statusCode, $response->getStatusCode(),
                 $response->getContent()
             );
+
         $this->assertTrue(
             $response->headers->contains('Content-Type', 'application/json'),
             $response->headers

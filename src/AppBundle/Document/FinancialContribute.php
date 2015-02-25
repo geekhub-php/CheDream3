@@ -180,4 +180,31 @@ class FinancialContribute extends AbstractContribute
     {
         return $this->user;
     }
+    /**
+     * @var \AppBundle\Document\Dream
+     */
+    protected $dream;
+
+    /**
+     * Set dream
+     *
+     * @param  \AppBundle\Document\Dream $dream
+     * @return self
+     */
+    public function setDream(\AppBundle\Document\Dream $dream)
+    {
+        $this->dream = $dream;
+
+        return $this;
+    }
+
+    /**
+     * Get dream
+     *
+     * @return \AppBundle\Document\Dream $dream
+     */
+    public function getDream()
+    {
+        return $this->dream;
+    }
 }
