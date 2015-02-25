@@ -20,8 +20,30 @@ class DreamAdmin extends Admin
     {
         $formMapper
             ->add('title', 'text', array('label' => 'Dream Title'))
-            ->add('author', 'entity', array('class' => 'AppBundle\Document\User'))
-            ->add('body') //if no type is specified, SonataAdminBundle tries to guess it
+            ->add('description', 'text')
+            ->add('rejectedDescription', 'text')
+            ->add('implementedDescription', 'text')
+            ->add('completedDescription', 'text')
+            ->add('phone', 'text')
+            ->add('createdAt', 'date')
+            ->add('updatedAt', 'date')
+            ->add('deletedAt', 'date')
+            ->add('expiredDate', 'date')
+            ->add('financialCompleted')
+            ->add('workCompleted')
+            ->add('equipmentCompleted')
+            ->add('usersWhoFavorites', 'document', array('class' => 'AppBundle\Document\User'))
+            ->add('favoritesCount')
+            ->add('author', 'text')
+            ->add('statuses', 'document', array('class' => 'AppBundle\Document\Status'))
+            ->add('currentStatus', 'text')
+            ->add('dreamFinancialResources', 'document', array('class' => 'AppBundle\Document\FinancialResource'))
+            ->add('dreamEquipmentResources', 'document', array('class' => 'AppBundle\Document\EquipmentResource'))
+            ->add('dreamWorkResources', 'document', array('class' => 'AppBundle\Document\WorkResource'))
+            ->add('dreamFinancialContributions', 'document', array('class' => 'AppBundle\Document\FinancialContribute'))
+            ->add('dreamEquipmentContributions', 'document', array('class' => 'AppBundle\Document\EquipmentContribute'))
+            ->add('dreamWorkContributions', 'document', array('class' => 'AppBundle\Document\WorkContribute'))
+            ->add('dreamOtherContributions', 'document', array('class' => 'AppBundle\Document\OtherContribute'))
         ;
     }
 
