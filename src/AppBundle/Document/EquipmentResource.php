@@ -88,6 +88,14 @@ class EquipmentResource extends AbstractResource
     protected $dream;
 
     /**
+     * @var String
+     *
+     * @Gedmo\Slug(fields={"title"})
+     * @ODM\Field(type="string")
+     */
+    protected $slug;
+
+    /**
      * @var array
      *
      * @ODM\ReferenceMany(targetDocument="EquipmentContribute")

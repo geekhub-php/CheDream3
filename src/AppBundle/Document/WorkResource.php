@@ -67,6 +67,14 @@ class WorkResource extends AbstractResource
      */
     protected $workContributions = [];
 
+    /**
+     * @var String
+     *
+     * @Gedmo\Slug(fields={"title"})
+     * @ODM\Field(type="string")
+     */
+    protected $slug;
+
     public function __construct()
     {
         $this->workContributions = new \Doctrine\Common\Collections\ArrayCollection();

@@ -60,14 +60,6 @@ class EquipmentContribute extends AbstractContribute
      */
     protected $quantity;
 
-    /**
-     * @var \AppBundle\Document\User
-     *
-     * @ODM\ReferenceOne(targetDocument="User")
-     * @Expose()
-     */
-    protected $user;
-
     public function getCreatedAt()
     {
         return $this->createdAt;
@@ -181,10 +173,6 @@ class EquipmentContribute extends AbstractContribute
     {
         return $this->user;
     }
-    /**
-     * @var \AppBundle\Document\Dream
-     */
-    protected $dream;
 
     /**
      * Set dream
@@ -208,4 +196,15 @@ class EquipmentContribute extends AbstractContribute
     {
         return $this->dream;
     }
+    /**
+     * @var AppBundle\Document\User
+     */
+    protected $user;
+
+    /**
+     * @var AppBundle\Document\Dream
+     */
+    protected $dream;
+
+
 }

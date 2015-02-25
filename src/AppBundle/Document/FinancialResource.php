@@ -68,6 +68,14 @@ class FinancialResource extends AbstractResource
      */
     protected $financialContributes = [];
 
+    /**
+     * @var String
+     *
+     * @Gedmo\Slug(fields={"title"})
+     * @ODM\Field(type="string")
+     */
+    protected $slug;
+
     public function __construct()
     {
         $this->financialContributes = new \Doctrine\Common\Collections\ArrayCollection();
