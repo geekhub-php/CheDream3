@@ -2,15 +2,9 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
-use Symfony\Component\Config\Definition\Exception\Exception;
-use Symfony\Component\HttpFoundation\Request;
-use FOS\RestBundle\Controller\Annotations\QueryParam;
-use FOS\RestBundle\Request\ParamFetcher;
 
 class FaqController extends FOSRestController
 {
@@ -23,39 +17,61 @@ class FaqController extends FOSRestController
      * output="array<AppBundle\Document\Faq>",
      * statusCodes = {
      *      200 = "Returned when successful",
-     *      404 = "Returned when the Faqs is not found"
+     *      204 = "Returned when the Faqs is not found"
      * }
      * )
      *
-     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count faqs at one page")
-     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
-     *
-     * @RestView
-     *
-     * @param  ParamFetcher $paramFetcher
      * @return View
-     *
-     * @throws NotFoundHttpException when not exist
      */
-    public function getFaqsAction(ParamFetcher $paramFetcher)
+    public function getFaqsAction()
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
-        $faqsQuery = $manager->createQueryBuilder('AppBundle:Faq')->getQuery();
+        $manager = $this->get('doctrine_mongodb.odm.document_manager');
+        $faqsQuery = $manager->getRepository('AppBundle:Faq')
+                            ->findAll();
+
+        $view = View::create();
 
         if (count($faqsQuery) == 0) {
-            throw new Exception("204 No Content");
+            $view->setStatusCode(204);
+        } else {
+            $view->setData([
+                "faqs" => $faqsQuery,
+            ]);
         }
 
-        $limit = $paramFetcher->get('limit');
-        $page = $paramFetcher->get('page');
+        return $view;
+    }
 
-        $paginator  = $this->get('knp_paginator');
-        $faqsQuery = $paginator->paginate(
-            $faqsQuery,
-            $paramFetcher->get('page', $page),
-            $limit
-        );
+    /**
+     * @ApiDoc(
+     * resource = true,
+     * description = "Gets faq by slug",
+     * output="array<AppBundle\Document\Faq>",
+     * statusCodes = {
+     *      200 = "Returned if faq exist",
+     *      404 = "Returned if faq not exist"
+     * }
+     * )
+     *
+     * @param $slug
+     * @return View
+     */
+    public function getFaqAction($slug)
+    {
+        $manager = $this->get('doctrine_mongodb.odm.document_manager');
+        $faq = $manager->getRepository('AppBundle:Faq')
+                       ->findOneBySlug($slug);
 
-        return $faqsQuery;
+        $view = View::create();
+
+        if (!$faq) {
+            $view->setStatusCode(404);
+        } else {
+            $view->setData([
+                "faq" => $faq,
+            ]);
+        }
+
+        return $view;
     }
 }

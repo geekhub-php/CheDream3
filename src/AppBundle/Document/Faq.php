@@ -22,7 +22,6 @@ class Faq
      * @var integer
      *
      * @ODM\Id
-     * @Expose()
      * @Type("integer")
      */
     protected $id;
@@ -58,7 +57,6 @@ class Faq
      * @var \DateTime
      *
      * @ODM\Field(type="date")
-     * @Expose()
      * @Type("DateTime")
      */
     protected $deletedAt;

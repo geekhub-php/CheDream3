@@ -2,7 +2,7 @@
 
 namespace AppBundle\Document;
 
-use Gedmo\Mapping\Annotation as Gedmo;;
+use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
@@ -162,8 +162,6 @@ class Dream
      */
     protected $equipmentCompleted;
 
-    protected $tags;
-
     /**
      * @ODM\ReferenceMany(targetDocument="User")
      * @Expose()
@@ -226,10 +224,10 @@ class Dream
 //     */
 //    protected $mediaVideos;
 
-    protected $dreamPictures;
-    protected $dreamPoster;
-    protected $dreamFiles;
-    protected $dreamVideos;
+//    protected $dreamPictures;
+//    protected $dreamPoster;
+//    protected $dreamFiles;
+//    protected $dreamVideos;
 
     /**
      * @ODM\ReferenceMany(targetDocument="FinancialResource", cascade={"persist"})

@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Component\Config\Definition\Exception\Exception;
+use AppBundle\Document\Dream;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use FOS\RestBundle\Controller\FOSRestController;
@@ -74,12 +74,63 @@ class DreamController extends FOSRestController
      */
     public function getDreamAction($slug)
     {
-        $dream = $this->get('doctrine_mongodb')->getManager()->getRepository('AppBundle:Dream')->findBySlug($slug);
+        $dream = $this->get('doctrine_mongodb')->getManager()->getRepository('AppBundle:Dream')->findOneBySlug($slug);
 
         if (!$dream) {
             throw new NotFoundHttpException();
         }
 
         return $dream;
+    }
+
+    /**
+     * Update existing dream from the submitted data or create a new dream at a specific location.
+     *
+     * @ApiDoc(
+     * resource = true,
+     * description = "Create/Update single dream",
+     * parameters={
+     * {"name"="title", "dataType"="string", "required"=true, "description"="Dream name"},
+     * {"name"="description", "dataType"="string", "required"=true, "description"="Description about dream"},
+     * {"name"="phone", "dataType"="integer", "required"=true, "description"="Phone number", "format"="(xxx) xxx xxx xxx"},
+     * {"name"="dreamFinancialResources", "dataType"="array<AppBundle\Document\FinancialResource>", "required"=true, "description"="Financial resources"},
+     * {"name"="dreamWorkResources", "dataType"="array<AppBundle\Document\WorkResource>", "required"=true, "description"="Work resources"},
+     * {"name"="dreamEquipmentResources", "dataType"="array<AppBundle\Document\EquipmentResource>", "required"=true, "description"="Equipment resources"}
+     * },
+     * statusCodes = {
+     * 200 = "Dream successful update",
+     * 404 = "Return when dream with current slug not isset"
+     * }
+     * )
+     *
+     *
+     * @param  Request $request the request object
+     * @param  string  $slug    the page id
+     * @return mixed
+     */
+    public function putDreamAction(Request $request, $slug)
+    {
+        $data = $request->request->all();
+        $dm = $this->get('doctrine.odm.mongodb.document_manager');
+
+        $dreamOld = $dm->getRepository('AppBundle:Dream')
+                        ->findOneBySlug($slug);
+
+        if (!$dreamOld) {
+            $view = View::create();
+            $view->setStatusCode(404);
+        } else {
+            $data = $this->get('serializer')->serialize($data, 'json');
+            $dreamNew = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
+
+            $dreamOld = $this->get('app.services.object_updater')->updateObject($dreamOld, $dreamNew);
+
+            $dm->flush();
+
+            $view = View::create();
+            $view->setStatusCode(200);
+        }
+
+        return $view;
     }
 }
