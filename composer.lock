@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f32bfe7389850eefe2ccd3eb65aa9c2e",
+    "hash": "f31386b248a89da68bb99e1292d16b1c",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -859,16 +859,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/mongodb.git",
-                "reference": "d9b284bfaa702d325516e741e585f19ac742beb5"
+                "reference": "f1ccea5c72714686ef72b29e5cc9b4f907300f61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/mongodb/zipball/d9b284bfaa702d325516e741e585f19ac742beb5",
-                "reference": "d9b284bfaa702d325516e741e585f19ac742beb5",
+                "url": "https://api.github.com/repos/doctrine/mongodb/zipball/f1ccea5c72714686ef72b29e5cc9b4f907300f61",
+                "reference": "f1ccea5c72714686ef72b29e5cc9b4f907300f61",
                 "shasum": ""
             },
             "require": {
-                "doctrine/common": ">=2.1.0,<2.5-dev",
+                "doctrine/common": "~2.1",
                 "ext-mongo": ">=1.2.12,<1.7-dev",
                 "php": ">=5.3.2"
             },
@@ -918,7 +918,7 @@
                 "mongodb",
                 "persistence"
             ],
-            "time": "2015-02-02 22:45:01"
+            "time": "2015-02-25 00:44:57"
         },
         {
             "name": "doctrine/mongodb-odm",
@@ -926,19 +926,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/mongodb-odm.git",
-                "reference": "b799755b4bd72c0b66d5e08574b2dc4d0e26c62b"
+                "reference": "89bb1af203e85019b97b0994818454d2ca8ccb52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/mongodb-odm/zipball/b799755b4bd72c0b66d5e08574b2dc4d0e26c62b",
-                "reference": "b799755b4bd72c0b66d5e08574b2dc4d0e26c62b",
+                "url": "https://api.github.com/repos/doctrine/mongodb-odm/zipball/89bb1af203e85019b97b0994818454d2ca8ccb52",
+                "reference": "89bb1af203e85019b97b0994818454d2ca8ccb52",
                 "shasum": ""
             },
             "require": {
                 "doctrine/annotations": "~1.0",
                 "doctrine/cache": "~1.0",
                 "doctrine/collections": "~1.1",
-                "doctrine/common": "2.4.*",
+                "doctrine/common": "~2.4",
                 "doctrine/inflector": "~1.0",
                 "doctrine/instantiator": "~1.0.1",
                 "doctrine/mongodb": ">=1.1.5,<2.0",
@@ -992,7 +992,7 @@
                 "odm",
                 "persistence"
             ],
-            "time": "2015-02-13 22:02:56"
+            "time": "2015-02-25 00:55:38"
         },
         {
             "name": "doctrine/mongodb-odm-bundle",
@@ -1063,17 +1063,17 @@
         },
         {
             "name": "friendsofsymfony/rest-bundle",
-            "version": "1.5.0",
+            "version": "1.5.3",
             "target-dir": "FOS/RestBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "d72f3a41409997ebd91ca34561075c615d2ddcc0"
+                "reference": "fdd21c4c0cb6222ae37efc9362c6a96bd1432412"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/d72f3a41409997ebd91ca34561075c615d2ddcc0",
-                "reference": "d72f3a41409997ebd91ca34561075c615d2ddcc0",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/fdd21c4c0cb6222ae37efc9362c6a96bd1432412",
+                "reference": "fdd21c4c0cb6222ae37efc9362c6a96bd1432412",
                 "shasum": ""
             },
             "require": {
@@ -1137,7 +1137,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2015-02-09 12:22:33"
+            "time": "2015-02-16 15:26:12"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -2529,18 +2529,17 @@
             "time": "2014-11-17 16:23:49"
         },
         {
-            "name": "sensio/distribution-bundle",
-            "version": "v3.0.16",
-            "target-dir": "Sensio/Bundle/DistributionBundle",
+            "name": "phpunit/php-code-coverage",
+            "version": "2.0.15",
             "source": {
                 "type": "git",
-                "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "aa30f8cd3ee68144e043ca30713aa7d7df35c5fa"
+                "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
+                "reference": "34cc484af1ca149188d0d9e91412191e398e0b67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/aa30f8cd3ee68144e043ca30713aa7d7df35c5fa",
-                "reference": "aa30f8cd3ee68144e043ca30713aa7d7df35c5fa",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/34cc484af1ca149188d0d9e91412191e398e0b67",
+                "reference": "34cc484af1ca149188d0d9e91412191e398e0b67",
                 "shasum": ""
             },
             "require": {
@@ -2589,7 +2588,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-02-01 05:42:21"
+            "time": "2015-01-24 10:06:35"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -2779,12 +2778,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "7c1de6a854a36ba330b352a005a4f5f928619f53"
+                "reference": "7b9e68dfc2fccb6b167b09a605152b0f5fd6d871"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/7c1de6a854a36ba330b352a005a4f5f928619f53",
-                "reference": "7c1de6a854a36ba330b352a005a4f5f928619f53",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/7b9e68dfc2fccb6b167b09a605152b0f5fd6d871",
+                "reference": "7b9e68dfc2fccb6b167b09a605152b0f5fd6d871",
                 "shasum": ""
             },
             "require": {
@@ -2823,6 +2822,9 @@
             "autoload": {
                 "classmap": [
                     "src/"
+                ],
+                "files": [
+                    "src/Framework/Assert/Functions.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2843,7 +2845,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-02-09 06:38:12"
+            "time": "2015-02-24 09:18:59"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -4132,8 +4134,7 @@
         "friendsofsymfony/user-bundle": 20,
         "doctrine/data-fixtures": 20,
         "phpunit/phpunit": 20,
-        "guzzle/guzzle": 20,
-        "phpunit/php-code-coverage": 20
+        "guzzle/guzzle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
