@@ -31,7 +31,7 @@
         "phpunit/phpunit": "4.7.*@dev",
         "guzzle/guzzle": "3.9.*@dev",
         "knplabs/knp-paginator-bundle": "~2.4",
-        "phpunit/php-code-coverage": "2.0.*@dev",
+        "phpunit/php-code-coverage": "~2.0",
         "nelmio/cors-bundle": "~1.4"
     },
     "require-dev": {
