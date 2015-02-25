@@ -6,6 +6,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class WorkContribute
@@ -48,6 +49,14 @@ class WorkContribute extends AbstractContribute
      * @Type("DateTime")
      */
     protected $createdAt;
+
+    /**
+     * @var String
+     *
+     * @Gedmo\Slug(fields={"title"})
+     * @ODM\Field(type="string")
+     */
+    protected $slug;
 
     /**
      * @var float $quantity
