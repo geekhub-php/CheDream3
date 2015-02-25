@@ -6,6 +6,7 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
 
 class FaqAdmin extends Admin
 {
@@ -15,7 +16,12 @@ class FaqAdmin extends Admin
         '_sort_order' => 'ASC',
         '_sort_by'    => 'name',
     ];
-    // Fields to be shown on create/edit forms
+
+    /**
+     * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
+     *
+     * @return void
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -29,22 +35,53 @@ class FaqAdmin extends Admin
         ;
     }
 
-    // Fields to be shown on filter forms
+    /**
+     * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
+     *
+     * @return void
+     */
+    protected function configureShowField(ShowMapper $showMapper)
+    {
+        $showMapper
+            ->add('title', 'text', array('label' => 'Заголовок'))
+            ->add('question', 'text', array('label' => 'Питання'))
+            ->add('answer', 'text', array('label' => 'Відповідь'))
+        ;
+    }
+
+    /**
+     * @param \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper
+     *
+     * @return void
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
             ->add('title')
             ->add('question')
+            ->add('answer')
         ;
     }
 
-    // Fields to be shown on lists
+    /**
+     * @param \Sonata\AdminBundle\Datagrid\ListMapper $listMapper
+     *
+     * @return void
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('title')
-            ->add('slug')
-            ->add('question')
+            ->addIdentifier('title', 'text', array('label' => 'Заголовок'))
+            ->add('question', 'text', array('label' => 'Питання'))
+            ->add('answer', 'text', array('label' => 'Відповідь'))
+            ->add('_action', 'actions', array(
+                'label' => 'Дії',
+                'actions' => array(
+                    'show' => array(),
+                    'edit' => array(),
+                    'delete' => array(),
+                )
+            ))
         ;
     }
 }

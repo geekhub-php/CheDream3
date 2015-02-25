@@ -23,10 +23,10 @@
             </call>
         </service>
 
-        <service id="sonata.admin.status" class="AppBundle\Admin\StatusAdmin">
-            <tag name="sonata.admin" manager_type="doctrine_mongodb" group="Content" label="Status"/>
+        <service id="sonata.admin.user" class="AppBundle\Admin\UserAdmin">
+            <tag name="sonata.admin" manager_type="doctrine_mongodb" group="Content" label="User"/>
             <argument />
-            <argument>AppBundle\Document\Status</argument>
+            <argument>AppBundle\Document\User</argument>
             <argument />
             <call method="setTranslationDomain">
                 <argument>AppBundle</argument>
