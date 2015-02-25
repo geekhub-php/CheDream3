@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
@@ -32,9 +33,9 @@ class DreamAdmin extends Admin
             ->add('financialCompleted')
             ->add('workCompleted')
             ->add('equipmentCompleted')
-            ->add('usersWhoFavorites', 'document', array('class' => 'AppBundle\Document\User'))
+//            ->add('usersWhoFavorites', 'document', array('class' => 'AppBundle\Document\User'))
             ->add('favoritesCount')
-            ->add('author', 'text')
+            ->add('author', 'document', array('class' => 'AppBundle\Document\User'))
             ->add('statuses', 'document', array('class' => 'AppBundle\Document\Status'))
             ->add('currentStatus', 'text')
             ->add('dreamFinancialResources', 'document', array('class' => 'AppBundle\Document\FinancialResource'))
