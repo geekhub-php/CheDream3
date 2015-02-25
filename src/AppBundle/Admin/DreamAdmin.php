@@ -5,9 +5,16 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use AppBundle\Document\Dream;
 
-class PostAdmin extends Admin
+class DreamAdmin extends Admin
 {
+    protected $baseRouteName = 'AppBundle\Document\Dream';
+    protected $baseRoutePattern = 'Dream';
+    protected $datagridValues = [
+        '_sort_order' => 'ASC',
+        '_sort_by'    => 'name',
+    ];
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {

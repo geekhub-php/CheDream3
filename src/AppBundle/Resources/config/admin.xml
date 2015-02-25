@@ -2,8 +2,8 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="sonata.admin.post" class="AppBundle\Admin\PostAdmin">
-            <tag name="sonata.admin" manager_type="doctrine_mongodb" group="Content" label="Post"/>
+        <service id="sonata.admin.post" class="AppBundle\Admin\DreamAdmin">
+            <tag name="sonata.admin" manager_type="doctrine_mongodb" group="Content" label="Dream"/>
             <argument />
             <argument>AppBundle\Document\Dream</argument>
             <argument />
