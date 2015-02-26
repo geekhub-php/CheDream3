@@ -3,10 +3,11 @@
 namespace AppBundle\Controller;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Config\Definition\Exception\Exception;
+use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
-use Symfony\Component\Config\Definition\Exception\Exception;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 
@@ -27,7 +28,7 @@ class StatusController extends AbstractController
      *
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count statuses at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
-     *
+    *
      * @RestView
      *
      * @param  ParamFetcher $paramFetcher
@@ -38,6 +39,7 @@ class StatusController extends AbstractController
     public function getStatusAction(ParamFetcher $paramFetcher)
     {
         $manager = $this->getMongoDbManager();
+
         $status = $manager->createQueryBuilder('AppBundle:Status')->getQuery();
 
         if (count($status) == 0) {
