@@ -33,8 +33,8 @@ class DreamController extends FOSRestController
      * @QueryParam(name="status", strict=true, requirements="[a-z]+", description="Status", nullable=true)
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count statuses at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
-     * @QueryParam(name="sort_by", strict=true, requirements="[a-z]+", default="createdAt", description="Sort by", nullable=true)
-     * @QueryParam(name="sort_order", strict=true, requirements="[a-z]+", default="DESC", description="Sort order", nullable=true)
+     * @QueryParam(name="sort_by", strict=true, requirements="^[a-zA-Z]+", default="createdAt", description="Sort by", nullable=true)
+     * @QueryParam(name="sort_order", strict=true, requirements="^[a-zA-Z]+", default="DESC", description="Sort order", nullable=true)
      *
      * @param ParamFetcher $paramFetcher
      *
@@ -52,10 +52,10 @@ class DreamController extends FOSRestController
                 ->field('dream.currentStatus')->notEqual('fail')
                 ->getQuery()->execute()->toArray();
         } else {
-            $queryBuilder = $repository->findBy(
-                ['currentStatus' => $paramFetcher->get('status')],
-                [$paramFetcher->get('sort_by') => $paramFetcher->get('sort_order')]
-            );
+            $queryBuilder = $repository->createQueryBuilder('dream')
+                ->sort($paramFetcher->get('sort_by'), $paramFetcher->get('sort_order'))
+                ->field('currentStatus')->equals($paramFetcher->get('status'))
+                ->getQuery()->execute()->toArray();
         }
 
         $dreamsResponse = new DreamsResponse();
