@@ -98,8 +98,10 @@ class DreamController extends AbstractController
      *          {"name"="dreamWorkResources", "dataType"="array<AppBundle\Document\WorkResource>", "required"=true, "description"="Work resources"},
      *          {"name"="dreamFinancialResources", "dataType"="array<AppBundle\Document\FinancialResource>", "required"=true, "description"="Financial resources"}
      *      },
+     *      output = "string",
      *      statusCodes = {
-     *          201 = "Dream sucessful created"
+     *          201 = "Dream sucessful created",
+     *          400 = "When dream not created"
      *      }
      * )
      *
@@ -122,6 +124,10 @@ class DreamController extends AbstractController
 
         $restView = View::create();
         $restView->setStatusCode(201);
+
+        $restView->setData([
+            "link" => $this->generateUrl($this->get('router')->generate('get_dream', ['slug' => $dream->getSlug()]))
+        ]);
 
         return $restView;
     }
