@@ -27,7 +27,7 @@ class FinancialContribute extends AbstractContribute
     protected $id;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="FinancialResource")
+     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\FinancialResource")
      * @Expose()
      */
     protected $financialResource;
@@ -98,6 +98,7 @@ class FinancialContribute extends AbstractContribute
     public function setFinancialResource(\AppBundle\Document\FinancialResource $financialResource)
     {
         $this->financialResource = $financialResource;
+        $financialResource->addFinancialContribute($this);
 
         return $this;
     }

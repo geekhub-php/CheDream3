@@ -37,7 +37,7 @@ class EquipmentContribute extends AbstractContribute
     protected $id;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="EquipmentResource")
+     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\EquipmentResource")
      * @Expose()
      */
     protected $equipmentResource;
@@ -101,6 +101,7 @@ class EquipmentContribute extends AbstractContribute
     public function setEquipmentResource(\AppBundle\Document\EquipmentResource $equipmentResource)
     {
         $this->equipmentResource = $equipmentResource;
+        $equipmentResource->addEquipmentContribute($this);
 
         return $this;
     }

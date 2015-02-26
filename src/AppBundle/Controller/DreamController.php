@@ -5,14 +5,13 @@ namespace AppBundle\Controller;
 use AppBundle\Document\Dream;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 
-class DreamController extends FOSRestController
+class DreamController extends AbstractController
 {
     /**
      * Gets all Dreams,
@@ -36,7 +35,7 @@ class DreamController extends FOSRestController
      */
     public function getDreamsAction(ParamFetcher $paramFetcher)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
+        $manager = $this->getMongoDbManager();
         $dreamsQuery = $manager->createQueryBuilder('AppBundle:Dream')->getQuery();
 
         $limit = $paramFetcher->get('limit');
@@ -74,7 +73,9 @@ class DreamController extends FOSRestController
      */
     public function getDreamAction($slug)
     {
-        $dream = $this->get('doctrine_mongodb')->getManager()->getRepository('AppBundle:Dream')->findOneBySlug($slug);
+        $dream = $this->get('doctrine_mongodb.odm.document_manager')
+                      ->getRepository('AppBundle:Dream')
+                     ->findOneBySlug($slug);
 
         if (!$dream) {
             throw new NotFoundHttpException();
@@ -84,18 +85,60 @@ class DreamController extends FOSRestController
     }
 
     /**
+     * Create dream
+     *
+     * @ApiDoc(
+     *      resource = true,
+     *      description = "Create single dream",
+     *      parameters={
+     *          {"name"="title", "dataType"="string", "required"=true, "description"="Dream name"},
+     *          {"name"="description", "dataType"="string", "required"=true, "description"="Description about dream"},
+     *          {"name"="phone", "dataType"="integer", "required"=true, "description"="Phone number", "format"="(xxx) xxx xxx xxx"},
+     *          {"name"="dreamEquipmentResources", "dataType"="array<AppBundle\Document\EquipmentResource>", "required"=true, "description"="Equipment resources"},
+     *          {"name"="dreamWorkResources", "dataType"="array<AppBundle\Document\WorkResource>", "required"=true, "description"="Work resources"},
+     *          {"name"="dreamFinancialResources", "dataType"="array<AppBundle\Document\FinancialResource>", "required"=true, "description"="Financial resources"}
+     *      },
+     *      statusCodes = {
+     *          201 = "Dream sucessful created"
+     *      }
+     * )
+     *
+     * @param Request $request
+     *
+     * @return mixed
+     */
+    public function postDreamAction(Request $request)
+    {
+        $data = $request->request->all();
+        $user = $this->getUser();
+
+        $data = $this->get('serializer')->serialize($data, 'json');
+        $dream = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
+        $dream->setAuthor($user);
+
+        $dm = $this->get('doctrine.odm.mongodb.document_manager');
+        $dm->persist($dream);
+        $dm->flush();
+
+        $restView = View::create();
+        $restView->setStatusCode(201);
+
+        return $restView;
+    }
+
+    /**
      * Update existing dream from the submitted data or create a new dream at a specific location.
      *
      * @ApiDoc(
      * resource = true,
      * description = "Create/Update single dream",
      * parameters={
-     * {"name"="title", "dataType"="string", "required"=true, "description"="Dream name"},
-     * {"name"="description", "dataType"="string", "required"=true, "description"="Description about dream"},
-     * {"name"="phone", "dataType"="integer", "required"=true, "description"="Phone number", "format"="(xxx) xxx xxx xxx"},
-     * {"name"="dreamFinancialResources", "dataType"="array<AppBundle\Document\FinancialResource>", "required"=true, "description"="Financial resources"},
-     * {"name"="dreamWorkResources", "dataType"="array<AppBundle\Document\WorkResource>", "required"=true, "description"="Work resources"},
-     * {"name"="dreamEquipmentResources", "dataType"="array<AppBundle\Document\EquipmentResource>", "required"=true, "description"="Equipment resources"}
+     *          {"name"="title", "dataType"="string", "required"=true, "description"="Dream name"},
+     *          {"name"="description", "dataType"="string", "required"=true, "description"="Description about dream"},
+     *          {"name"="phone", "dataType"="integer", "required"=true, "description"="Phone number", "format"="(xxx) xxx xxx xxx"},
+     *          {"name"="dreamFinancialResources", "dataType"="array<AppBundle\Document\EquipmentResource>", "required"=true, "description"="Equipment resources"},
+     *          {"name"="dreamWorkResources", "dataType"="array<AppBundle\Document\WorkResource>", "required"=true, "description"="Work resources"},
+     *          {"name"="dreamFinancialResources", "dataType"="array<AppBundle\Document\FinancialResource>", "required"=true, "description"="Financial resources"}
      * },
      * statusCodes = {
      * 200 = "Dream successful update",

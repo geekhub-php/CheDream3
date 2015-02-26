@@ -3,7 +3,6 @@
 namespace AppBundle\Controller;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
@@ -11,7 +10,7 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 
-class UsersController extends FOSRestController
+class UsersController extends AbstractController
 {
     /**
      * Get Users,
@@ -38,7 +37,7 @@ class UsersController extends FOSRestController
      */
     public function getUsersAction(ParamFetcher $paramFetcher)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
+        $manager = $this->getMongoDbManager();
         $users = $manager->createQueryBuilder('AppBundle:User')->getQuery();
 
         if (count($users) == 0) {
@@ -79,7 +78,8 @@ class UsersController extends FOSRestController
      */
     public function getUserAction($id)
     {
-        $user = $this->get('doctrine_mongodb')->getManager()->getRepository('AppBundle:User')->findOneById($id);
+        $manager = $this->getMongoDbManager();
+        $user = $manager->getRepository('AppBundle:User')->findById($id);
 
         if (!$user) {
             throw new NotFoundHttpException();
