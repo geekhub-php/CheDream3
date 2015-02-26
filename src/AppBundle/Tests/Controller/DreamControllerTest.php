@@ -7,11 +7,11 @@ class DreamControllerTest extends AbstractApiTest
     /**
      * @dataProvider providerData
      */
-    public function testGetDreamsAction($sortOrder, $pageCount)
+    public function testGetDreamsAction($sortOrder, $pageCount, $countDreams)
     {
         $client = static::createClient();
 
-        $client->request('GET', '/dreams');
+        $client->request('GET', '/dreams?limit=4&page=3&sortBy=createdAt&sortOrder=DESC');
 
         $response = $client->getResponse();
 
@@ -26,6 +26,7 @@ class DreamControllerTest extends AbstractApiTest
 
         $this->assertEquals($dreamsResponse->getPageCount(),$pageCount);
         $this->assertEquals($dreamsResponse->getSortOrder(),$sortOrder);
+        $this->assertCount($countDreams, $dreamsResponse->getDreams());
     }
 
     public function testGetDreamAction()
@@ -40,7 +41,7 @@ class DreamControllerTest extends AbstractApiTest
 
     public function providerData(){
         return [
-            ['DESC', 3]
+            ['DESC', 8, 4]
         ];
     }
 }
