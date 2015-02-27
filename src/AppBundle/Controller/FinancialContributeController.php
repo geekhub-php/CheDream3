@@ -7,6 +7,10 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
+use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\Request;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
+use FOS\RestBundle\Request\ParamFetcher;
 
 class FinancialContributeController extends FOSRestController
 {
@@ -23,25 +27,36 @@ class FinancialContributeController extends FOSRestController
      * }
      * )
      *
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count financial contributes at one page")
+     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      *
-     * RestView()
-     * @param
+     * @RestView
+     *
+     * @param  ParamFetcher $paramFetcher
      * @return View
      *
-     * @throws NotFoundHttpException when page not exist
+     * @throws NotFoundHttpException when not exist
      */
-    public function getFinancialContributesAction()
+    public function getFinancialContributesAction(ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb')->getManager();
-        $financialContributes = $manager->getRepository('AppBundle:FinancialContribute')->findAll();
-        $restView = View::create();
+        $financialQuery = $manager->createQueryBuilder('AppBundle:FinancialContribute')->getQuery();
 
-        if (count($financialContributes) == 0) {
-            $restView->setStatusCode(204);
+        if (count($financialQuery) == 0) {
+            throw new Exception("204 No Content");
         }
 
-        $restView->setData($financialContributes);
+        $limit = $paramFetcher->get('limit');
+        $page = $paramFetcher->get('page');
 
-        return $restView;
+
+        $paginator  = $this->get('knp_paginator');
+        $financialQuery = $paginator->paginate(
+            $financialQuery,
+            $paramFetcher->get('page', $page),
+            $limit
+        );
+
+        return $financialQuery;
     }
 }
