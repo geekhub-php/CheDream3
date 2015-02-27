@@ -141,7 +141,7 @@ class DreamController extends AbstractController
      *          {"name"="description", "dataType"="string", "required"=true, "description"="Description about dream"},
      *          {"name"="phone", "dataType"="integer", "required"=true, "description"="Phone number", "format"="(xxx) xxx xxx xxx"},
      *          {"name"="dreamEquipmentResources", "dataType"="array<AppBundle\Document\EquipmentResource>", "required"=true, "description"="Equipment resources"},
-     *          {"name"="dreamWorkResources",\ "dataType"="array<AppBundle\Document\WorkResource>", "required"=true, "description"="Work resources"},
+     *          {"name"="dreamWorkResources", "dataType"="array<AppBundle\Document\WorkResource>", "required"=true, "description"="Work resources"},
      *          {"name"="dreamFinancialResources", "dataType"="array<AppBundle\Document\FinancialResource>", "required"=true, "description"="Financial resources"}
      *      },
      *      statusCodes = {

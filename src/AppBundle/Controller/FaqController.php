@@ -27,7 +27,6 @@ class FaqController extends AbstractController
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count faqs at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
      *
-     * @RestView
      *
      * @param  ParamFetcher $paramFetcher
      * @return View
