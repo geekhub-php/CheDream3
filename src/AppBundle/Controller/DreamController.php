@@ -111,14 +111,17 @@ class DreamController extends AbstractController
      */
     public function postDreamAction(Request $request)
     {
+        $dm = $this->get('doctrine.odm.mongodb.document_manager');
+
         $data = $request->request->all();
+
         $user = $this->getUser();
+
 
         $data = $this->get('serializer')->serialize($data, 'json');
         $dream = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
         $dream->setAuthor($user);
 
-        $dm = $this->get('doctrine.odm.mongodb.document_manager');
         $dm->persist($dream);
         $dm->flush();
 
@@ -126,7 +129,7 @@ class DreamController extends AbstractController
         $restView->setStatusCode(201);
 
         $restView->setData([
-            "link" => $this->generateUrl($this->get('router')->generate('get_dream', ['slug' => $dream->getSlug()]))
+            "link" => $this->get('router')->generate('get_dream', ['slug' => $dream->getSlug()], true)
         ]);
 
         return $restView;
