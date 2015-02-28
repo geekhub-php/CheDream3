@@ -64,7 +64,7 @@ class FinancialResource extends AbstractResource
      * @var array
      *
      * @ODM\ReferenceMany(targetDocument="FinancialContribute")
-     * @Type("array(string, AppBundle\Document\FinancialContributes)")
+     *
      * @Expose()
      */
     protected $financialContributes = [];
