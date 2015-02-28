@@ -51,14 +51,6 @@ class WorkContribute extends AbstractContribute
     protected $createdAt;
 
     /**
-     * @var String
-     *
-     * @Gedmo\Slug(fields={"title"})
-     * @ODM\Field(type="string")
-     */
-    protected $slug;
-
-    /**
      * @var float $quantity
      *
      * @ODM\Field(type="float")
