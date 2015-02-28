@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new Hautelook\AliceBundle\HautelookAliceBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
