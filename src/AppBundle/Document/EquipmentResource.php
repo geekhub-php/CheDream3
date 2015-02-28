@@ -91,6 +91,7 @@ class EquipmentResource extends AbstractResource
      * @var array
      *
      * @ODM\ReferenceMany(targetDocument="EquipmentContribute")
+     * @Type("AppBundle\Document\EquipmentContribute")
      * @Expose()
      */
     protected $equipmentContributes = [];

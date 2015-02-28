@@ -63,6 +63,7 @@ class WorkResource extends AbstractResource
      * @var array
      *
      * @ODM\ReferenceMany(targetDocument="WorkContribute")
+     * @Type("AppBundle\Document\WorkContribute")
      * @Expose()
      */
     protected $workContributions = [];
