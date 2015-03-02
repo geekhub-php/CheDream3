@@ -14,51 +14,6 @@ use FOS\RestBundle\Request\ParamFetcher;
 class FinancialContributeController extends AbstractController
 {
     /**
-     * Get FinancialContributes,
-     *
-     * @ApiDoc(
-     * resource = true,
-     * description = "Gets all FinancialContributes",
-     * output="array<AppBundle\Document\FinancialContribute>",
-     * statusCodes = {
-     *      200 = "Returned when successful",
-     *      404 = "Returned when the FinancialContributes is not found"
-     * }
-     * )
-     *
-     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count financial contributes at one page")
-     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
-     *
-     * @RestView
-     *
-     * @param  ParamFetcher $paramFetcher
-     * @return View
-     *
-     * @throws NotFoundHttpException when not exist
-     */
-    public function getFinancialContributesAction(ParamFetcher $paramFetcher)
-    {
-        $manager = $this->getMongoDbManager();
-        $financialQuery = $manager->createQueryBuilder('AppBundle:FinancialContribute')->getQuery();
-
-        if (count($financialQuery) == 0) {
-            throw new Exception("204 No Content");
-        }
-
-        $limit = $paramFetcher->get('limit');
-        $page = $paramFetcher->get('page');
-
-        $paginator  = $this->get('knp_paginator');
-        $financialQuery = $paginator->paginate(
-            $financialQuery,
-            $paramFetcher->get('page', $page),
-            $limit
-        );
-
-        return $financialQuery;
-    }
-
-    /**
      * @ApiDoc(
      *      resource = true,
      *      description = "create single financial contribute",
