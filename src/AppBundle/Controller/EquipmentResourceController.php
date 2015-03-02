@@ -73,7 +73,7 @@ class EquipmentResourceController extends AbstractController
      * }
      * )
      *
-     * @param Request $request
+     * @param  Request $request
      * @param $slug
      * @return View
      */
@@ -98,5 +98,60 @@ class EquipmentResourceController extends AbstractController
         $restView->setStatusCode(201);
 
         return $restView;
+    }
+
+    /**
+     * @ApiDoc(
+     * resource = true,
+     * description = "Create/Update single equipment resource",
+     * parameters={
+     *     {"name" = "quantity_type", "required" = true, "type" = "string"},
+     *     {"name" = "title", "required" = true, "type" = "string"},
+     *     {"name" = "quantity", "required" = true, "type" = "integer"}
+     * },
+     * statusCodes = {
+     * 200 = "Equipment Resource successful update",
+     * 404 = "Return when equipment resource with current slug not isset"
+     * }
+     * )
+     *
+     * @param  Request $request
+     * @param $slugDream
+     * @param $slugEquipmentResource
+     *
+     * @return View
+     */
+    public function putEquipmentResourcesAction(Request $request, $slugDream, $slugEquipmentResource)
+    {
+        $data = $request->request->all();
+        $dm = $this->get('doctrine.odm.mongodb.document_manager');
+
+        $equipment_resource_old = $dm->getRepository('AppBundle:EquipmentResource')
+                                     ->findOneBySlug($slugEquipmentResource);
+
+        $data = $this->get('serializer')->serialize($data, 'json');
+        $equipment_resource_new = $this->get('serializer')->deserialize($data, 'AppBundle\Document\EquipmentResource', 'json');
+
+        $view = View::create();
+
+        if (!$equipment_resource_old) {
+            $dream = $dm->getRepository('AppBundle:Dream')
+                        ->findOneBySlug($slugDream);
+
+            $equipment_resource_new->setDream($dream);
+
+            $dm->persist($equipment_resource_new);
+            $dm->flush();
+
+            $view->setStatusCode(204);
+        } else {
+            $this->get('app.services.object_updater')->updateObject($equipment_resource_old, $equipment_resource_new);
+
+            $dm->flush();
+
+            $view->setStatusCode(200);
+        }
+
+        return $view;
     }
 }
