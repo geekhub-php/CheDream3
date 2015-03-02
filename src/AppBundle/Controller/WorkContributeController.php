@@ -2,13 +2,12 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
 use Symfony\Component\Config\Definition\Exception\Exception;
-use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 
@@ -78,7 +77,7 @@ class WorkContributeController extends AbstractController
      *
      * @return View
      */
-    public function postWorkContributesAction(Request $request, $slug)
+    public function postWorkContributesAction(SymfonyRequest $request, $slug)
     {
         $data = $request->request->all();
         $user = $this->getUser();
