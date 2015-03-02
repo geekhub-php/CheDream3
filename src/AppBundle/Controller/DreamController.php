@@ -117,7 +117,6 @@ class DreamController extends AbstractController
 
         $user = $this->getUser();
 
-
         $data = $this->get('serializer')->serialize($data, 'json');
         $dream = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
         $dream->setAuthor($user);
@@ -129,7 +128,7 @@ class DreamController extends AbstractController
         $restView->setStatusCode(201);
 
         $restView->setData([
-            "link" => $this->get('router')->generate('get_dream', ['slug' => $dream->getSlug()], true)
+            "link" => $this->get('router')->generate('get_dream', ['slug' => $dream->getSlug()], true),
         ]);
 
         return $restView;
@@ -168,18 +167,23 @@ class DreamController extends AbstractController
         $dreamOld = $dm->getRepository('AppBundle:Dream')
                         ->findOneBySlug($slug);
 
+        $data = $this->get('serializer')->serialize($data, 'json');
+        $dreamNew = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
+
+        $view = View::create();
+
         if (!$dreamOld) {
-            $view = View::create();
+            $dreamNew->setAuthor($this->getUser());
+
+            $dm->persist($dreamNew);
+            $dm->flush();
+
             $view->setStatusCode(404);
         } else {
-            $data = $this->get('serializer')->serialize($data, 'json');
-            $dreamNew = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
-
-            $dreamOld = $this->get('app.services.object_updater')->updateObject($dreamOld, $dreamNew);
+            $this->get('app.services.object_updater')->updateObject($dreamOld, $dreamNew);
 
             $dm->flush();
 
-            $view = View::create();
             $view->setStatusCode(200);
         }
 
