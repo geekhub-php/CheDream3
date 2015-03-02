@@ -3,7 +3,6 @@
 namespace AppBundle\Controller;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
@@ -12,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 
-class WorkContributeController extends FOSRestController
+class WorkContributeController extends AbstractController
 {
     /**
      * Get WorkContributes,
@@ -39,7 +38,7 @@ class WorkContributeController extends FOSRestController
      */
     public function getWorkContributesAction(ParamFetcher $paramFetcher)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
+        $manager = $this->getMongoDbManager();
         $workQuery = $manager->createQueryBuilder('AppBundle:WorkContribute')->getQuery();
 
         if (count($workQuery) == 0) {

@@ -3,7 +3,6 @@
 namespace AppBundle\Controller;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
@@ -12,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 
-class OtherContributeController extends FOSRestController
+class OtherContributeController extends AbstractController
 {
     /**
      * Get OtherContributes,
@@ -39,7 +38,7 @@ class OtherContributeController extends FOSRestController
      */
     public function getOtherContributesAction(ParamFetcher $paramFetcher)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
+        $manager = $this->getMongoDbManager();
         $contributesQuery = $manager->createQueryBuilder('AppBundle:OtherContribute')->getQuery();
 
         if (count($contributesQuery) == 0) {

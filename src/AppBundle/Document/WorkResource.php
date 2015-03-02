@@ -63,6 +63,7 @@ class WorkResource extends AbstractResource
      * @var array
      *
      * @ODM\ReferenceMany(targetDocument="WorkContribute")
+     * @Type("AppBundle\Document\WorkContribute")
      * @Expose()
      */
     protected $workContributions = [];
@@ -160,6 +161,7 @@ class WorkResource extends AbstractResource
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+        $dream->addDreamWorkResource($this);
 
         return $this;
     }
@@ -185,7 +187,6 @@ class WorkResource extends AbstractResource
         $this->workContributions[] = $workContribution;
 
         return $this;
-
     }
 
     /**
@@ -199,7 +200,6 @@ class WorkResource extends AbstractResource
         $this->workContributions->removeElement($workContribution);
 
         return $this;
-
     }
 
     /**

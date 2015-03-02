@@ -27,7 +27,7 @@ class EquipmentContribute extends AbstractContribute
     protected $id;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="EquipmentResource")
+     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\EquipmentResource")
      * @Expose()
      */
     protected $equipmentResource;
@@ -99,6 +99,7 @@ class EquipmentContribute extends AbstractContribute
     public function setEquipmentResource(\AppBundle\Document\EquipmentResource $equipmentResource)
     {
         $this->equipmentResource = $equipmentResource;
+        $equipmentResource->addEquipmentContribute($this);
 
         return $this;
     }
@@ -180,5 +181,32 @@ class EquipmentContribute extends AbstractContribute
     public function getUser()
     {
         return $this->user;
+    }
+    /**
+     * @var \AppBundle\Document\Dream
+     */
+    protected $dream;
+
+    /**
+     * Set dream
+     *
+     * @param  \AppBundle\Document\Dream $dream
+     * @return self
+     */
+    public function setDream(\AppBundle\Document\Dream $dream)
+    {
+        $this->dream = $dream;
+
+        return $this;
+    }
+
+    /**
+     * Get dream
+     *
+     * @return \AppBundle\Document\Dream $dream
+     */
+    public function getDream()
+    {
+        return $this->dream;
     }
 }

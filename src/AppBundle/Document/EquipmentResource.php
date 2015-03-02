@@ -91,6 +91,7 @@ class EquipmentResource extends AbstractResource
      * @var array
      *
      * @ODM\ReferenceMany(targetDocument="EquipmentContribute")
+     * @Type("AppBundle\Document\EquipmentContribute")
      * @Expose()
      */
     protected $equipmentContributes = [];
@@ -211,6 +212,7 @@ class EquipmentResource extends AbstractResource
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+        $dream->addDreamEquipmentResource($this);
 
         return $this;
     }

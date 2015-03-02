@@ -97,6 +97,7 @@ class WorkContribute extends AbstractContribute
     public function setWorkResource(\AppBundle\Document\WorkResource $workResource)
     {
         $this->workResource = $workResource;
+        $workResource->addWorkContribution($this);
 
         return $this;
     }
@@ -178,5 +179,32 @@ class WorkContribute extends AbstractContribute
     public function getUser()
     {
         return $this->user;
+    }
+    /**
+     * @var \AppBundle\Document\Dream
+     */
+    protected $dream;
+
+    /**
+     * Set dream
+     *
+     * @param  \AppBundle\Document\Dream $dream
+     * @return self
+     */
+    public function setDream(\AppBundle\Document\Dream $dream)
+    {
+        $this->dream = $dream;
+
+        return $this;
+    }
+
+    /**
+     * Get dream
+     *
+     * @return \AppBundle\Document\Dream $dream
+     */
+    public function getDream()
+    {
+        return $this->dream;
     }
 }

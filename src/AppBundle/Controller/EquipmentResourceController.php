@@ -3,7 +3,6 @@
 namespace AppBundle\Controller;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
@@ -12,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 
-class EquipmentResourceController extends FOSRestController
+class EquipmentResourceController extends AbstractController
 {
     /**
      * Get EquipmentResources,
@@ -39,7 +38,7 @@ class EquipmentResourceController extends FOSRestController
      */
     public function getEquipmentResourcesAction(ParamFetcher $paramFetcher)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
+        $manager = $this->getMongoDbManager();
         $equipmentQuery = $manager->createQueryBuilder('AppBundle:EquipmentResource')->getQuery();
 
         if (count($equipmentQuery) == 0) {

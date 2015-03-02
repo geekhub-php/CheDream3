@@ -64,6 +64,7 @@ class FinancialResource extends AbstractResource
      * @var array
      *
      * @ODM\ReferenceMany(targetDocument="FinancialContribute")
+     * @Type("AppBundle\Document\FinancialContribute")
      * @Expose()
      */
     protected $financialContributes = [];
@@ -161,6 +162,7 @@ class FinancialResource extends AbstractResource
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+        $dream->addDreamFinancialResource($this);
 
         return $this;
     }
