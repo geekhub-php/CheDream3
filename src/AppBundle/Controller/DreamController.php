@@ -6,7 +6,6 @@ use AppBundle\Document\Dream;
 use AppBundle\Document\EquipmentResource;
 use AppBundle\Document\FinancialResource;
 use AppBundle\Document\WorkResource;
-use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Model\DreamsResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -144,8 +143,10 @@ class DreamController extends AbstractController
      *          {"name"="dreamWorkResources", "dataType"="array<AppBundle\Document\WorkResource>", "required"=true, "description"="Work resources"},
      *          {"name"="dreamFinancialResources", "dataType"="array<AppBundle\Document\FinancialResource>", "required"=true, "description"="Financial resources"}
      *      },
+     *      output = "string",
      *      statusCodes = {
-     *          201 = "Dream sucessful created"
+     *          201 = "Dream sucessful created",
+     *          400 = "When dream not created"
      *      }
      * )
      *
@@ -155,19 +156,25 @@ class DreamController extends AbstractController
      */
     public function postDreamAction(Request $request)
     {
+        $dm = $this->get('doctrine.odm.mongodb.document_manager');
+
         $data = $request->request->all();
+
         $user = $this->getUser();
 
         $data = $this->get('serializer')->serialize($data, 'json');
         $dream = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
         $dream->setAuthor($user);
 
-        $dm = $this->get('doctrine.odm.mongodb.document_manager');
         $dm->persist($dream);
         $dm->flush();
 
         $restView = View::create();
         $restView->setStatusCode(201);
+
+        $restView->setData([
+            "link" => $this->get('router')->generate('get_dream', ['slug' => $dream->getSlug()], true),
+        ]);
 
         return $restView;
     }
@@ -205,18 +212,23 @@ class DreamController extends AbstractController
         $dreamOld = $dm->getRepository('AppBundle:Dream')
                         ->findOneBySlug($slug);
 
+        $data = $this->get('serializer')->serialize($data, 'json');
+        $dreamNew = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
+
+        $view = View::create();
+
         if (!$dreamOld) {
-            $view = View::create();
+            $dreamNew->setAuthor($this->getUser());
+
+            $dm->persist($dreamNew);
+            $dm->flush();
+
             $view->setStatusCode(404);
         } else {
-            $data = $this->get('serializer')->serialize($data, 'json');
-            $dreamNew = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
-
-            $dreamOld = $this->get('app.services.object_updater')->updateObject($dreamOld, $dreamNew);
+            $this->get('app.services.object_updater')->updateObject($dreamOld, $dreamNew);
 
             $dm->flush();
 
-            $view = View::create();
             $view->setStatusCode(200);
         }
 

@@ -13,8 +13,7 @@ use JMS\Serializer\Annotation\Type;
  */
 class DreamsResponse
 {
-
-     /**
+    /**
      * @var Array[]
      * @Type("array<AppBundle\Document\Dream>")
      * @Expose

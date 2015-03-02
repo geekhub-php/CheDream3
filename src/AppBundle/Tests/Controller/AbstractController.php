@@ -2,7 +2,6 @@
 
 namespace AppBundle\Tests\Controller;
 
-use Doctrine\ODM\MongoDB;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 abstract class AbstractController extends WebTestCase
@@ -81,5 +80,20 @@ abstract class AbstractController extends WebTestCase
         $client->setServerParameters($server);
 
         return $client;
+    }
+
+    protected function createDream()
+    {
+        $data = [
+            "title" => "title_text",
+            "description" => "description_text",
+        ];
+
+        $client   = static::createClient();
+        $crawler  = $client->request('POST', '/dreams', $data);
+
+        $response = $client->getResponse();
+
+        return $response;
     }
 }

@@ -19,7 +19,7 @@ class DreamControllerTest extends AbstractController
 
         $container = $this->getContainer();
 
-        $serializer =$container->get('jms_serializer');
+        $serializer = $container->get('jms_serializer');
 
         $dreamsResponse = $serializer->deserialize($response->getContent(), 'AppBundle\Model\DreamsResponse', 'json');
 
