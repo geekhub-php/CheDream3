@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
@@ -35,7 +36,7 @@ class EquipmentResourceController extends AbstractController
      *
      * @throws NotFoundHttpException when not exist
      */
-    public function getEquipmentResourcesAction(ParamFetcher $paramFetcher)
+    public function getEquipmentResourcesAction(ParamFetcher $paramFetcher, $slug)
     {
         $manager = $this->getMongoDbManager();
         $equipmentQuery = $manager->createQueryBuilder('AppBundle:EquipmentResource')->getQuery();
@@ -55,5 +56,47 @@ class EquipmentResourceController extends AbstractController
         );
 
         return $equipmentQuery;
+    }
+
+    /**
+     * @ApiDoc(
+     * resource = true,
+     * description = "Gets all EquipmentResources",
+     * parameters = {
+     *      {"name" = "quantity_type", "required" = true, "type" = "string"},
+     *      {"name" = "title", "required" = true, "type" = "string"},
+     *      {"name" = "quantity", "required" = true, "type" = "integer"}
+     * }
+     * statusCodes = {
+     *      201 = "Returned when successful create",
+     *      400 = "Returned when the EquipmentResources return error"
+     * }
+     * )
+     *
+     * @param Request $request
+     * @param $slug
+     * @return View
+     */
+    public function postEquipmentResourcesAction(Request $request, $slug)
+    {
+        $dm = $this->get('doctrine.odm.mongodb.document_manager');
+
+        $data = $request->request->all();
+
+        $dream = $dm->getRepository('AppBundle:EquipmentResource')
+                    ->findOneBySlug($slug);
+
+        $data = $this->get('serializer')->serialize($data, 'json');
+        $equipment_resource = $this->get('serializer')->deserialize($data, 'AppBundle\Document\EquipmentResource', 'json');
+
+        $equipment_resource->setDream($dream);
+
+        $dm->persist($equipment_resource);
+        $dm->flush();
+
+        $restView = View::create();
+        $restView->setStatusCode(201);
+
+        return $restView;
     }
 }
