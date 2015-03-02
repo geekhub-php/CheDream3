@@ -23,4 +23,11 @@ class DreamControllerTest extends AbstractApiTest
 
         $this->assertJsonResponse($response, 200);
     }
+
+//    public function testPostDreamAction()
+//    {
+//        $response = $this->createDream();
+//
+//        $this->assertJsonResponse($response, 204);
+//    }
 }
