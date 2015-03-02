@@ -7,7 +7,7 @@ class EquipmentResourceControllerTest extends AbstractApiTest
     public function testGetEquipmentResourcesAction()
     {
         $client   = static::createClient();
-        $crawler  = $client->request('GET', '/equipment/resources');
+        $crawler  = $client->request('GET', '/equipment/sunt/resources');
 
         $response = $client->getResponse();
 
