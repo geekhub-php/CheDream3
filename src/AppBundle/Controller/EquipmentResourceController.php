@@ -2,13 +2,13 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request as RequestSymfony;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
 use Symfony\Component\Config\Definition\Exception\Exception;
-use FOS\RestBundle\Controller\Annotations\QueryParam;
+use FOS\RestBundle\Controller\Annotations\QueryParam as QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 
 class EquipmentResourceController extends AbstractController
@@ -73,11 +73,11 @@ class EquipmentResourceController extends AbstractController
      * }
      * )
      *
-     * @param  Request $request
+     * @param  RequestSymfony $request
      * @param $slug
      * @return View
      */
-    public function postEquipmentResourcesAction(Request $request, $slug)
+    public function postEquipmentResourcesAction(RequestSymfony $request, $slug)
     {
         $dm = $this->get('doctrine.odm.mongodb.document_manager');
 
@@ -115,13 +115,13 @@ class EquipmentResourceController extends AbstractController
      * }
      * )
      *
-     * @param  Request $request
+     * @param  RequestSymfony $request
      * @param $slugDream
      * @param $slugEquipmentResource
      *
      * @return View
      */
-    public function putEquipmentResourcesAction(Request $request, $slugDream, $slugEquipmentResource)
+    public function putEquipmentResourcesAction(RequestSymfony $request, $slugDream, $slugEquipmentResource)
     {
         $data = $request->request->all();
         $dm = $this->get('doctrine.odm.mongodb.document_manager');
