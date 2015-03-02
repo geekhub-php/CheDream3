@@ -82,4 +82,19 @@ abstract class AbstractController extends WebTestCase
 
         return $client;
     }
+
+    protected function createDream()
+    {
+        $data = [
+            "title" => "title_text",
+            "description" => "description_text"
+        ];
+
+        $client   = static::createClient();
+        $crawler  = $client->request('POST', '/dreams', [], [], $data);
+
+        $response = $client->getResponse();
+
+        return $response;
+    }
 }

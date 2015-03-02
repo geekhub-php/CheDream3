@@ -18,14 +18,4 @@ abstract class AbstractApiTest extends WebTestCase
             $response->headers
         );
     }
-
-//    protected function createDream()
-//    {
-//        $client   = static::createClient();
-//        $crawler  = $client->request('POST', '/dreams');
-//
-//        $response = $client->getResponse();
-//
-//        return $response;
-//    }
 }

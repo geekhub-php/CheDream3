@@ -19,7 +19,7 @@ class DreamControllerTest extends AbstractController
 
         $container = $this->getContainer();
 
-        $serializer =$container->get('jms_serializer');
+        $serializer = $container->get('jms_serializer');
 
         $dreamsResponse = $serializer->deserialize($response->getContent(), 'AppBundle\Model\DreamsResponse', 'json');
 
@@ -51,11 +51,4 @@ class DreamControllerTest extends AbstractController
             ['/dreams?limit=7&page=3&sort_by=createdAt&sort_order=ASC', 'ASC', 5, 7, 'DESC', 11, 8],
         ];
     }
-
-//    public function testPostDreamAction()
-//    {
-//        $response = $this->createDream();
-//
-//        $this->assertJsonResponse($response, 204);
-//    }
 }
