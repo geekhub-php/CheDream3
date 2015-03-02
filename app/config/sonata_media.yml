@@ -1,4 +1,8 @@
 sonata_media:
+    class:
+        media: Application\Sonata\MediaBundle\Document\Media
+        gallery: Application\Sonata\MediaBundle\Document\Gallery
+        gallery_has_media: Application\Sonata\MediaBundle\Document\GalleryHasMedia
     default_context: default
     db_driver: doctrine_mongodb
     contexts:
