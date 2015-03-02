@@ -6,7 +6,6 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class FinancialContribute
