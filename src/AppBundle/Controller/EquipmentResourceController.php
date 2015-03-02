@@ -3,13 +3,9 @@
 namespace AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request as RequestSymfony;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
-use Symfony\Component\Config\Definition\Exception\Exception;
-use FOS\RestBundle\Controller\Annotations\QueryParam as QueryParam;
-use FOS\RestBundle\Request\ParamFetcher;
 
 class EquipmentResourceController extends AbstractController
 {
@@ -70,7 +66,7 @@ class EquipmentResourceController extends AbstractController
      * }
      * )
      *
-     * @param  RequestSymfony $request
+     * @param RequestSymfony $request
      * @param $slugDream
      * @param $slugEquipmentResource
      *
