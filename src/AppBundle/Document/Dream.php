@@ -23,7 +23,6 @@ class Dream
      * @var integer
      *
      * @ODM\Id
-     * @Expose()
      * @Type("integer")
      */
     protected $id;
