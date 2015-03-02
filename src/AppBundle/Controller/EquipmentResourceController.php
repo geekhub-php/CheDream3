@@ -63,10 +63,10 @@ class EquipmentResourceController extends AbstractController
      * resource = true,
      * description = "Gets all EquipmentResources",
      * parameters = {
-     *      {"name" = "quantity_type", "required" = true, "type" = "string"},
-     *      {"name" = "title", "required" = true, "type" = "string"},
-     *      {"name" = "quantity", "required" = true, "type" = "integer"}
-     * }
+     *      {"name" = "quantity_type", "required" = true, "dataType" = "string"},
+     *      {"name" = "title", "required" = true, "dataType" = "string"},
+     *      {"name" = "quantity", "required" = true, "dataType" = "integer"}
+     * },
      * statusCodes = {
      *      201 = "Returned when successful create",
      *      400 = "Returned when the EquipmentResources return error"
@@ -105,9 +105,9 @@ class EquipmentResourceController extends AbstractController
      * resource = true,
      * description = "Create/Update single equipment resource",
      * parameters={
-     *     {"name" = "quantity_type", "required" = true, "type" = "string"},
-     *     {"name" = "title", "required" = true, "type" = "string"},
-     *     {"name" = "quantity", "required" = true, "type" = "integer"}
+     *     {"name" = "quantity_type", "required" = true, "dataType" = "string"},
+     *     {"name" = "title", "required" = true, "dataType" = "string"},
+     *     {"name" = "quantity", "required" = true, "dataType" = "integer"}
      * },
      * statusCodes = {
      * 200 = "Equipment Resource successful update",
