@@ -12,3 +12,10 @@ parameters:
     prod_server_pass: ~
     https_github_repository_url: ~
 
+    #vk api key
+    vkontakte_app_id: ~
+    vkontakte_app_secret: ~
+
+    #facebook api key
+    facebook_app_id: ~
+    facebook_app_secret: ~
