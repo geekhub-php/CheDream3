@@ -77,7 +77,7 @@ nelmio_api_doc:
 
 fos_user:
     db_driver: mongodb
-    firewall_name: main
+    firewall_name: secured_area
     user_class: AppBundle\Document\User
 
 hautelook_alice:
@@ -146,3 +146,32 @@ nelmio_cors:
             allow_headers: ['*']
             allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
             max_age: 3600
+
+white_october_pagerfanta:
+    exceptions_strategy:
+        out_of_range_page:        to_http_not_found
+        not_valid_current_page:   to_http_not_found
+
+hwi_oauth:
+    connect:
+      account_connector: app.provider.user_provider
+      confirmation: false
+      # name of the firewall in which this bundle is active, this setting MUST be set
+    firewall_name: main
+    fosub:
+        username_iterations: 30
+        properties:
+            # these properties will be used/redefined later in the custom FOSUBUserProvider service.
+            facebook: facebookId
+            vkontakte: vkontakteId
+    resource_owners:
+        facebook:
+            type:                facebook
+            client_id:           "%facebook_app_id%"
+            client_secret:       "%facebook_app_secret%"
+            scope:               "user_photos"
+        vkontakte:
+            type:                vkontakte
+            client_id:           "%vkontakte_app_id%"
+            client_secret:       "%vkontakte_app_secret%"
+            scope:               "photos"
