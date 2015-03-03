@@ -33,7 +33,8 @@
         "knplabs/knp-paginator-bundle": "~2.4",
         "phpunit/php-code-coverage": "~2.0",
         "nelmio/cors-bundle": "~1.4",
-        "hwi/oauth-bundle": "0.4.*@dev"
+        "hwi/oauth-bundle": "0.4.*@dev",
+        "white-october/pagerfanta-bundle": "~1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

@@ -6,6 +6,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class FinancialResource
@@ -64,9 +65,18 @@ class FinancialResource extends AbstractResource
      * @var array
      *
      * @ODM\ReferenceMany(targetDocument="FinancialContribute")
+     * @Type("AppBundle\Document\FinancialContribute")
      * @Expose()
      */
     protected $financialContributes = [];
+
+    /**
+     * @var String
+     *
+     * @Gedmo\Slug(fields={"title"})
+     * @ODM\Field(type="string")
+     */
+    protected $slug;
 
     public function __construct()
     {

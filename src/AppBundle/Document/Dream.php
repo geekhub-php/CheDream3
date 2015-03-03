@@ -23,7 +23,6 @@ class Dream
      * @var integer
      *
      * @ODM\Id
-     * @Expose()
      * @Type("integer")
      */
     protected $id;
@@ -293,7 +292,7 @@ class Dream
         $this->dreamWorkContributions = new \Doctrine\Common\Collections\ArrayCollection();
         $this->dreamOtherContributions = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
@@ -307,7 +306,7 @@ class Dream
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return self
      */
     public function setTitle($title)
@@ -330,7 +329,7 @@ class Dream
     /**
      * Set description
      *
-     * @param string $description
+     * @param  string $description
      * @return self
      */
     public function setDescription($description)
@@ -353,7 +352,7 @@ class Dream
     /**
      * Set rejectedDescription
      *
-     * @param string $rejectedDescription
+     * @param  string $rejectedDescription
      * @return self
      */
     public function setRejectedDescription($rejectedDescription)
@@ -376,12 +375,13 @@ class Dream
     /**
      * Set implementedDescription
      *
-     * @param string $implementedDescription
+     * @param  string $implementedDescription
      * @return self
      */
     public function setImplementedDescription($implementedDescription)
     {
         $this->implementedDescription = $implementedDescription;
+
         return $this;
     }
 
@@ -398,12 +398,13 @@ class Dream
     /**
      * Set completedDescription
      *
-     * @param string $completedDescription
+     * @param  string $completedDescription
      * @return self
      */
     public function setCompletedDescription($completedDescription)
     {
         $this->completedDescription = $completedDescription;
+
         return $this;
     }
 
@@ -420,12 +421,13 @@ class Dream
     /**
      * Set phone
      *
-     * @param string $phone
+     * @param  string $phone
      * @return self
      */
     public function setPhone($phone)
     {
         $this->phone = $phone;
+
         return $this;
     }
 
@@ -442,12 +444,13 @@ class Dream
     /**
      * Set slug
      *
-     * @param string $slug
+     * @param  string $slug
      * @return self
      */
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
         return $this;
     }
 
@@ -464,12 +467,13 @@ class Dream
     /**
      * Set createdAt
      *
-     * @param date $createdAt
+     * @param  date $createdAt
      * @return self
      */
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -486,12 +490,13 @@ class Dream
     /**
      * Set updatedAt
      *
-     * @param date $updatedAt
+     * @param  date $updatedAt
      * @return self
      */
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 
@@ -508,12 +513,13 @@ class Dream
     /**
      * Set deletedAt
      *
-     * @param date $deletedAt
+     * @param  date $deletedAt
      * @return self
      */
     public function setDeletedAt($deletedAt)
     {
         $this->deletedAt = $deletedAt;
+
         return $this;
     }
 
@@ -530,12 +536,13 @@ class Dream
     /**
      * Set expiredDate
      *
-     * @param date $expiredDate
+     * @param  date $expiredDate
      * @return self
      */
     public function setExpiredDate($expiredDate)
     {
         $this->expiredDate = $expiredDate;
+
         return $this;
     }
 
@@ -552,12 +559,13 @@ class Dream
     /**
      * Set financialCompleted
      *
-     * @param int $financialCompleted
+     * @param  int  $financialCompleted
      * @return self
      */
     public function setFinancialCompleted($financialCompleted)
     {
         $this->financialCompleted = $financialCompleted;
+
         return $this;
     }
 
@@ -574,12 +582,13 @@ class Dream
     /**
      * Set workCompleted
      *
-     * @param int $workCompleted
+     * @param  int  $workCompleted
      * @return self
      */
     public function setWorkCompleted($workCompleted)
     {
         $this->workCompleted = $workCompleted;
+
         return $this;
     }
 
@@ -596,12 +605,13 @@ class Dream
     /**
      * Set equipmentCompleted
      *
-     * @param int $equipmentCompleted
+     * @param  int  $equipmentCompleted
      * @return self
      */
     public function setEquipmentCompleted($equipmentCompleted)
     {
         $this->equipmentCompleted = $equipmentCompleted;
+
         return $this;
     }
 
@@ -652,7 +662,7 @@ class Dream
     /**
      * Set favoritesCount
      *
-     * @param int $favoritesCount
+     * @param  int  $favoritesCount
      * @return self
      */
     public function setFavoritesCount($favoritesCount)
@@ -675,7 +685,7 @@ class Dream
     /**
      * Set author
      *
-     * @param \AppBundle\Document\User $author
+     * @param  \AppBundle\Document\User $author
      * @return self
      */
     public function setAuthor(\AppBundle\Document\User $author)
@@ -730,7 +740,7 @@ class Dream
     /**
      * Set currentStatus
      *
-     * @param string $currentStatus
+     * @param  string $currentStatus
      * @return self
      */
     public function setCurrentStatus($currentStatus)

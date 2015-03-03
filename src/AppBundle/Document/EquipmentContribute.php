@@ -18,6 +18,16 @@ use JMS\Serializer\Annotation\Type;
 class EquipmentContribute extends AbstractContribute
 {
     /**
+     * @var \AppBundle\Document\User
+     */
+    protected $user;
+
+    /**
+     * @var \AppBundle\Document\Dream
+     */
+    protected $dream;
+
+    /**
      * @var integer
      *
      * @ODM\Id
@@ -59,14 +69,6 @@ class EquipmentContribute extends AbstractContribute
      * @Type("float")
      */
     protected $quantity;
-
-    /**
-     * @var \AppBundle\Document\User
-     *
-     * @ODM\ReferenceOne(targetDocument="User")
-     * @Expose()
-     */
-    protected $user;
 
     public function getCreatedAt()
     {
@@ -182,10 +184,6 @@ class EquipmentContribute extends AbstractContribute
     {
         return $this->user;
     }
-    /**
-     * @var \AppBundle\Document\Dream
-     */
-    protected $dream;
 
     /**
      * Set dream

@@ -3,56 +3,101 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Document\Dream;
+use AppBundle\Document\EquipmentResource;
+use AppBundle\Document\FinancialResource;
+use AppBundle\Document\WorkResource;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Model\DreamsResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 class DreamController extends AbstractController
 {
     /**
-     * Gets all Dreams,
+     * Gets Dreams by status,.
      *
      * @ApiDoc(
-     *  resource = true,
-     *  description = "Gets all Dream",
-     *  output="array<AppBundle\Document\Dream>",
-     *  statusCodes = {
+     * resource = true,
+     * description = "Gets Dreams by status",
+     * output =   { "class" = "AppBundle\Document\Dream", "collection" = true, "collectionName" = "status" },
+     * statusCodes = {
      *      200 = "Returned when successful",
+     *      404 = "Returned when the status is not found"
      * }
      * )
      *
-     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count dreams at one page")
+     * RestView()
+     *
+     * @QueryParam(name="status", strict=true, requirements="[a-z]+", description="Status", nullable=true)
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count statuses at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
+     * @QueryParam(name="sort_by", strict=true, requirements="^[a-zA-Z]+", default="createdAt", description="Sort by", nullable=true)
+     * @QueryParam(name="sort_order", strict=true, requirements="^[a-zA-Z]+", default="DESC", description="Sort order", nullable=true)
      *
-     * @RestView
+     * @param ParamFetcher $paramFetcher
      *
-     * @param  ParamFetcher $paramFetcher
      * @return View
+     *
+     * @throws NotFoundHttpException when page not exist
      */
     public function getDreamsAction(ParamFetcher $paramFetcher)
     {
-        $manager = $this->getMongoDbManager();
-        $dreamsQuery = $manager->createQueryBuilder('AppBundle:Dream')->getQuery();
+        $repository = $this->get('doctrine_mongodb')->getManager()->getRepository('AppBundle:Dream');
 
-        $limit = $paramFetcher->get('limit');
-        $page = $paramFetcher->get('page');
+        if (!$paramFetcher->get('status')) {
+            $queryBuilder = $repository->createQueryBuilder('dream')
+                ->sort($paramFetcher->get('sort_by'), $paramFetcher->get('sort_order'))
+                ->field('dream.currentStatus')->notEqual('fail')
+                ->getQuery()->execute()->toArray();
+        } else {
+            $queryBuilder = $repository->createQueryBuilder('dream')
+                ->sort($paramFetcher->get('sort_by'), $paramFetcher->get('sort_order'))
+                ->field('currentStatus')->equals($paramFetcher->get('status'))
+                ->getQuery()->execute()->toArray();
+        }
 
-        $paginator  = $this->get('knp_paginator');
-        $dreamsQuery = $paginator->paginate(
-            $dreamsQuery,
-            $paramFetcher->get('page', $page),
-            $limit
-        );
+        $dreamsResponse = new DreamsResponse();
+        $dreamsResponse->setSortOrder($paramFetcher->get('sort_order'));
 
-        return $dreamsQuery;
+        $paginator = new Pagerfanta(new ArrayAdapter($queryBuilder));
+        $paginator
+            ->setMaxPerPage($paramFetcher->get('limit'))
+            ->setCurrentPage($paramFetcher->get('page'))
+        ;
+
+        $dreamsResponse->setDreams($paginator->getCurrentPageResults());
+        $dreamsResponse->setPageCount($paginator->getNbPages());
+
+        $nextPage = $paginator->hasNextPage() ?
+            $this->generateUrl('get_dreams', array(
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')+1,
+                )
+            ) :
+            'false';
+
+        $previsiousPage = $paginator->hasPreviousPage() ?
+            $this->generateUrl('get_dreams', array(
+                    'limit' => $paramFetcher->get('limit'),
+                    'page' => $paramFetcher->get('page')-1,
+                )
+            ) :
+            'false';
+
+        $dreamsResponse->setNextPage($nextPage);
+        $dreamsResponse->setPreviousPage($previsiousPage);
+
+        return $dreamsResponse;
     }
 
     /**
-     * Get single Dream for slug,
+     * Get single Dream for slug,.
      *
      * @ApiDoc(
      * resource = true,
@@ -64,9 +109,9 @@ class DreamController extends AbstractController
      * }
      * )
      *
-     *
      * @RestView()
      * @param
+     *
      * @return View
      *
      * @throws NotFoundHttpException when not exist
@@ -98,8 +143,10 @@ class DreamController extends AbstractController
      *          {"name"="dreamWorkResources", "dataType"="array<AppBundle\Document\WorkResource>", "required"=true, "description"="Work resources"},
      *          {"name"="dreamFinancialResources", "dataType"="array<AppBundle\Document\FinancialResource>", "required"=true, "description"="Financial resources"}
      *      },
+     *      output = "string",
      *      statusCodes = {
-     *          201 = "Dream sucessful created"
+     *          201 = "Dream sucessful created",
+     *          400 = "When dream not created"
      *      }
      * )
      *
@@ -109,19 +156,25 @@ class DreamController extends AbstractController
      */
     public function postDreamAction(Request $request)
     {
+        $dm = $this->get('doctrine.odm.mongodb.document_manager');
+
         $data = $request->request->all();
+
         $user = $this->getUser();
 
         $data = $this->get('serializer')->serialize($data, 'json');
         $dream = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
         $dream->setAuthor($user);
 
-        $dm = $this->get('doctrine.odm.mongodb.document_manager');
         $dm->persist($dream);
         $dm->flush();
 
         $restView = View::create();
         $restView->setStatusCode(201);
+
+        $restView->setData([
+            "link" => $this->get('router')->generate('get_dream', ['slug' => $dream->getSlug()], true),
+        ]);
 
         return $restView;
     }
@@ -159,18 +212,23 @@ class DreamController extends AbstractController
         $dreamOld = $dm->getRepository('AppBundle:Dream')
                         ->findOneBySlug($slug);
 
+        $data = $this->get('serializer')->serialize($data, 'json');
+        $dreamNew = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
+
+        $view = View::create();
+
         if (!$dreamOld) {
-            $view = View::create();
+            $dreamNew->setAuthor($this->getUser());
+
+            $dm->persist($dreamNew);
+            $dm->flush();
+
             $view->setStatusCode(404);
         } else {
-            $data = $this->get('serializer')->serialize($data, 'json');
-            $dreamNew = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
-
-            $dreamOld = $this->get('app.services.object_updater')->updateObject($dreamOld, $dreamNew);
+            $this->get('app.services.object_updater')->updateObject($dreamOld, $dreamNew);
 
             $dm->flush();
 
-            $view = View::create();
             $view->setStatusCode(200);
         }
 
