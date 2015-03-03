@@ -1,6 +1,6 @@
 <?php
 
-namespace Geekhub\UserBundle\UserProvider;
+namespace AppBundle\UserProvider;
 
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface,
     HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface,

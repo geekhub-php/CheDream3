@@ -1,6 +1,6 @@
 <?php
 
-namespace Geekhub\UserBundle\UserProvider;
+namespace AppBundle\UserProvider;
 
 use Guzzle\Http\Client;
 use Guzzle\Http\Exception\RequestException;

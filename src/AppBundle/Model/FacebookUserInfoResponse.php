@@ -1,6 +1,6 @@
 <?php
 
-namespace Geekhub\UserBundle\Model;
+namespace AppBundle\Model;
 
 use JMS\Serializer\Annotation\Type;
 
