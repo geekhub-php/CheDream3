@@ -13,8 +13,8 @@ class FaqAdmin extends Admin
     protected $baseRouteName = 'AppBundle\Document\Faq';
     protected $baseRoutePattern = 'Faq';
     protected $datagridValues = [
-        '_sort_order' => 'ASC',
-        '_sort_by'    => 'name',
+        '_sort_order' => 'DESC',
+        '_sort_by'    => 'title',
     ];
 
     /**
