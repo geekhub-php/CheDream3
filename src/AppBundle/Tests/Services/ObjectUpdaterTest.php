@@ -16,11 +16,11 @@ class ObjectUpdaterTest extends AbstractApiTest
                            ->get('doctrine_mongodb.odm.document_manager')
                            ->getRepository('AppBundle:Dream')
                            ->findOneBySlug('sunt');
-        
+
         $financial_resource = new FinancialResource();
         $financial_resource->setTitle('ex');
         $financial_resource->setQuantity(50);
-        
+
         $financial_resource2 = new FinancialResource();
         $financial_resource2->setTitle('myTesttt11');
         $financial_resource2->setQuantity(5021);

@@ -14,7 +14,7 @@ class EquipmentContributeController extends AbstractController
      *      description = "create single equipment contribute",
      *      parameters = {
      *          {"name" = "equipment_resource", "dataType" = "string", "required" = true, "description" = "slug resource that contributet" },
-     *          {"name" = "quantity", "dataType" = "integer", "required" = true, "description" = "count contributet resources" }
+     *          {"name" = "quantity", "dataType" = "integer", "required" = true, "description" = "count contributet resources" },
      *          {"name" = "hidden_contributor", "dataType" = "boolean", "required" = true, "description" = "that boolean value make user hidden" }
      *      },
      *      statusCodes = {
