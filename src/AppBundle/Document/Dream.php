@@ -166,9 +166,9 @@ class Dream
     protected $equipmentCompleted;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="User")
+     * @ODM\ReferenceMany(targetDocument="AppBundle\Document\User")
      * @Expose()
-     * @Type("array<string, User>")
+     * @Type("array<string, AppBundle\Document\User>")
      */
     protected $usersWhoFavorites = [];
 
@@ -182,7 +182,7 @@ class Dream
     protected $favoritesCount;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="User")
+     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\User")
      * @Expose()
      * @Type("string")
      */

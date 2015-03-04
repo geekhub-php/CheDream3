@@ -36,14 +36,12 @@ class ContributeController extends AbstractController
         $view = View::create();
 
         if ($type != "other") {
-            $repository = "AppBundle\\Document\\" .ucfirst($type). "Resource";
-            $document = "AppBundle\\Document\\" .ucfirst($type). "Contribute";
+            $repository = "AppBundle\\Document\\".ucfirst($type)."Resource";
+            $document = "AppBundle\\Document\\".ucfirst($type)."Contribute";
 
             $resource = $this->get('doctrine_mongodb.odm.document_manager')
                 ->getRepository($repository)
                 ->findOneBySlug($slug);
-
-
 
             $data = $this->get('serializer')->serialize($data, 'json');
             $contribute = $this->get('serializer')->deserialize($data, $document, 'json');
