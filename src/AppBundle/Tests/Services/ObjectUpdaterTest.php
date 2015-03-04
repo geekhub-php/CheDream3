@@ -5,7 +5,7 @@ namespace AppBundle\Tests\Services;
 use AppBundle\Tests\Controller\AbstractApiTest;
 use AppBundle\Document\Dream;
 
-class ObjectUpdaterTest extends \PHPUnit_Framework_TestCase
+class ObjectUpdaterTest extends AbstractApiTest
 {
     public function testUpdateObject()
     {
