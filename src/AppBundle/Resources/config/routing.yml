@@ -1,7 +1,3 @@
-app_equipment_resource:
-    type: rest
-    resource: "@AppBundle/Controller/EquipmentResourceController.php"
-
 app_dream:
     type: rest
     resource: "@AppBundle/Controller/DreamController.php"
@@ -18,10 +14,6 @@ app_financial_contribute:
     type: rest
     resource: "@AppBundle/Controller/FinancialContributeController.php"
 
-app_financial_resource:
-    type: rest
-    resource: "@AppBundle/Controller/FinancialResourceController.php"
-
 app_other_contribute:
    type: rest
    resource: "@AppBundle/Controller/OtherContributeController.php"
@@ -33,10 +25,6 @@ app_users:
 app_work_contribute:
    type: rest
    resource: "@AppBundle/Controller/WorkContributeController.php"
-
-app_work_resource:
-   type: rest
-   resource: "@AppBundle/Controller/WorkResourceController.php"
 
 app_status:
    type: rest
