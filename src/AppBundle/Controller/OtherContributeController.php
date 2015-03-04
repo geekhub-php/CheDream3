@@ -2,58 +2,65 @@
 
 namespace AppBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
-use FOS\RestBundle\Request\ParamFetcher;
 
 class OtherContributeController extends AbstractController
 {
     /**
-     * Get OtherContributes,
-     *
      * @ApiDoc(
-     * resource = true,
-     * description = "Gets other contributes your dream",
-     * output="array<AppBundle\Document\OtherContribute>",
-     * statusCodes = {
-     *      200 = "Returned when successful",
-     *      404 = "Returned when the OtherContributes is not found"
-     * }
+     *      resource = true,
+     *      description = "create single financial contribute",
+     *      parameters = {
+     *          {"name" = "financial_resource", "dataType" = "string", "required" = true, "description" = "slug resource that contributet" },
+     *          {"name" = "quantity", "dataType" = "integer", "required" = true, "description" = "count contributet resources" },
+     *          {"name" = "hidden_contributor", "dataType" = "boolean", "required" = true, "description" = "that boolean value make user hidden" }
+     *      },
+     *      statusCodes = {
+     *          204 = "Returned when successful create",
+     *          404 = "Returned when dream is not found"
+     *      }
      * )
      *
-     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count other contributes at one page")
-     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
+     * @param Request $request
+     * @param $slug
      *
-     * @RestView
-     *
-     * @param  ParamFetcher $paramFetcher
      * @return View
-     *
-     * @throws NotFoundHttpException when not exist
      */
-    public function getOtherContributesAction(ParamFetcher $paramFetcher)
+    public function postOtherContributesAction(Request $request, $slug)
     {
-        $manager = $this->getMongoDbManager();
-        $contributesQuery = $manager->createQueryBuilder('AppBundle:OtherContribute')->getQuery();
+        $data = $request->request->all();
+        $user = $this->getUser();
 
-        if (count($contributesQuery) == 0) {
-            throw new Exception("204 No Content");
+        $dm = $this->get('doctrine.odm.mongodb.document_manager');
+
+        $dream = $dm->getRepository('AppBundle:Dream')
+                    ->findOneBySlug($slug);
+
+        $view = View::create();
+
+        if (!$dream) {
+            $view->setStatusCode(404);
+        } else {
+            $serializer = $this->get('serializer');
+
+            $data = $serializer->serialize($data, 'json');
+            $other_contribute = $serializer->deserialize($data, 'AppBundle\Document\OtherContribute', 'json');
+
+            $other_contribute->setDream($dream);
+            $other_contribute->setUser($user);
+
+            $view->setStatusCode(204);
+
+            $dm->persist($other_contribute);
+            $dm->flush();
         }
 
-        $limit = $paramFetcher->get('limit');
-        $page = $paramFetcher->get('page');
-
-        $paginator  = $this->get('knp_paginator');
-        $contributesQuery = $paginator->paginate(
-            $contributesQuery,
-            $paramFetcher->get('page', $page),
-            $limit
-        );
-
-        return $contributesQuery;
+        return $view;
     }
 }
