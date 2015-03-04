@@ -4,6 +4,7 @@ namespace AppBundle\Tests\Services;
 
 use AppBundle\Tests\Controller\AbstractApiTest;
 use AppBundle\Document\Dream;
+use AppBundle\Document\FinancialResource;
 
 class ObjectUpdaterTest extends AbstractApiTest
 {
