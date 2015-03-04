@@ -35,6 +35,6 @@ class ObjectUpdaterTest extends AbstractApiTest
 
         $this->assertEquals($dreamNew->getTitle(), $dreamTmp->getTitle());
         $this->assertEquals($dreamNew->getDescription(), $dreamTmp->getDescription());
-        $this->assertEquals($dreamNew->getDreamFinancialResource()->count(), $dreamTmp->getDreamFinancialResource()->count());
+        $this->assertEquals($dreamNew->getDreamFinancialResources()->count(), $dreamTmp->getDreamFinancialResources()->count());
     }
 }
