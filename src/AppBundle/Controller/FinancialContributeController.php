@@ -13,8 +13,9 @@ class FinancialContributeController extends AbstractController
      *      resource = true,
      *      description = "create single financial contribute",
      *      parameters = {
-     *          {"name" = "financial_resource", "dataType" = "array<AppBundle\Document\FinancialResource>", "required" = true, "description" = "resource that contributet" },
-     *          {"name" = "quantity", "dataType" = "integer", "required" = true, "description" = "count contributet resources" }
+     *          {"name" = "financial_resource", "dataType" = "string", "required" = true, "description" = "slug resource that contributet" },
+     *          {"name" = "quantity", "dataType" = "integer", "required" = true, "description" = "count contributet resources" },
+     *          {"name" = "hidden_contributor", "dataType" = "boolean", "required" = true, "description" = "that boolean value make user hidden" }
      *      },
      *      statusCodes = {
      *          204 = "Returned when successful create",
@@ -22,7 +23,7 @@ class FinancialContributeController extends AbstractController
      *      }
      * )
      *
-     * @param Request $request
+     * @param SymfonyRequest $request
      * @param $slug
      *
      * @return View
@@ -34,7 +35,7 @@ class FinancialContributeController extends AbstractController
 
         $dm = $this->get('doctrine.odm.mongodb.document_manager');
 
-        $slugResource = $request->request->get('equipment_contribute');
+        $slugResource = $request->request->get('financial_resource');
 
         $dream = $this->get('doctrine_mongodb.odm.document_manager')
             ->getRepository('AppBundle:Dream')
