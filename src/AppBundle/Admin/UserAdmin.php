@@ -13,8 +13,8 @@ class UserAdmin extends Admin
     protected $baseRouteName = 'AppBundle\Document\User';
     protected $baseRoutePattern = 'User';
     protected $datagridValues = [
-        '_sort_order' => 'ASC',
-        '_sort_by' => 'name',
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'firstName',
     ];
 
     /**
