@@ -16,7 +16,7 @@ class ObjectUpdaterTest extends \PHPUnit_Framework_TestCase
                            ->getRepository('AppBundle:Dream')
                            ->findOneBySlug('sunt');
         
-        $financial_resource = new FinancialResource()
+        $financial_resource = new FinancialResource();
         $financial_resource->setTitle('ex');
         $financial_resource->setQuantity(50);
 
