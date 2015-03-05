@@ -15,6 +15,6 @@ app_status:
    resource: "@AppBundle/Controller/StatusController.php"
 
 app_contribute:
-   path: /resource/{slug}/{type}
+   path: /dreams/{slugDream}/contribute
    methods: [POST]
    defaults: { _controller: AppBundle:Contribute:postContribute }
