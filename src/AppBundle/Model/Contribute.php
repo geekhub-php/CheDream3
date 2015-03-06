@@ -16,4 +16,33 @@ class Contribute
      * @ODM\Id(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\Dream")
+     */
+    protected $dream;
+
+    /**
+     * @ODM\ReferenceMany(targetDocument="AppBundle\Document\Resource")
+     */
+    protected $resources;
+
+    /**
+     * @ODM\Field(type="integer")
+     */
+    protected $quantity;
+
+    /**
+     * @var boolean $hiddenContributor
+     *
+     * @ODM\Field(type="boolean")
+     * @Expose()
+     * @Type("boolean")
+     */
+    protected $hiddenContributor;
+
+    /**
+     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\User")
+     */
+    protected $user;
 }
