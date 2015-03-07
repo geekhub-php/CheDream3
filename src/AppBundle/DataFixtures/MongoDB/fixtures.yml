@@ -36,21 +36,20 @@ AppBundle\Document\FinancialResource:
 
 AppBundle\Document\FinancialContribute:
   financialContributes{1..100}:
-    financialResource: @financialResources*
+    resources: @financialResources*
     hiddenContributor: <boolean()>
     quantity: <numberBetween(50, 500)>
     user: @users*
 
 AppBundle\Document\EquipmentResource:
   equipmentresources{1..100}:
-    quantityType: "ton"
     title: <word()>
     quantity: <numberBetween(100, 1000)>
     dream: @dreams*
 
 AppBundle\Document\EquipmentContribute:
   equipmentcontributes{1..100}:
-    equipmentResource: @equipmentresources*
+    resources: @equipmentresources*
     hiddenContributor: <boolean()>
     quantity: <numberBetween(50, 500)>
     user: @users*
@@ -63,7 +62,7 @@ AppBundle\Document\WorkResource:
 
 AppBundle\Document\WorkContribute:
   workcontributes{1..100}:
-    workResource: @workresources*
+    resources: @workresources*
     hiddenContributor: <boolean()>
     quantity: <numberBetween(50, 500)>
     user: @users*
