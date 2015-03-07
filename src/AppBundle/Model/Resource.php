@@ -3,12 +3,16 @@
 namespace AppBundle\Model;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * @ODM\Document
  * @ODM\InheritanceType("SINGLE_COLLECTION")
  * @ODM\DiscriminatorColumn(name="type", type="string")
  * @ODM\DiscriminatorMap({"resource" = "Resource", "work_resource" = "WorkResource", "financial_resource" = "FinancialResource", "equipment_resource" = "EquipmentResource"})
+ * @ExclusionPolicy("all")
  */
 class Resource
 {
@@ -23,7 +27,7 @@ class Resource
     protected $dream;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="AppBundle\Document\Contributes")
+     * @ODM\ReferenceMany(targetDocument="AppBundle\Model\Contribute")
      */
     protected $contributes = [];
 

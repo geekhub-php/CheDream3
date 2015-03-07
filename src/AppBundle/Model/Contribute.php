@@ -29,10 +29,10 @@ class Contribute
     protected $dream;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="AppBundle\Document\Resource")
+     * @ODM\ReferenceMany(targetDocument="AppBundle\Model\Resource")
      * @Expose()
      */
-    protected $resources;
+    protected $resources = [];
 
     /**
      * @var float $quantity
