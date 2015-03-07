@@ -5,6 +5,8 @@ namespace AppBundle\Document;
 use AppBundle\Model\Contribute;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * Class OtherContribute
@@ -20,6 +22,15 @@ class OtherContribute extends Contribute
      * @ODM\Id(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @var string $title
+     *
+     * @ODM\Field(type="string")
+     * @Expose()
+     * @Type("String")
+     */
+    protected $title;
 
     /**
      * @var float $quantity
@@ -75,6 +86,8 @@ class OtherContribute extends Contribute
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+        $dream->addContribute($this);
+
         return $this;
     }
 
@@ -204,5 +217,27 @@ class OtherContribute extends Contribute
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return self
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string $title
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 }

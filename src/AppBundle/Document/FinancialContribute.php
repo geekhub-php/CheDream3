@@ -74,6 +74,8 @@ class FinancialContribute extends Contribute
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+        $dream->addContribute($this);
+
         return $this;
     }
 
@@ -90,17 +92,20 @@ class FinancialContribute extends Contribute
     /**
      * Add resource
      *
-     * @param AppBundle\Model\Resource $resource
+     * @param \AppBundle\Model\Resource $resource
      */
     public function addResource(\AppBundle\Model\Resource $resource)
     {
         $this->resources[] = $resource;
+        $resource->addContribute($this);
+
+        return $this;
     }
 
     /**
      * Remove resource
      *
-     * @param AppBundle\Model\Resource $resource
+     * @param \AppBundle\Model\Resource $resource
      */
     public function removeResource(\AppBundle\Model\Resource $resource)
     {

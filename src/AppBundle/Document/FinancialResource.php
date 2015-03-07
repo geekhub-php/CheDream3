@@ -41,12 +41,12 @@ class FinancialResource extends Resource
     protected $quantity;
 
     /**
-     * @var AppBundle\Document\Dream
+     * @var \AppBundle\Document\Dream
      */
     protected $dream;
 
     /**
-     * @var AppBundle\Model\Contribute
+     * @var \AppBundle\Model\Contribute
      */
     protected $contributes = array();
 
@@ -68,19 +68,21 @@ class FinancialResource extends Resource
     /**
      * Set dream
      *
-     * @param AppBundle\Document\Dream $dream
+     * @param \AppBundle\Document\Dream $dream
      * @return self
      */
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+        $dream->addResource($this);
+
         return $this;
     }
 
     /**
      * Get dream
      *
-     * @return AppBundle\Document\Dream $dream
+     * @return \AppBundle\Document\Dream $dream
      */
     public function getDream()
     {
@@ -90,7 +92,7 @@ class FinancialResource extends Resource
     /**
      * Add contribute
      *
-     * @param AppBundle\Model\Contribute $contribute
+     * @param \AppBundle\Model\Contribute $contribute
      */
     public function addContribute(\AppBundle\Model\Contribute $contribute)
     {
@@ -100,7 +102,7 @@ class FinancialResource extends Resource
     /**
      * Remove contribute
      *
-     * @param AppBundle\Model\Contribute $contribute
+     * @param \AppBundle\Model\Contribute $contribute
      */
     public function removeContribute(\AppBundle\Model\Contribute $contribute)
     {
@@ -110,7 +112,7 @@ class FinancialResource extends Resource
     /**
      * Get contributes
      *
-     * @return Doctrine\Common\Collections\Collection $contributes
+     * @return \Doctrine\Common\Collections\Collection $contributes
      */
     public function getContributes()
     {
