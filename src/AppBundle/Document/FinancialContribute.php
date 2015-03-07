@@ -2,70 +2,59 @@
 
 namespace AppBundle\Document;
 
+use AppBundle\Model\Contribute;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\Type;
 
 /**
  * Class FinancialContribute
  * @package AppBundle\Document
  *
- * @ODM\Document(collection="financial_contributes")
- * @ExclusionPolicy("all")
+ * @ODM\Document()
  */
-class FinancialContribute extends AbstractContribute
+class FinancialContribute extends Contribute
 {
     /**
-     * @var integer
-     *
+     * @var $id
      * @ODM\Id
-     * @Expose()
-     * @Type("integer")
      */
     protected $id;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\FinancialResource")
-     * @Expose()
+     * @var float $quantity
      */
-    protected $financialResource;
+    protected $quantity;
 
     /**
      * @var boolean $hiddenContributor
-     *
-     * @ODM\Field(type="boolean")
-     * @Expose()
-     * @Type("boolean")
      */
     protected $hiddenContributor;
 
     /**
      * @var date $createdAt
-     *
-     * @ODM\Field(type="date")
-     * @Expose()
-     * @Type("DateTime")
      */
     protected $createdAt;
 
     /**
-     * @var float $quantity
-     *
-     * @ODM\Field(type="float")
-     * @Expose()
-     * @Type("float")
+     * @var AppBundle\Document\Dream
      */
-    protected $quantity;
+    protected $dream;
 
     /**
-     * @var \AppBundle\Document\User
-     *
-     * @ODM\ReferenceOne(targetDocument="User")
-     * @Expose()
+     * @var AppBundle\Document\Resource
+     */
+    protected $resources = array();
+
+    /**
+     * @var AppBundle\Document\User
      */
     protected $user;
 
+    public function __construct()
+    {
+        $this->resources = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -76,75 +65,67 @@ class FinancialContribute extends AbstractContribute
         return $this->id;
     }
 
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
     /**
-     * Set financialResource
+     * Set dream
      *
-     * @param  FinancialResource $financialResource
-     * @return $this
-     */
-    public function setFinancialResource(\AppBundle\Document\FinancialResource $financialResource)
-    {
-        $this->financialResource = $financialResource;
-        $financialResource->addFinancialContribute($this);
-
-        return $this;
-    }
-
-    /**
-     * Get financialResource
-     *
-     * @return mixed
-     */
-    public function getFinancialResource()
-    {
-        return $this->financialResource;
-    }
-
-    /**
-     * Set hiddenContributor
-     *
-     * @param  boolean $hiddenContributor
+     * @param AppBundle\Document\Dream $dream
      * @return self
      */
-    public function setHiddenContributor($hiddenContributor)
+    public function setDream(\AppBundle\Document\Dream $dream)
     {
-        $this->hiddenContributor = $hiddenContributor;
-
+        $this->dream = $dream;
         return $this;
     }
 
     /**
-     * Get hiddenContributor
+     * Get dream
      *
-     * @return boolean $hiddenContributor
+     * @return AppBundle\Document\Dream $dream
      */
-    public function getHiddenContributor()
+    public function getDream()
     {
-        return $this->hiddenContributor;
+        return $this->dream;
+    }
+
+    /**
+     * Add resource
+     *
+     * @param AppBundle\Document\Resource $resource
+     */
+    public function addResource(\AppBundle\Document\Resource $resource)
+    {
+        $this->resources[] = $resource;
+    }
+
+    /**
+     * Remove resource
+     *
+     * @param AppBundle\Document\Resource $resource
+     */
+    public function removeResource(\AppBundle\Document\Resource $resource)
+    {
+        $this->resources->removeElement($resource);
+    }
+
+    /**
+     * Get resources
+     *
+     * @return Doctrine\Common\Collections\Collection $resources
+     */
+    public function getResources()
+    {
+        return $this->resources;
     }
 
     /**
      * Set quantity
      *
-     * @param  float $quantity
+     * @param float $quantity
      * @return self
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
-
         return $this;
     }
 
@@ -159,52 +140,68 @@ class FinancialContribute extends AbstractContribute
     }
 
     /**
+     * Set hiddenContributor
+     *
+     * @param boolean $hiddenContributor
+     * @return self
+     */
+    public function setHiddenContributor($hiddenContributor)
+    {
+        $this->hiddenContributor = $hiddenContributor;
+        return $this;
+    }
+
+    /**
+     * Get hiddenContributor
+     *
+     * @return boolean $hiddenContributor
+     */
+    public function getHiddenContributor()
+    {
+        return $this->hiddenContributor;
+    }
+
+    /**
      * Set user
      *
-     * @param  User  $user
-     * @return $this
+     * @param AppBundle\Document\User $user
+     * @return self
      */
     public function setUser(\AppBundle\Document\User $user)
     {
         $this->user = $user;
-
         return $this;
     }
 
     /**
      * Get user
      *
-     * @return User
+     * @return AppBundle\Document\User $user
      */
     public function getUser()
     {
         return $this->user;
     }
-    /**
-     * @var \AppBundle\Document\Dream
-     */
-    protected $dream;
 
     /**
-     * Set dream
+     * Set createdAt
      *
-     * @param  \AppBundle\Document\Dream $dream
+     * @param date $createdAt
      * @return self
      */
-    public function setDream(\AppBundle\Document\Dream $dream)
+    public function setCreatedAt($createdAt)
     {
-        $this->dream = $dream;
-
+        $this->createdAt = $createdAt;
         return $this;
     }
 
     /**
-     * Get dream
+     * Get createdAt
      *
-     * @return \AppBundle\Document\Dream $dream
+     * @return date $createdAt
      */
-    public function getDream()
+    public function getCreatedAt()
     {
-        return $this->dream;
+        return $this->createdAt;
     }
 }
