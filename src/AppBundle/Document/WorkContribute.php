@@ -19,7 +19,7 @@ class WorkContribute extends Contribute
 {
     /**
      * @var $id
-     * @ODM\Id
+     * @ODM\Id(strategy="AUTO")
      */
     protected $id;
 
@@ -44,7 +44,7 @@ class WorkContribute extends Contribute
     protected $dream;
 
     /**
-     * @var AppBundle\Document\Resource
+     * @var AppBundle\Model\Resource
      */
     protected $resources = array();
 
@@ -93,9 +93,9 @@ class WorkContribute extends Contribute
     /**
      * Add resource
      *
-     * @param AppBundle\Document\Resource $resource
+     * @param AppBundle\Model\Resource $resource
      */
-    public function addResource(\AppBundle\Document\Resource $resource)
+    public function addResource(\AppBundle\Model\Resource $resource)
     {
         $this->resources[] = $resource;
     }
@@ -103,9 +103,9 @@ class WorkContribute extends Contribute
     /**
      * Remove resource
      *
-     * @param AppBundle\Document\Resource $resource
+     * @param AppBundle\Model\Resource $resource
      */
-    public function removeResource(\AppBundle\Document\Resource $resource)
+    public function removeResource(\AppBundle\Model\Resource $resource)
     {
         $this->resources->removeElement($resource);
     }
