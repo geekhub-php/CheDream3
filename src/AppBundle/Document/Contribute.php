@@ -8,58 +8,64 @@ use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
 
 /**
- * Class OtherContribute
- * @package AppBundle\Document
- *
- * @ODM\Document()
+ * @ODM\Document
+ * @ODM\InheritanceType("SINGLE_COLLECTION")
+ * @ODM\DiscriminatorField("type")
+ * @ODM\DiscriminatorMap({"contribute" = "Contribute", "work_contribute" = "WorkContribute", "financial_contribute" = "FinancialContribute", "equipment_contribute" = "EquipmentContribute", "other_contribute" = "OtherContribute"})
  * @ExclusionPolicy("all")
  */
-class OtherContribute extends Contribute
+class Contribute
 {
     /**
-     * @var $id
      * @ODM\Id(strategy="AUTO")
+     * @Expose()
      */
     protected $id;
 
     /**
-     * @var string $title
-     *
-     * @ODM\Field(type="string")
+     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\Dream")
      * @Expose()
-     * @Type("String")
      */
-    protected $title;
+    protected $dream;
+
+    /**
+     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\Resource")
+     * @Expose()
+     */
+    protected $resource;
 
     /**
      * @var float $quantity
+     *
+     * @ODM\Field(type="float")
+     * @Expose()
+     * @Type("float")
      */
     protected $quantity;
 
     /**
      * @var boolean $hiddenContributor
+     *
+     * @ODM\Field(type="boolean")
+     * @Expose()
+     * @Type("boolean")
      */
     protected $hiddenContributor;
 
     /**
-     * @var date $createdAt
-     */
-    protected $createdAt;
-
-    /**
-     * @var AppBundle\Document\Dream
-     */
-    protected $dream;
-
-    /**
-     * @var AppBundle\Document\Resource
-     */
-    protected $resource;
-
-    /**
-     * @var AppBundle\Document\User
+     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\User")
+     * @Expose()
      */
     protected $user;
+
+    /**
+     * @var date $createdAt
+     *
+     * @ODM\Field(type="date")
+     * @Expose()
+     * @Type("DateTime")
+     */
+    protected $createdAt;
 
     /**
      * Get id
@@ -72,29 +78,6 @@ class OtherContribute extends Contribute
     }
 
     /**
-     * Set title
-     *
-     * @param  string $title
-     * @return self
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string $title
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
      * Set dream
      *
      * @param  AppBundle\Document\Dream $dream
@@ -103,6 +86,7 @@ class OtherContribute extends Contribute
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+        $dream->addContribute($this);
 
         return $this;
     }
@@ -126,6 +110,7 @@ class OtherContribute extends Contribute
     public function setResource(\AppBundle\Document\Resource $resource)
     {
         $this->resource = $resource;
+        $resource->addContribute($this);
 
         return $this;
     }

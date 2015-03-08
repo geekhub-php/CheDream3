@@ -18,7 +18,7 @@ class ObjectUpdaterTest extends AbstractApiTest
                            ->findOneBySlug('che-dream');
 
         $financial_resource = new FinancialResource();
-        $financial_resource->setTitle('ex');
+        $financial_resource->setTitle('nostrum');
         $financial_resource->setQuantity(50);
 
         $financial_resource2 = new FinancialResource();
@@ -28,14 +28,14 @@ class ObjectUpdaterTest extends AbstractApiTest
         $dreamTmp = new Dream();
         $dreamTmp->setTitle('test1');
         $dreamTmp->setDescription('test2');
-        $dreamTmp->addDreamFinancialResource($financial_resource);
-        $dreamTmp->addDreamFinancialResource($financial_resource2);
+        $dreamTmp->addResource($financial_resource);
+        $dreamTmp->addResource($financial_resource2);
 
         $dreamNew = $client->getContainer()->get('app.services.object_updater')->updateObject($dreamOld, $dreamTmp);
 
         $this->assertEquals($dreamNew->getTitle(), $dreamTmp->getTitle());
         $this->assertEquals($dreamNew->getDescription(), $dreamTmp->getDescription());
-        $this->assertEquals($dreamNew->getDreamFinancialResources()->count(), $dreamTmp->getDreamFinancialResources()->count());
-        $this->assertEquals($dreamNew->getDreamFinancialResources()[4]->getQuantity(), $dreamTmp->getDreamFinancialResources()[0]->getQuantity());
+        $this->assertEquals($dreamNew->getResources()->count(), $dreamTmp->getResources()->count());
+        $this->assertEquals($dreamNew->getResources()[4]->getQuantity(), $dreamTmp->getResources()[0]->getQuantity());
     }
 }
