@@ -4,7 +4,7 @@ namespace AppBundle\Tests\Services;
 
 use AppBundle\Document\User;
 use Doctrine\ODM\MongoDB\DocumentManager;
-use MongoDBODMProxies\__CG__\AppBundle\Document\OtherContribute;
+use AppBundle\Document\OtherContribute;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ContributeDream
@@ -28,7 +28,7 @@ class ContributeDream
                 throw new NotFoundHttpException('Resource with this id not isset');
             }
 
-            $type = "\\AppBundle\\Document\\".$resource->getType();
+            $type = "\\AppBundle\\Document\\".str_replace('Resource', 'Contribute', $resource->getType());
 
             $contribute = new $type();
             $contribute->setResource($resource);
@@ -38,9 +38,9 @@ class ContributeDream
         }
 
         $contribute->setDream($dream)
-            ->setUser($user)
-            ->setQuantity($data['quantity'])
-            ->setHiddenContributor($data['hiddenContributor'])
+                    ->setUser($user)
+                    ->setQuantity($data['quantity'])
+                    ->setHiddenContributor($data['hiddenContributor'])
         ;
 
         return $contribute;
