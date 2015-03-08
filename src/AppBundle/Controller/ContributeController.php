@@ -4,10 +4,10 @@ namespace AppBundle\Controller;
 
 use AppBundle\Document\OtherContribute;
 use FOS\RestBundle\Request\ParamFetcher;
-use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use FOS\RestBundle\Controller\Annotations\View;
 
 class ContributeController extends AbstractController
 {
@@ -26,54 +26,26 @@ class ContributeController extends AbstractController
      *      }
      * )
      *
+     * @param ParamFetcher $param
      * @param Request $request
-     * @param $slug
-     * @param $type
+     * @param $slugDream
      *
      * @return View
+     *
+     * @View(statusCode=201)
      */
     public function postContributeAction(ParamFetcher $param, Request $request, $slugDream)
     {
         $dm = $this->get('doctrine.odm.mongodb.document_manager');
 
-        $dream = $dm->getRepository('AppBundle:Dream')
-                    ->findOneBySlug($slugDream);
-
-        if (!$dream) {
-            throw new NotFoundHttpException('Dream with this slug not isset');
-        }
-
         $data = $request->request->all();
         $user = $this->getUser();
 
-        $view = View::create();
-
         $idResource = $param->get('idResource');
-        $contribute = null;
 
-        if (!is_null($idResource)) {
-            $resource = $dm->getRepository('AppBundle:Resource')
-                            ->findOneById($idResource);
-
-            $type = $resource->getType();
-
-            $contribute = new $type();
-            $contribute->setResource($resource);
-        } else {
-            $contribute = new OtherContribute();
-            $contribute->setTitle($data['title']);
-        }
-
-        $contribute->setDream($dream);
-        $contribute->setUser($user);
-        $contribute->setQuantity($data['quantity']);
-        $contribute->setHiddenContributor($data['hiddenContributor']);
+        $contribute = $this->get('app.services.contribute_dream')->contribute($dm, $user, $data, $slugDream, $idResource);
 
         $dm->persist($contribute);
         $dm->flush();
-
-        $view->setStatusCode(201);
-
-        return $view;
     }
 }
