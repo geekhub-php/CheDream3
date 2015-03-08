@@ -2,9 +2,12 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Document\OtherContribute;
+use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ContributeController extends AbstractController
 {
@@ -13,11 +16,12 @@ class ContributeController extends AbstractController
      *      resource = true,
      *      description = "create single contribute",
      *      parameters = {
+     *          {"name" = "idResource", "dataType" = "integer", "required" = false, "description" = "id resource" },
      *          {"name" = "quantity", "dataType" = "integer", "required" = true, "description" = "count contributet resources" },
      *          {"name" = "hidden_contributor", "dataType" = "boolean", "required" = true, "description" = "that boolean value make user hidden" }
      *      },
      *      statusCodes = {
-     *          204 = "Returned when successful create",
+     *          201 = "Returned when successful create",
      *          404 = "Returned when dream is not found"
      *      }
      * )
@@ -28,55 +32,47 @@ class ContributeController extends AbstractController
      *
      * @return View
      */
-    public function postContributeAction(Request $request, $slug, $type)
+    public function postContributeAction(ParamFetcher $param, Request $request, $slugDream)
     {
         $dm = $this->get('doctrine.odm.mongodb.document_manager');
-        $data = $request->request->all();
-        $user = $this->getUser();
-        $view = View::create();
 
-        if ($type != "other") {
-            $repository = "AppBundle\\Document\\".ucfirst($type)."Resource";
-            $document = "AppBundle\\Document\\".ucfirst($type)."Contribute";
+        $dream = $dm->getRepository('AppBundle:Dream')
+                    ->findOneBySlug($slugDream);
 
-            $resource = $this->get('doctrine_mongodb.odm.document_manager')
-                ->getRepository($repository)
-                ->findOneBySlug($slug);
-
-            $data = $this->get('serializer')->serialize($data, 'json');
-            $contribute = $this->get('serializer')->deserialize($data, $document, 'json');
-
-            $setter = 'set'.ucfirst($type).'Resource';
-
-            $contribute->$setter($resource);
-            $contribute->setDream($resource->getDream());
-            $contribute->setUser($user);
-
-            $view->setStatusCode(204);
-
-            $dm->persist($contribute);
-        } else {
-            $dream = $dm->getRepository('AppBundle:Dream')
-                ->findOneBySlug($slug);
-
-            if (!$dream) {
-                $view->setStatusCode(404);
-            } else {
-                $serializer = $this->get('serializer');
-
-                $data = $serializer->serialize($data, 'json');
-                $other_contribute = $serializer->deserialize($data, 'AppBundle\Document\OtherContribute', 'json');
-
-                $other_contribute->setDream($dream);
-                $other_contribute->setUser($user);
-
-                $view->setStatusCode(204);
-
-                $dm->persist($other_contribute);
-            }
+        if (!$dream) {
+            throw new NotFoundHttpException('Dream with this slug not isset');
         }
 
+        $data = $request->request->all();
+        $user = $this->getUser();
+
+        $view = View::create();
+
+        $idResource = $param->get('idResource');
+        $contribute = null;
+
+        if (!is_null($idResource)) {
+            $resource = $dm->getRepository('AppBundle:Resource')
+                            ->findOneById($idResource);
+
+            $type = $resource->getType();
+
+            $contribute = new $type();
+            $contribute->setResource($resource);
+        } else {
+            $contribute = new OtherContribute();
+            $contribute->setTitle($data['title']);
+        }
+
+        $contribute->setDream($dream);
+        $contribute->setUser($user);
+        $contribute->setQuantity($data['quantity']);
+        $contribute->setHiddenContributor($data['hiddenContributor']);
+
+        $dm->persist($contribute);
         $dm->flush();
+
+        $view->setStatusCode(201);
 
         return $view;
     }
