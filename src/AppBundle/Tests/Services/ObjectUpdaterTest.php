@@ -15,7 +15,7 @@ class ObjectUpdaterTest extends AbstractApiTest
         $dreamOld = $client->getContainer()
                            ->get('doctrine_mongodb.odm.document_manager')
                            ->getRepository('AppBundle:Dream')
-                           ->findOneBySlug('sunt');
+                           ->findOneBySlug('che-dream');
 
         $financial_resource = new FinancialResource();
         $financial_resource->setTitle('ex');
