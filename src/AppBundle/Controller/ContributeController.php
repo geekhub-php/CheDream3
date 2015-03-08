@@ -16,15 +16,16 @@ class ContributeController extends AbstractController
      *      resource = true,
      *      description = "create single contribute",
      *      parameters = {
-     *          {"name" = "idResource", "dataType" = "integer", "required" = false, "description" = "id resource" },
-     *          {"name" = "quantity", "dataType" = "integer", "required" = true, "description" = "count contributet resources" },
-     *          {"name" = "hidden_contributor", "dataType" = "boolean", "required" = true, "description" = "that boolean value make user hidden" }
+     *          {"name" = "[quantity]", "dataType" = "integer", "required" = true, "description" = "count contributet resources" },
+     *          {"name" = "[hidden_contributor]", "dataType" = "boolean", "required" = true, "description" = "that boolean value make user hidden" }
      *      },
      *      statusCodes = {
      *          201 = "Returned when successful create",
      *          404 = "Returned when dream is not found"
      *      }
      * )
+     *
+     * @QueryParam(name="idResource", strict=true, requirements="[a-zA-Z0-9]+", description="id resource", nullable=true)
      *
      * @param ParamFetcher $param
      * @param Request $request
