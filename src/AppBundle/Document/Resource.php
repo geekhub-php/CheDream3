@@ -57,6 +57,7 @@ class Resource
      * @Type("float")
      */
     protected $quantity;
+
     public function __construct()
     {
         $this->contributes = new \Doctrine\Common\Collections\ArrayCollection();

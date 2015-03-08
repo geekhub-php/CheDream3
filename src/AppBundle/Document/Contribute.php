@@ -29,10 +29,10 @@ class Contribute
     protected $dream;
 
     /**
-     * @ODM\ReferenceMany(targetDocument="AppBundle\Document\Resource")
+     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\Resource")
      * @Expose()
      */
-    protected $resources = [];
+    protected $resource;
 
     /**
      * @var float $quantity
@@ -67,11 +67,6 @@ class Contribute
      */
     protected $createdAt;
 
-    public function __construct()
-    {
-        $this->resources = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
     /**
      * Get id
      *
@@ -91,6 +86,7 @@ class Contribute
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+        $dream->addContribute($this);
 
         return $this;
     }
@@ -106,33 +102,27 @@ class Contribute
     }
 
     /**
-     * Add resource
+     * Set resource
      *
-     * @param AppBundle\Document\Resource $resource
+     * @param  AppBundle\Document\Resource $resource
+     * @return self
      */
-    public function addResource(\AppBundle\Document\Resource $resource)
+    public function setResource(\AppBundle\Document\Resource $resource)
     {
-        $this->resources[] = $resource;
+        $this->resource = $resource;
+        $resource->addContribute($this);
+
+        return $this;
     }
 
     /**
-     * Remove resource
+     * Get resource
      *
-     * @param AppBundle\Document\Resource $resource
+     * @return AppBundle\Document\Resource $resource
      */
-    public function removeResource(\AppBundle\Document\Resource $resource)
+    public function getResource()
     {
-        $this->resources->removeElement($resource);
-    }
-
-    /**
-     * Get resources
-     *
-     * @return Doctrine\Common\Collections\Collection $resources
-     */
-    public function getResources()
-    {
-        return $this->resources;
+        return $this->resource;
     }
 
     /**
