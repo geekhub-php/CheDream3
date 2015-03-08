@@ -725,6 +725,9 @@ class Dream
     public function addContribute(\AppBundle\Document\Contribute $contribute)
     {
         $this->contributes[] = $contribute;
+        $contribute->setDream($this);
+
+        return $this;
     }
 
     /**
@@ -755,6 +758,9 @@ class Dream
     public function addResource(\AppBundle\Document\Resource $resource)
     {
         $this->resources[] = $resource;
+        $resource->setDream($this);
+
+        return $this;
     }
 
     /**
