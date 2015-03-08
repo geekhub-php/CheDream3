@@ -29,46 +29,46 @@ AppBundle\Document\Dream:
     currentStatus: <word()>
 
 AppBundle\Document\FinancialResource:
-  financialResource:
+  financialResource{1..20}:
     title: Financial Resource
     quantity: 376
     dream: @dream
 
 AppBundle\Document\FinancialContribute:
-  financialContributes:
-    resource: @financialResource
+  financialContributes{1..50}:
+    resource: @financialResource*
     hiddenContributor: false
     quantity: 200
     user: @user
 
 AppBundle\Document\EquipmentResource:
-  equipmentresource:
+  equipmentresource{1..20}:
     title: equip resource
     quantity: 700
     dream: @dream
 
 AppBundle\Document\EquipmentContribute:
-  equipmentcontribute:
-    resource: @equipmentresource
+  equipmentcontribute{1..50}:
+    resource: @equipmentresource*
     hiddenContributor: false
     quantity: 800
     user: @user
 
 AppBundle\Document\WorkResource:
-  workresource:
+  workresource{1..20}:
     title: work resource
     quantity: 670
     dream: @dream
 
 AppBundle\Document\WorkContribute:
-  workcontribute:
-    resource: @workresource
+  workcontribute{1..50}:
+    resource: @workresource*
     hiddenContributor: false
     quantity: 90
     user: @user
 
 AppBundle\Document\OtherContribute:
-  othercontribute:
+  othercontribute{1..50}:
     title: other contribute
     hiddenContributor: false
     quantity: 800
