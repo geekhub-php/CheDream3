@@ -4,62 +4,62 @@ namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 
 /**
- * Class EquipmentResource
- * @package AppBundle\Document
- *
- * @ODM\Document(collection="equipment_resource")
+ * @ODM\Document
+ * @ODM\InheritanceType("SINGLE_COLLECTION")
+ * @ODM\DiscriminatorField("type")
+ * @ODM\DiscriminatorMap({"resource" = "Resource", "work_resource" = "WorkResource", "financial_resource" = "FinancialResource", "equipment_resource" = "EquipmentResource"})
  * @ExclusionPolicy("all")
  */
-class EquipmentResource extends Resource
+class Resource
 {
-    const TON = 'ton';
-    const KG = 'kg';
-    const PIECE = 'piece';
-
     /**
-     * @return array
-     */
-    public static function getReadableQuantityTypes()
-    {
-        return array(
-            self::PIECE => 'dream.equipment.piece',
-            self::KG => 'dream.equipment.kg',
-            self::TON => 'dream.equipment.ton',
-        );
-    }
-
-    /**
-     * @var $id
      * @ODM\Id(strategy="AUTO")
+     * @Expose()
      */
     protected $id;
 
     /**
+     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\Dream")
+     * @Expose()
+     */
+    protected $dream;
+
+    /**
+     * @ODM\ReferenceMany(targetDocument="AppBundle\Document\Contribute")
+     * @Expose()
+     */
+    protected $contributes = [];
+
+    /**
      * @var string $title
+     *
+     * @ODM\Field(type="string")
+     * @Expose()
+     * @Type("string")
      */
     protected $title;
 
     /**
      * @var date $createdAt
+     *
+     * @ODM\Field(type="date")
+     * @Expose()
+     * @Type("DateTime")
      */
     protected $createdAt;
 
     /**
      * @var float $quantity
+     *
+     * @ODM\Field(type="float")
+     * @Expose()
+     * @Type("float")
      */
     protected $quantity;
-
-    /**
-     * @var AppBundle\Document\Dream
-     */
-    protected $dream;
-
-    /**
-     * @var AppBundle\Document\Contribute
-     */
-    protected $contributes = array();
 
     public function __construct()
     {
@@ -85,7 +85,6 @@ class EquipmentResource extends Resource
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
-        $dream->addResource($this);
 
         return $this;
     }

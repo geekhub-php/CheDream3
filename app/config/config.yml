@@ -54,6 +54,10 @@ doctrine_mongodb:
     document_managers:
         default:
             auto_mapping: true
+        dm1:
+            connection: default
+            mappings:
+                AppBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
