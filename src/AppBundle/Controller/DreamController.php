@@ -189,13 +189,16 @@ class DreamController extends AbstractController
      * resource = true,
      * description = "Create/Update single dream",
      * parameters={
-     *          {"name"="title", "dataType"="string", "required"=true, "description"="Dream name"},
-     *          {"name"="description", "dataType"="string", "required"=true, "description"="Description about dream"},
-     *          {"name"="phone", "dataType"="integer", "required"=true, "description"="Phone number", "format"="(xxx) xxx xxx xxx"},
-     *          {"name"="dreamFinancialResources", "dataType"="array<AppBundle\Document\EquipmentResource>", "required"=true, "description"="Equipment resources"},
-     *          {"name"="dreamWorkResources", "dataType"="array<AppBundle\Document\WorkResource>", "required"=true, "description"="Work resources"},
-     *          {"name"="dreamFinancialResources", "dataType"="array<AppBundle\Document\FinancialResource>", "required"=true, "description"="Financial resources"}
-     * },
+     *          {"name"="[title]", "dataType"="string", "required"=true, "description"="Dream name"},
+     *          {"name"="[description]", "dataType"="string", "required"=true, "description"="Description about dream"},
+     *          {"name"="[phone]", "dataType"="integer", "required"=true, "description"="Phone number", "format"="(xxx) xxx xxx xxx"},
+     *          {"name"="[equipment_resource][][title]", "dataType"="string", "required"=true, "description"="title equipment resource"},
+     *          {"name"="[equipment_resource][][quantity]", "dataType"="int", "required"=true, "description"="quantity equipment resource"},
+     *          {"name"="[financial_resource][][title]", "dataType"="string", "required"=true, "description"="title financial resource"},
+     *          {"name"="[financial_resource][][quantity]", "dataType"="int", "required"=true, "description"="quantity financial resource"},
+     *          {"name"="[work_resource][][title]", "dataType"="string", "required"=true, "description"="title work resource"},
+     *          {"name"="[work_resource][][quantity]", "dataType"="int", "required"=true, "description"="quantity work resource"},
+ *     },
      * statusCodes = {
      * 200 = "Dream successful update",
      * 404 = "Return when dream with current slug not isset"
