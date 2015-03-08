@@ -11,7 +11,7 @@ use JMS\Serializer\Annotation\Type;
  * @ODM\Document
  * @ODM\InheritanceType("SINGLE_COLLECTION")
  * @ODM\DiscriminatorField("type")
- * @ODM\DiscriminatorMap({"resource" = "Resource", "work_resource" = "WorkResource", "financial_resource" = "FinancialResource", "equipment_resource" = "EquipmentResource"})
+ * @ODM\DiscriminatorMap({"WorkResource" = "WorkResource", "FinancialResource" = "FinancialResource", "EquipmentResource" = "EquipmentResource"})
  * @ExclusionPolicy("all")
  */
 class Resource
