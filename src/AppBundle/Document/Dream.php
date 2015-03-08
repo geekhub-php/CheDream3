@@ -236,6 +236,7 @@ class Dream
      * @var array
      *
      * @ODM\ReferenceMany(targetDocument="AppBundle\Document\Contribute")
+     * @Expose()
      */
     protected $contributes = [];
 
@@ -243,6 +244,7 @@ class Dream
      * @var array
      *
      * @ODM\ReferenceMany(targetDocument="AppBundle\Document\Resource")
+     * @Expose()
      */
     protected $resources = [];
 

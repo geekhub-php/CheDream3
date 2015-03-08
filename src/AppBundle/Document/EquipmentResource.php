@@ -85,6 +85,7 @@ class EquipmentResource extends Resource
     public function setDream(\AppBundle\Document\Dream $dream)
     {
         $this->dream = $dream;
+        $dream->addResource($this);
 
         return $this;
     }
