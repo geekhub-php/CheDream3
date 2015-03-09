@@ -10,12 +10,16 @@ class ObjectUpdaterTest extends AbstractApiTest
 {
     public function testUpdateObject()
     {
-        $client   = static::createClient();
+        $client = static::createClient();
 
-        $dreamOld = $client->getContainer()
-                           ->get('doctrine_mongodb.odm.document_manager')
-                           ->getRepository('AppBundle:Dream')
-                           ->findOneBySlug('che-dream');
+        $financial_resource = new FinancialResource();
+        $financial_resource->setTitle('nostrum');
+        $financial_resource->setQuantity(521);
+
+        $dreamOld = new Dream();
+        $dreamOld->setTitle('test1');
+        $dreamOld->setDescription('test2');
+        $dreamOld->addResource($financial_resource);
 
         $financial_resource = new FinancialResource();
         $financial_resource->setTitle('nostrum');
