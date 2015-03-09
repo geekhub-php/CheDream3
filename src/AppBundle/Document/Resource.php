@@ -19,18 +19,21 @@ class Resource
     /**
      * @ODM\Id(strategy="AUTO")
      * @Expose()
+     * @Type("integer")
      */
     protected $id;
 
     /**
      * @ODM\ReferenceOne(targetDocument="AppBundle\Document\Dream")
      * @Expose()
+     * @Type("AppBundle\Document\Dream")
      */
     protected $dream;
 
     /**
      * @ODM\ReferenceMany(targetDocument="AppBundle\Document\Contribute")
      * @Expose()
+     * @Type("AppBundle\Document\Contribute")
      */
     protected $contributes = [];
 

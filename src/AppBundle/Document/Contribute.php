@@ -19,18 +19,21 @@ class Contribute
     /**
      * @ODM\Id(strategy="AUTO")
      * @Expose()
+     * @Type("integer")
      */
     protected $id;
 
     /**
      * @ODM\ReferenceOne(targetDocument="AppBundle\Document\Dream")
      * @Expose()
+     * @Type("AppBundle\Document\Dream")
      */
     protected $dream;
 
     /**
      * @ODM\ReferenceOne(targetDocument="AppBundle\Document\Resource")
      * @Expose()
+     * @Type("AppBundle\Document\Resource")
      */
     protected $resource;
 
@@ -55,6 +58,7 @@ class Contribute
     /**
      * @ODM\ReferenceOne(targetDocument="AppBundle\Document\User")
      * @Expose()
+     * @Type("AppBundle\Document\User")
      */
     protected $user;
 
