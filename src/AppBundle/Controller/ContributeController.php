@@ -15,10 +15,7 @@ class ContributeController extends AbstractController
      * @ApiDoc(
      *      resource = true,
      *      description = "create single contribute",
-     *      parameters = {
-     *          {"name" = "[quantity]", "dataType" = "integer", "required" = true, "description" = "count contributet resources" },
-     *          {"name" = "[hiddenСontributor]", "dataType" = "boolean", "required" = true, "description" = "that boolean value make user hidden" }
-     *      },
+     *      input = "AppBundle\Document\Contribute",
      *      statusCodes = {
      *          201 = "Returned when successful create",
      *          404 = "Returned when dream is not found"
@@ -39,8 +36,7 @@ class ContributeController extends AbstractController
     {
         $dm = $this->get('doctrine.odm.mongodb.document_manager');
 
-        $data = $this->get('serializer')->serialize($request->request->all(), 'json');
-        $contribute = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Contribute', 'json');
+        $contribute = $this->get('serializer')->deserialize($request->getBody(), 'AppBundle\Document\Contribute', 'json');
 
         $idResource = $param->get('idResource');
         $resource = null;
