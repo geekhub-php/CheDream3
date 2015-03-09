@@ -5,10 +5,7 @@ namespace AppBundle\Tests\Services;
 use AppBundle\Document\Dream;
 use AppBundle\Document\Resource;
 use AppBundle\Document\User;
-use Doctrine\ODM\MongoDB\DocumentManager;
 use AppBundle\Document\OtherContribute;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Core\SecurityContext;
 
 class ContributeFactory
 {
@@ -53,8 +50,6 @@ class ContributeFactory
         $contribute = null;
 
         if (!is_null($this->resource)) {
-
-
             $type = "\\AppBundle\\Document\\".str_replace('Resource', 'Contribute', $this->resource->getType());
 
             $contribute = new $type();
