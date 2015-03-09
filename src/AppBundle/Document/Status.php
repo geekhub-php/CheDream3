@@ -3,6 +3,7 @@
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
@@ -39,6 +40,7 @@ class Status implements EventInterface
      * @return string
      *
      * @ODM\Field(type="string")
+     * @Assert\NotBlank()
      * @Expose()
      * @Type("string")
      */

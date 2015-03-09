@@ -3,6 +3,7 @@
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
@@ -41,6 +42,7 @@ class Resource
      * @var string $title
      *
      * @ODM\Field(type="string")
+     * @Assert\NotBlank()
      * @Expose()
      * @Type("string")
      */
