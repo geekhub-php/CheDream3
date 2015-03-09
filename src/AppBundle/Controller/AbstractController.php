@@ -3,7 +3,8 @@
 namespace AppBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
-use Symfony\Component\HttpFoundation\Response;
+use FOS\RestBundle\Controller\Annotations\View as RestView;
+use FOS\RestBundle\View\View;
 
 abstract class AbstractController extends FOSRestController
 {
@@ -12,6 +13,12 @@ abstract class AbstractController extends FOSRestController
         return $this->get('doctrine.odm.mongodb.document_manager');
     }
 
+    /**
+     * @RestView
+     *
+     * @param $object
+     * @return mixed
+     */
     public function getValidation($object)
     {
         $validator = $this->get('validator');
@@ -20,7 +27,9 @@ abstract class AbstractController extends FOSRestController
         if (count($errors) > 0) {
             $errorsString = (string) $errors;
 
-            return new Response($errorsString);
+            $restView = View::create();
+            $restView->setData($errorsString);
+            return $restView;
         }
     }
 }
