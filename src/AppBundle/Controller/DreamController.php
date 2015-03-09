@@ -132,17 +132,7 @@ class DreamController extends AbstractController
      * @ApiDoc(
      *      resource = true,
      *      description = "Create single dream",
-     *      parameters={
-     *          {"name"="[title]", "dataType"="string", "required"=true, "description"="Dream name"},
-     *          {"name"="[description]", "dataType"="string", "required"=true, "description"="Description about dream"},
-     *          {"name"="[phone]", "dataType"="integer", "required"=true, "description"="Phone number", "format"="(xxx) xxx xxx xxx"},
-     *          {"name"="[equipment_resource][][title]", "dataType"="string", "required"=true, "description"="title equipment resource"},
-     *          {"name"="[equipment_resource][][quantity]", "dataType"="int", "required"=true, "description"="quantity equipment resource"},
-     *          {"name"="[financial_resource][][title]", "dataType"="string", "required"=true, "description"="title financial resource"},
-     *          {"name"="[financial_resource][][quantity]", "dataType"="int", "required"=true, "description"="quantity financial resource"},
-     *          {"name"="[work_resource][][title]", "dataType"="string", "required"=true, "description"="title work resource"},
-     *          {"name"="[work_resource][][quantity]", "dataType"="int", "required"=true, "description"="quantity work resource"},
-     *      },
+     *      input = "AppBundle\Document\Dream",
      *      output = "string",
      *      statusCodes = {
      *          201 = "Dream sucessful created",
@@ -162,8 +152,7 @@ class DreamController extends AbstractController
 
         $user = $this->getUser();
 
-        $data = $this->get('serializer')->serialize($data, 'json');
-        $dream = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
+        $dream = $this->get('serializer')->deserialize($request->getBody(), 'AppBundle\Document\Dream', 'json');
         $dream->setAuthor($user);
 
         $dm->persist($dream);
@@ -185,17 +174,7 @@ class DreamController extends AbstractController
      * @ApiDoc(
      * resource = true,
      * description = "Create/Update single dream",
-     * parameters={
-     *          {"name"="[title]", "dataType"="string", "required"=true, "description"="Dream name"},
-     *          {"name"="[description]", "dataType"="string", "required"=true, "description"="Description about dream"},
-     *          {"name"="[phone]", "dataType"="integer", "required"=true, "description"="Phone number", "format"="(xxx) xxx xxx xxx"},
-     *          {"name"="[equipment_resource][][title]", "dataType"="string", "required"=true, "description"="title equipment resource"},
-     *          {"name"="[equipment_resource][][quantity]", "dataType"="int", "required"=true, "description"="quantity equipment resource"},
-     *          {"name"="[financial_resource][][title]", "dataType"="string", "required"=true, "description"="title financial resource"},
-     *          {"name"="[financial_resource][][quantity]", "dataType"="int", "required"=true, "description"="quantity financial resource"},
-     *          {"name"="[work_resource][][title]", "dataType"="string", "required"=true, "description"="title work resource"},
-     *          {"name"="[work_resource][][quantity]", "dataType"="int", "required"=true, "description"="quantity work resource"},
- *     },
+     * input = "AppBundle\Document\Dream",
      * statusCodes = {
      * 200 = "Dream successful update",
      * 404 = "Return when dream with current slug not isset"
@@ -215,8 +194,7 @@ class DreamController extends AbstractController
         $dreamOld = $dm->getRepository('AppBundle:Dream')
                         ->findOneBySlug($slug);
 
-        $data = $this->get('serializer')->serialize($data, 'json');
-        $dreamNew = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
+        $dreamNew = $this->get('serializer')->deserialize($request->getBody(), 'AppBundle\Document\Dream', 'json');
 
         $view = View::create();
 
