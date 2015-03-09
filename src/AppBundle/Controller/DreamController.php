@@ -93,6 +93,8 @@ class DreamController extends AbstractController
         $dreamsResponse->setNextPage($nextPage);
         $dreamsResponse->setPreviousPage($previsiousPage);
 
+        $validation = $this->getValidation($dreamsResponse);
+
         return $dreamsResponse;
     }
 
