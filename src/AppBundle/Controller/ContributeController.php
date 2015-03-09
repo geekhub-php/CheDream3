@@ -40,12 +40,31 @@ class ContributeController extends AbstractController
     {
         $dm = $this->get('doctrine.odm.mongodb.document_manager');
 
-        $data = $request->request->all();
-        $user = $this->getUser();
-
         $idResource = $param->get('idResource');
+        $resource = null;
 
-        $contribute = $this->get('app.services.contribute_dream')->contribute($dm, $user, $data, $slugDream, $idResource);
+        $dream = $dm->getRepository('AppBundle:Dream')
+                    ->findOneBySlug($slugDream);
+
+        if (!$dream) {
+            throw new NotFoundHttpException('Dream with this slug not isset');
+        }
+
+        if (!is_null($idResource)) {
+            $resource = $dm->getRepository('AppBundle:Resource')
+                        ->findOneById($idResource);
+
+            if (!$resource) {
+                throw new NotFoundHttpException('Resource with this id not isset');
+            }
+        }
+
+        $contribute = $this->get('app.services.contribute_factory')
+                            ->setDream($dream)
+                            ->setResource($resource)
+                            ->setUser($this->getUser())
+                            ->contribute((object) $request->request->all())
+        ;
 
         $dm->persist($contribute);
         $dm->flush();
