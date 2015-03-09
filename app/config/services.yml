@@ -1,10 +1,10 @@
 parameters:
     app.services.object_updater_class: AppBundle\Services\ObjectUpdater
-    app.services.contribute_dream_class: AppBundle\Services\ContributeDream
+    app.services.contribute_factory_class: AppBundle\Services\ContributeFactory
 
 services:
     app.services.object_updater:
         class: "%app.services.object_updater_class%"
 
-    app.services.contribute_dream:
-        class: "%app.services.contribute_dream_class%"
+    app.services.contribute_factory:
+        class: "%app.services.contribute_factory_class%"
