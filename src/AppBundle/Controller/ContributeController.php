@@ -17,7 +17,7 @@ class ContributeController extends AbstractController
      *      description = "create single contribute",
      *      parameters = {
      *          {"name" = "[quantity]", "dataType" = "integer", "required" = true, "description" = "count contributet resources" },
-     *          {"name" = "[hidden_contributor]", "dataType" = "boolean", "required" = true, "description" = "that boolean value make user hidden" }
+     *          {"name" = "[hiddenСontributor]", "dataType" = "boolean", "required" = true, "description" = "that boolean value make user hidden" }
      *      },
      *      statusCodes = {
      *          201 = "Returned when successful create",
@@ -38,6 +38,9 @@ class ContributeController extends AbstractController
     public function postContributeAction(ParamFetcher $param, Request $request, $slugDream)
     {
         $dm = $this->get('doctrine.odm.mongodb.document_manager');
+
+        $data = $this->get('serializer')->serialize($request->request->all(), 'json');
+        $contribute = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Contribute', 'json');
 
         $idResource = $param->get('idResource');
         $resource = null;
@@ -62,7 +65,7 @@ class ContributeController extends AbstractController
                             ->setDream($dream)
                             ->setResource($resource)
                             ->setUser($this->getUser())
-                            ->contribute((object) $request->request->all())
+                            ->contribute($contribute)
         ;
 
         $dm->persist($contribute);
