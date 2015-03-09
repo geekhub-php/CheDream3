@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Document\OtherContribute;
 use FOS\RestBundle\Request\ParamFetcher;
 use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
@@ -29,7 +28,7 @@ class ContributeController extends AbstractController
      * @QueryParam(name="idResource", strict=true, requirements="[a-zA-Z0-9]+", description="id resource", nullable=true)
      *
      * @param ParamFetcher $param
-     * @param Request $request
+     * @param Request      $request
      * @param $slugDream
      *
      * @return View
