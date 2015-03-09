@@ -237,7 +237,7 @@ class Dream
      *
      * @ODM\ReferenceMany(targetDocument="AppBundle\Document\Contribute")
      * @Expose()
-     * @Type("AppBundle\Document\Contribute")
+     * @Type("array<AppBundle\Document\Contribute>")
      */
     protected $contributes = [];
 
@@ -246,7 +246,7 @@ class Dream
      *
      * @ODM\ReferenceMany(targetDocument="AppBundle\Document\Resource")
      * @Expose()
-     * @Type("AppBundle\Document\Resource")
+     * @Type("array<AppBundle\Document\Resource>")
      */
     protected $resources = [];
 

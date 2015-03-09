@@ -33,7 +33,7 @@ class Resource
     /**
      * @ODM\ReferenceMany(targetDocument="AppBundle\Document\Contribute")
      * @Expose()
-     * @Type("AppBundle\Document\Contribute")
+     * @Type("array<AppBundle\Document\Contribute>")
      */
     protected $contributes = [];
 
