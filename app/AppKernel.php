@@ -34,7 +34,8 @@ class AppKernel extends Kernel
             new Sonata\MediaBundle\SonataMediaBundle(),
             new Sonata\IntlBundle\SonataIntlBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
-            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle()
+            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

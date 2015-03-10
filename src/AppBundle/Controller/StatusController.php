@@ -3,15 +3,14 @@
 namespace AppBundle\Controller;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use FOS\RestBundle\Controller\FOSRestController;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
 use FOS\RestBundle\View\View;
-use Symfony\Component\Config\Definition\Exception\Exception;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 
-class StatusController extends FOSRestController
+class StatusController extends AbstractController
 {
     /**
      * Get Status,
@@ -28,7 +27,7 @@ class StatusController extends FOSRestController
      *
      * @QueryParam(name="limit", requirements="\d+", default="10", description="Count statuses at one page")
      * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
-     *
+    *
      * @RestView
      *
      * @param  ParamFetcher $paramFetcher
@@ -38,8 +37,10 @@ class StatusController extends FOSRestController
      */
     public function getStatusAction(ParamFetcher $paramFetcher)
     {
-        $manager = $this->get('doctrine_mongodb')->getManager();
-        $status = $manager->createQueryBuilder('AppBundle:Status')->getQuery();
+        $manager = $this->getMongoDbManager();
+
+        $status = $manager->createQueryBuilder('AppBundle:Status')
+                          ->getQuery();
 
         if (count($status) == 0) {
             throw new Exception("204 No Content");

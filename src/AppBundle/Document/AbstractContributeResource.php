@@ -24,7 +24,7 @@ abstract class AbstractContributeResource
     protected $quantity;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="Dream")
+     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\Dream")
      */
     protected $dream;
 }

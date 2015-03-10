@@ -4,64 +4,46 @@ namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\Type;
 
 /**
  * Class WorkResource
  * @package AppBundle\Document
  *
- *@ODM\Document(collection="work_resource")
+ * @ODM\Document(collection="work_resource")
  * @ExclusionPolicy("all")
  */
-class WorkResource extends AbstractResource
+class WorkResource extends Resource
 {
     use Timestampable;
     /**
-     * @var integer
-     *
-     * @ODM\Id
-     * @Expose()
-     * @Type("integer")
+     * @var $id
+     * @ODM\Id(strategy="AUTO")
      */
     protected $id;
 
     /**
      * @var string $title
-     *
-     * @ODM\Field(type="string")
-     * @Expose()
-     * @Type("string")
      */
     protected $title;
 
     /**
      * @var float $quantity
-     *
-     * @ODM\Field(type="float")
-     * @Expose()
-     * @Type("float")
      */
     protected $quantity;
 
     /**
      * @var \AppBundle\Document\Dream
-     * @ODM\ReferenceOne(targetDocument="Dream")
-     * @Expose()
      */
     protected $dream;
 
     /**
-     * @var array
-     *
-     * @ODM\ReferenceMany(targetDocument="WorkContribute")
-     * @Expose()
+     * @var \AppBundle\Document\Contribute
      */
-    protected $workContributions = [];
+    protected $contributes = array();
 
     public function __construct()
     {
-        $this->workContributions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->contributes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -72,6 +54,59 @@ class WorkResource extends AbstractResource
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set dream
+     *
+     * @param  \AppBundle\Document\Dream $dream
+     * @return self
+     */
+    public function setDream(\AppBundle\Document\Dream $dream)
+    {
+        $this->dream = $dream;
+
+        return $this;
+    }
+
+    /**
+     * Get dream
+     *
+     * @return \AppBundle\Document\Dream $dream
+     */
+    public function getDream()
+    {
+        return $this->dream;
+    }
+
+    /**
+     * Add contribute
+     *
+     * @param \AppBundle\Document\Contribute $contribute
+     */
+    public function addContribute(\AppBundle\Document\Contribute $contribute)
+    {
+        $this->contributes[] = $contribute;
+    }
+
+    /**
+     * Remove contribute
+     *
+     * @param \AppBundle\Document\Contribute $contribute
+     */
+    public function removeContribute(\AppBundle\Document\Contribute $contribute)
+    {
+        $this->contributes->removeElement($contribute);
+    }
+
+    /**
+     * Get contributes
+     *
+     * @return \Doctrine\Common\Collections\Collection $contributes
+     */
+    public function getContributes()
+    {
+        return $this->contributes;
     }
 
     /**
@@ -118,65 +153,6 @@ class WorkResource extends AbstractResource
     public function getQuantity()
     {
         return $this->quantity;
-    }
-
-    /**
-     * set dream
-     *
-     * @param  Dream $dream
-     * @return $this
-     */
-    public function setDream(\AppBundle\Document\Dream $dream)
-    {
-        $this->dream = $dream;
-
-        return $this;
-    }
-
-    /**
-     * Get Dream
-     *
-     * @return Dream
-     */
-    public function getDream()
-    {
-        return $this->dream;
-    }
-
-    /**
-     * Add workContribution
-     *
-     * @param  WorkContribute $workContribution
-     * @return $this
-     */
-    public function addWorkContribution(\AppBundle\Document\WorkContribute $workContribution)
-    {
-        $this->workContributions[] = $workContribution;
-
-        return $this;
-    }
-
-    /**
-     * Remove workContribution
-     *
-     * @param  WorkContribute $workContribution
-     * @return $this
-     */
-    public function removeWorkContribution(\AppBundle\Document\WorkContribute $workContribution)
-    {
-        $this->workContributions->removeElement($workContribution);
-
-        return $this;
-    }
-
-    /**
-     * Get workContributions
-     *
-     * @return array|\Doctrine\Common\Collections\ArrayCollection
-     */
-    public function getWorkContributions()
-    {
-        return $this->workContributions;
     }
 
     public function __toString()

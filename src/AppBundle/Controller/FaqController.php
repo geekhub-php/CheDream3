@@ -2,11 +2,12 @@
 
 namespace AppBundle\Controller;
 
-use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\View\View;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
+use FOS\RestBundle\Request\ParamFetcher;
 
-class FaqController extends FOSRestController
+class FaqController extends AbstractController
 {
     /**
      * Get Faqs,
@@ -21,9 +22,16 @@ class FaqController extends FOSRestController
      * }
      * )
      *
+     * @QueryParam(name="limit", requirements="\d+", default="10", description="Count faqs at one page")
+     * @QueryParam(name="page", requirements="\d+", default="1", description="Number of page to be shown")
+     *
+     *
+     * @param  ParamFetcher $paramFetcher
      * @return View
+     *
+     * @throws NotFoundHttpException when not exist
      */
-    public function getFaqsAction()
+    public function getFaqsAction(ParamFetcher $paramFetcher)
     {
         $manager = $this->get('doctrine_mongodb.odm.document_manager');
         $faqsQuery = $manager->getRepository('AppBundle:Faq')

@@ -35,7 +35,9 @@
         "nelmio/cors-bundle": "~1.4",
         "sonata-project/admin-bundle": "2.3.*@dev",
         "sonata/doctrine-mongodb-admin-bundle": "2.3.0",
-        "sonata-project/media-bundle": "2.3.*@dev"
+        "sonata-project/media-bundle": "2.3.*@dev",
+        "white-october/pagerfanta-bundle": "~1.0"
+
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

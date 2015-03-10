@@ -4,8 +4,6 @@ namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\Type;
 
 /**
  * Class EquipmentResource
@@ -14,7 +12,7 @@ use JMS\Serializer\Annotation\Type;
  * @ODM\Document(collection="equipment_resource")
  * @ExclusionPolicy("all")
  */
-class EquipmentResource extends AbstractResource
+class EquipmentResource extends Resource
 {
     const TON = 'ton';
     const KG = 'kg';
@@ -35,60 +33,34 @@ class EquipmentResource extends AbstractResource
     }
 
     /**
-     * @var integer
-     *
-     * @ODM\Id
-     * @Expose()
-     * @Type("integer")
+     * @var $id
+     * @ODM\Id(strategy="AUTO")
      */
-    private $id;
-
-    /**
-     * @var string
-     *
-     * @ODM\Field(type="string")
-     * @Expose()
-     * @Type("string")
-     */
-    protected $quantityType;
+    protected $id;
 
     /**
      * @var string $title
-     *
-     * @ODM\Field(type="string")
-     * @Expose()
-     * @Type("string")
      */
     protected $title;
 
     /**
      * @var float $quantity
-     *
-     * @ODM\Field(type="float")
-     * @Expose()
-     * @Type("float")
      */
     protected $quantity;
 
     /**
      * @var \AppBundle\Document\Dream
-     *
-     * @ODM\ReferenceOne(targetDocument="Dream", )
-     * @Expose()
      */
     protected $dream;
 
     /**
-     * @var array
-     *
-     * @ODM\ReferenceMany(targetDocument="EquipmentContribute")
-     * @Expose()
+     * @var \AppBundle\Document\Contribute
      */
-    protected $equipmentContributes = [];
+    protected $contributes = array();
 
     public function __construct()
     {
-        $this->equipmentContributes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->contributes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -102,26 +74,56 @@ class EquipmentResource extends AbstractResource
     }
 
     /**
-     * Set quantityType
+     * Set dream
      *
-     * @param  string $quantityType
+     * @param  \AppBundle\Document\Dream $dream
      * @return self
      */
-    public function setQuantityType($quantityType)
+    public function setDream(\AppBundle\Document\Dream $dream)
     {
-        $this->quantityType = $quantityType;
+        $this->dream = $dream;
 
         return $this;
     }
 
     /**
-     * Get quantityType
+     * Get dream
      *
-     * @return string $quantityType
+     * @return \AppBundle\Document\Dream $dream
      */
-    public function getQuantityType()
+    public function getDream()
     {
-        return $this->quantityType;
+        return $this->dream;
+    }
+
+    /**
+     * Add contribute
+     *
+     * @param \AppBundle\Document\Contribute $contribute
+     */
+    public function addContribute(\AppBundle\Document\Contribute $contribute)
+    {
+        $this->contributes[] = $contribute;
+    }
+
+    /**
+     * Remove contribute
+     *
+     * @param \AppBundle\Document\Contribute $contribute
+     */
+    public function removeContribute(\AppBundle\Document\Contribute $contribute)
+    {
+        $this->contributes->removeElement($contribute);
+    }
+
+    /**
+     * Get contributes
+     *
+     * @return \Doctrine\Common\Collections\Collection $contributes
+     */
+    public function getContributes()
+    {
+        return $this->contributes;
     }
 
     /**
@@ -168,65 +170,6 @@ class EquipmentResource extends AbstractResource
     public function getQuantity()
     {
         return $this->quantity;
-    }
-
-    /**
-     * Set dream
-     *
-     * @param  Dream $dream
-     * @return $this
-     */
-    public function setDream(\AppBundle\Document\Dream $dream)
-    {
-        $this->dream = $dream;
-
-        return $this;
-    }
-
-    /**
-     * Get dream
-     *
-     * @return Dream
-     */
-    public function getDream()
-    {
-        return $this->dream;
-    }
-
-    /**
-     * Add equipmentContribute
-     *
-     * @param  EquipmentContribute $equipmentContribute
-     * @return $this
-     */
-    public function addEquipmentContribute(\AppBundle\Document\EquipmentContribute $equipmentContribute)
-    {
-        $this->equipmentContributes[] = $equipmentContribute;
-
-        return $this;
-    }
-
-    /**
-     * Remove equipmentContribute
-     *
-     * @param  EquipmentContribute $equipmentContribute
-     * @return $this
-     */
-    public function removeEquipmentContribute(\AppBundle\Document\EquipmentContribute $equipmentContribute)
-    {
-        $this->equipmentContributes->removeElement($equipmentContribute);
-
-        return $this;
-    }
-
-    /**
-     * Get equipmentContributes
-     *
-     * @return array|\Doctrine\Common\Collections\ArrayCollection
-     */
-    public function getEquipmentContributes()
-    {
-        return $this->equipmentContributes;
     }
 
     public function __toString()

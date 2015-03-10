@@ -3,44 +3,59 @@
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
 
 /**
- * Class FinancialResource
- * @package AppBundle\Document
- *
- * @ODM\Document(collection="financial_resource")
+ * @ODM\Document
+ * @ODM\InheritanceType("SINGLE_COLLECTION")
+ * @ODM\DiscriminatorField("type")
+ * @ODM\DiscriminatorMap({"WorkResource" = "WorkResource", "FinancialResource" = "FinancialResource", "EquipmentResource" = "EquipmentResource"})
  * @ExclusionPolicy("all")
  */
-class FinancialResource extends Resource
+class Resource
 {
-    use Timestampable;
     /**
-     * @var $id
-     *
      * @ODM\Id(strategy="AUTO")
+     * @Expose()
+     * @Type("integer")
      */
     protected $id;
 
     /**
+     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\Dream")
+     * @Expose()
+     * @Type("AppBundle\Document\Dream")
+     */
+    protected $dream;
+
+    /**
+     * @ODM\ReferenceMany(targetDocument="AppBundle\Document\Contribute")
+     * @Expose()
+     * @Type("array<AppBundle\Document\Contribute>")
+     */
+    protected $contributes = [];
+
+    /**
      * @var string $title
+     *
+     * @ODM\Field(type="string")
+     * @Assert\NotBlank()
+     * @Expose()
+     * @Type("string")
      */
     protected $title;
 
     /**
      * @var float $quantity
+     *
+     * @ODM\Field(type="float")
+     * @Expose()
+     * @Type("float")
      */
     protected $quantity;
-
-    /**
-     * @var \AppBundle\Document\Dream
-     */
-    protected $dream;
-
-    /**
-     * @var \AppBundle\Document\Contribute
-     */
-    protected $contributes = array();
 
     public function __construct()
     {
@@ -60,7 +75,7 @@ class FinancialResource extends Resource
     /**
      * Set dream
      *
-     * @param  \AppBundle\Document\Dream $dream
+     * @param  AppBundle\Document\Dream $dream
      * @return self
      */
     public function setDream(\AppBundle\Document\Dream $dream)
@@ -73,7 +88,7 @@ class FinancialResource extends Resource
     /**
      * Get dream
      *
-     * @return \AppBundle\Document\Dream $dream
+     * @return AppBundle\Document\Dream $dream
      */
     public function getDream()
     {
@@ -83,7 +98,7 @@ class FinancialResource extends Resource
     /**
      * Add contribute
      *
-     * @param \AppBundle\Document\Contribute $contribute
+     * @param AppBundle\Document\Contribute $contribute
      */
     public function addContribute(\AppBundle\Document\Contribute $contribute)
     {
@@ -93,7 +108,7 @@ class FinancialResource extends Resource
     /**
      * Remove contribute
      *
-     * @param \AppBundle\Document\Contribute $contribute
+     * @param AppBundle\Document\Contribute $contribute
      */
     public function removeContribute(\AppBundle\Document\Contribute $contribute)
     {
@@ -103,7 +118,7 @@ class FinancialResource extends Resource
     /**
      * Get contributes
      *
-     * @return \Doctrine\Common\Collections\Collection $contributes
+     * @return Doctrine\Common\Collections\Collection $contributes
      */
     public function getContributes()
     {
@@ -134,6 +149,29 @@ class FinancialResource extends Resource
     }
 
     /**
+     * Set createdAt
+     *
+     * @param  date $createdAt
+     * @return self
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return date $createdAt
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
      * Set quantity
      *
      * @param  float $quantity
@@ -154,10 +192,5 @@ class FinancialResource extends Resource
     public function getQuantity()
     {
         return $this->quantity;
-    }
-
-    public function __toString()
-    {
-        return $this->getTitle();
     }
 }

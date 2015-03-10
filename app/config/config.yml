@@ -92,16 +92,6 @@ hautelook_alice:
     locale: en_US   # default
     seed: 1         # default
 
-#fos_rest:
-#    format_listener: true
-#    routing_loader:
-#        default_format: json
-#    view:
-#        view_response_listener: true
-#        formats:
-#            json: true
-#            xml: true
-#            yml: true
 fos_rest:
     param_fetcher_listener: true
     body_listener: true
@@ -154,3 +144,9 @@ nelmio_cors:
             allow_headers: ['*']
             allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
             max_age: 3600
+
+white_october_pagerfanta:
+    exceptions_strategy:
+        out_of_range_page:        to_http_not_found
+        not_valid_current_page:   to_http_not_found
+
