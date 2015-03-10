@@ -12,7 +12,8 @@ class LoadWork extends DataFixtureLoader
     protected function getFixtures()
     {
         return  array(
-            __DIR__.'/fixtures.yml',
+            __DIR__.'/dynamic.yml',
+            __DIR__.'/static.yml',
         );
     }
 }

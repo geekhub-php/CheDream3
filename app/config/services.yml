@@ -1,6 +1,10 @@
 parameters:
     app.services.object_updater_class: AppBundle\Services\ObjectUpdater
+    app.services.contribute_factory_class: AppBundle\Services\ContributeFactory
 
 services:
     app.services.object_updater:
         class: "%app.services.object_updater_class%"
+
+    app.services.contribute_factory:
+        class: "%app.services.contribute_factory_class%"
