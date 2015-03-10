@@ -11,6 +11,7 @@ env:
 
 before_script:
     - echo 'extension = "mongo.so"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+    - echo 'max_nesting_level = 1000' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
     - composer self-update
     - php bin/reload
 

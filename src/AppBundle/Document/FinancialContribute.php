@@ -3,66 +3,48 @@
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\Type;
 
 /**
  * Class FinancialContribute
  * @package AppBundle\Document
  *
- * @ODM\Document(collection="financial_contributes")
- * @ExclusionPolicy("all")
+ * @ODM\Document(collection="financial_contribute")
  */
-class FinancialContribute extends AbstractContribute
+class FinancialContribute extends Contribute
 {
     /**
-     * @var integer
-     *
-     * @ODM\Id
-     * @Expose()
-     * @Type("integer")
+     * @var $id
+     * @ODM\Id(strategy="AUTO")
      */
     protected $id;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\FinancialResource")
-     * @Expose()
+     * @var float $quantity
      */
-    protected $financialResource;
+    protected $quantity;
 
     /**
      * @var boolean $hiddenContributor
-     *
-     * @ODM\Field(type="boolean")
-     * @Expose()
-     * @Type("boolean")
      */
     protected $hiddenContributor;
 
     /**
      * @var date $createdAt
-     *
-     * @ODM\Field(type="date")
-     * @Expose()
-     * @Type("DateTime")
      */
     protected $createdAt;
 
     /**
-     * @var float $quantity
-     *
-     * @ODM\Field(type="float")
-     * @Expose()
-     * @Type("float")
+     * @var AppBundle\Document\Dream
      */
-    protected $quantity;
+    protected $dream;
 
     /**
-     * @var \AppBundle\Document\User
-     *
-     * @ODM\ReferenceOne(targetDocument="User")
-     * @Expose()
+     * @var AppBundle\Document\Resource
+     */
+    protected $resource;
+
+    /**
+     * @var AppBundle\Document\User
      */
     protected $user;
 
@@ -76,63 +58,52 @@ class FinancialContribute extends AbstractContribute
         return $this->id;
     }
 
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
     /**
-     * Set financialResource
+     * Set dream
      *
-     * @param  FinancialResource $financialResource
-     * @return $this
-     */
-    public function setFinancialResource(\AppBundle\Document\FinancialResource $financialResource)
-    {
-        $this->financialResource = $financialResource;
-        $financialResource->addFinancialContribute($this);
-
-        return $this;
-    }
-
-    /**
-     * Get financialResource
-     *
-     * @return mixed
-     */
-    public function getFinancialResource()
-    {
-        return $this->financialResource;
-    }
-
-    /**
-     * Set hiddenContributor
-     *
-     * @param  boolean $hiddenContributor
+     * @param  AppBundle\Document\Dream $dream
      * @return self
      */
-    public function setHiddenContributor($hiddenContributor)
+    public function setDream(\AppBundle\Document\Dream $dream)
     {
-        $this->hiddenContributor = $hiddenContributor;
+        $this->dream = $dream;
+        $dream->addContribute($this);
 
         return $this;
     }
 
     /**
-     * Get hiddenContributor
+     * Get dream
      *
-     * @return boolean $hiddenContributor
+     * @return AppBundle\Document\Dream $dream
      */
-    public function getHiddenContributor()
+    public function getDream()
     {
-        return $this->hiddenContributor;
+        return $this->dream;
+    }
+
+    /**
+     * Set resource
+     *
+     * @param  AppBundle\Document\Resource $resource
+     * @return self
+     */
+    public function setResource(\AppBundle\Document\Resource $resource)
+    {
+        $this->resource = $resource;
+        $resource->addContribute($this);
+
+        return $this;
+    }
+
+    /**
+     * Get resource
+     *
+     * @return AppBundle\Document\Resource $resource
+     */
+    public function getResource()
+    {
+        return $this->resource;
     }
 
     /**
@@ -159,10 +130,33 @@ class FinancialContribute extends AbstractContribute
     }
 
     /**
+     * Set hiddenContributor
+     *
+     * @param  boolean $hiddenContributor
+     * @return self
+     */
+    public function setHiddenContributor($hiddenContributor)
+    {
+        $this->hiddenContributor = $hiddenContributor;
+
+        return $this;
+    }
+
+    /**
+     * Get hiddenContributor
+     *
+     * @return boolean $hiddenContributor
+     */
+    public function getHiddenContributor()
+    {
+        return $this->hiddenContributor;
+    }
+
+    /**
      * Set user
      *
-     * @param  User  $user
-     * @return $this
+     * @param  AppBundle\Document\User $user
+     * @return self
      */
     public function setUser(\AppBundle\Document\User $user)
     {
@@ -174,37 +168,33 @@ class FinancialContribute extends AbstractContribute
     /**
      * Get user
      *
-     * @return User
+     * @return AppBundle\Document\User $user
      */
     public function getUser()
     {
         return $this->user;
     }
-    /**
-     * @var \AppBundle\Document\Dream
-     */
-    protected $dream;
 
     /**
-     * Set dream
+     * Set createdAt
      *
-     * @param  \AppBundle\Document\Dream $dream
+     * @param  date $createdAt
      * @return self
      */
-    public function setDream(\AppBundle\Document\Dream $dream)
+    public function setCreatedAt($createdAt)
     {
-        $this->dream = $dream;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     /**
-     * Get dream
+     * Get createdAt
      *
-     * @return \AppBundle\Document\Dream $dream
+     * @return date $createdAt
      */
-    public function getDream()
+    public function getCreatedAt()
     {
-        return $this->dream;
+        return $this->createdAt;
     }
 }

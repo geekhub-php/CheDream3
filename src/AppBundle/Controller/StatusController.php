@@ -39,7 +39,8 @@ class StatusController extends AbstractController
     {
         $manager = $this->getMongoDbManager();
 
-        $status = $manager->createQueryBuilder('AppBundle:Status')->getQuery();
+        $status = $manager->createQueryBuilder('AppBundle:Status')
+                          ->getQuery();
 
         if (count($status) == 0) {
             throw new Exception("204 No Content");

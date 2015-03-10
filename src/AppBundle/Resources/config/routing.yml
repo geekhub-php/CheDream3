@@ -1,43 +1,20 @@
-app_equipment_resource:
-    type: rest
-    resource: "@AppBundle/Controller/EquipmentResourceController.php"
-
 app_dream:
     type: rest
     resource: "@AppBundle/Controller/DreamController.php"
-
-app_equipment_contribute:
-    type: rest
-    resource: "@AppBundle/Controller/EquipmentContributeController.php"
 
 app_faq:
     type: rest
     resource: "@AppBundle/Controller/FaqController.php"
 
-app_financial_contribute:
-    type: rest
-    resource: "@AppBundle/Controller/FinancialContributeController.php"
-
-app_financial_resource:
-    type: rest
-    resource: "@AppBundle/Controller/FinancialResourceController.php"
-
-app_other_contribute:
-   type: rest
-   resource: "@AppBundle/Controller/OtherContributeController.php"
-
 app_users:
    type: rest
    resource: "@AppBundle/Controller/UsersController.php"
 
-app_work_contribute:
-   type: rest
-   resource: "@AppBundle/Controller/WorkContributeController.php"
-
-app_work_resource:
-   type: rest
-   resource: "@AppBundle/Controller/WorkResourceController.php"
-
 app_status:
    type: rest
    resource: "@AppBundle/Controller/StatusController.php"
+
+app_contribute:
+   path: /dreams/{slugDream}/contribute
+   methods: [POST]
+   defaults: { _controller: AppBundle:Contribute:postContribute }
