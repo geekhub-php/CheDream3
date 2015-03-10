@@ -23,7 +23,7 @@ class DreamController extends AbstractController
      * @ApiDoc(
      * resource = true,
      * description = "Gets Dreams by status",
-     * output =   { "class" = "AppBundle\Document\Dream", "collection" = true, "collectionName" = "status" },
+     * output =   { "class" = "AppBundle\Document\Dream" },
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the status is not found"

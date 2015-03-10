@@ -8,12 +8,12 @@ AppBundle\Document\User:
     vkontakteId: 20431231
     facebookId: 9431223412
     odnoklassnikiId: 3215623122
-    favoriteDreams: [@dream]
+    favoriteDreams: 3x @dream*
     phone: 0931242169
     skype: skypeName
 
 AppBundle\Document\Dream:
-  dream:
+  dream{1..6}:
     title: New Dream
     description: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
     rejectedDescription: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -26,13 +26,13 @@ AppBundle\Document\Dream:
     equipmentCompleted: 312423
     author: @user
     statuses: [@status]
-    currentStatus: <word()>
+    currentStatus: completed
 
 AppBundle\Document\FinancialResource:
   financialResource{1..20}:
     title: Financial Resource
     quantity: 376
-    dream: @dream
+    dream: @dream*
 
 AppBundle\Document\FinancialContribute:
   financialContributes{1..50}:
@@ -45,7 +45,7 @@ AppBundle\Document\EquipmentResource:
   equipmentresource{1..20}:
     title: equip resource
     quantity: 700
-    dream: @dream
+    dream: @dream*
 
 AppBundle\Document\EquipmentContribute:
   equipmentcontribute{1..50}:
@@ -58,7 +58,7 @@ AppBundle\Document\WorkResource:
   workresource{1..20}:
     title: work resource
     quantity: 670
-    dream: @dream
+    dream: @dream*
 
 AppBundle\Document\WorkContribute:
   workcontribute{1..50}:
@@ -73,7 +73,7 @@ AppBundle\Document\OtherContribute:
     hiddenContributor: false
     quantity: 800
     user: @user
-    dream: @dream
+    dream: @dream*
 
 AppBundle\Document\Faq:
   faq:
@@ -85,4 +85,4 @@ AppBundle\Document\Faq:
 AppBundle\Document\Status:
   status:
     title: new status
-    dream: @dream
+    dream: @dream*
