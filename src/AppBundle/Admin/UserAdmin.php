@@ -30,8 +30,8 @@ class UserAdmin extends Admin
             ->add('facebookId')
             ->add('vkontakteId')
             ->add('odnoklassnikiId')
-            ->add('locked', null, array('required' => false))
-            ->add('enabled', null, array('required' => false));
+            ->add('locked', null, ['required' => false])
+            ->add('enabled', null, ['required' => false]);
     }
 
     /**
@@ -61,9 +61,6 @@ class UserAdmin extends Admin
             ->add('facebookId', 'boolean', ['label' => 'Fb'])
             ->add('vkontakteId', 'boolean', ['label' => 'Vk'])
             ->add('odnoklassnikiId', 'boolean', ['label' => 'Ok'])
-//            ->add('lastLogin')
-//            ->add('locked', null, array('required' => false, 'editable' => true))
-//            ->add('enabled', null, array('required' => false, 'editable' => true))
         ;
     }
 
@@ -74,6 +71,6 @@ class UserAdmin extends Admin
      */
     protected function configureRoutes(RouteCollection $collection)
     {
-        $collection->clearExcept(array('list', 'edit'));
+        $collection->clearExcept(['list', 'edit']);
     }
 }

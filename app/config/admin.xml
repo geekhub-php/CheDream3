@@ -3,8 +3,8 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
 
-        <service id="sonata.admin.post" class="AppBundle\Admin\DreamAdmin">
-            <tag name="sonata.admin" manager_type="doctrine_mongodb" group="Content" label="Dream"/>
+        <service id="sonata.admin.dream" class="AppBundle\Admin\DreamAdmin">
+            <tag name="sonata.admin" manager_type="doctrine_mongodb" group="CheDream" label="Dream"/>
             <argument />
             <argument>AppBundle\Document\Dream</argument>
             <argument />
@@ -14,7 +14,7 @@
         </service>
 
         <service id="sonata.admin.faq" class="AppBundle\Admin\FaqAdmin">
-            <tag name="sonata.admin" manager_type="doctrine_mongodb" group="Content" label="Faq"/>
+            <tag name="sonata.admin" manager_type="doctrine_mongodb" group="CheDream" label="Faq"/>
             <argument />
             <argument>AppBundle\Document\Faq</argument>
             <argument />
@@ -24,7 +24,7 @@
         </service>
 
         <service id="sonata.admin.user" class="AppBundle\Admin\UserAdmin">
-            <tag name="sonata.admin" manager_type="doctrine_mongodb" group="Content" label="User"/>
+            <tag name="sonata.admin" manager_type="doctrine_mongodb" group="CheDream" label="User"/>
             <argument />
             <argument>AppBundle\Document\User</argument>
             <argument />

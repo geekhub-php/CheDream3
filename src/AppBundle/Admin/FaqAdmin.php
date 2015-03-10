@@ -25,7 +25,7 @@ class FaqAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title', 'text', array('label' => 'Faq Title'))
+            ->add('title', 'text', ['label' => 'Faq Title'])
             ->add('question', 'text')
             ->add('answer', 'text')
             ->add('createdAt', 'date')
@@ -43,9 +43,9 @@ class FaqAdmin extends Admin
     protected function configureShowField(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('title', 'text', array('label' => 'Заголовок'))
-            ->add('question', 'text', array('label' => 'Питання'))
-            ->add('answer', 'text', array('label' => 'Відповідь'))
+            ->add('title', 'text', ['label' => 'Заголовок'])
+            ->add('question', 'text', ['label' => 'Питання'])
+            ->add('answer', 'text', ['label' => 'Відповідь'])
         ;
     }
 
@@ -71,17 +71,17 @@ class FaqAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('title', 'text', array('label' => 'Заголовок'))
-            ->add('question', 'text', array('label' => 'Питання'))
-            ->add('answer', 'text', array('label' => 'Відповідь'))
-            ->add('_action', 'actions', array(
+            ->addIdentifier('title', 'text', ['label' => 'Заголовок'])
+            ->add('question', 'text', ['label' => 'Питання'])
+            ->add('answer', 'text', ['label' => 'Відповідь'])
+            ->add('_action', 'actions', [
                 'label' => 'Дії',
-                'actions' => array(
-                    'show' => array(),
-                    'edit' => array(),
-                    'delete' => array(),
-                )
-            ))
+                'actions' => [
+                    'show' => [],
+                    'edit' => [],
+                    'delete' => [],
+                ]
+            ])
         ;
     }
 }

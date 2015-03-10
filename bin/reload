@@ -2,7 +2,7 @@
 
 require __DIR__ . '/base_script.php';
 
-
+show_run("Install dependencies", "composer install");
 show_run("Drop DB", "app/console doctrine:mongodb:schema:drop");
 show_run("Create scheme", "app/console doctrine:mongodb:schema:create ");
 show_run("Install assets", "app/console assets:install");
