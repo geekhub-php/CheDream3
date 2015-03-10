@@ -18,6 +18,8 @@ class EquipmentResource extends Resource
     const KG = 'kg';
     const PIECE = 'piece';
 
+    use Timestampable;
+
     /**
      * @return array
      */
@@ -42,22 +44,17 @@ class EquipmentResource extends Resource
     protected $title;
 
     /**
-     * @var date $createdAt
-     */
-    protected $createdAt;
-
-    /**
      * @var float $quantity
      */
     protected $quantity;
 
     /**
-     * @var AppBundle\Document\Dream
+     * @var \AppBundle\Document\Dream
      */
     protected $dream;
 
     /**
-     * @var AppBundle\Document\Contribute
+     * @var \AppBundle\Document\Contribute
      */
     protected $contributes = array();
 
@@ -79,7 +76,7 @@ class EquipmentResource extends Resource
     /**
      * Set dream
      *
-     * @param  AppBundle\Document\Dream $dream
+     * @param  \AppBundle\Document\Dream $dream
      * @return self
      */
     public function setDream(\AppBundle\Document\Dream $dream)
@@ -92,7 +89,7 @@ class EquipmentResource extends Resource
     /**
      * Get dream
      *
-     * @return AppBundle\Document\Dream $dream
+     * @return \AppBundle\Document\Dream $dream
      */
     public function getDream()
     {
@@ -102,7 +99,7 @@ class EquipmentResource extends Resource
     /**
      * Add contribute
      *
-     * @param AppBundle\Document\Contribute $contribute
+     * @param \AppBundle\Document\Contribute $contribute
      */
     public function addContribute(\AppBundle\Document\Contribute $contribute)
     {
@@ -112,7 +109,7 @@ class EquipmentResource extends Resource
     /**
      * Remove contribute
      *
-     * @param AppBundle\Document\Contribute $contribute
+     * @param \AppBundle\Document\Contribute $contribute
      */
     public function removeContribute(\AppBundle\Document\Contribute $contribute)
     {
@@ -122,7 +119,7 @@ class EquipmentResource extends Resource
     /**
      * Get contributes
      *
-     * @return Doctrine\Common\Collections\Collection $contributes
+     * @return \Doctrine\Common\Collections\Collection $contributes
      */
     public function getContributes()
     {
@@ -153,29 +150,6 @@ class EquipmentResource extends Resource
     }
 
     /**
-     * Set createdAt
-     *
-     * @param  date $createdAt
-     * @return self
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return date $createdAt
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
      * Set quantity
      *
      * @param  float $quantity
@@ -196,5 +170,10 @@ class EquipmentResource extends Resource
     public function getQuantity()
     {
         return $this->quantity;
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 }

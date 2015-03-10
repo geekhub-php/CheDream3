@@ -150,4 +150,22 @@ class Status implements EventInterface
     {
         return $this->dream;
     }
+
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+
+    public static function getStatusesArray()
+    {
+        return array(
+            self::SUBMITTED => self::SUBMITTED,
+            self::COLLECTING_RESOURCES => self::COLLECTING_RESOURCES,
+            self::REJECTED => self::REJECTED,
+            self::IMPLEMENTING => self::IMPLEMENTING,
+            self::COMPLETED => self::COMPLETED,
+            self::SUCCESS => self::SUCCESS,
+            self::FAIL => self::FAIL,
+        );
+    }
 }

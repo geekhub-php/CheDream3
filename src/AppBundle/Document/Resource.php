@@ -49,15 +49,6 @@ class Resource
     protected $title;
 
     /**
-     * @var date $createdAt
-     *
-     * @ODM\Field(type="date")
-     * @Expose()
-     * @Type("DateTime")
-     */
-    protected $createdAt;
-
-    /**
      * @var float $quantity
      *
      * @ODM\Field(type="float")

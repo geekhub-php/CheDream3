@@ -2,7 +2,6 @@
 
 namespace AppBundle\Document;
 
-use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
@@ -14,13 +13,6 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
  */
 abstract class AbstractContributeResource
 {
-    /**
-     * @var \DateTime
-     *
-     * @Gedmo\Timestampable(on="create")
-     * @ODM\Field(type="date")
-     */
-    protected $createdAt;
 
     /**
      * @var float

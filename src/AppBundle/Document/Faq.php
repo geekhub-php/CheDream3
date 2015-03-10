@@ -19,6 +19,7 @@ use JMS\Serializer\Annotation\Type;
  */
 class Faq
 {
+    use Timestampable;
     /**
      * @var integer
      *
@@ -55,14 +56,6 @@ class Faq
      * @Type("string")
      */
     protected $answer;
-
-    /**
-     * @var \DateTime
-     *
-     * @ODM\Field(type="date")
-     * @Type("DateTime")
-     */
-    protected $deletedAt;
 
     /**
      * @var string
@@ -151,29 +144,6 @@ class Faq
     public function getAnswer()
     {
         return $this->answer;
-    }
-
-    /**
-     * Set deletedAt
-     *
-     * @param  date $deletedAt
-     * @return self
-     */
-    public function setDeletedAt($deletedAt)
-    {
-        $this->deletedAt = $deletedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get deletedAt
-     *
-     * @return date $deletedAt
-     */
-    public function getDeletedAt()
-    {
-        return $this->deletedAt;
     }
 
     /**

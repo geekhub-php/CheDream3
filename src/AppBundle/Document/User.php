@@ -620,4 +620,9 @@ class User extends BaseUser //implements DreamUserInterface
     {
         return $this->skype;
     }
+
+    public function __toString()
+    {
+        return $this->getFirstName();
+    }
 }
