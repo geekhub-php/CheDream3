@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Document\Dream;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Model\DreamsResponse;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
@@ -45,18 +46,29 @@ class DreamController extends AbstractController
      */
     public function getDreamsAction(ParamFetcher $paramFetcher)
     {
-        $repository = $this->get('doctrine_mongodb')->getManager()->getRepository('AppBundle:Dream');
+        $repository = $this->get('doctrine_mongodb')
+                            ->getManager()
+                            ->getRepository('AppBundle:Dream')
+        ;
 
         if (!$paramFetcher->get('status')) {
             $queryBuilder = $repository->createQueryBuilder('dream')
-                ->sort($paramFetcher->get('sort_by'), $paramFetcher->get('sort_order'))
-                ->field('dream.currentStatus')->notEqual('fail')
-                ->getQuery()->execute()->toArray();
+                                    ->sort($paramFetcher->get('sort_by'), $paramFetcher->get('sort_order'))
+                                    ->field('dream.currentStatus')
+                                    ->notEqual('fail')
+                                    ->getQuery()
+                                    ->execute()
+                                    ->toArray()
+            ;
         } else {
             $queryBuilder = $repository->createQueryBuilder('dream')
-                ->sort($paramFetcher->get('sort_by'), $paramFetcher->get('sort_order'))
-                ->field('currentStatus')->equals($paramFetcher->get('status'))
-                ->getQuery()->execute()->toArray();
+                                    ->sort($paramFetcher->get('sort_by'), $paramFetcher->get('sort_order'))
+                                    ->field('currentStatus')
+                                    ->equals($paramFetcher->get('status'))
+                                    ->getQuery()
+                                    ->execute()
+                                    ->toArray()
+            ;
         }
 
         $dreamsResponse = new DreamsResponse();
@@ -148,11 +160,17 @@ class DreamController extends AbstractController
     {
         $dm = $this->get('doctrine.odm.mongodb.document_manager');
 
-        $data = $request->request->all();
-
         $user = $this->getUser();
 
-        $dream = $this->get('serializer')->deserialize($request->getBody(), 'AppBundle\Document\Dream', 'json');
+        $dream = $this->get('serializer')
+                      ->deserialize($request->getBody(), 'AppBundle\Document\Dream', 'json')
+        ;
+
+        if ($errors = $this->get('validator')->validate($dream)) {
+            throw new BadRequestHttpException($errors);
+        }
+
+
         $dream->setAuthor($user);
 
         $dm->persist($dream);
@@ -192,11 +210,18 @@ class DreamController extends AbstractController
         $dm = $this->get('doctrine.odm.mongodb.document_manager');
 
         $dreamOld = $dm->getRepository('AppBundle:Dream')
-                        ->findOneBySlug($slug);
+                        ->findOneBySlug($slug)
+        ;
 
-        $dreamNew = $this->get('serializer')->deserialize($request->getBody(), 'AppBundle\Document\Dream', 'json');
+        $dreamNew = $this->get('serializer')
+                        ->deserialize($request->getBody(), 'AppBundle\Document\Dream', 'json')
+        ;
 
         $view = View::create();
+
+        if ($errors = $this->get('validator')->validate($dreamNew) || $errors = $this->get('validator')->validate($dreamOld)) {
+            throw new BadRequestHttpException($errors);
+        }
 
         if (!$dreamOld) {
             $dreamNew->setAuthor($this->getUser());

@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use FOS\RestBundle\Request\ParamFetcher;
 use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
@@ -63,6 +64,11 @@ class ContributeController extends AbstractController
                             ->setUser($this->getUser())
                             ->contribute($contribute)
         ;
+
+        if ($errors = $this->get('validator')->validate($contribute)) {
+            throw new BadRequestHttpException($errors);
+        }
+
 
         $dm->persist($contribute);
         $dm->flush();
