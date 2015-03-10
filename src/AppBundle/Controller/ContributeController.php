@@ -69,7 +69,6 @@ class ContributeController extends AbstractController
             throw new BadRequestHttpException($errors);
         }
 
-
         $dm->persist($contribute);
         $dm->flush();
     }

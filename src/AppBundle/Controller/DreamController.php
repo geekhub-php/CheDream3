@@ -170,7 +170,6 @@ class DreamController extends AbstractController
             throw new BadRequestHttpException($errors);
         }
 
-
         $dream->setAuthor($user);
 
         $dm->persist($dream);
