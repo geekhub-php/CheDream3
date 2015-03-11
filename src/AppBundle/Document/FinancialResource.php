@@ -14,7 +14,6 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
  */
 class FinancialResource extends Resource
 {
-    use Timestampable;
     /**
      * @var $id
      *

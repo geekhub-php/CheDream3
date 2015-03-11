@@ -17,6 +17,7 @@ use JMS\Serializer\Annotation\Type;
  */
 class Resource
 {
+    use Timestampable;
     /**
      * @ODM\Id(strategy="AUTO")
      * @Expose()
@@ -75,7 +76,7 @@ class Resource
     /**
      * Set dream
      *
-     * @param  AppBundle\Document\Dream $dream
+     * @param  \AppBundle\Document\Dream $dream
      * @return self
      */
     public function setDream(\AppBundle\Document\Dream $dream)
@@ -88,7 +89,7 @@ class Resource
     /**
      * Get dream
      *
-     * @return AppBundle\Document\Dream $dream
+     * @return \AppBundle\Document\Dream $dream
      */
     public function getDream()
     {
@@ -98,7 +99,7 @@ class Resource
     /**
      * Add contribute
      *
-     * @param AppBundle\Document\Contribute $contribute
+     * @param \AppBundle\Document\Contribute $contribute
      */
     public function addContribute(\AppBundle\Document\Contribute $contribute)
     {
@@ -108,7 +109,7 @@ class Resource
     /**
      * Remove contribute
      *
-     * @param AppBundle\Document\Contribute $contribute
+     * @param \AppBundle\Document\Contribute $contribute
      */
     public function removeContribute(\AppBundle\Document\Contribute $contribute)
     {
@@ -118,7 +119,7 @@ class Resource
     /**
      * Get contributes
      *
-     * @return Doctrine\Common\Collections\Collection $contributes
+     * @return \Doctrine\Common\Collections\Collection $contributes
      */
     public function getContributes()
     {
@@ -146,29 +147,6 @@ class Resource
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param  date $createdAt
-     * @return self
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return date $createdAt
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
     }
 
     /**

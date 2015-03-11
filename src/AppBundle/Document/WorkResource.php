@@ -14,7 +14,6 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
  */
 class WorkResource extends Resource
 {
-    use Timestampable;
     /**
      * @var $id
      * @ODM\Id(strategy="AUTO")

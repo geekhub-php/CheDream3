@@ -17,6 +17,7 @@ use JMS\Serializer\Annotation\Type;
  */
 class Contribute
 {
+    use Timestampable;
     /**
      * @ODM\Id(strategy="AUTO")
      * @Expose()
@@ -66,15 +67,6 @@ class Contribute
     protected $user;
 
     /**
-     * @var date $createdAt
-     *
-     * @ODM\Field(type="date")
-     * @Expose()
-     * @Type("DateTime")
-     */
-    protected $createdAt;
-
-    /**
      * Get id
      *
      * @return id $id
@@ -87,7 +79,7 @@ class Contribute
     /**
      * Set dream
      *
-     * @param  AppBundle\Document\Dream $dream
+     * @param  \AppBundle\Document\Dream $dream
      * @return self
      */
     public function setDream(\AppBundle\Document\Dream $dream)
@@ -101,7 +93,7 @@ class Contribute
     /**
      * Get dream
      *
-     * @return AppBundle\Document\Dream $dream
+     * @return \AppBundle\Document\Dream $dream
      */
     public function getDream()
     {
@@ -111,7 +103,7 @@ class Contribute
     /**
      * Set resource
      *
-     * @param  AppBundle\Document\Resource $resource
+     * @param  \AppBundle\Document\Resource $resource
      * @return self
      */
     public function setResource(\AppBundle\Document\Resource $resource)
@@ -125,7 +117,7 @@ class Contribute
     /**
      * Get resource
      *
-     * @return AppBundle\Document\Resource $resource
+     * @return \AppBundle\Document\Resource $resource
      */
     public function getResource()
     {
@@ -181,7 +173,7 @@ class Contribute
     /**
      * Set user
      *
-     * @param  AppBundle\Document\User $user
+     * @param  \AppBundle\Document\User $user
      * @return self
      */
     public function setUser(\AppBundle\Document\User $user)
@@ -194,33 +186,10 @@ class Contribute
     /**
      * Get user
      *
-     * @return AppBundle\Document\User $user
+     * @return \AppBundle\Document\User $user
      */
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param  date $createdAt
-     * @return self
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return date $createdAt
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
     }
 }

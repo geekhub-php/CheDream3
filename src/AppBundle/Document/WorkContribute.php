@@ -31,22 +31,17 @@ class WorkContribute extends Contribute
     protected $hiddenContributor;
 
     /**
-     * @var date $createdAt
-     */
-    protected $createdAt;
-
-    /**
-     * @var AppBundle\Document\Dream
+     * @var \AppBundle\Document\Dream
      */
     protected $dream;
 
     /**
-     * @var AppBundle\Document\Resource
+     * @var \AppBundle\Document\Resource
      */
     protected $resource;
 
     /**
-     * @var AppBundle\Document\User
+     * @var \AppBundle\Document\User
      */
     protected $user;
 
@@ -63,7 +58,7 @@ class WorkContribute extends Contribute
     /**
      * Set dream
      *
-     * @param  AppBundle\Document\Dream $dream
+     * @param  \AppBundle\Document\Dream $dream
      * @return self
      */
     public function setDream(\AppBundle\Document\Dream $dream)
@@ -77,7 +72,7 @@ class WorkContribute extends Contribute
     /**
      * Get dream
      *
-     * @return AppBundle\Document\Dream $dream
+     * @return \AppBundle\Document\Dream $dream
      */
     public function getDream()
     {
@@ -87,7 +82,7 @@ class WorkContribute extends Contribute
     /**
      * Set resource
      *
-     * @param  AppBundle\Document\Resource $resource
+     * @param  \AppBundle\Document\Resource $resource
      * @return self
      */
     public function setResource(\AppBundle\Document\Resource $resource)
@@ -101,7 +96,7 @@ class WorkContribute extends Contribute
     /**
      * Get resource
      *
-     * @return AppBundle\Document\Resource $resource
+     * @return \AppBundle\Document\Resource $resource
      */
     public function getResource()
     {
@@ -157,7 +152,7 @@ class WorkContribute extends Contribute
     /**
      * Set user
      *
-     * @param  AppBundle\Document\User $user
+     * @param  \AppBundle\Document\User $user
      * @return self
      */
     public function setUser(\AppBundle\Document\User $user)
@@ -170,33 +165,10 @@ class WorkContribute extends Contribute
     /**
      * Get user
      *
-     * @return AppBundle\Document\User $user
+     * @return \AppBundle\Document\User $user
      */
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param  date $createdAt
-     * @return self
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return date $createdAt
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
     }
 }

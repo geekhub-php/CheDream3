@@ -496,7 +496,7 @@ class Dream
     /**
      * Add usersWhoFavorite
      *
-     * @param AppBundle\Document\User $usersWhoFavorite
+     * @param \AppBundle\Document\User $usersWhoFavorite
      */
     public function addUsersWhoFavorite(\AppBundle\Document\User $usersWhoFavorite)
     {
@@ -506,7 +506,7 @@ class Dream
     /**
      * Remove usersWhoFavorite
      *
-     * @param AppBundle\Document\User $usersWhoFavorite
+     * @param \AppBundle\Document\User $usersWhoFavorite
      */
     public function removeUsersWhoFavorite(\AppBundle\Document\User $usersWhoFavorite)
     {
@@ -516,7 +516,7 @@ class Dream
     /**
      * Get usersWhoFavorites
      *
-     * @return Doctrine\Common\Collections\Collection $usersWhoFavorites
+     * @return \Doctrine\Common\Collections\Collection $usersWhoFavorites
      */
     public function getUsersWhoFavorites()
     {
@@ -549,7 +549,7 @@ class Dream
     /**
      * Set author
      *
-     * @param  AppBundle\Document\User $author
+     * @param  \AppBundle\Document\User $author
      * @return self
      */
     public function setAuthor(\AppBundle\Document\User $author)
@@ -562,7 +562,7 @@ class Dream
     /**
      * Get author
      *
-     * @return AppBundle\Document\User $author
+     * @return \AppBundle\Document\User $author
      */
     public function getAuthor()
     {
@@ -572,7 +572,7 @@ class Dream
     /**
      * Add status
      *
-     * @param AppBundle\Document\Status $status
+     * @param \AppBundle\Document\Status $status
      */
     public function addStatus(\AppBundle\Document\Status $status)
     {
@@ -582,7 +582,7 @@ class Dream
     /**
      * Remove status
      *
-     * @param AppBundle\Document\Status $status
+     * @param \AppBundle\Document\Status $status
      */
     public function removeStatus(\AppBundle\Document\Status $status)
     {
@@ -592,7 +592,7 @@ class Dream
     /**
      * Get statuses
      *
-     * @return Doctrine\Common\Collections\Collection $statuses
+     * @return \Doctrine\Common\Collections\Collection $statuses
      */
     public function getStatuses()
     {
@@ -625,7 +625,7 @@ class Dream
     /**
      * Add contribute
      *
-     * @param AppBundle\Document\Contribute $contribute
+     * @param \AppBundle\Document\Contribute $contribute
      */
     public function addContribute(\AppBundle\Document\Contribute $contribute)
     {
@@ -638,7 +638,7 @@ class Dream
     /**
      * Remove contribute
      *
-     * @param AppBundle\Document\Contribute $contribute
+     * @param \AppBundle\Document\Contribute $contribute
      */
     public function removeContribute(\AppBundle\Document\Contribute $contribute)
     {
@@ -648,7 +648,7 @@ class Dream
     /**
      * Get contributes
      *
-     * @return Doctrine\Common\Collections\Collection $contributes
+     * @return \Doctrine\Common\Collections\Collection $contributes
      */
     public function getContributes()
     {
@@ -658,7 +658,7 @@ class Dream
     /**
      * Add resource
      *
-     * @param AppBundle\Document\Resource $resource
+     * @param \AppBundle\Document\Resource $resource
      */
     public function addResource(\AppBundle\Document\Resource $resource)
     {
@@ -671,7 +671,7 @@ class Dream
     /**
      * Remove resource
      *
-     * @param AppBundle\Document\Resource $resource
+     * @param \AppBundle\Document\Resource $resource
      */
     public function removeResource(\AppBundle\Document\Resource $resource)
     {
@@ -681,7 +681,7 @@ class Dream
     /**
      * Get resources
      *
-     * @return Doctrine\Common\Collections\Collection $resources
+     * @return \Doctrine\Common\Collections\Collection $resources
      */
     public function getResources()
     {

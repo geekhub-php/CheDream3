@@ -18,8 +18,6 @@ class EquipmentResource extends Resource
     const KG = 'kg';
     const PIECE = 'piece';
 
-    use Timestampable;
-
     /**
      * @return array
      */

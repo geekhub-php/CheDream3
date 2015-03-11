@@ -18,6 +18,7 @@ use JMS\Serializer\Annotation as JMS;
  */
 class User extends BaseUser //implements DreamUserInterface
 {
+    use Timestampable;
     const FAKE_EMAIL_PART = "@example.com";
 
     /**

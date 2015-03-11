@@ -6,7 +6,6 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
-use Sonata\AdminBundle\Form\FormMapper;
 use AppBundle\Document\Status;
 
 class DreamAdmin extends Admin
@@ -17,7 +16,6 @@ class DreamAdmin extends Admin
         '_sort_order' => 'DESC',
         '_sort_by'    => 'updatedAt',
     ];
-
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
