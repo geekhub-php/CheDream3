@@ -28,6 +28,16 @@ class AppKernel extends Kernel
             new Nelmio\CorsBundle\NelmioCorsBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Sonata\DoctrineMongoDBAdminBundle\SonataDoctrineMongoDBAdminBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\MediaBundle\SonataMediaBundle(),
+            new Sonata\IntlBundle\SonataIntlBundle(),
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

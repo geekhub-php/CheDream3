@@ -3,7 +3,7 @@
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type;
@@ -25,6 +25,7 @@ class Status implements EventInterface
     const SUCCESS              = 'success';
     const FAIL                 = 'fail';
 
+    use Timestampable;
     /**
      * @var integer
      *
@@ -39,49 +40,17 @@ class Status implements EventInterface
      * @return string
      *
      * @ODM\Field(type="string")
+     * @Assert\NotBlank()
      * @Expose()
      * @Type("string")
      */
     protected $title;
 
     /**
-     * @var \DateTime
-     *
-     * @Gedmo\Timestampable(on="create")
-     * @ODM\Field(type="date")
-     * @Expose()
-     * @Type("DateTime")
-     */
-    protected $createdAt;
-
-    /**
      * @ODM\ReferenceOne(targetDocument="Dream")
      * @Expose()
      */
     protected $dream;
-
-    /**
-     * Set createdAt
-     *
-     * @param  \DateTime $createdAt
-     * @return Status
-     */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
 
     public function getEventImage()
     {
@@ -147,5 +116,23 @@ class Status implements EventInterface
     public function getDream()
     {
         return $this->dream;
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+
+    public static function getStatusesArray()
+    {
+        return array(
+            self::SUBMITTED => self::SUBMITTED,
+            self::COLLECTING_RESOURCES => self::COLLECTING_RESOURCES,
+            self::REJECTED => self::REJECTED,
+            self::IMPLEMENTING => self::IMPLEMENTING,
+            self::COMPLETED => self::COMPLETED,
+            self::SUCCESS => self::SUCCESS,
+            self::FAIL => self::FAIL,
+        );
     }
 }

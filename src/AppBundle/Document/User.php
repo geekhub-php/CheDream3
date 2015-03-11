@@ -18,6 +18,7 @@ use JMS\Serializer\Annotation as JMS;
  */
 class User extends BaseUser //implements DreamUserInterface
 {
+    use Timestampable;
     const FAKE_EMAIL_PART = "@example.com";
 
     /**
@@ -619,5 +620,10 @@ class User extends BaseUser //implements DreamUserInterface
     public function getSkype()
     {
         return $this->skype;
+    }
+
+    public function __toString()
+    {
+        return $this->getFirstName();
     }
 }

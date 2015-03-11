@@ -11,6 +11,9 @@ parameters:
     domain: ~
     prod_server_pass: ~
     https_github_repository_url: ~
+    admin_dashboard_base_url: /admin
+    sonata_admin.title: 'Dream Project'
+    sonata_admin.logo_title: bundles/app/img/dream.png
 
     #vk api key
     vkontakte_app_id: ~

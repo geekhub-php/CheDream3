@@ -1,0 +1,19 @@
+sonata_admin:
+    title:      %sonata_admin.title%
+    title_logo: %sonata_admin.logo_title%
+
+    dashboard:
+        groups:
+            CheDream:
+                label: Main.Panel
+                label_catalogue: AppBundle
+            sonata_media:
+                label: Media.Library
+                label_catalogue: AppBundle
+
+        blocks:
+            -
+                position: left
+                type: sonata.admin.block.admin_list
+                settings:
+                    groups: [CheDream]

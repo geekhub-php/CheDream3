@@ -43,12 +43,12 @@ class DreamControllerTest extends AbstractController
     public function providerData()
     {
         return [
-            ['/dreams', 'DESC', 3, 10, 'ABS', 8, 9],
-            ['/dreams?limit=4&page=3&sort_by=createdAt&sort_order=ASC', 'ASC', 8, 4, 'DESC', 5, 6],
-            ['/dreams?limit=6&page=1&sort_by=updatedAt&sort_order=DESC', 'DESC', 5, 6, 'ASC', 8, 2],
-            ['/dreams?limit=3&page=2&sort_by=createdAt&sort_order=ASC', 'ASC', 10, 3, 'DESC', 4, 1],
-            ['/dreams?limit=3&page=2&sort_by=updatedAt&sort_order=DESC', 'DESC', 10, 3, 'ASC', 9, 6],
-            ['/dreams?limit=7&page=3&sort_by=createdAt&sort_order=ASC', 'ASC', 5, 7, 'DESC', 11, 8],
+            ['/dreams', 'DESC', 4, 10, 'ABS', 8, 9],
+            ['/dreams?limit=4&page=3&sort_by=createdAt&sort_order=ASC', 'ASC', 9, 4, 'DESC', 5, 6],
+            ['/dreams?limit=6&page=1&sort_by=updatedAt&sort_order=DESC', 'DESC', 6, 6, 'ASC', 8, 2],
+            ['/dreams?limit=3&page=2&sort_by=createdAt&sort_order=ASC', 'ASC', 12, 3, 'DESC', 4, 1],
+            ['/dreams?limit=3&page=2&sort_by=updatedAt&sort_order=DESC', 'DESC', 12, 3, 'ASC', 9, 6],
+            ['/dreams?limit=7&page=3&sort_by=createdAt&sort_order=ASC', 'ASC', 6, 7, 'DESC', 11, 8],
         ];
     }
 }

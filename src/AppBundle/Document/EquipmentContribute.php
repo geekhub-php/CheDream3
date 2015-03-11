@@ -3,24 +3,32 @@
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\Type;
 
 /**
  * Class EquipmentContribute
  * @package AppBundle\Document
  *
- * @ODM\Document(collection="equipment_contributes")
+ * @ODM\Document()
  * @ExclusionPolicy("all")
  */
-class EquipmentContribute extends AbstractContribute
+class EquipmentContribute extends Contribute
 {
     /**
-     * @var \AppBundle\Document\User
+     * @var $id
+     * @ODM\Id(strategy="AUTO")
      */
-    protected $user;
+    protected $id;
+
+    /**
+     * @var float $quantity
+     */
+    protected $quantity;
+
+    /**
+     * @var boolean $hiddenContributor
+     */
+    protected $hiddenContributor;
 
     /**
      * @var \AppBundle\Document\Dream
@@ -28,59 +36,14 @@ class EquipmentContribute extends AbstractContribute
     protected $dream;
 
     /**
-     * @var integer
-     *
-     * @ODM\Id
-     * @Expose()
-     * @Type("integer")
+     * @var \AppBundle\Document\Resource
      */
-    protected $id;
+    protected $resource;
 
     /**
-     * @ODM\ReferenceOne(targetDocument="AppBundle\Document\EquipmentResource")
-     * @Expose()
+     * @var \AppBundle\Document\User
      */
-    protected $equipmentResource;
-
-    /**
-     * @var boolean $hiddenContributor
-     *
-     * @ODM\Field(type="boolean")
-     * @Expose()
-     * @Type("boolean")
-     */
-    protected $hiddenContributor;
-
-    /**
-     * @var \DateTime
-     *
-     * @Gedmo\Timestampable(on="create")
-     * @ODM\Field(type="date")
-     * @Expose()
-     * @Type("DateTime")
-     */
-    protected $createdAt;
-
-    /**
-     * @var float $quantity
-     *
-     * @ODM\Field(type="float")
-     * @Expose()
-     * @Type("float")
-     */
-    protected $quantity;
-
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
+    protected $user;
 
     /**
      * Get id
@@ -93,50 +56,51 @@ class EquipmentContribute extends AbstractContribute
     }
 
     /**
-     * set EquipmentResource
+     * Set dream
      *
-     * @param  EquipmentResource $equipmentResource
-     * @return $this
-     */
-    public function setEquipmentResource(\AppBundle\Document\EquipmentResource $equipmentResource)
-    {
-        $this->equipmentResource = $equipmentResource;
-        $equipmentResource->addEquipmentContribute($this);
-
-        return $this;
-    }
-
-    /**
-     * Get equipmentResource
-     *
-     * @return mixed
-     */
-    public function getEquipmentResource()
-    {
-        return $this->equipmentResource;
-    }
-
-    /**
-     * Set hiddenContributor
-     *
-     * @param  boolean $hiddenContributor
+     * @param  \AppBundle\Document\Dream $dream
      * @return self
      */
-    public function setHiddenContributor($hiddenContributor)
+    public function setDream(\AppBundle\Document\Dream $dream)
     {
-        $this->hiddenContributor = $hiddenContributor;
+        $this->dream = $dream;
+        $dream->addContribute($this);
 
         return $this;
     }
 
     /**
-     * Get hiddenContributor
+     * Get dream
      *
-     * @return boolean $hiddenContributor
+     * @return \AppBundle\Document\Dream $dream
      */
-    public function getHiddenContributor()
+    public function getDream()
     {
-        return $this->hiddenContributor;
+        return $this->dream;
+    }
+
+    /**
+     * Set resource
+     *
+     * @param  \AppBundle\Document\Resource $resource
+     * @return self
+     */
+    public function setResource(\AppBundle\Document\Resource $resource)
+    {
+        $this->resource = $resource;
+        $resource->addContribute($this);
+
+        return $this;
+    }
+
+    /**
+     * Get resource
+     *
+     * @return \AppBundle\Document\Resource $resource
+     */
+    public function getResource()
+    {
+        return $this->resource;
     }
 
     /**
@@ -163,10 +127,33 @@ class EquipmentContribute extends AbstractContribute
     }
 
     /**
+     * Set hiddenContributor
+     *
+     * @param  boolean $hiddenContributor
+     * @return self
+     */
+    public function setHiddenContributor($hiddenContributor)
+    {
+        $this->hiddenContributor = $hiddenContributor;
+
+        return $this;
+    }
+
+    /**
+     * Get hiddenContributor
+     *
+     * @return boolean $hiddenContributor
+     */
+    public function getHiddenContributor()
+    {
+        return $this->hiddenContributor;
+    }
+
+    /**
      * Set user
      *
-     * @param  User  $user
-     * @return $this
+     * @param  \AppBundle\Document\User $user
+     * @return self
      */
     public function setUser(\AppBundle\Document\User $user)
     {
@@ -178,33 +165,10 @@ class EquipmentContribute extends AbstractContribute
     /**
      * Get user
      *
-     * @return User
+     * @return \AppBundle\Document\User $user
      */
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * Set dream
-     *
-     * @param  \AppBundle\Document\Dream $dream
-     * @return self
-     */
-    public function setDream(\AppBundle\Document\Dream $dream)
-    {
-        $this->dream = $dream;
-
-        return $this;
-    }
-
-    /**
-     * Get dream
-     *
-     * @return \AppBundle\Document\Dream $dream
-     */
-    public function getDream()
-    {
-        return $this->dream;
     }
 }

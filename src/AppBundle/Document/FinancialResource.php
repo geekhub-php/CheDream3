@@ -4,9 +4,6 @@ namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\Type;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class FinancialResource
@@ -15,72 +12,38 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ODM\Document(collection="financial_resource")
  * @ExclusionPolicy("all")
  */
-class FinancialResource extends AbstractResource
+class FinancialResource extends Resource
 {
     /**
-     * @var integer
+     * @var $id
      *
-     * @ODM\Id
-     * @Expose()
-     * @Type("integer")
+     * @ODM\Id(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $title
-     *
-     * @ODM\Field(type="string")
-     * @Expose()
-     * @Type("string")
      */
     protected $title;
 
     /**
-     * @var date $createdAt
-     *
-     * @ODM\Field(type="date")
-     * @Expose()
-     * @Type("DateTime")
-     */
-    protected $createdAt;
-
-    /**
      * @var float $quantity
-     *
-     * @ODM\Field(type="float")
-     * @Expose()
-     * @Type("float")
      */
     protected $quantity;
 
     /**
      * @var \AppBundle\Document\Dream
-     *
-     * @ODM\ReferenceOne(targetDocument="Dream")
-     * @Expose()
      */
     protected $dream;
 
     /**
-     * @var array
-     *
-     * @ODM\ReferenceMany(targetDocument="FinancialContribute")
-     * @Type("AppBundle\Document\FinancialContribute")
-     * @Expose()
+     * @var \AppBundle\Document\Contribute
      */
-    protected $financialContributes = [];
-
-    /**
-     * @var String
-     *
-     * @Gedmo\Slug(fields={"title"})
-     * @ODM\Field(type="string")
-     */
-    protected $slug;
+    protected $contributes = array();
 
     public function __construct()
     {
-        $this->financialContributes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->contributes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -91,6 +54,59 @@ class FinancialResource extends AbstractResource
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set dream
+     *
+     * @param  \AppBundle\Document\Dream $dream
+     * @return self
+     */
+    public function setDream(\AppBundle\Document\Dream $dream)
+    {
+        $this->dream = $dream;
+
+        return $this;
+    }
+
+    /**
+     * Get dream
+     *
+     * @return \AppBundle\Document\Dream $dream
+     */
+    public function getDream()
+    {
+        return $this->dream;
+    }
+
+    /**
+     * Add contribute
+     *
+     * @param \AppBundle\Document\Contribute $contribute
+     */
+    public function addContribute(\AppBundle\Document\Contribute $contribute)
+    {
+        $this->contributes[] = $contribute;
+    }
+
+    /**
+     * Remove contribute
+     *
+     * @param \AppBundle\Document\Contribute $contribute
+     */
+    public function removeContribute(\AppBundle\Document\Contribute $contribute)
+    {
+        $this->contributes->removeElement($contribute);
+    }
+
+    /**
+     * Get contributes
+     *
+     * @return \Doctrine\Common\Collections\Collection $contributes
+     */
+    public function getContributes()
+    {
+        return $this->contributes;
     }
 
     /**
@@ -117,29 +133,6 @@ class FinancialResource extends AbstractResource
     }
 
     /**
-     * Set createdAt
-     *
-     * @param  date $createdAt
-     * @return self
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return date $createdAt
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
      * Set quantity
      *
      * @param  float $quantity
@@ -162,63 +155,8 @@ class FinancialResource extends AbstractResource
         return $this->quantity;
     }
 
-    /**
-     * Set dream
-     *
-     * @param  Dream $dream
-     * @return $this
-     */
-    public function setDream(\AppBundle\Document\Dream $dream)
+    public function __toString()
     {
-        $this->dream = $dream;
-        $dream->addDreamFinancialResource($this);
-
-        return $this;
-    }
-
-    /**
-     * Get dream
-     *
-     * @return Dream
-     */
-    public function getDream()
-    {
-        return $this->dream;
-    }
-
-    /**
-     * Add financialContribute
-     *
-     * @param  FinancialContribute $financialContribute
-     * @return $this
-     */
-    public function addFinancialContribute(\AppBundle\Document\FinancialContribute $financialContribute)
-    {
-        $this->financialContributes[] = $financialContribute;
-
-        return $this;
-    }
-
-    /**
-     * Remove financial contribute
-     *
-     * @param  FinancialContribute $financialContribute
-     * @return $this
-     */
-    public function removeFinancialContribute(\AppBundle\Document\FinancialContribute $financialContribute)
-    {
-        $this->financialContributes->removeElement($financialContribute);
-
-        return $this;
-    }
-
-    /**
-     * Get financialContributes
-     *
-     * @return array|\Doctrine\Common\Collections\ArrayCollection
-     */
-    public function getFinancialContributes()
-    {
-        return $this->financialContributes;
+        return $this->getTitle();
     }
 }

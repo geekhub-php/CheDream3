@@ -3,11 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Document\Dream;
-use AppBundle\Document\EquipmentResource;
-use AppBundle\Document\FinancialResource;
-use AppBundle\Document\WorkResource;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Model\DreamsResponse;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
@@ -25,7 +23,7 @@ class DreamController extends AbstractController
      * @ApiDoc(
      * resource = true,
      * description = "Gets Dreams by status",
-     * output =   { "class" = "AppBundle\Document\Dream", "collection" = true, "collectionName" = "status" },
+     * output =   { "class" = "AppBundle\Document\Dream" },
      * statusCodes = {
      *      200 = "Returned when successful",
      *      404 = "Returned when the status is not found"
@@ -48,18 +46,29 @@ class DreamController extends AbstractController
      */
     public function getDreamsAction(ParamFetcher $paramFetcher)
     {
-        $repository = $this->get('doctrine_mongodb')->getManager()->getRepository('AppBundle:Dream');
+        $repository = $this->get('doctrine_mongodb')
+                            ->getManager()
+                            ->getRepository('AppBundle:Dream')
+        ;
 
         if (!$paramFetcher->get('status')) {
             $queryBuilder = $repository->createQueryBuilder('dream')
-                ->sort($paramFetcher->get('sort_by'), $paramFetcher->get('sort_order'))
-                ->field('dream.currentStatus')->notEqual('fail')
-                ->getQuery()->execute()->toArray();
+                                    ->sort($paramFetcher->get('sort_by'), $paramFetcher->get('sort_order'))
+                                    ->field('dream.currentStatus')
+                                    ->notEqual('fail')
+                                    ->getQuery()
+                                    ->execute()
+                                    ->toArray()
+            ;
         } else {
             $queryBuilder = $repository->createQueryBuilder('dream')
-                ->sort($paramFetcher->get('sort_by'), $paramFetcher->get('sort_order'))
-                ->field('currentStatus')->equals($paramFetcher->get('status'))
-                ->getQuery()->execute()->toArray();
+                                    ->sort($paramFetcher->get('sort_by'), $paramFetcher->get('sort_order'))
+                                    ->field('currentStatus')
+                                    ->equals($paramFetcher->get('status'))
+                                    ->getQuery()
+                                    ->execute()
+                                    ->toArray()
+            ;
         }
 
         $dreamsResponse = new DreamsResponse();
@@ -135,14 +144,7 @@ class DreamController extends AbstractController
      * @ApiDoc(
      *      resource = true,
      *      description = "Create single dream",
-     *      parameters={
-     *          {"name"="title", "dataType"="string", "required"=true, "description"="Dream name"},
-     *          {"name"="description", "dataType"="string", "required"=true, "description"="Description about dream"},
-     *          {"name"="phone", "dataType"="integer", "required"=true, "description"="Phone number", "format"="(xxx) xxx xxx xxx"},
-     *          {"name"="dreamEquipmentResources", "dataType"="array<AppBundle\Document\EquipmentResource>", "required"=true, "description"="Equipment resources"},
-     *          {"name"="dreamWorkResources", "dataType"="array<AppBundle\Document\WorkResource>", "required"=true, "description"="Work resources"},
-     *          {"name"="dreamFinancialResources", "dataType"="array<AppBundle\Document\FinancialResource>", "required"=true, "description"="Financial resources"}
-     *      },
+     *      input = "AppBundle\Document\Dream",
      *      output = "string",
      *      statusCodes = {
      *          201 = "Dream sucessful created",
@@ -158,12 +160,16 @@ class DreamController extends AbstractController
     {
         $dm = $this->get('doctrine.odm.mongodb.document_manager');
 
-        $data = $request->request->all();
-
         $user = $this->getUser();
 
-        $data = $this->get('serializer')->serialize($data, 'json');
-        $dream = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
+        $dream = $this->get('serializer')
+                      ->deserialize($request->getBody(), 'AppBundle\Document\Dream', 'json')
+        ;
+
+        if ($errors = $this->get('validator')->validate($dream)) {
+            throw new BadRequestHttpException($errors);
+        }
+
         $dream->setAuthor($user);
 
         $dm->persist($dream);
@@ -185,14 +191,7 @@ class DreamController extends AbstractController
      * @ApiDoc(
      * resource = true,
      * description = "Create/Update single dream",
-     * parameters={
-     *          {"name"="title", "dataType"="string", "required"=true, "description"="Dream name"},
-     *          {"name"="description", "dataType"="string", "required"=true, "description"="Description about dream"},
-     *          {"name"="phone", "dataType"="integer", "required"=true, "description"="Phone number", "format"="(xxx) xxx xxx xxx"},
-     *          {"name"="dreamFinancialResources", "dataType"="array<AppBundle\Document\EquipmentResource>", "required"=true, "description"="Equipment resources"},
-     *          {"name"="dreamWorkResources", "dataType"="array<AppBundle\Document\WorkResource>", "required"=true, "description"="Work resources"},
-     *          {"name"="dreamFinancialResources", "dataType"="array<AppBundle\Document\FinancialResource>", "required"=true, "description"="Financial resources"}
-     * },
+     * input = "AppBundle\Document\Dream",
      * statusCodes = {
      * 200 = "Dream successful update",
      * 404 = "Return when dream with current slug not isset"
@@ -210,12 +209,18 @@ class DreamController extends AbstractController
         $dm = $this->get('doctrine.odm.mongodb.document_manager');
 
         $dreamOld = $dm->getRepository('AppBundle:Dream')
-                        ->findOneBySlug($slug);
+                        ->findOneBySlug($slug)
+        ;
 
-        $data = $this->get('serializer')->serialize($data, 'json');
-        $dreamNew = $this->get('serializer')->deserialize($data, 'AppBundle\Document\Dream', 'json');
+        $dreamNew = $this->get('serializer')
+                        ->deserialize($request->getBody(), 'AppBundle\Document\Dream', 'json')
+        ;
 
         $view = View::create();
+
+        if ($errors = $this->get('validator')->validate($dreamNew) || $errors = $this->get('validator')->validate($dreamOld)) {
+            throw new BadRequestHttpException($errors);
+        }
 
         if (!$dreamOld) {
             $dreamNew->setAuthor($this->getUser());

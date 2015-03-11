@@ -2,6 +2,8 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: sonata.yml }
+    - { resource: admin.xml }
 
 framework:
     translator: ~
@@ -30,6 +32,9 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form:
+        resources:
+            - 'SonataCoreBundle:Form:datepicker.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -54,6 +59,9 @@ doctrine_mongodb:
     document_managers:
         default:
             auto_mapping: true
+            mappings:
+                ApplicationSonataMediaBundle: ~
+                SonataMediaBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -84,16 +92,6 @@ hautelook_alice:
     locale: en_US   # default
     seed: 1         # default
 
-#fos_rest:
-#    format_listener: true
-#    routing_loader:
-#        default_format: json
-#    view:
-#        view_response_listener: true
-#        formats:
-#            json: true
-#            xml: true
-#            yml: true
 fos_rest:
     param_fetcher_listener: true
     body_listener: true
