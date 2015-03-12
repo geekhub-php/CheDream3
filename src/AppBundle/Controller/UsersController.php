@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Document\User;
+use HWI\Bundle\OAuthBundle\Security\Core\Authentication\Token\OAuthToken;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
@@ -9,6 +11,7 @@ use FOS\RestBundle\View\View;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
+use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 class UsersController extends AbstractController
 {
@@ -86,5 +89,21 @@ class UsersController extends AbstractController
         }
 
         return $user;
+    }
+
+    /**
+     * @param $accessToken
+     * @param $id
+     * @param $service
+     *
+     * @return View
+     *
+     * @RestView()
+     */
+    public function getLoginAction($accessToken, $id, $service)
+    {
+        $dm = $this->getMongoDbManager();
+
+        return $this->get('app.provider.user_provider')->connectUser($dm, $this->get('security.context'), $accessToken, $id, $service);
     }
 }
