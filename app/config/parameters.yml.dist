@@ -14,11 +14,3 @@ parameters:
     admin_dashboard_base_url: /admin
     sonata_admin.title: 'Dream Project'
     sonata_admin.logo_title: bundles/app/img/dream.png
-
-    #vk api key
-    vkontakte_app_id: ~
-    vkontakte_app_secret: ~
-
-    #facebook api key
-    facebook_app_id: ~
-    facebook_app_secret: ~
