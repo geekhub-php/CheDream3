@@ -2,20 +2,18 @@
 
 namespace AppBundle\UserProvider;
 
-use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface,
-    HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface,
-    HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseClass;
+use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
+use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;
+use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseClass;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Exception\LockedException;
-use Symfony\Component\Security\Core\User\UserInterface,
-    Symfony\Component\Security\Core\User\UserProviderInterface,
-    Symfony\Component\PropertyAccess\PropertyAccessor;
-use Doctrine\DBAL\Types,
-    Doctrine\DBAL\DBALException;
-use Geekhub\UserBundle\UserProvider\FacebookProvider,
-    Geekhub\UserBundle\UserProvider\VkontakteProvider,
-    Geekhub\UserBundle\UserProvider\OdnoklassnikiProvider,
-    Geekhub\UserBundle\Entity\User;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\PropertyAccess\PropertyAccessor;
+use Geekhub\UserBundle\UserProvider\FacebookProvider;
+use Geekhub\UserBundle\UserProvider\VkontakteProvider;
+use Geekhub\UserBundle\UserProvider\OdnoklassnikiProvider;
+use Geekhub\UserBundle\Entity\User;
 
 class DreamUserProvider extends BaseClass implements UserProviderInterface, OAuthAwareUserProviderInterface
 {
@@ -134,7 +132,7 @@ class DreamUserProvider extends BaseClass implements UserProviderInterface, OAut
         if ($user->isFakeEmail() && !$previousUser->isFakeEmail()) {
             $realEmail = $previousUser->getEmail();
 
-            $previousUser->setEmail(uniqid() . $previousUser::FAKE_EMAIL_PART);
+            $previousUser->setEmail(uniqid().$previousUser::FAKE_EMAIL_PART);
             $previousUser->setEmailCanonical($previousUser->getEmail());
 
             $this->userManager->updateUser($previousUser);
@@ -150,14 +148,14 @@ class DreamUserProvider extends BaseClass implements UserProviderInterface, OAut
         $socialIds = $previousUser->getNotNullSocialIds();
 
         foreach ($socialIds as $socialKey => $socialId) {
-            $socialKey = $socialKey . 'Id';
+            $socialKey = $socialKey.'Id';
             $propertyAccessor->setValue($previousUser, $socialKey, null);
         }
 
         $this->userManager->updateUser($previousUser);
 
         foreach ($socialIds as $socialKey => $socialId) {
-            $socialKey = $socialKey . 'Id';
+            $socialKey = $socialKey.'Id';
             $currentSocialId = $propertyAccessor->getValue($user, $socialKey);
 
             if ($currentSocialId) {

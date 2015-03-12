@@ -6,9 +6,8 @@ use Guzzle\Http\Client;
 use Guzzle\Http\Exception\RequestException;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use JMS\Serializer\Serializer;
-use Symfony\Component\Config\Definition\Exception\Exception;
-use Symfony\Component\DependencyInjection\Container,
-    Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\Filesystem\Filesystem;
 use Application\Sonata\MediaBundle\Entity\Media;
 use Geekhub\UserBundle\Entity\User;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
@@ -30,14 +29,14 @@ abstract class AbstractSocialNetworkProvider
     /** @var  string $defaultAvatarPath */
     protected $defaultAvatarPath;
 
-    public function __construct(Container $container, $kernelWebDir, $uploadDir, $defaultAvatarPath)
-    {
-        $this->container          = $container;
-        $this->serializer         = $container->get('jms_serializer');
-        $this->kernelWebDir       = $kernelWebDir;
-        $this->uploadDir          = $uploadDir;
-        $this->defaultAvatarPath  = $defaultAvatarPath;
-    }
+//    public function __construct(Container $container, $kernelWebDir, $uploadDir, $defaultAvatarPath)
+//    {
+//        $this->container          = $container;
+//        $this->serializer         = $container->get('jms_serializer');
+//        $this->kernelWebDir       = $kernelWebDir;
+//        $this->uploadDir          = $uploadDir;
+//        $this->defaultAvatarPath  = $defaultAvatarPath;
+//    }
 
     public function getMediaFromRemoteImg($remoteImg, $localFileName)
     {
@@ -71,7 +70,6 @@ abstract class AbstractSocialNetworkProvider
         } catch (IOExceptionInterface $e) {
             $logger = $this->container->get('logger');
             $logger->addError(sprintf('Error removing temporary avatar file %s.', $remoteImg));
-
         }
 
         return $media;
@@ -104,7 +102,7 @@ abstract class AbstractSocialNetworkProvider
     {
         $defaultImg = $this->kernelWebDir.$this->defaultAvatarPath;//'/../web/images/default_avatar.png';
         $mediaManager = $this->container->get('sonata.media.manager.media');
-        $media = $mediaManager->findOneBy(array('context'=>'default_avatar'));
+        $media = $mediaManager->findOneBy(array('context' => 'default_avatar'));
         if (!$media) {
             $media = new Media();
             $media->setBinaryContent($defaultImg);

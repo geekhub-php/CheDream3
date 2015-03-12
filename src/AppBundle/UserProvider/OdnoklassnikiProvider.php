@@ -50,9 +50,9 @@ class OdnoklassnikiProvider extends AbstractSocialNetworkProvider
 
         $url = 'http://api.odnoklassniki.ru/fb.do?method='.$method;
         $sig = md5(
-            'application_key=' . $odnoklassnikiAppKey .
-            'method=' . $method .
-            md5($token . $odnoklassnikiAppSecret)
+            'application_key='.$odnoklassnikiAppKey.
+            'method='.$method.
+            md5($token.$odnoklassnikiAppSecret)
         );
         $arrayParameters = array(
             'access_token' => $token,
@@ -62,7 +62,7 @@ class OdnoklassnikiProvider extends AbstractSocialNetworkProvider
 
         $arrayParameters = array_merge($parameters, $arrayParameters);
 
-        $url .= '&' . http_build_query($arrayParameters);
+        $url .= '&'.http_build_query($arrayParameters);
 
         $client = new Client();
         $request = $client->get($url);
@@ -72,7 +72,7 @@ class OdnoklassnikiProvider extends AbstractSocialNetworkProvider
             $logger = $this->container->get('logger');
             $logger->addError(sprintf('Error requesting data from odnoklassniki: guzzle::send(). url: %s.', $url));
 
-            return null;
+            return;
         }
         $responseBody = $response->getBody()->__toString();
 
