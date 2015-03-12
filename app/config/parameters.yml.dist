@@ -14,4 +14,3 @@ parameters:
     admin_dashboard_base_url: /admin
     sonata_admin.title: 'Dream Project'
     sonata_admin.logo_title: bundles/app/img/dream.png
-

@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new Hautelook\AliceBundle\HautelookAliceBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),

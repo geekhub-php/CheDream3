@@ -85,7 +85,7 @@ nelmio_api_doc:
 
 fos_user:
     db_driver: mongodb
-    firewall_name: main
+    firewall_name: secured_area
     user_class: AppBundle\Document\User
 
 hautelook_alice:
@@ -150,3 +150,13 @@ white_october_pagerfanta:
         out_of_range_page:        to_http_not_found
         not_valid_current_page:   to_http_not_found
 
+hwi_oauth:
+    connect:
+#      account_connector: app.provider.user_provider
+      confirmation: false
+      # name of the firewall in which this bundle is active, this setting MUST be set
+    firewall_name: main
+    fosub:
+        username_iterations: 30
+        properties: ~
+    resource_owners: ~

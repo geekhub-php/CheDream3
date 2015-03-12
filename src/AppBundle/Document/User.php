@@ -16,7 +16,7 @@ use JMS\Serializer\Annotation as JMS;
  * @ODM\Document(collection="users")
  * @ExclusionPolicy("all")
  */
-class User extends BaseUser //implements DreamUserInterface
+class User extends BaseUser
 {
     use Timestampable;
     const FAKE_EMAIL_PART = "@example.com";
@@ -97,11 +97,20 @@ class User extends BaseUser //implements DreamUserInterface
     /**
      * @var string
      *
-     * @ODM\Field(name="odnoklassniki_id", type="string")
+     * @ODM\Field(name="google_id", type="string")
      * @Expose()
      * @JMS\Type("string")
      */
-    protected $odnoklassnikiId;
+    protected $googleId;
+
+    /**
+     * @var string
+     *
+     * @ODM\Field(name="twitter_id", type="string")
+     * @Expose()
+     * @JMS\Type("string")
+     */
+    protected $twitterId;
 
     /**
      * @ODM\ReferenceMany(targetDocument="Dream")
@@ -625,5 +634,134 @@ class User extends BaseUser //implements DreamUserInterface
     public function __toString()
     {
         return $this->getFirstName();
+    }
+    /**
+     * @var date $createdAt
+     */
+    protected $createdAt;
+
+    /**
+     * @var date $updatedAt
+     */
+    protected $updatedAt;
+
+    /**
+     * @var date $deletedAt
+     */
+    protected $deletedAt;
+
+    /**
+     * Set googleId
+     *
+     * @param  string $googleId
+     * @return self
+     */
+    public function setGoogleId($googleId)
+    {
+        $this->googleId = $googleId;
+
+        return $this;
+    }
+
+    /**
+     * Get googleId
+     *
+     * @return string $googleId
+     */
+    public function getGoogleId()
+    {
+        return $this->googleId;
+    }
+
+    /**
+     * Set twitterId
+     *
+     * @param  string $twitterId
+     * @return self
+     */
+    public function setTwitterId($twitterId)
+    {
+        $this->twitterId = $twitterId;
+
+        return $this;
+    }
+
+    /**
+     * Get twitterId
+     *
+     * @return string $twitterId
+     */
+    public function getTwitterId()
+    {
+        return $this->twitterId;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param  date $createdAt
+     * @return self
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return date $createdAt
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param  date $updatedAt
+     * @return self
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return date $updatedAt
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param  date $deletedAt
+     * @return self
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return date $deletedAt
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
     }
 }
