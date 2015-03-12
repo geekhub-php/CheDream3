@@ -9,8 +9,8 @@ security:
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username
-        my_custom_hwi_provider:
-            id: app.provider.user_provider
+#        my_custom_hwi_provider:
+#            id: app.provider.user_provider
 
 
     firewalls:
