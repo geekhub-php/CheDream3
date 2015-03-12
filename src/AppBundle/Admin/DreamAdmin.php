@@ -21,7 +21,7 @@ class DreamAdmin extends Admin
     {
         $choiceOptions = Status::getStatusesArray();
         $datagridMapper
-            ->add('currentStatus',null, [], 'choice', [
+            ->add('currentStatus', null, [], 'choice', [
                 'choices' => $choiceOptions
             ])
         ;

@@ -13,7 +13,6 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
  */
 abstract class AbstractContributeResource
 {
-
     /**
      * @var float
      *
