@@ -2,18 +2,22 @@
 
 namespace AppBundle\UserProvider;
 
+use AppBundle\Document\User;
+use Doctrine\ODM\MongoDB\DocumentManager;
+use FOS\RestBundle\View\View;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
+use HWI\Bundle\OAuthBundle\Security\Core\Authentication\Token\OAuthToken;
 use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseClass;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Exception\LockedException;
+use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
-use Geekhub\UserBundle\UserProvider\FacebookProvider;
-use Geekhub\UserBundle\UserProvider\VkontakteProvider;
-use Geekhub\UserBundle\UserProvider\OdnoklassnikiProvider;
-use Geekhub\UserBundle\Entity\User;
+use AppBundle\UserProvider\FacebookProvider;
+use AppBundle\UserProvider\VkontakteProvider;
+use AppBundle\UserProvider\OdnoklassnikiProvider;
 
 class DreamUserProvider extends BaseClass implements UserProviderInterface, OAuthAwareUserProviderInterface
 {
@@ -25,8 +29,36 @@ class DreamUserProvider extends BaseClass implements UserProviderInterface, OAut
     /** @var VkontakteProvider $vkontakteProvider */
     protected $vkontakteProvider;
 
-    /** @var OdnoklassnikiProvider $odnoklassnikiProvider */
-    protected $odnoklassnikiProvider;
+    public function connectUser(DocumentManager $dm, SecurityContext $securityContext, $accessToken, $id, $service)
+    {
+        $property = strtolower($service)."Id";
+
+        $user = $dm->getRepository('AppBundle:User')
+                   ->findOneBy([$property => $id]);
+
+        $view = new View();
+
+        if (!$user) {
+            $accessor = new PropertyAccessor();
+
+            $user = new User();
+            $accessor->setValue($user, $property, $id);
+
+            $dm->persist($user);
+            $dm->flush();
+
+            $view->setStatusCode(202);
+        }
+
+        $token = new OAuthToken($accessToken);
+        $token->setResourceOwnerName($property);
+        $token->setUser($user);
+        $token->setAuthenticated(true);
+
+        $securityContext->setToken($token);
+
+        return $view;
+    }
 
     /**
      * {@inheritDoc}
