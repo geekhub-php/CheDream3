@@ -12,6 +12,7 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
+use Symfony\Component\Routing\Annotation\Route;
 
 class UsersController extends AbstractController
 {
@@ -92,6 +93,8 @@ class UsersController extends AbstractController
     }
 
     /**
+     * @Route("/login/{accessToken}/{id}/service/{servicesu}")
+     *
      * @param $accessToken
      * @param $id
      * @param $service
