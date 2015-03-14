@@ -120,7 +120,10 @@ class UsersController extends AbstractController
 
     /**
      * @ApiDoc(
-     *      resource = true
+     *      resource = true,
+     *      statusCodes = {
+                200 = "Return if user successful authorise"
+     *      }
      * )
      *
      * @param Request $request
