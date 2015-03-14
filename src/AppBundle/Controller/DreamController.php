@@ -144,7 +144,6 @@ class DreamController extends AbstractController
      * @ApiDoc(
      *      resource = true,
      *      description = "Create single dream",
-     *      input = "AppBundle\Document\Dream",
      *      output = "string",
      *      statusCodes = {
      *          201 = "Dream sucessful created",
@@ -191,7 +190,6 @@ class DreamController extends AbstractController
      * @ApiDoc(
      * resource = true,
      * description = "Create/Update single dream",
-     * input = "AppBundle\Document\Dream",
      * statusCodes = {
      * 200 = "Dream successful update",
      * 404 = "Return when dream with current slug not isset"
