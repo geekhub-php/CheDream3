@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Document\User;
 use HWI\Bundle\OAuthBundle\Security\Core\Authentication\Token\OAuthToken;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
@@ -93,7 +94,14 @@ class UsersController extends AbstractController
     }
 
     /**
-     * @Route("/login/{accessToken}/{id}/service/{servicesu}")
+     * @ApiDoc(
+     *      resource = true,
+     *      description = "login page",
+     *      statusCodes = {
+     *          302 = "Returned if user not isset, for create new user",
+     *          200 = "Returned if user success authorize"
+     *      }
+     * )
      *
      * @param $accessToken
      * @param $id
@@ -103,10 +111,27 @@ class UsersController extends AbstractController
      *
      * @RestView()
      */
-    public function getLoginAction($accessToken, $id, $service)
+    public function getLoginUserServiceAction($accessToken, $id, $service)
     {
         $dm = $this->getMongoDbManager();
 
         return $this->get('app.provider.user_provider')->connectUser($dm, $this->get('security.context'), $accessToken, $id, $service);
+    }
+
+    /**
+     * @ApiDoc(
+     *      resource = true
+     * )
+     *
+     * @param Request $request
+     */
+    public function postCreateUserServiceAction(Request $request, $accessToken, $id, $service)
+    {
+        $dm = $this->getMongoDbManager();
+
+        $user = $this->get('app.provider.user_provider')->createUser($this->get('serializer'), $request->getBody(), $service, $id);
+
+        $dm->persist($user);
+        $dm->flush();
     }
 }
