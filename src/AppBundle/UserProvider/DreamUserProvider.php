@@ -9,6 +9,7 @@ use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\Authentication\Token\OAuthToken;
 use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseClass;
+use JMS\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Exception\LockedException;
 use Symfony\Component\Security\Core\SecurityContext;
@@ -39,25 +40,28 @@ class DreamUserProvider extends BaseClass implements UserProviderInterface, OAut
         $view = new View();
 
         if (!$user) {
-            $accessor = new PropertyAccessor();
+            $view->setStatusCode(302);
+        } else {
+            $token = new OAuthToken($accessToken);
+            $token->setResourceOwnerName($property);
+            $token->setUser($user);
+            $token->setAuthenticated(true);
 
-            $user = new User();
-            $accessor->setValue($user, $property, $id);
-
-            $dm->persist($user);
-            $dm->flush();
-
-            $view->setStatusCode(202);
+            $securityContext->setToken($token);
         }
 
-        $token = new OAuthToken($accessToken);
-        $token->setResourceOwnerName($property);
-        $token->setUser($user);
-        $token->setAuthenticated(true);
-
-        $securityContext->setToken($token);
-
         return $view;
+    }
+
+    public function createUser(Serializer $serializer, $data, $service, $id)
+    {
+        $user = $serializer->deserialize($data, 'AppBundle\Document\User', 'json');
+
+        $accessor = new PropertyAccessor();
+
+        $accessor->setValue($user, strtolower($service)."Id", $id);
+
+        return $user;
     }
 
     /**
