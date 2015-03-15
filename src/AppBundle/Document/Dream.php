@@ -198,7 +198,7 @@ class Dream
 //     */
 //    protected $mediaVideos;
 
-    protected $dreamPictures;
+//    protected $dreamPictures;
 //    protected $dreamPoster;
 //    protected $dreamFiles;
 //    protected $dreamVideos;
