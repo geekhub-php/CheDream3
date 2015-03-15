@@ -3,11 +3,11 @@
 namespace Application\Sonata\MediaBundle\DataFixtures\MongoDB;
 
 use Application\Sonata\MediaBundle\Document\Media;
-use Doctrine\Common\DataFixtures\AbstractFixture;
+use Hautelook\AliceBundle\Alice\DataFixtureLoader;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-abstract class AbstractMediaLoader extends AbstractFixture implements ContainerAwareInterface
+abstract class AbstractMediaLoader extends DataFixtureLoader implements ContainerAwareInterface
 {
 
     protected $container;
@@ -28,9 +28,8 @@ abstract class AbstractMediaLoader extends AbstractFixture implements ContainerA
      * @param string $src
      * @param string $context
      * @param string $provider
-     * @param string $nameReference
      */
-    protected function setMediaContent($src, $context, $provider, $nameReference)
+    protected function setMediaContent($src, $context, $provider)
     {
         $mediaManager = $this->container->get('sonata.media.manager.media');
         $media = new Media();
@@ -38,6 +37,5 @@ abstract class AbstractMediaLoader extends AbstractFixture implements ContainerA
         $media->setContext($context);
         $media->setProviderName($provider);
         $mediaManager->save($media);
-        $this->addReference($nameReference, $media);
     }
 }
