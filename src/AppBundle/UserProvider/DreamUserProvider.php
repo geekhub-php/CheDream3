@@ -42,18 +42,15 @@ class DreamUserProvider extends BaseClass implements UserProviderInterface, OAut
         if (!$user) {
             $view->setStatusCode(302);
         } else {
-            $token = new OAuthToken($accessToken);
-            $token->setResourceOwnerName($property);
-            $token->setUser($user);
-            $token->setAuthenticated(true);
+            $service = strtolower($service)."Id";
 
-            $securityContext->setToken($token);
+            $this->authicateUser($securityContext, $user, $accessToken, $service);
         }
 
         return $view;
     }
 
-    public function createUser(Serializer $serializer, $data, $service, $id)
+    public function createUser(SecurityContext $securityContext, Serializer $serializer, $data, $accessToken, $service, $id)
     {
         $user = $serializer->deserialize($data, 'AppBundle\Document\User', 'json');
 
@@ -61,7 +58,21 @@ class DreamUserProvider extends BaseClass implements UserProviderInterface, OAut
 
         $accessor->setValue($user, strtolower($service)."Id", $id);
 
+        $this->authicateUser($securityContext, $user, $accessToken, $service);
+
         return $user;
+    }
+
+    public function authicateUser(SecurityContext $securityContext, User $user, $accessToken, $service)
+    {
+        $service = strtolower($service)."Id";
+
+        $token = new OAuthToken($accessToken);
+        $token->setResourceOwnerName($service);
+        $token->setUser($user);
+        $token->setAuthenticated(true);
+
+        $securityContext->setToken($token);
     }
 
     /**
