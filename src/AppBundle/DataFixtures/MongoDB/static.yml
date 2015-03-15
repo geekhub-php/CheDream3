@@ -27,6 +27,7 @@ AppBundle\Document\Dream:
     author: @user
     statuses: [@status]
     currentStatus: completed
+    mediaPictures: <mediaPictures()>
 
 AppBundle\Document\FinancialResource:
   financialResource{1..20}:
