@@ -16,7 +16,6 @@ class ContributeController extends AbstractController
      * @ApiDoc(
      *      resource = true,
      *      description = "create single contribute",
-     *      input = "AppBundle\Document\Contribute",
      *      statusCodes = {
      *          201 = "Returned when successful create",
      *          404 = "Returned when dream is not found"

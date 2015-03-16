@@ -2,6 +2,9 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Document\User;
+use HWI\Bundle\OAuthBundle\Security\Core\Authentication\Token\OAuthToken;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\View as RestView;
@@ -9,6 +12,8 @@ use FOS\RestBundle\View\View;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
+use Symfony\Component\PropertyAccess\PropertyAccessor;
+use Symfony\Component\Routing\Annotation\Route;
 
 class UsersController extends AbstractController
 {
@@ -86,5 +91,50 @@ class UsersController extends AbstractController
         }
 
         return $user;
+    }
+
+    /**
+     * @ApiDoc(
+     *      resource = true,
+     *      description = "login page",
+     *      statusCodes = {
+     *          302 = "Returned if user not isset, for create new user",
+     *          200 = "Returned if user success authorize"
+     *      }
+     * )
+     *
+     * @param $accessToken
+     * @param $id
+     * @param $service
+     *
+     * @return View
+     *
+     * @RestView()
+     */
+    public function getLoginUserServiceAction($accessToken, $id, $service)
+    {
+        $dm = $this->getMongoDbManager();
+
+        return $this->get('app.provider.user_provider')->connectUser($dm, $this->get('security.context'), $accessToken, $id, $service);
+    }
+
+    /**
+     * @ApiDoc(
+     *      resource = true,
+     *      statusCodes = {
+                200 = "Return if user successful authorise"
+     *      }
+     * )
+     *
+     * @param Request $request
+     */
+    public function postCreateUserServiceAction(Request $request, $accessToken, $id, $service)
+    {
+        $dm = $this->getMongoDbManager();
+
+        $user = $this->get('app.provider.user_provider')->createUser($this->get('serializer'), $request->getBody(), $service, $id);
+
+        $dm->persist($user);
+        $dm->flush();
     }
 }
