@@ -9,7 +9,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 abstract class AbstractMediaLoader extends DataFixtureLoader implements ContainerAwareInterface
 {
-
     protected $container;
 
     /**

@@ -22,19 +22,19 @@ class LoadWork extends AbstractMediaLoader
     }
 
     /**
-     * This method return all MediaObjects
+     * This method return all MediaObjects.
      *
      * @return \Application\Sonata\MediaBundle\Document\Media[]|array
      */
     public function getMediaObjects()
     {
-            $mediaObjects = $this->manager->getRepository("ApplicationSonataMediaBundle:Media")->findAll();
+        $mediaObjects = $this->manager->getRepository("ApplicationSonataMediaBundle:Media")->findAll();
 
-            return $mediaObjects;
+        return $mediaObjects;
     }
 
     /**
-     * This method saves the images in Media Collection
+     * This method saves the images in Media Collection.
      */
     private function addPictures()
     {
