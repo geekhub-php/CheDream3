@@ -13,40 +13,40 @@ class LoadWork extends AbstractMediaLoader
      */
     protected function getFixtures()
     {
+        $this->addPictures();
+
         return  array(
             __DIR__.'/dynamic.yml',
             __DIR__.'/static.yml',
         );
     }
 
-    public function mediaPictures()
+    /**
+     * This method return all MediaObjects
+     *
+     * @return \Application\Sonata\MediaBundle\Document\Media[]|array
+     */
+    public function getMediaObjects()
     {
-        $pictures = ['blaster','moon','star','starship'];
-        $counter = $this->addPictures();
-        for ($i = 0; $i < $counter; $i++) {
-            $media[$i] = $this->manager->getRepository("ApplicationSonataMediaBundle:Media")->findOneByName($pictures[$i].'.jpg');
-        }
+            $mediaObjects = $this->manager->getRepository("ApplicationSonataMediaBundle:Media")->findAll();
 
-        return $media;
+            return $mediaObjects;
     }
 
     /**
-     * @return int
+     * This method saves the images in Media Collection
      */
     private function addPictures()
     {
         $finder = new Finder();
         $finder->files()->in(__DIR__.'/images');
-        $counter = 0;
+
         foreach ($finder as $file) {
             $this->setMediaContent(
                 __DIR__.'/images/'.$file->getRelativePathname(),
                 'pictures',
                 'sonata.media.provider.image'
             );
-            $counter++;
         }
-
-        return $counter;
     }
 }
