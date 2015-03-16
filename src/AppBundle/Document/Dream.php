@@ -689,7 +689,7 @@ class Dream
     }
 
     /**
-     * Add mediaPicture.
+     * Add mediaPicture
      *
      * @param \Application\Sonata\MediaBundle\Document\Media $mediaPicture
      */
@@ -699,7 +699,7 @@ class Dream
     }
 
     /**
-     * Remove mediaPicture.
+     * Remove mediaPicture
      *
      * @param \Application\Sonata\MediaBundle\Document\Media $mediaPicture
      */
@@ -709,7 +709,7 @@ class Dream
     }
 
     /**
-     * Get mediaPictures.
+     * Get mediaPictures
      *
      * @return \Doctrine\Common\Collections\Collection $mediaPictures
      */
@@ -719,7 +719,7 @@ class Dream
     }
 
     /**
-     * Add mediaCompletedPicture.
+     * Add mediaCompletedPicture
      *
      * @param \Application\Sonata\MediaBundle\Document\Media $mediaCompletedPicture
      */
@@ -729,7 +729,7 @@ class Dream
     }
 
     /**
-     * Remove mediaCompletedPicture.
+     * Remove mediaCompletedPicture
      *
      * @param \Application\Sonata\MediaBundle\Document\Media $mediaCompletedPicture
      */
@@ -739,7 +739,7 @@ class Dream
     }
 
     /**
-     * Get mediaCompletedPictures.
+     * Get mediaCompletedPictures
      *
      * @return \Doctrine\Common\Collections\Collection $mediaCompletedPictures
      */
