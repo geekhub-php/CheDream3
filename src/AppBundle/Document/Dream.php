@@ -10,7 +10,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
- * Class Dream.
+ * Class Dream
+ * @package AppBundle\Document
  *
  * @ODM\Document(collection="dreams")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
@@ -28,7 +29,7 @@ class Dream
     protected $id;
 
     /**
-     * Dream name.
+     * Dream name
      *
      * @var string
      *
@@ -41,7 +42,7 @@ class Dream
     protected $title;
 
     /**
-     * Dream description.
+     * Dream description
      *
      * @var string
      *
@@ -223,8 +224,6 @@ class Dream
 
     public function __construct()
     {
-        $this->mediaPictures = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->mediaCompletedPictures = new \Doctrine\Common\Collections\ArrayCollection();
         $this->usersWhoFavorites = new \Doctrine\Common\Collections\ArrayCollection();
         $this->statuses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->contributes = new \Doctrine\Common\Collections\ArrayCollection();
@@ -232,7 +231,7 @@ class Dream
     }
 
     /**
-     * Get id.
+     * Get id
      *
      * @return id $id
      */
@@ -242,10 +241,9 @@ class Dream
     }
 
     /**
-     * Set title.
+     * Set title
      *
-     * @param string $title
-     *
+     * @param  string $title
      * @return self
      */
     public function setTitle($title)
@@ -256,7 +254,7 @@ class Dream
     }
 
     /**
-     * Get title.
+     * Get title
      *
      * @return string $title
      */
@@ -266,10 +264,9 @@ class Dream
     }
 
     /**
-     * Set description.
+     * Set description
      *
-     * @param string $description
-     *
+     * @param  string $description
      * @return self
      */
     public function setDescription($description)
@@ -280,7 +277,7 @@ class Dream
     }
 
     /**
-     * Get description.
+     * Get description
      *
      * @return string $description
      */
@@ -290,10 +287,9 @@ class Dream
     }
 
     /**
-     * Set rejectedDescription.
+     * Set rejectedDescription
      *
-     * @param string $rejectedDescription
-     *
+     * @param  string $rejectedDescription
      * @return self
      */
     public function setRejectedDescription($rejectedDescription)
@@ -304,7 +300,7 @@ class Dream
     }
 
     /**
-     * Get rejectedDescription.
+     * Get rejectedDescription
      *
      * @return string $rejectedDescription
      */
@@ -314,10 +310,9 @@ class Dream
     }
 
     /**
-     * Set implementedDescription.
+     * Set implementedDescription
      *
-     * @param string $implementedDescription
-     *
+     * @param  string $implementedDescription
      * @return self
      */
     public function setImplementedDescription($implementedDescription)
@@ -328,7 +323,7 @@ class Dream
     }
 
     /**
-     * Get implementedDescription.
+     * Get implementedDescription
      *
      * @return string $implementedDescription
      */
@@ -338,10 +333,9 @@ class Dream
     }
 
     /**
-     * Set completedDescription.
+     * Set completedDescription
      *
-     * @param string $completedDescription
-     *
+     * @param  string $completedDescription
      * @return self
      */
     public function setCompletedDescription($completedDescription)
@@ -352,7 +346,7 @@ class Dream
     }
 
     /**
-     * Get completedDescription.
+     * Get completedDescription
      *
      * @return string $completedDescription
      */
@@ -362,10 +356,9 @@ class Dream
     }
 
     /**
-     * Set phone.
+     * Set phone
      *
-     * @param string $phone
-     *
+     * @param  string $phone
      * @return self
      */
     public function setPhone($phone)
@@ -376,7 +369,7 @@ class Dream
     }
 
     /**
-     * Get phone.
+     * Get phone
      *
      * @return string $phone
      */
@@ -386,10 +379,9 @@ class Dream
     }
 
     /**
-     * Set slug.
+     * Set slug
      *
-     * @param string $slug
-     *
+     * @param  string $slug
      * @return self
      */
     public function setSlug($slug)
@@ -400,7 +392,7 @@ class Dream
     }
 
     /**
-     * Get slug.
+     * Get slug
      *
      * @return string $slug
      */
@@ -410,10 +402,9 @@ class Dream
     }
 
     /**
-     * Set expiredDate.
+     * Set expiredDate
      *
-     * @param date $expiredDate
-     *
+     * @param  date $expiredDate
      * @return self
      */
     public function setExpiredDate($expiredDate)
@@ -424,7 +415,7 @@ class Dream
     }
 
     /**
-     * Get expiredDate.
+     * Get expiredDate
      *
      * @return date $expiredDate
      */
@@ -434,10 +425,9 @@ class Dream
     }
 
     /**
-     * Set financialCompleted.
+     * Set financialCompleted
      *
-     * @param int $financialCompleted
-     *
+     * @param  int  $financialCompleted
      * @return self
      */
     public function setFinancialCompleted($financialCompleted)
@@ -448,7 +438,7 @@ class Dream
     }
 
     /**
-     * Get financialCompleted.
+     * Get financialCompleted
      *
      * @return int $financialCompleted
      */
@@ -458,10 +448,9 @@ class Dream
     }
 
     /**
-     * Set workCompleted.
+     * Set workCompleted
      *
-     * @param int $workCompleted
-     *
+     * @param  int  $workCompleted
      * @return self
      */
     public function setWorkCompleted($workCompleted)
@@ -472,7 +461,7 @@ class Dream
     }
 
     /**
-     * Get workCompleted.
+     * Get workCompleted
      *
      * @return int $workCompleted
      */
@@ -482,10 +471,9 @@ class Dream
     }
 
     /**
-     * Set equipmentCompleted.
+     * Set equipmentCompleted
      *
-     * @param int $equipmentCompleted
-     *
+     * @param  int  $equipmentCompleted
      * @return self
      */
     public function setEquipmentCompleted($equipmentCompleted)
@@ -496,7 +484,7 @@ class Dream
     }
 
     /**
-     * Get equipmentCompleted.
+     * Get equipmentCompleted
      *
      * @return int $equipmentCompleted
      */
@@ -506,7 +494,7 @@ class Dream
     }
 
     /**
-     * Add usersWhoFavorite.
+     * Add usersWhoFavorite
      *
      * @param \AppBundle\Document\User $usersWhoFavorite
      */
@@ -516,7 +504,7 @@ class Dream
     }
 
     /**
-     * Remove usersWhoFavorite.
+     * Remove usersWhoFavorite
      *
      * @param \AppBundle\Document\User $usersWhoFavorite
      */
@@ -526,7 +514,7 @@ class Dream
     }
 
     /**
-     * Get usersWhoFavorites.
+     * Get usersWhoFavorites
      *
      * @return \Doctrine\Common\Collections\Collection $usersWhoFavorites
      */
@@ -536,10 +524,9 @@ class Dream
     }
 
     /**
-     * Set favoritesCount.
+     * Set favoritesCount
      *
-     * @param int $favoritesCount
-     *
+     * @param  int  $favoritesCount
      * @return self
      */
     public function setFavoritesCount($favoritesCount)
@@ -550,7 +537,7 @@ class Dream
     }
 
     /**
-     * Get favoritesCount.
+     * Get favoritesCount
      *
      * @return int $favoritesCount
      */
@@ -560,10 +547,9 @@ class Dream
     }
 
     /**
-     * Set author.
+     * Set author
      *
-     * @param \AppBundle\Document\User $author
-     *
+     * @param  \AppBundle\Document\User $author
      * @return self
      */
     public function setAuthor(\AppBundle\Document\User $author)
@@ -574,7 +560,7 @@ class Dream
     }
 
     /**
-     * Get author.
+     * Get author
      *
      * @return \AppBundle\Document\User $author
      */
@@ -584,7 +570,7 @@ class Dream
     }
 
     /**
-     * Add status.
+     * Add status
      *
      * @param \AppBundle\Document\Status $status
      */
@@ -594,7 +580,7 @@ class Dream
     }
 
     /**
-     * Remove status.
+     * Remove status
      *
      * @param \AppBundle\Document\Status $status
      */
@@ -604,7 +590,7 @@ class Dream
     }
 
     /**
-     * Get statuses.
+     * Get statuses
      *
      * @return \Doctrine\Common\Collections\Collection $statuses
      */
@@ -614,10 +600,9 @@ class Dream
     }
 
     /**
-     * Set currentStatus.
+     * Set currentStatus
      *
-     * @param string $currentStatus
-     *
+     * @param  string $currentStatus
      * @return self
      */
     public function setCurrentStatus($currentStatus)
@@ -628,7 +613,7 @@ class Dream
     }
 
     /**
-     * Get currentStatus.
+     * Get currentStatus
      *
      * @return string $currentStatus
      */
@@ -638,7 +623,7 @@ class Dream
     }
 
     /**
-     * Add contribute.
+     * Add contribute
      *
      * @param \AppBundle\Document\Contribute $contribute
      */
@@ -651,7 +636,7 @@ class Dream
     }
 
     /**
-     * Remove contribute.
+     * Remove contribute
      *
      * @param \AppBundle\Document\Contribute $contribute
      */
@@ -661,7 +646,7 @@ class Dream
     }
 
     /**
-     * Get contributes.
+     * Get contributes
      *
      * @return \Doctrine\Common\Collections\Collection $contributes
      */
@@ -671,7 +656,7 @@ class Dream
     }
 
     /**
-     * Add resource.
+     * Add resource
      *
      * @param \AppBundle\Document\Resource $resource
      */
@@ -684,7 +669,7 @@ class Dream
     }
 
     /**
-     * Remove resource.
+     * Remove resource
      *
      * @param \AppBundle\Document\Resource $resource
      */
@@ -694,18 +679,13 @@ class Dream
     }
 
     /**
-     * Get resources.
+     * Get resources
      *
      * @return \Doctrine\Common\Collections\Collection $resources
      */
     public function getResources()
     {
         return $this->resources;
-    }
-
-    public function __toString()
-    {
-        return $this->getTitle();
     }
 
     /**
@@ -766,5 +746,10 @@ class Dream
     public function getMediaCompletedPictures()
     {
         return $this->mediaCompletedPictures;
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 }
