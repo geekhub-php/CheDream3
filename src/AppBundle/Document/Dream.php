@@ -172,15 +172,15 @@ class Dream
      */
     protected $currentStatus;
 
-//    /**
-//     * @ODM\ManyToMany(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
-//     */
-//    protected $mediaPictures;
+    /**
+     * @ODM\ReferenceMany(targetDocument="Application\Sonata\MediaBundle\Document\Media")
+     */
+    protected $mediaPictures = [];
 
-//    /**
-//     * @ODM\ReferenceMany(targetDocument="Application\Sonata\MediaBundle\Entity\Media")
-//     */
-////    protected $mediaCompletedPictures;
+    /**
+     * @ODM\ReferenceMany(targetDocument="Application\Sonata\MediaBundle\Document\Media")
+     */
+    protected $mediaCompletedPictures;
 //
 //    /**
 //     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
@@ -686,6 +686,66 @@ class Dream
     public function getResources()
     {
         return $this->resources;
+    }
+
+    /**
+     * Add mediaPicture
+     *
+     * @param \Application\Sonata\MediaBundle\Document\Media $mediaPicture
+     */
+    public function addMediaPicture(\Application\Sonata\MediaBundle\Document\Media $mediaPicture)
+    {
+        $this->mediaPictures[] = $mediaPicture;
+    }
+
+    /**
+     * Remove mediaPicture
+     *
+     * @param \Application\Sonata\MediaBundle\Document\Media $mediaPicture
+     */
+    public function removeMediaPicture(\Application\Sonata\MediaBundle\Document\Media $mediaPicture)
+    {
+        $this->mediaPictures->removeElement($mediaPicture);
+    }
+
+    /**
+     * Get mediaPictures
+     *
+     * @return \Doctrine\Common\Collections\Collection $mediaPictures
+     */
+    public function getMediaPictures()
+    {
+        return $this->mediaPictures;
+    }
+
+    /**
+     * Add mediaCompletedPicture
+     *
+     * @param \Application\Sonata\MediaBundle\Document\Media $mediaCompletedPicture
+     */
+    public function addMediaCompletedPicture(\Application\Sonata\MediaBundle\Document\Media $mediaCompletedPicture)
+    {
+        $this->mediaCompletedPictures[] = $mediaCompletedPicture;
+    }
+
+    /**
+     * Remove mediaCompletedPicture
+     *
+     * @param \Application\Sonata\MediaBundle\Document\Media $mediaCompletedPicture
+     */
+    public function removeMediaCompletedPicture(\Application\Sonata\MediaBundle\Document\Media $mediaCompletedPicture)
+    {
+        $this->mediaCompletedPictures->removeElement($mediaCompletedPicture);
+    }
+
+    /**
+     * Get mediaCompletedPictures
+     *
+     * @return \Doctrine\Common\Collections\Collection $mediaCompletedPictures
+     */
+    public function getMediaCompletedPictures()
+    {
+        return $this->mediaCompletedPictures;
     }
 
     public function __toString()
